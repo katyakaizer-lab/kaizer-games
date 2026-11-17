@@ -23,10 +23,12 @@ import sun from '@tabler/icons/outline/sun.svg?raw';
 import palette from '@tabler/icons/outline/palette.svg?raw';
 import book from '@tabler/icons/outline/book.svg?raw';
 import ear from '@tabler/icons/outline/ear.svg?raw';
+import lock from '@tabler/icons/outline/lock.svg?raw';
+import slow from '@tabler/icons/outline/snail.svg?raw';
 
 export const ICONS = {
   check, refresh, x, settings, volume, volumeOff, bulb, star, eye, home, play, pause,
-  download, upload, clock, info, back, undo, sparkles, moon, sun, palette, book, ear,
+  download, upload, clock, info, back, undo, sparkles, moon, sun, palette, book, ear, lock, slow,
 } as const;
 export type IconName = keyof typeof ICONS;
 

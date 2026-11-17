@@ -33,7 +33,7 @@ describe('i18n', () => {
     expect(missingKeys().en).toEqual([]);
     setLang('ru');
     expect(t('common.close')).toBe('Закрыть');
-    expect(t('settings.save')).toBe(en['settings.save']);
+    expect(t('settings.progressNote')).toBe(en['settings.progressNote']);
     setLang('en');
   });
 });

@@ -1,0 +1,92 @@
+/* Hub screens. Tokens only. */
+.app { min-height: 100dvh; }
+.screen { max-width: 44rem; margin: 0 auto; padding: var(--space-4); display: grid; gap: var(--space-4); align-content: start; }
+/* Titles get focus on a new screen (for screen readers) but are not controls, so no ring. */
+.screen__title:focus, .screen__title:focus-visible { outline: none; }
+.screen__bar { display: flex; justify-content: space-between; align-items: center; margin-left: calc(-1 * var(--space-2)); }
+.screen__actions { display: flex; justify-content: flex-end; }
+.screen h1, .screen h2, .screen p { margin-bottom: 0; }
+
+.field { display: grid; gap: var(--space-1); max-width: 24rem; }
+.field__label { font-weight: 700; }
+.field__input {
+  min-height: var(--tap-min); padding: var(--space-2) var(--space-3);
+  font: inherit; color: var(--text); background: var(--surface);
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-tile);
+}
+.field__input:focus-visible { border-color: var(--focus); }
+
+/* Picker */
+.picker__grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(9rem, 42%), 1fr)); }
+.picker__pet {
+  position: relative; display: grid; justify-items: center; gap: var(--space-1);
+  padding: var(--space-3); min-height: var(--tap-min);
+  background: var(--surface); color: var(--text);
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+  font: inherit; cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.picker__pet .k-pet { width: min(100%, 9rem); }
+.picker__pet:active { transform: scale(.98); }
+.picker__name { font-weight: 700; font-size: 1.125rem; }
+.picker__check { position: absolute; top: var(--space-2); right: var(--space-2); display: none; background: var(--primary); color: var(--on-primary); border-radius: var(--radius-pill); padding: 2px; }
+.picker__pet[aria-pressed="true"] { border-color: var(--primary); box-shadow: inset 0 0 0 var(--border-w) var(--primary); }
+.picker__pet[aria-pressed="true"] .picker__check { display: inline-flex; }
+
+/* Home */
+.home__header { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.home__room {
+  position: relative; display: grid; place-items: center;
+  aspect-ratio: 4 / 3; max-height: 60vh; width: 100%; margin-inline: auto;
+  background: var(--surface); border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.home__scene { position: absolute; inset: 0; display: grid; }
+.home__scene > * { width: 100%; height: 100%; object-fit: cover; }
+.home__pet { position: relative; width: min(38%, 11rem); margin-top: -6%; }
+.home__caption {
+  position: absolute; left: 50%; bottom: var(--space-3); transform: translateX(-50%);
+  margin: 0; padding: var(--space-1) var(--space-3); white-space: nowrap;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill);
+}
+.home__slot { position: absolute; width: 14%; aspect-ratio: 1; border: 2px dashed var(--border); border-radius: var(--radius-tile); }
+.home__slot--1 { left: 6%; top: 10%; }
+.home__slot--2 { right: 6%; top: 10%; }
+.home__slot--3 { left: 6%; bottom: 22%; }
+.home__slot--4 { right: 6%; bottom: 22%; }
+
+.home__games { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr)); }
+.home__game {
+  display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: var(--space-3); align-items: center;
+  padding: var(--space-3); min-height: var(--tap-min);
+  background: var(--surface); color: var(--text); text-decoration: none;
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+}
+a.home__game:hover { border-color: var(--primary); }
+.home__game.is-soon { border-style: dashed; }
+.home__game-art { aspect-ratio: 1; display: grid; }
+.home__game-art > * { width: 100%; height: 100%; object-fit: contain; }
+.home__game-text { display: grid; gap: 2px; min-width: 0; }
+.home__game-name { font-size: 1.125rem; }
+.home__game-about { color: var(--text-soft); font-size: var(--fs-small); }
+.home__game-meta { display: flex; gap: var(--space-3); align-items: center; font-size: var(--fs-small); color: var(--text-soft); }
+.home__play { display: inline-flex; gap: var(--space-1); align-items: center; font-weight: 700; color: var(--link); }
+.home__soon { display: inline-flex; gap: var(--space-1); align-items: center; }
+
+/* Settings */
+.set__group { border: var(--border-w) solid var(--border); border-radius: var(--radius-card); padding: var(--space-3) var(--space-4) var(--space-4); margin: 0; background: var(--surface); }
+.set__group legend { font-weight: 700; padding: 0 var(--space-1); }
+.set__options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.set__option {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: var(--tap-min); padding: var(--space-1) var(--space-4);
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-pill); cursor: pointer; background: var(--bg);
+}
+.set__radio { width: 1.1em; height: 1.1em; accent-color: var(--primary); margin: 0; }
+.set__option:has(.set__radio:checked) { background: var(--secondary); color: var(--on-secondary); border-color: var(--on-secondary); font-weight: 700; }
+.set__option:has(.set__radio:focus-visible) { outline: var(--focus-w) solid var(--focus); outline-offset: 2px; }
+.set__pet { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+.set__pet-fig { width: 5rem; }
+.set__buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.set__note { color: var(--text-soft); }
+.settings .k-panel { margin-block: 0; }

@@ -20,7 +20,20 @@ const CANDIDATES = [
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 ].filter(Boolean) as string[];
 
-const SCREENS = ['index.html', 'style-test/index.html', 'style-test/index.html?theme=night'];
+const SCREENS = [
+  'index.html#picker', 'index.html#home', 'index.html#settings',
+  'index.html#game/constelaciones', 'index.html#game/constelaciones/story', 'index.html#game/constelaciones/listen', 'index.html#game/constelaciones/memory',
+  'index.html#game/constelaciones/play/map/c-b2-001', 'index.html#game/constelaciones/play/memory/c-a1-001', 'index.html#game/constelaciones/read/farolero',
+  'style-test/index.html', 'style-test/index.html?theme=night',
+];
+const NOW = Date.now();
+/** A learner who has picked a pet, lit a few constellations and has one review due. */
+const STATE: Record<string, string> = {
+  'kz.pet': JSON.stringify({ species: 'dragon', name: 'Chispa' }),
+  'kz.settings': JSON.stringify({ lang: 'es', sound: false, soundOffered: true, reduceMotion: true, textSize: 'normal' }),
+  'kz.cz.progress': JSON.stringify({ cleared: Object.fromEntries(['c-a1-001', 'c-story-farolero-1', 'c-story-farolero-2', 'c-story-farolero-3', 'c-story-farolero-4']
+    .map((id, i) => [id, { firstAt: NOW - 2e8, step: 0, due: i ? NOW + 8.64e7 : NOW - 1000, reviews: 0, hints: 0 }])) }),
+};
 const WIDTHS = [360, 375];
 
 let server: ViteDevServer;
@@ -47,13 +60,13 @@ describe('smoke: no sideways scrolling at phone width', () => {
     for (const width of WIDTHS) {
       it(`${screen} at ${width}px`, async () => {
         const page = await browser.newPage({ viewport: { width, height: 800 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+        if (!screen.endsWith('#picker')) await page.addInitScript((st) => { for (const [k, v] of Object.entries(st)) localStorage.setItem(k, v); }, STATE);
         const errors: string[] = [];
         page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
         page.on('pageerror', (e) => errors.push(String(e)));
         await page.goto(base + screen, { waitUntil: 'networkidle' });
-        await page.waitForFunction(() => !!document.querySelector('#app')?.children.length);
-        if (screen.startsWith('style-test')) await page.waitForFunction(() => document.documentElement.dataset.ready === 'true');
-        await page.waitForTimeout(300);
+        await page.waitForFunction(() => document.documentElement.dataset.ready === 'true' && !!document.querySelector('#app')?.children.length);
+        await page.waitForTimeout(500);
         const r = await page.evaluate(() => {
           const vw = document.documentElement.clientWidth;
           const wide = [...document.querySelectorAll('body *')]
@@ -68,4 +81,33 @@ describe('smoke: no sideways scrolling at phone width', () => {
       }, 30_000);
     }
   }
+});
+
+describe('smoke: play one constellation start to finish in a real browser', () => {
+  it('stars, a wrong tap, Pista, Ilumina la frase, lit', async () => {
+    const page = await browser.newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
+    await page.addInitScript((st) => { for (const [k, v] of Object.entries(st)) localStorage.setItem(k, v); }, { ...STATE, 'kz.cz.progress': '{}' });
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(String(e)));
+    await page.goto(base + 'index.html#game/constelaciones/play/map/c-a1-002'); // ¿Dónde vives? (A1)
+    await page.waitForSelector('.cz-star');
+    await page.click('.cz-star[data-index="1"]'); // wrong
+    await page.click('.cz-star[data-index="1"]'); // wrong again
+    expect(await page.textContent('.cz-status')).toContain('no va');
+    await page.click('button:has-text("Pista")');
+    expect(await page.getAttribute('.cz-star[data-index="0"]', 'class')).toContain('is-hint');
+    await page.click('.cz-star[data-index="0"]');
+    await page.click('.cz-star[data-index="1"]');
+    await page.waitForSelector('.cz-light');
+    await page.click('.cz-word >> nth=0'); // capital
+    await page.click('.cz-tray__mark:has-text("?")');
+    await page.click('.cz-gap.is-end');
+    await page.click('button:has-text("Comprobar")');
+    await page.waitForSelector('.cz-done');
+    expect(await page.textContent('.cz-done__sentence')).toBe('¿Dónde vives?');
+    const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('kz.cz.progress') ?? '{}'));
+    expect(Object.keys(progress.cleared)).toEqual(['c-a1-002']);
+    await page.close();
+    expect(errors).toEqual([]);
+  }, 30_000);
 });

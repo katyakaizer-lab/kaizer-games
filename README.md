@@ -2,47 +2,65 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 1 (design system and style-test page).** Stage 2 (hub, pet picker, Constelaciones) starts after approval.
+**Status: stage 2 (hub, pet picker, Constelaciones with four modes).** Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
 ```bash
 npm install
 npm run dev          # local dev server
-npm run build        # all checks, then build to dist/ and write dist/build-report.md
-npm test             # Vitest: logic tests and a smoke test of every screen
+npm run build        # all checks (contrast, hard-coded values, fonts, art, Constelaciones data), build to dist/, write dist/build-report.md
+npm test             # Vitest: logic, validator, smoke test of every screen (happy-dom and a real Chrome/Edge at 360 and 375px)
+npm run validate     # check the Constelaciones sentences only
 npm run reskin:test  # re-skin acceptance test (see RESKIN.md)
 npm run preview      # serve dist/ locally
 ```
 
+Node 22.18 or newer (the validator is TypeScript run directly by Node). The browser smoke test uses the Chrome or Edge already on the machine; set `CHROME_PATH` if it is somewhere unusual.
+
 ## Layout
 
 ```
-public/tokens.css        the only file with colours and fonts (served as-is)
-public/assets/           art by id: manifest.json, pets/ (+ rig.json), pet-items/, objects/, scenes/, characters/, ui/, backgrounds/
-public/fonts/            self-hosted woff2 (copied from @fontsource at build)
-src/ui/                  component library, art helper, icons, contrast and font tests
-src/pets/                pet loader (shared rig, mood fallback, item placement)
-src/app/                 boot, settings, background, service worker registration
-src/data/                storage (localStorage + memory fallback, save/load progress file), content data
-src/i18n/                UI strings: en (complete), es, ru (partial; fall back to English per key)
-src/games/, src/audio/   stage 2
-src/style-test/          the style-test page
-tools/                   build checks and the build report
-tests/                   Vitest
-licenses/, LICENCES.md   licence texts and log
-docs/                    planning documents (kept locally, not in the repository)
+public/tokens.css             the only file with colours and fonts (served as-is)
+public/assets/                art by id: manifest.json, pets/ (+ rig.json), pet-items/, objects/, scenes/, characters/, ui/, backgrounds/
+public/audio/                 (optional) Katya's recordings: <constellation id>.mp3 and <id>-slow.mp3
+public/fonts/                 self-hosted woff2 (copied from @fontsource at build)
+src/main.ts, src/app/         boot, hash router, hub screens (picker, home, settings), pet state and mood, settings
+src/ui/                       component library, art helper, icons, contrast and font tests
+src/pets/                     pet loader (shared rig, mood fallback, item placement)
+src/audio/                    soft pentatonic sounds (Web Audio), speech (recordings or a Spanish device voice)
+src/data/                     storage, games.registry.json, content data (constelaciones/sample-sentences.json)
+src/games/constelaciones/     the game: sentence logic, validator rules, seeded layouts, board, "Ilumina la frase", map, modes/
+src/i18n/                     UI strings: en and es complete, ru partial (falls back to English per key)
+src/style-test/               the style-test page
+tools/                        build checks, validator, build report, re-skin test
+tests/                        Vitest
+licenses/, LICENCES.md        licence texts and log
+docs/                         planning documents (kept locally, not in the repository)
 ```
+
+## Adding things
+
+- **A game:** add an entry to `src/data/games.registry.json`. While it is `"pronto"` it shows as coming soon. When it is playable, create `src/games/<id>/index.ts` exporting `mount(el, ctx)`; the hub finds it by id and loads it only when opened.
+- **Constellations and stories:** add them to `src/data/constelaciones/sample-sentences.json` (or a new file in that folder). The build fails if a rule is broken; unreviewed items are counted in the build report and marked "Sin revisar (dev)" when the app runs with `?dev`.
+- **A Constelaciones mode:** one new file in `src/games/constelaciones/modes/` that implements `Mode` and reuses the board, the light stage and the finish panel; then add it to `MODES` in `index.ts`.
+- **Recordings:** drop `public/audio/<id>.mp3` (and optionally `<id>-slow.mp3`). They are used instead of the device voice automatically.
 
 ## Decisions worth knowing
 
-- **No UI framework.** Plain TypeScript with a tiny `h()` helper keeps the bundle small (first screen about 170 KB).
-- **`tokens.css` lives in `public/`**, not in the bundle, so a re-skin can be done even on a built site, and the font `@font-face` rules live there too. That way font names appear in exactly one file.
-- **Semantic tokens.** Components read `--bg`, `--surface`, `--text`, `--primary` and so on. Each theme maps its palette to them. That is what lets the night theme (and any future theme) work with no component changes.
-- **Semantic token names are accepted** (2026-11-17). `claude-code-design-system-prompt.md` (kept in `docs/`) and `RESKIN.md` use the same names as the code.
+- **No UI framework.** Plain TypeScript with a tiny `h()` helper. First screen about 200 KB; Constelaciones loads only when opened (about 50 KB).
+- **`tokens.css` lives in `public/`**, not in the bundle, so font names and colours appear in exactly one file.
+- **Semantic tokens** (accepted 2026-11-17): components read `--bg`, `--surface`, `--text`, `--primary` and so on; each theme maps its palette to them. The hub uses the day theme `brote`; Constelaciones switches to `night` while it is open.
+- **Pet mood timing:** `alegria` for 20 minutes after lighting a constellation; `siesta` ("Descansando") after 3 days without practice; otherwise `calma`. Both numbers are constants in `src/app/pet-state.ts`.
+- **Story parts unlock in order** in every mode, not only in Cuentos, so the story always reads in order.
+- **Al oído** goes straight to the finished sentence (no "Ilumina la frase"), since the point is listening; it counts as lighting the constellation.
+- **Fantasma:** any lit constellation can be practised from memory, but only a due one moves to the next interval. "Ver otra vez" is counted as a hint and never changes the schedule.
+- **Translation** is shown in English when the interface is in English or Spanish, and in Russian when it is in Russian.
+- **"Ilumina la frase":** tapping a word toggles its capital. Words that may need an accent are marked and open a small row with the capital toggle and the accent options (shuffled), so one tap never does two things.
+- **Sound** is off by default and offered once, when Constelaciones is first opened.
 
 ## Open items
 
-- **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic. Decide the heading font when the Russian interface is built.
-- Still open from the brief: pacing of unlocks, who draws the final art, a licensed Spanish word list.
-- **`src/app/`** was added next to the folders in the brief for start-up code shared by every page.
+- **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
+- Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
+- All 24 sentences and the story are `reviewed: false` until Katya checks them.

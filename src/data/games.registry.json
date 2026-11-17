@@ -1,0 +1,13 @@
+{
+  "_note": "Games shown on the home screen. A playable game lives in src/games/<id>/index.ts and exports mount(). Add games here; the hub code does not change.",
+  "games": [
+    { "id": "constelaciones", "status": "playable", "name": "Constelaciones", "icon": "star", "art": "ui.game.constelaciones", "levels": "A1–B2",
+      "about": { "en": "Connect the word-stars in order, then light up the sentence.", "es": "Une las estrellas en orden y luego ilumina la frase.", "ru": "Соедини звёзды-слова по порядку и зажги фразу." } },
+    { "id": "crucigramas", "status": "pronto", "name": "Crucigramas", "icon": "book", "art": "ui.game.crucigramas",
+      "about": { "en": "Crosswords from pictures and clues.", "es": "Crucigramas con dibujos y pistas.", "ru": "Кроссворды с картинками и подсказками." } },
+    { "id": "solitario", "status": "pronto", "name": "Solitario de categorías", "icon": "palette", "art": "ui.game.solitario",
+      "about": { "en": "Sort word cards into categories.", "es": "Ordena palabras por categorías.", "ru": "Разложи слова по категориям." } },
+    { "id": "misterio", "status": "pronto", "name": "Historias de misterio", "icon": "eye", "art": "ui.game.misterio",
+      "about": { "en": "Solve a small mystery in Spanish.", "es": "Resuelve un pequeño misterio.", "ru": "Раскрой маленькую тайну по-испански." } }
+  ]
+}

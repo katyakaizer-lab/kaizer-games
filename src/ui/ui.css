@@ -1,6 +1,7 @@
 /* Component styles. Only var(--token) values; no colours or font names live here. */
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;

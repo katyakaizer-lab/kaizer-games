@@ -567,6 +567,91 @@
    "games": [
     "hub"
    ]
+  },
+  {
+   "id": "ui.game.constelaciones",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.crucigramas",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.solitario",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.misterio",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "scene.story.farolero",
+   "kind": "scene",
+   "alt": "El farolero del río",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "constelaciones"
+   ]
   }
  ]
 }
