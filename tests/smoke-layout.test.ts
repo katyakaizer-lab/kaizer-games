@@ -5,7 +5,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { existsSync } from 'node:fs';
 import { chromium, type Browser } from 'playwright-core';
-import { createServer, type ViteDevServer } from 'vite';
+import { createServer, preview } from 'vite';
 import { ROOT } from './helpers';
 
 const CANDIDATES = [
@@ -36,15 +36,24 @@ const STATE: Record<string, string> = {
 };
 const WIDTHS = [360, 375];
 
-let server: ViteDevServer;
+// SMOKE_DIST=1 tests the built site in dist/ (what users get); otherwise the dev server.
+const USE_DIST = process.env.SMOKE_DIST === '1';
+let server: { close(): Promise<void>; httpServer: import('node:http').Server | null };
 let browser: Browser;
 let base = '';
 
 beforeAll(async () => {
   const exe = CANDIDATES.find((p) => existsSync(p));
   if (!exe) throw new Error(`No Chrome or Edge found for the layout smoke test. Set CHROME_PATH. Tried: ${CANDIDATES.join(', ')}`);
-  server = await createServer({ root: ROOT, configFile: `${ROOT}/vite.config.ts`, logLevel: 'error', server: { port: 0, host: '127.0.0.1' } });
-  await server.listen();
+  if (USE_DIST) {
+    if (!existsSync(`${ROOT}/dist/index.html`)) throw new Error('SMOKE_DIST=1 needs a build first: npm run build');
+    const p = await preview({ root: ROOT, configFile: `${ROOT}/vite.config.ts`, logLevel: 'error', preview: { port: 0, host: '127.0.0.1' } });
+    server = { close: () => p.close(), httpServer: p.httpServer as import('node:http').Server };
+  } else {
+    const d = await createServer({ root: ROOT, configFile: `${ROOT}/vite.config.ts`, logLevel: 'error', server: { port: 0, host: '127.0.0.1' } });
+    await d.listen();
+    server = { close: () => d.close(), httpServer: d.httpServer as import('node:http').Server };
+  }
   const addr = server.httpServer!.address();
   base = `http://127.0.0.1:${typeof addr === 'object' && addr ? addr.port : 5173}/`;
   browser = await chromium.launch({ executablePath: exe, headless: true });
@@ -64,6 +73,14 @@ describe('smoke: no sideways scrolling at phone width', () => {
         const errors: string[] = [];
         page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
         page.on('pageerror', (e) => errors.push(String(e)));
+        // A missing file is an error too (optional recordings under audio/ are allowed to be absent).
+        // The local servers answer unknown paths with the app page (200), so an asset that comes back as HTML is missing too.
+        page.on('response', (res) => {
+          if (res.url().includes('/audio/')) return;
+          const asset = ['image', 'font', 'script', 'stylesheet'].includes(res.request().resourceType());
+          const html = (res.headers()['content-type'] ?? '').includes('text/html');
+          if (res.status() >= 400 || (asset && html)) errors.push(`missing: ${res.status()} ${res.url()}`);
+        });
         await page.goto(base + screen, { waitUntil: 'networkidle' });
         await page.waitForFunction(() => document.documentElement.dataset.ready === 'true' && !!document.querySelector('#app')?.children.length);
         await page.waitForTimeout(500);

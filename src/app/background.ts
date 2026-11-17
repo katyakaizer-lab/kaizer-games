@@ -5,7 +5,8 @@ import { refreshFrames } from '../ui/components';
 export function applyBackground(): void {
   const root = document.documentElement;
   const ref = art(`background.${root.dataset.theme ?? 'brote'}`);
-  if (ref.src) root.style.setProperty('--bg-image', `url("${ref.src}")`);
+  // Absolute URL: a url() inside a custom property resolves against the stylesheet that uses it, not the page.
+  if (ref.src) root.style.setProperty('--bg-image', `url("${new URL(ref.src, document.baseURI).href}")`);
   else root.style.removeProperty('--bg-image');
 }
 
