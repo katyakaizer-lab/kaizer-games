@@ -1,0 +1,25 @@
+{
+  "_note": "Every foreground/background pair that components actually use. kind: body (>=4.5), large (>=3, text >=24px or bold >=19px), icon (>=3, icons and focus rings). Resolved per theme from public/tokens.css.",
+  "pairs": [
+    ["--text", "--bg", "body", "page text"],
+    ["--text-soft", "--bg", "body", "secondary text"],
+    ["--text", "--surface", "body", "card text"],
+    ["--text-soft", "--surface", "body", "card secondary text"],
+    ["--link", "--bg", "body", "links, outline buttons"],
+    ["--link", "--surface", "body", "outline buttons on cards"],
+    ["--on-primary", "--primary", "body", "primary button"],
+    ["--on-secondary", "--secondary", "body", "secondary button, selected chip"],
+    ["--on-accent", "--accent", "body", "accent badge"],
+    ["--on-highlight", "--highlight", "body", "hint highlight"],
+    ["--text", "--correct-bg", "body", "correct banner"],
+    ["--text", "--retry-bg", "body", "try-again banner"],
+    ["--correct-line", "--bg", "icon", "correct tile border/check"],
+    ["--focus", "--bg", "icon", "focus ring on page"],
+    ["--focus", "--surface", "icon", "focus ring on card"],
+    ["--primary", "--track", "icon", "progress fill vs track"],
+    ["--star", "--bg", "icon", "star dot"],
+    ["--star-line", "--bg", "icon", "constellation line"],
+    ["--star-dim", "--bg", "icon", "dimmed star"],
+    ["--placeholder-ink", "--placeholder-fill", "large", "placeholder dev label"]
+  ]
+}

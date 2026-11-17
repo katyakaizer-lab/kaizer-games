@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<title>Card frame, nine-slice (slice 24)</title>
+<rect x="3" y="3" width="90" height="90" rx="16" fill="#FFFBF2" stroke="#2B2D42" stroke-width="2.4"/>
+<rect x="9" y="9" width="78" height="78" rx="11" fill="none" stroke="#8FD3C1" stroke-width="2" stroke-dasharray="5 4"/>
+</svg>

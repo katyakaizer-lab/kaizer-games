@@ -1,0 +1,9 @@
+{
+  "app.name": "Kaizer Games",
+  "common.close": "Закрыть",
+  "common.back": "Назад",
+  "feedback.correct": "Верно!",
+  "feedback.retry": "Почти. Попробуй ещё раз",
+  "timer.label": "Осталось времени",
+  "settings.title": "Настройки"
+}

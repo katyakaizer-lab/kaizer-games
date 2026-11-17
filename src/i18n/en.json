@@ -1,0 +1,21 @@
+{
+  "app.name": "Kaizer Games",
+  "common.close": "Close",
+  "common.back": "Back",
+  "feedback.correct": "Correct!",
+  "feedback.retry": "Almost. Try again",
+  "timer.label": "Time left",
+  "settings.title": "Settings",
+  "settings.language": "Interface language",
+  "settings.sound": "Sound",
+  "settings.motion": "Reduce motion",
+  "settings.textSize": "Text size",
+  "settings.save": "Save progress to a file",
+  "settings.load": "Load progress from a file",
+  "settings.reset": "Reset",
+  "shell.stage1": "Stage 1 preview: the design system. The games hub comes next.",
+  "shell.openStyleTest": "Open the style-test page",
+  "progress.saved": "Progress saved to a file",
+  "progress.loaded": "Progress loaded",
+  "progress.loadError": "That file could not be read"
+}

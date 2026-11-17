@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" role="img">
+<title>Brote, alegría</title>
+<g id="shadow"><ellipse cx="100" cy="226" rx="52" ry="6" fill="#F0DDB8"/></g>
+<g id="feet"><ellipse cx="76" cy="214" rx="14" ry="8" fill="#A890D6"/><ellipse cx="124" cy="214" rx="14" ry="8" fill="#A890D6"/></g>
+<g id="arms"><ellipse cx="36" cy="150" rx="10" ry="14" fill="#C7B5E8" transform="rotate(-25 36 150)"/><ellipse cx="164" cy="150" rx="10" ry="14" fill="#C7B5E8" transform="rotate(25 164 150)"/></g>
+<g id="body"><ellipse cx="100" cy="160" rx="62" ry="56" fill="#C7B5E8"/></g>
+<g id="belly"><ellipse cx="100" cy="176" rx="36" ry="28" fill="#F3EEFB"/></g>
+<g id="cheeks"><ellipse cx="68" cy="166" rx="8" ry="5" fill="#FFB4A2"/><ellipse cx="132" cy="166" rx="8" ry="5" fill="#FFB4A2"/></g>
+<g id="sprout"><path d="M100 104 L100 88" stroke="#3FA37A" stroke-width="4" stroke-linecap="round" fill="none"/><ellipse cx="84" cy="80" rx="14" ry="7" fill="#3FA37A" transform="rotate(-45 84 80)"/><ellipse cx="116" cy="80" rx="14" ry="7" fill="#56BD8E" transform="rotate(45 116 80)"/></g>
+<g id="eyes"><path d="M73 153 Q80 143 87 153" stroke="#2E3A3F" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M113 153 Q120 143 127 153" stroke="#2E3A3F" stroke-width="3" stroke-linecap="round" fill="none"/></g>
+<g id="mouth"><path d="M92 164 Q100 178 108 164 Z" fill="#D9786A" stroke="#2E3A3F" stroke-width="2" stroke-linejoin="round"/></g>
+<g id="sparkles"><circle cx="22" cy="108" r="4" fill="#F4C95D"/><circle cx="178" cy="116" r="3" fill="#F4A261"/><circle cx="164" cy="84" r="3.5" fill="#C7B5E8"/></g>
+</svg>

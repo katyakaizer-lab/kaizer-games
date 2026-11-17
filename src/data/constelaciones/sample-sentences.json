@@ -1,0 +1,1176 @@
+{
+ "_note": "Starter set written by Claude. All Spanish is reviewed:false until Katya checks it. Token indexes refer to the tokens array; orders lists every accepted order; accents lists the words whose written accent the learner must restore in stage two.",
+ "constellations": [
+  {
+   "id": "c-a1-001",
+   "level": "A1",
+   "topic": "home",
+   "story": null,
+   "text": "El gato duerme en la silla.",
+   "tokens": [
+    "el",
+    "gato",
+    "duerme",
+    "en",
+    "la",
+    "silla"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "The cat sleeps on the chair.",
+   "ru": "Кот спит на стуле.",
+   "image": "scene.sentence.c-a1-001",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a1-002",
+   "level": "A1",
+   "topic": "questions",
+   "story": null,
+   "text": "¿Dónde vives?",
+   "tokens": [
+    "donde",
+    "vives"
+   ],
+   "orders": [
+    [
+     0,
+     1
+    ]
+   ],
+   "proper": [],
+   "open": "¿",
+   "close": "?",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "donde",
+      "dónde"
+     ],
+     "correct": "dónde"
+    }
+   ],
+   "en": "Where do you live?",
+   "ru": "Где ты живёшь?",
+   "image": "scene.sentence.c-a1-002",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a1-003",
+   "level": "A1",
+   "topic": "introductions",
+   "story": null,
+   "text": "Me llamo Ana y soy profesora.",
+   "tokens": [
+    "me",
+    "llamo",
+    "ana",
+    "y",
+    "soy",
+    "profesora"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [
+    2
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "My name is Ana and I am a teacher.",
+   "ru": "Меня зовут Ана, и я учительница.",
+   "image": "scene.sentence.c-a1-003",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a1-004",
+   "level": "A1",
+   "topic": "family",
+   "story": null,
+   "text": "Mi hermana tiene dos perros.",
+   "tokens": [
+    "mi",
+    "hermana",
+    "tiene",
+    "dos",
+    "perros"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "My sister has two dogs.",
+   "ru": "У моей сестры две собаки.",
+   "image": "scene.sentence.c-a1-004",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a1-005",
+   "level": "A1",
+   "topic": "weather",
+   "story": null,
+   "text": "Hoy hace mucho calor.",
+   "tokens": [
+    "hoy",
+    "hace",
+    "mucho",
+    "calor"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3
+    ],
+    [
+     1,
+     2,
+     3,
+     0
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "It is very hot today.",
+   "ru": "Сегодня очень жарко.",
+   "image": "scene.sentence.c-a1-005",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a1-006",
+   "level": "A1",
+   "topic": "food",
+   "story": null,
+   "text": "Quiero un café con leche.",
+   "tokens": [
+    "quiero",
+    "un",
+    "cafe",
+    "con",
+    "leche"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 2,
+     "options": [
+      "cafe",
+      "café"
+     ],
+     "correct": "café"
+    }
+   ],
+   "en": "I want a coffee with milk.",
+   "ru": "Я хочу кофе с молоком.",
+   "image": "scene.sentence.c-a1-006",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-001",
+   "level": "A2",
+   "topic": "shopping",
+   "story": null,
+   "text": "Ayer compré pan en el mercado.",
+   "tokens": [
+    "ayer",
+    "compre",
+    "pan",
+    "en",
+    "el",
+    "mercado"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    [
+     1,
+     2,
+     0,
+     3,
+     4,
+     5
+    ],
+    [
+     1,
+     2,
+     3,
+     4,
+     5,
+     0
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "compre",
+      "compré",
+      "compró"
+     ],
+     "correct": "compré"
+    }
+   ],
+   "en": "Yesterday I bought bread at the market.",
+   "ru": "Вчера я купил(а) хлеб на рынке.",
+   "image": "scene.sentence.c-a2-001",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-002",
+   "level": "A2",
+   "topic": "questions",
+   "story": null,
+   "text": "¿Qué hiciste el fin de semana?",
+   "tokens": [
+    "que",
+    "hiciste",
+    "el",
+    "fin",
+    "de",
+    "semana"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "¿",
+   "close": "?",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "que",
+      "qué"
+     ],
+     "correct": "qué"
+    }
+   ],
+   "en": "What did you do at the weekend?",
+   "ru": "Что ты делал на выходных?",
+   "image": "scene.sentence.c-a2-002",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-003",
+   "level": "A2",
+   "topic": "plans",
+   "story": null,
+   "text": "Mañana voy a viajar a Valencia.",
+   "tokens": [
+    "manana",
+    "voy",
+    "a",
+    "viajar",
+    "a",
+    "valencia"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    [
+     1,
+     2,
+     3,
+     4,
+     5,
+     0
+    ]
+   ],
+   "proper": [
+    5
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "manana",
+      "mañana"
+     ],
+     "correct": "mañana"
+    }
+   ],
+   "en": "Tomorrow I am going to travel to Valencia.",
+   "ru": "Завтра я поеду в Валенсию.",
+   "image": "scene.sentence.c-a2-003",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-004",
+   "level": "A2",
+   "topic": "hobbies",
+   "story": null,
+   "text": "Me gusta leer antes de dormir.",
+   "tokens": [
+    "me",
+    "gusta",
+    "leer",
+    "antes",
+    "de",
+    "dormir"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "I like reading before going to sleep.",
+   "ru": "Я люблю читать перед сном.",
+   "image": "scene.sentence.c-a2-004",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-005",
+   "level": "A2",
+   "topic": "childhood",
+   "story": null,
+   "text": "Cuando era niña, vivía en Madrid.",
+   "tokens": [
+    "cuando",
+    "era",
+    "nina",
+    "vivia",
+    "en",
+    "madrid"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [
+    5
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [
+    {
+     "index": 2,
+     "options": [
+      "nina",
+      "niña"
+     ],
+     "correct": "niña"
+    },
+    {
+     "index": 3,
+     "options": [
+      "vivia",
+      "vivía",
+      "vivió"
+     ],
+     "correct": "vivía"
+    }
+   ],
+   "en": "When I was a girl, I lived in Madrid.",
+   "ru": "Когда я была девочкой, я жила в Мадриде.",
+   "image": "scene.sentence.c-a2-005",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-a2-006",
+   "level": "A2",
+   "topic": "school",
+   "story": null,
+   "text": "Todavía no he terminado la tarea.",
+   "tokens": [
+    "todavia",
+    "no",
+    "he",
+    "terminado",
+    "la",
+    "tarea"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "todavia",
+      "todavía"
+     ],
+     "correct": "todavía"
+    }
+   ],
+   "en": "I have not finished the homework yet.",
+   "ru": "Я ещё не закончил домашнее задание.",
+   "image": "scene.sentence.c-a2-006",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b1-001",
+   "level": "B1",
+   "topic": "conditionals",
+   "story": null,
+   "text": "Si tuviera más tiempo, aprendería japonés.",
+   "tokens": [
+    "si",
+    "tuviera",
+    "mas",
+    "tiempo",
+    "aprenderia",
+    "japones"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    3
+   ],
+   "accents": [
+    {
+     "index": 2,
+     "options": [
+      "mas",
+      "más"
+     ],
+     "correct": "más"
+    },
+    {
+     "index": 4,
+     "options": [
+      "aprenderia",
+      "aprendería"
+     ],
+     "correct": "aprendería"
+    },
+    {
+     "index": 5,
+     "options": [
+      "japones",
+      "japonés"
+     ],
+     "correct": "japonés"
+    }
+   ],
+   "en": "If I had more time, I would learn Japanese.",
+   "ru": "Если бы у меня было больше времени, я бы выучил японский.",
+   "image": "scene.sentence.c-b1-001",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b1-002",
+   "level": "B1",
+   "topic": "opinions",
+   "story": null,
+   "text": "No creo que llueva mañana.",
+   "tokens": [
+    "no",
+    "creo",
+    "que",
+    "llueva",
+    "manana"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "manana",
+      "mañana"
+     ],
+     "correct": "mañana"
+    }
+   ],
+   "en": "I do not think it will rain tomorrow.",
+   "ru": "Не думаю, что завтра будет дождь.",
+   "image": "scene.sentence.c-b1-002",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b1-003",
+   "level": "B1",
+   "topic": "reported",
+   "story": null,
+   "text": "Me han dicho que la película es muy buena.",
+   "tokens": [
+    "me",
+    "han",
+    "dicho",
+    "que",
+    "la",
+    "pelicula",
+    "es",
+    "muy",
+    "buena"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 5,
+     "options": [
+      "pelicula",
+      "película"
+     ],
+     "correct": "película"
+    }
+   ],
+   "en": "I have been told that the film is very good.",
+   "ru": "Мне сказали, что фильм очень хороший.",
+   "image": "scene.sentence.c-b1-003",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b1-004",
+   "level": "B1",
+   "topic": "concession",
+   "story": null,
+   "text": "Aunque estaba cansada, terminó el trabajo.",
+   "tokens": [
+    "aunque",
+    "estaba",
+    "cansada",
+    "termino",
+    "el",
+    "trabajo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "termino",
+      "terminó"
+     ],
+     "correct": "terminó"
+    }
+   ],
+   "en": "Although she was tired, she finished the work.",
+   "ru": "Хотя она устала, она закончила работу.",
+   "image": "scene.sentence.c-b1-004",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b1-005",
+   "level": "B1",
+   "topic": "polite",
+   "story": null,
+   "text": "¿Podrías decirme dónde está la estación?",
+   "tokens": [
+    "podrias",
+    "decirme",
+    "donde",
+    "esta",
+    "la",
+    "estacion"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "¿",
+   "close": "?",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "podrias",
+      "podrías"
+     ],
+     "correct": "podrías"
+    },
+    {
+     "index": 2,
+     "options": [
+      "donde",
+      "dónde"
+     ],
+     "correct": "dónde"
+    },
+    {
+     "index": 3,
+     "options": [
+      "esta",
+      "está"
+     ],
+     "correct": "está"
+    },
+    {
+     "index": 5,
+     "options": [
+      "estacion",
+      "estación"
+     ],
+     "correct": "estación"
+    }
+   ],
+   "en": "Could you tell me where the station is?",
+   "ru": "Не могли бы вы сказать, где вокзал?",
+   "image": "scene.sentence.c-b1-005",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b2-001",
+   "level": "B2",
+   "topic": "concession",
+   "story": null,
+   "text": "A pesar de que llovía, decidimos salir a pasear.",
+   "tokens": [
+    "a",
+    "pesar",
+    "de",
+    "que",
+    "llovia",
+    "decidimos",
+    "salir",
+    "a",
+    "pasear"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    4
+   ],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "llovia",
+      "llovía"
+     ],
+     "correct": "llovía"
+    }
+   ],
+   "en": "Although it was raining, we decided to go out for a walk.",
+   "ru": "Несмотря на дождь, мы решили выйти погулять.",
+   "image": "scene.sentence.c-b2-001",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b2-002",
+   "level": "B2",
+   "topic": "hypotheticals",
+   "story": null,
+   "text": "Nunca habría imaginado que ella se atreviera a hacerlo.",
+   "tokens": [
+    "nunca",
+    "habria",
+    "imaginado",
+    "que",
+    "ella",
+    "se",
+    "atreviera",
+    "a",
+    "hacerlo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "habria",
+      "habría"
+     ],
+     "correct": "habría"
+    }
+   ],
+   "en": "I would never have imagined that she would dare to do it.",
+   "ru": "Я бы никогда не подумал, что она осмелится на это.",
+   "image": "scene.sentence.c-b2-002",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-b2-003",
+   "level": "B2",
+   "topic": "comparatives",
+   "story": null,
+   "text": "Cuanto más lo pienso, menos entiendo lo que pasó.",
+   "tokens": [
+    "cuanto",
+    "mas",
+    "lo",
+    "pienso",
+    "menos",
+    "entiendo",
+    "lo",
+    "que",
+    "paso"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    3
+   ],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "mas",
+      "más"
+     ],
+     "correct": "más"
+    },
+    {
+     "index": 8,
+     "options": [
+      "paso",
+      "pasó"
+     ],
+     "correct": "pasó"
+    }
+   ],
+   "en": "The more I think about it, the less I understand what happened.",
+   "ru": "Чем больше я об этом думаю, тем меньше понимаю, что произошло.",
+   "image": "scene.sentence.c-b2-003",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-1",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 1
+   },
+   "text": "Cada noche, el farolero camina junto al río.",
+   "tokens": [
+    "cada",
+    "noche",
+    "el",
+    "farolero",
+    "camina",
+    "junto",
+    "al",
+    "rio"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 7,
+     "options": [
+      "rio",
+      "río"
+     ],
+     "correct": "río"
+    }
+   ],
+   "en": "Every night, the lamplighter walks along the river.",
+   "ru": "Каждую ночь фонарщик идёт вдоль реки.",
+   "image": "scene.sentence.c-story-farolero-1",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-2",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 2
+   },
+   "text": "Una noche encuentra una luz pequeña entre las piedras.",
+   "tokens": [
+    "una",
+    "noche",
+    "encuentra",
+    "una",
+    "luz",
+    "pequena",
+    "entre",
+    "las",
+    "piedras"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 5,
+     "options": [
+      "pequena",
+      "pequeña"
+     ],
+     "correct": "pequeña"
+    }
+   ],
+   "en": "One night he finds a small light among the stones.",
+   "ru": "Однажды ночью он находит между камнями маленький огонёк.",
+   "image": "scene.sentence.c-story-farolero-2",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-3",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 3
+   },
+   "text": "La luz le dice que no quiere brillar sola.",
+   "tokens": [
+    "la",
+    "luz",
+    "le",
+    "dice",
+    "que",
+    "no",
+    "quiere",
+    "brillar",
+    "sola"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "The light tells him that it does not want to shine alone.",
+   "ru": "Огонёк говорит ему, что не хочет светить один.",
+   "image": "scene.sentence.c-story-farolero-3",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-4",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 4
+   },
+   "text": "Desde entonces, el río tiene una estrella más.",
+   "tokens": [
+    "desde",
+    "entonces",
+    "el",
+    "rio",
+    "tiene",
+    "una",
+    "estrella",
+    "mas"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "rio",
+      "río"
+     ],
+     "correct": "río"
+    },
+    {
+     "index": 7,
+     "options": [
+      "mas",
+      "más"
+     ],
+     "correct": "más"
+    }
+   ],
+   "en": "Since then, the river has one more star.",
+   "ru": "С тех пор у реки на одну звезду больше.",
+   "image": "scene.sentence.c-story-farolero-4",
+   "audio": null,
+   "reviewed": false
+  }
+ ],
+ "stories": [
+  {
+   "id": "farolero",
+   "title_es": "El farolero del río",
+   "level": "A2",
+   "constellations": [
+    "c-story-farolero-1",
+    "c-story-farolero-2",
+    "c-story-farolero-3",
+    "c-story-farolero-4"
+   ],
+   "image": "scene.story.farolero",
+   "reviewed": false
+  }
+ ]
+}

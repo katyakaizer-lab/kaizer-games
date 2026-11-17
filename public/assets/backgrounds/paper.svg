@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" preserveAspectRatio="xMidYMid slice">
+<title>Paper with soft washes</title>
+<rect width="400" height="300" fill="#FFF4E0"/>
+<ellipse cx="70" cy="60" rx="120" ry="70" fill="#8FD3C1" opacity=".18"/>
+<ellipse cx="340" cy="250" rx="140" ry="80" fill="#F2B84B" opacity=".16"/>
+<ellipse cx="300" cy="40" rx="70" ry="40" fill="#F08A73" opacity=".10"/>
+<path d="M0 230 C80 210 150 250 230 232 C300 216 350 236 400 226 L400 300 L0 300 Z" fill="#E6D3AC" opacity=".35"/>
+</svg>

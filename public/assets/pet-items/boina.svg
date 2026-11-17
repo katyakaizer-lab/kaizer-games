@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+<title>Boina</title>
+<g stroke="#2B2D42" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+<path d="M100 74 L100 66" fill="none" stroke-width="3"/>
+<circle cx="100" cy="64" r="4" fill="#2A7360"/>
+<path d="M50 104 C46 84 70 72 100 72 C134 72 156 84 150 104 C140 114 62 114 50 104 Z" fill="#F08A73"/>
+<path d="M64 98 C80 92 120 92 136 98" fill="none" stroke="#C9614C" stroke-width="2"/>
+<path d="M58 106 C70 116 130 116 142 106 L142 112 C130 122 70 122 58 112 Z" fill="#2A7360"/>
+</g>
+</svg>

@@ -1,0 +1,572 @@
+{
+ "_note": "Every picture by id. Add art here; never reference files by path in code. See RESKIN.md.",
+ "assets": [
+  {
+   "id": "pet.cat.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/cat-calma.svg"
+   },
+   "alt": "El gato, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.cat.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/cat-alegria.svg"
+   },
+   "alt": "El gato, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.cat.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/cat-siesta.svg"
+   },
+   "alt": "El gato, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dog.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dog-calma.svg"
+   },
+   "alt": "El perro, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dog.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dog-alegria.svg"
+   },
+   "alt": "El perro, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dog.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dog-siesta.svg"
+   },
+   "alt": "El perro, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dragon.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dragon-calma.svg"
+   },
+   "alt": "El dragón, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dragon.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dragon-alegria.svg"
+   },
+   "alt": "El dragón, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.dragon.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/dragon-siesta.svg"
+   },
+   "alt": "El dragón, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.raven.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/raven-calma.svg"
+   },
+   "alt": "El cuervo, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.raven.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/raven-alegria.svg"
+   },
+   "alt": "El cuervo, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.raven.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/raven-siesta.svg"
+   },
+   "alt": "El cuervo, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.fox.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/fox-calma.svg"
+   },
+   "alt": "El zorro, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.fox.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/fox-alegria.svg"
+   },
+   "alt": "El zorro, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.fox.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/fox-siesta.svg"
+   },
+   "alt": "El zorro, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.brote.calma",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/brote-calma.svg"
+   },
+   "alt": "Brote, tranquilo",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.brote.alegria",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/brote-alegria.svg"
+   },
+   "alt": "Brote, alegre",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet.brote.siesta",
+   "kind": "pet",
+   "files": {
+    "1x": "pets/brote-siesta.svg"
+   },
+   "alt": "Brote, descansando",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-item.boina",
+   "kind": "pet-item",
+   "files": {
+    "1x": "pet-items/boina.svg"
+   },
+   "alt": "una boina",
+   "word": "la boina",
+   "level": "A2",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Simple beret on the 200x240 item canvas."
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ],
+   "anchor": "head-top",
+   "pivot": [
+    100,
+    104
+   ],
+   "z": 20
+  },
+  {
+   "id": "background.brote",
+   "kind": "background",
+   "files": {
+    "1x": "backgrounds/paper.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Warm paper with soft washes."
+   },
+   "licence": "own",
+   "games": [
+    "hub",
+    "style-test"
+   ]
+  },
+  {
+   "id": "ui.frame.card",
+   "kind": "ui",
+   "files": {
+    "1x": "ui/frame-card.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-17",
+    "terms": "https://www.anthropic.com/legal/consumer-terms",
+    "prompt": "Nine-slice card frame."
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ],
+   "nineSlice": {
+    "slice": 24,
+    "width": 20
+   },
+   "themes": [
+    "brote"
+   ]
+  },
+  {
+   "id": "object.silla",
+   "kind": "object",
+   "alt": "silla",
+   "word": "la silla",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "object.mesa",
+   "kind": "object",
+   "alt": "mesa",
+   "word": "la mesa",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "object.libro",
+   "kind": "object",
+   "alt": "libro",
+   "word": "el libro",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "object.taza",
+   "kind": "object",
+   "alt": "taza",
+   "word": "la taza",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "object.lampara",
+   "kind": "object",
+   "alt": "lámpara",
+   "word": "la lámpara",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "object.ventana",
+   "kind": "object",
+   "alt": "ventana",
+   "word": "la ventana",
+   "level": "A1",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "style-test"
+   ]
+  },
+  {
+   "id": "scene.house.room1",
+   "kind": "scene",
+   "alt": "una habitación",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-17",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  }
+ ]
+}

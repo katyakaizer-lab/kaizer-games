@@ -1,0 +1,21 @@
+{
+  "app.name": "Kaizer Games",
+  "common.close": "Cerrar",
+  "common.back": "Volver",
+  "feedback.correct": "¡Correcto!",
+  "feedback.retry": "Casi. Inténtalo otra vez",
+  "timer.label": "Tiempo restante",
+  "settings.title": "Ajustes",
+  "settings.language": "Idioma de la interfaz",
+  "settings.sound": "Sonido",
+  "settings.motion": "Reducir movimiento",
+  "settings.textSize": "Tamaño del texto",
+  "settings.save": "Guardar el progreso en un archivo",
+  "settings.load": "Cargar el progreso desde un archivo",
+  "settings.reset": "Empezar de nuevo",
+  "shell.stage1": "Vista previa, etapa 1: el sistema de diseño. Luego viene el menú de juegos.",
+  "shell.openStyleTest": "Abrir la página de estilo",
+  "progress.saved": "Progreso guardado en un archivo",
+  "progress.loaded": "Progreso cargado",
+  "progress.loadError": "No se pudo leer el archivo"
+}

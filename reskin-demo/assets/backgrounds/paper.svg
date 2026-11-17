@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" preserveAspectRatio="xMidYMid slice">
+<title>Lilac paper with dots (re-skin demo)</title>
+<rect width="400" height="300" fill="#F4F1FA"/>
+<circle cx="60" cy="50" r="90" fill="#C7B5E8" opacity=".22"/>
+<circle cx="360" cy="270" r="110" fill="#F08A73" opacity=".10"/>
+<g fill="#5B3F8C" opacity=".10"><circle cx="40" cy="240" r="3"/><circle cx="90" cy="270" r="2"/><circle cx="300" cy="60" r="3"/><circle cx="340" cy="30" r="2"/><circle cx="220" cy="120" r="2"/></g>
+</svg>

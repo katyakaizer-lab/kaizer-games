@@ -1,0 +1,139 @@
+/*
+  tokens.css: the ONLY file that holds colours, fonts and font files.
+  Components read the semantic tokens (second block of each theme) and never a raw value.
+  Re-skin: edit this file (and swap files in assets/). No code change, no rebuild needed:
+  this file is served as-is next to index.html.
+*/
+
+/* ---------- Font files (self-hosted, SIL OFL, see licenses/) ---------- */
+@font-face {
+  font-family: "Caveat Brush"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/caveat-brush-latin-400-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Caveat Brush"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/caveat-brush-latin-ext-400-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/nunito-latin-400-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/nunito-latin-ext-400-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url(fonts/nunito-cyrillic-400-normal.woff2) format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url(fonts/nunito-latin-700-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url(fonts/nunito-latin-ext-700-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Nunito"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url(fonts/nunito-cyrillic-700-normal.woff2) format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* ---------- Theme-independent tokens ---------- */
+:root {
+  /* type */
+  --font-head: "Caveat Brush", "Segoe Print", cursive;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --fs-body: 1rem; --lh-body: 1.6;
+  --fs-small: 0.875rem;
+  --fs-h1: 2.25rem; --fs-h2: 1.75rem; --fs-h3: 1.375rem;
+  /* shape, space, motion */
+  --radius-pill: 999px; --radius-card: 14px; --radius-tile: 12px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --tap-min: 44px;
+  --border-w: 2px;
+  --focus-w: 3px;
+  --dur-fast: 120ms; --dur: 220ms; --ease: cubic-bezier(.2,.8,.2,1);
+  --measure: 36rem; /* comfortable line length */
+}
+@media (prefers-reduced-motion: reduce) { :root { --dur-fast: 0ms; --dur: 0ms; } }
+:root[data-motion="reduce"] { --dur-fast: 0ms; --dur: 0ms; }
+
+/* ---------- Theme: brote (day, warm paper) ---------- */
+:root[data-theme="brote"] {
+  /* palette */
+  --paper: #FFF4E0;        /* page background */
+  --card: #FFFBF2;         /* cards, tiles */
+  --ink: #2B2D42;          /* main text */
+  --ink-soft: #5A4636;     /* secondary text */
+  --mint: #8FD3C1;         /* brand, pet */
+  --forest: #2A7360;       /* buttons, links, correct */
+  --coral: #F08A73;        /* small accent */
+  --amber: #F2B84B;        /* try again */
+  --white: #FFFFFF;
+  --correct-bg: #CDEBD6;   --correct-line: #2A7360;
+  --retry-bg: #FBE3B0;     --retry-line: #C98A12;
+  --line: #E6D3AC;         /* hairlines, card borders */
+
+  /* semantic (what components read) */
+  --bg: var(--paper);
+  --surface: var(--card);
+  --text: var(--ink);
+  --text-soft: var(--ink-soft);
+  --border: var(--line);
+  --primary: var(--forest);     --on-primary: var(--white);
+  --secondary: var(--mint);     --on-secondary: var(--ink);
+  --accent: var(--coral);       --on-accent: var(--ink);
+  --highlight: var(--amber);    --on-highlight: var(--ink);
+  --link: var(--forest);
+  --focus: var(--forest);
+  --star: var(--forest);        /* star dots on a day background */
+  --star-line: var(--forest);
+  --star-dim: var(--ink-soft);
+  --track: var(--line);         /* progress-bar track */
+  --scrim: rgb(43 45 66 / .45);
+  --shadow: 0 2px 0 rgb(43 45 66 / .08), 0 6px 16px rgb(43 45 66 / .08);
+  --placeholder-fill: var(--line);
+  --placeholder-ink: var(--ink-soft);
+}
+
+/* ---------- Theme: night (star-map games) ---------- */
+:root[data-theme="night"] {
+  /* palette (given values; all >= 4.5:1 on --bg) */
+  --bg: #1E2440;
+  --text: #FFF4E0;
+  --star: #FFE9A8;
+  --line: #8FD3C1;
+  --text-soft: #C9C4E0;
+  --coral: #F08A73;
+  --amber: #F2B84B;
+  --navy-2: #2A3157;
+  --navy-3: #3E4678;
+
+  /* semantic */
+  --surface: var(--navy-2);
+  --border: var(--navy-3);
+  --primary: var(--line);       --on-primary: var(--bg);
+  --secondary: var(--navy-3);   --on-secondary: var(--text);
+  --accent: var(--coral);       --on-accent: var(--bg);
+  --highlight: var(--amber);    --on-highlight: var(--bg);
+  --link: var(--line);
+  --focus: var(--star);
+  --star-line: var(--line);
+  --star-dim: var(--text-soft);
+  --correct-bg: #1F4A44;        --correct-line: var(--line);
+  --retry-bg: #4A3B1C;          --retry-line: var(--amber);
+  --track: var(--navy-3);
+  --scrim: rgb(10 12 28 / .6);
+  --shadow: 0 2px 0 rgb(0 0 0 / .2), 0 6px 16px rgb(0 0 0 / .25);
+  --placeholder-fill: var(--navy-3);
+  --placeholder-ink: var(--text-soft);
+}
