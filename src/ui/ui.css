@@ -184,10 +184,13 @@ a.k-btn { text-decoration: none; }
 
 /* ---------- Art ---------- */
 .k-art { display: block; }
+/* Outline halo for ink-outlined art on dark themes; the colour comes only from --art-halo. */
+[data-art-kind="pet"], [data-art-kind="pet-item"] { filter: drop-shadow(0 0 1.5px var(--art-halo)) drop-shadow(0 0 1px var(--art-halo)); }
 .k-placeholder { display: block; width: 100%; height: 100%; }
 .k-placeholder-label { font-family: var(--font-body); }
 
 /* ---------- Pet ---------- */
-.k-pet { position: relative; margin: 0; aspect-ratio: 200 / 240; width: 100%; }
+/* overflow-x: clip keeps a scaled item canvas from widening the page; hats may still rise above the box. */
+.k-pet { position: relative; margin: 0; aspect-ratio: 200 / 240; width: 100%; max-width: 100%; overflow-x: clip; }
 .k-pet > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .k-pet__item { transform-origin: 0 0; pointer-events: none; }

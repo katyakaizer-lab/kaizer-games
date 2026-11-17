@@ -98,7 +98,7 @@ export function buildReport() {
   if (!cont.length) L.push('- none');
   cont.forEach((c) => L.push(`- \`${c.file}\` ${c.key}: ${c.unreviewed} of ${c.total} not reviewed`));
   L.push('', '## Contrast', '', '| theme | pair | kind | ratio | result |', '|---|---|---|---|---|');
-  contrastRes.forEach((r) => L.push(`| ${r.theme} | \`${r.fg}\` on \`${r.bg}\` | ${r.kind} | ${r.ratio.toFixed(2)} | ${r.ok ? 'pass' : 'LOW'} |`));
+  contrastRes.forEach((r) => L.push(`| ${r.theme} | \`${r.fg}\` on \`${r.bg}\` | ${r.kind} | ${r.na ? 'n/a' : r.ratio.toFixed(2)} | ${r.na ? 'not used' : r.ok ? 'pass' : 'LOW'} |`));
   L.push('', '## Fonts', '');
   fonts.forEach((r) => L.push(`- ${r.ok ? (r.note ? 'note' : 'ok') : 'FAIL'}: ${r.msg}`));
   L.push('', '## Interface strings', '');

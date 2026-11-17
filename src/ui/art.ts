@@ -97,7 +97,7 @@ function svgEl(tag: string, attrs: Record<string, string | number>): SVGElement 
 export function placeholder(id: string, alt = '', kind?: ArtKind): SVGSVGElement {
   const k = kind ?? (manifest.get(id)?.kind || (id.split('.')[0] as ArtKind));
   const [w, hgt] = ASPECT[k] ?? [100, 100];
-  const svg = svgEl('svg', { viewBox: `0 0 ${w} ${hgt}`, class: 'k-placeholder', 'data-art-id': id, 'data-placeholder': 'true' }) as SVGSVGElement;
+  const svg = svgEl('svg', { viewBox: `0 0 ${w} ${hgt}`, class: 'k-placeholder', 'data-art-id': id, 'data-art-kind': k, 'data-placeholder': 'true' }) as SVGSVGElement;
   if (alt) { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', alt); } else svg.setAttribute('aria-hidden', 'true');
   const cx = w / 2, cy = hgt / 2, r = Math.min(w, hgt) * 0.32;
   const shape = hash(id) % 4;
@@ -137,6 +137,7 @@ export function artEl(id: string, opts: { decorative?: boolean; class?: string; 
   img.loading = 'lazy';
   img.draggable = false;
   img.dataset.artId = id;
+  img.dataset.artKind = ref.entry?.kind ?? id.split('.')[0];
   img.className = `k-art ${opts.class ?? ''}`.trim();
   img.addEventListener('error', () => {
     const p = placeholder(id, alt);

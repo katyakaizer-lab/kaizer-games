@@ -47,14 +47,15 @@ function renderPalette() {
     h('span', { class: 'st-swatch__chip', style: { background: `var(${t})` } }),
     h('code', null, t), h('span', { class: 'st-soft' }, css(t)))));
   mount(contrastBody, (pairsFile.pairs as [string, string, keyof typeof MIN, string][]).map(([fg, bg, kind, use]) => {
+    const na = /^(transparent|none)$/.test(css(fg));
     let ratio = 0;
-    try { ratio = contrast(css(fg), css(bg)); } catch { /* unparsable */ }
-    const ok = ratio >= MIN[kind];
+    try { ratio = na ? 0 : contrast(css(fg), css(bg)); } catch { /* unparsable */ }
+    const ok = na || ratio >= MIN[kind];
     return h('tr', null,
       h('td', null, h('span', { class: 'st-sample', style: { color: `var(${fg})`, background: `var(${bg})` } }, 'Aa ñ ¿?')),
       h('td', null, h('code', null, fg), ' on ', h('code', null, bg), h('br'), h('span', { class: 'st-soft' }, use)),
-      h('td', { class: 'st-num' }, `${ratio.toFixed(2)}:1`),
-      h('td', null, h('span', { class: `st-pass st-pass--${ok ? 'ok' : 'low'}` }, icon(ok ? 'check' : 'refresh'), ok ? `pass (≥${MIN[kind]})` : `too low (needs ${MIN[kind]})`)));
+      h('td', { class: 'st-num' }, na ? 'n/a' : `${ratio.toFixed(2)}:1`),
+      h('td', null, h('span', { class: `st-pass st-pass--${ok ? 'ok' : 'low'}` }, icon(ok ? 'check' : 'refresh'), na ? 'not used in this theme' : ok ? `pass (≥${MIN[kind]})` : `too low (needs ${MIN[kind]})`)));
   }));
 }
 

@@ -103,6 +103,7 @@
   --shadow: 0 2px 0 rgb(43 45 66 / .08), 0 6px 16px rgb(43 45 66 / .08);
   --placeholder-fill: var(--line);
   --placeholder-ink: var(--ink-soft);
+  --art-halo: transparent;      /* no outline halo on day paper (ink outlines are 12:1) */
 }
 
 /* ---------- Theme: night (star-map games) ---------- */
@@ -136,4 +137,5 @@
   --shadow: 0 2px 0 rgb(0 0 0 / .2), 0 6px 16px rgb(0 0 0 / .25);
   --placeholder-fill: var(--navy-3);
   --placeholder-ink: var(--text-soft);
+  --art-halo: #FFF4E0;          /* light halo so ink-outlined pets and items read on the dark sky */
 }

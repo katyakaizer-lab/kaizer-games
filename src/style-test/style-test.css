@@ -10,7 +10,7 @@
 .st-swatches { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); margin-bottom: var(--space-5); }
 .st-swatch { display: grid; gap: 2px; font-size: var(--fs-small); }
 .st-swatch__chip { height: 48px; border-radius: var(--radius-tile); border: var(--border-w) solid var(--text); }
-.st-table-wrap { overflow-x: auto; }
+.st-table-wrap { overflow-x: auto; max-width: 100%; min-width: 0; }
 .st-table { border-collapse: collapse; width: 100%; font-size: var(--fs-small); }
 .st-table caption { text-align: left; padding-bottom: var(--space-2); }
 .st-table th, .st-table td { text-align: left; padding: var(--space-2); border-bottom: 1px solid var(--border); vertical-align: middle; }
@@ -30,8 +30,8 @@
 .st-pet { margin: 0; display: grid; gap: var(--space-1); justify-items: center; }
 .st-pet figcaption { color: var(--text-soft); }
 
-.st-devices { display: grid; gap: var(--space-5); justify-items: start; }
-.st-device-scroll { max-width: 100%; overflow-x: auto; }
+.st-devices { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); justify-items: start; }
+.st-device-scroll { max-width: 100%; min-width: 0; overflow-x: auto; }
 .st-device { border: var(--border-w) solid var(--text); border-radius: 24px; padding: var(--space-3); background: var(--bg); }
 .st-device--phone { width: 360px; max-width: 100%; }
 .st-device--tablet { width: 768px; }

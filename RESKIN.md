@@ -8,13 +8,39 @@ Everything visual in Kaizer Games comes from three places. Change these and the 
 | Pictures | `public/assets/**` | Referenced by id through `public/assets/manifest.json`, never by path. |
 | Which picture an id means | `public/assets/manifest.json` | Add or change entries here. |
 
+## Token names
+
+Components read only these semantic tokens. A theme sets its own palette (any names, for example `--paper`, `--forest`) and maps it to them.
+
+| Token | Used for |
+|---|---|
+| `--bg`, `--surface` | page background; cards, tiles, panels |
+| `--text`, `--text-soft` | main text; secondary text |
+| `--border` | hairlines and card borders |
+| `--primary` / `--on-primary` | primary buttons, progress fill / text on them |
+| `--secondary` / `--on-secondary` | secondary buttons, selected chips and tabs |
+| `--accent` / `--on-accent` | small accent |
+| `--highlight` / `--on-highlight` | hints, score badge |
+| `--link`, `--focus` | links and outline buttons; keyboard focus ring |
+| `--correct-bg`, `--correct-line` | correct feedback panel and border |
+| `--retry-bg`, `--retry-line` | try-again feedback panel and border |
+| `--star`, `--star-line`, `--star-dim` | star dots, constellation lines, dimmed stars |
+| `--track` | progress and timer track |
+| `--scrim`, `--shadow` | modal backdrop; card shadow |
+| `--placeholder-fill`, `--placeholder-ink` | generated placeholder art |
+| `--art-halo` | outline drawn around ink-outlined art (kinds `pet`, `pet-item`); `transparent` in themes that do not need it |
+| `--bg-image` | set by code from the art id `background.<theme>`; not written in tokens.css |
+| `--font-head`, `--font-body`, `--fs-*`, `--space-*`, `--radius-*`, `--tap-min`, `--dur*`, `--ease` | type, spacing, shape, motion (same in every theme) |
+
+The two themes today are `brote` (day, warm paper) and `night` (star-map games).
+
 ## How to re-skin
 
 1. **Colours.** Edit the palette block of the theme in `public/tokens.css` (`--paper`, `--forest`, `--mint` …). Components read only the *semantic* tokens below it (`--bg`, `--surface`, `--text`, `--primary` …), so a palette change flows through everywhere.
 2. **Fonts.** Put the new `.woff2` files in `public/fonts/`, change the `@font-face` blocks and the `--font-head` / `--font-body` line in `public/tokens.css`. Keep the font's licence in `licenses/` and add it to `LICENCES.md`.
 3. **Pictures.** Drop a new file over the old one with the same name (for example `public/assets/pets/cat-calma.svg`), or add a new file and point the id at it in the manifest. Set `"status": "final"` when the art is final. If the art was made with an AI image tool, set `"aiGenerated": true` and fill in `source.tool`, `source.date`, `source.terms` and `source.prompt`.
 4. **Painted frames.** `ui.frame.card` is a nine-slice image (`nineSlice.slice` is the corner size in image pixels, `nineSlice.width` the border width on screen). List the themes it suits in `themes`; in any other theme the plain CSS frame is used.
-5. **New theme.** Copy the `:root[data-theme="brote"]` block, rename it, and set every semantic token. Add the new theme to nothing else: the contrast check picks it up automatically.
+5. **New theme.** Copy the `:root[data-theme="brote"]` block, rename it, and set every semantic token, including `--art-halo` (a light colour on a dark background, `transparent` otherwise). Add the new theme to nothing else: the contrast check picks it up automatically.
 6. Run `npm run build`. The build fails if anything breaks the rules below.
 
 ## What the build checks
@@ -39,7 +65,7 @@ This copies the project to a temporary folder and applies `reskin-demo/`:
 
 It then proves that **nothing else changed** (it compares file hashes and fails if any other file differs, and fails if anything under `src/` differs), runs the full build with every check above, and writes the re-skinned site to `dist-reskin/`.
 
-Result on 2026-11-17: pass. Changed files were exactly `public/tokens.css`, the three assets and the two font files. Contrast 40/40 pairs, fonts covered, 0 hard-coded values, all 28 art ids resolve.
+Result on 2026-11-17: pass. Changed files were exactly `public/tokens.css`, the three assets and the two font files. Contrast 42/42 pairs (including the art halo), fonts covered, 0 hard-coded values, all 28 art ids resolve.
 
 ## Rules for new art
 

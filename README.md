@@ -39,5 +39,10 @@ docs/                    planning documents (kept locally, not in the repository
 - **No UI framework.** Plain TypeScript with a tiny `h()` helper keeps the bundle small (first screen about 170 KB).
 - **`tokens.css` lives in `public/`**, not in the bundle, so a re-skin can be done even on a built site, and the font `@font-face` rules live there too. That way font names appear in exactly one file.
 - **Semantic tokens.** Components read `--bg`, `--surface`, `--text`, `--primary` and so on. Each theme maps its palette to them. That is what lets the night theme (and any future theme) work with no component changes.
-- **Russian headings.** Caveat Brush has no Cyrillic, so headings in the Russian interface fall back to the next font. Body text (Nunito) includes Cyrillic.
+- **Semantic token names are accepted** (2026-11-17). `claude-code-design-system-prompt.md` (kept in `docs/`) and `RESKIN.md` use the same names as the code.
+
+## Open items
+
+- **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic. Decide the heading font when the Russian interface is built.
+- Still open from the brief: pacing of unlocks, who draws the final art, a licensed Spanish word list.
 - **`src/app/`** was added next to the folders in the brief for start-up code shared by every page.
