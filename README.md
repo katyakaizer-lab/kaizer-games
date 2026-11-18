@@ -64,8 +64,8 @@ docs/                         planning documents (kept locally, not in the repos
 
 ### Solitario de categorías
 
-- Classic solitaire layout, adapted to word cards: four category foundations on top, columns of face-down cards with a face-up card on top, and the deck on the right (one card turned over at a time, as often as you like). Plain cards with just the word, on a card-table theme ( in tokens.css). Not a copy of the Windows game's look.
-- You choose only a level. Each deal takes four categories from every topic of that level, mixed (categories listed in  are never dealt together because a word could fit both).
+- Classic solitaire layout, adapted to word cards: four category foundations on top, columns of face-down cards with a face-up card on top, and the deck on the right (one card turned over at a time, as often as you like). Plain cards with just the word, on a card-table theme (`mesa` in tokens.css). Not a copy of the Windows game's look.
+- You choose only a level. Each deal takes four categories from every topic of that level, mixed (categories listed in `avoid` are never dealt together because a word could fit both).
 - On the columns a card goes only on a card of the same category; an empty column takes any card. Any uncovered card can go up to its category; double-tap sends it there. Every deal can be finished (tested on 600 automatic games).
 - A wrong move changes nothing; the cards wobble and the status line says why. "Pista" appears after two misses. No score, no timer; the level screen counts games won.
 - Modo experto: the foundations have no names; each must hold one category, and at the end you name them from options that include two other categories of the level.
