@@ -27,6 +27,13 @@ export const MODES: Mode[] = [mapMode, storyMode, listenMode, memoryMode];
 const modeById = (id?: string) => MODES.find((m) => m.id === id) ?? mapMode;
 const ZOOM_MS = 280;
 
+/** Entrance zoom that can never leave the screen faded out: if the phone pauses it, it is cancelled (back to normal) shortly after. */
+function zoomIn(el: HTMLElement, from: string): void {
+  if (typeof el.animate !== 'function') return;
+  const anim = el.animate([{ transform: from, opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: ZOOM_MS, easing: 'ease-out' });
+  setTimeout(() => anim.cancel(), ZOOM_MS + 120);
+}
+
 export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
   const html = document.documentElement;
   html.dataset.theme = 'night';
@@ -92,7 +99,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       if (token !== renderToken) return;
       put(content, screen);
       window.scrollTo(0, 0);
-      if (!reduce && typeof screen.animate === 'function') screen.animate([{ transform: 'scale(.94)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: ZOOM_MS, easing: 'ease-out' });
+      if (!reduce) zoomIn(screen, 'scale(.94)');
       focusTitle(content);
       return;
     }
@@ -116,7 +123,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       mapEl.scrollIntoView?.({ block: 'center' });
       const map = mapEl.closest<HTMLElement>('.cz-map')!;
       map.style.transformOrigin = `${lastPick.x}% ${lastPick.y}%`;
-      if (!reduce && typeof map.animate === 'function') map.animate([{ transform: 'scale(2.6)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: ZOOM_MS, easing: 'ease-out' });
+      if (!reduce) zoomIn(map, 'scale(2.6)');
       mapEl.focus({ preventScroll: true });
       lastPick = null;
     } else {

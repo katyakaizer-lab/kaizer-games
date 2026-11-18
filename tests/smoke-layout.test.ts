@@ -108,6 +108,9 @@ describe('smoke: play one constellation start to finish in a real browser', () =
     page.on('pageerror', (e) => errors.push(String(e)));
     await page.goto(base + 'index.html#game/constelaciones/play/map/c-a1-002'); // ¿Dónde vives? (A1)
     await page.waitForSelector('.cz-star');
+    // Swipes on empty sky must scroll the page; only a swipe that starts on a star draws a line.
+    expect(await page.$eval('.cz-board', (e) => getComputedStyle(e).touchAction)).not.toBe('none');
+    expect(await page.$eval('.cz-star', (e) => getComputedStyle(e).touchAction)).toBe('none');
     await page.click('.cz-star[data-index="1"]'); // wrong
     await page.click('.cz-star[data-index="1"]'); // wrong again
     expect(await page.textContent('.cz-status')).toContain('no va');
