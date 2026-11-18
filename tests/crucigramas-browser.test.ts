@@ -76,6 +76,9 @@ function layout(page: Page) {
     for (const ch of 'ÑÁÉÍÓÚÜ') if (!keys.includes(ch)) problems.push(`no ${ch} key`);
     const clue = document.querySelector<HTMLElement>('.cw-cluebar__text')!;
     if (clue.scrollWidth > clue.clientWidth + 1 || clue.scrollHeight > clue.clientHeight + 1) problems.push('clue clipped');
+    // The top bar title (level and topic) stays inside the bar.
+    const bar = r(document.querySelector('.cw-bar')!), title = document.querySelector<HTMLElement>('.cw-bar__title')!;
+    if (title.scrollHeight > title.clientHeight + 1 || r(title).top < bar.top - 0.5 || r(title).bottom > bar.bottom + 0.5) problems.push(`title does not fit the bar: ${title.textContent}`);
     // Pista and Comprobar reachable: either the labelled row or the icon buttons in the top bar.
     const acts = [...document.querySelectorAll<HTMLElement>('[data-act]')].filter((b) => b.offsetParent && r(b).height >= 43.5);
     if (new Set(acts.map((b) => b.dataset.act)).size !== 2) problems.push('Pista or Comprobar not visible at 44px');

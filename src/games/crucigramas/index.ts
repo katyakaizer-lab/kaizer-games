@@ -251,6 +251,9 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
         keyboard(),
         status);
       sizeGrid();
+      // Sizes can still move once fonts load or the bar settles: measure again then.
+      requestAnimationFrame(sizeGrid);
+      document.fonts?.ready.then(sizeGrid).catch(() => {});
       if (focusOnCell) el.querySelector<HTMLElement>('.cw-cell.is-current')?.focus({ preventScroll: true });
     }
 
