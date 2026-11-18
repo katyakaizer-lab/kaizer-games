@@ -1,0 +1,2362 @@
+{
+ "_note": "Stories for Cuento de estrellas, written by Claude. All reviewed:false until Katya checks them. \"breaks\" lists the parts after which the finished story starts a new paragraph.",
+ "constellations": [
+  {
+   "id": "c-story-semilla-1",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 1
+   },
+   "text": "Sara tiene una semilla pequeña.",
+   "tokens": [
+    "sara",
+    "tiene",
+    "una",
+    "semilla",
+    "pequena"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   ],
+   "proper": [
+    0
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "pequena",
+      "pequeña"
+     ],
+     "correct": "pequeña"
+    }
+   ],
+   "en": "Sara has a small seed.",
+   "ru": "У Сары есть маленькое семечко.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-2",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 2
+   },
+   "text": "Ella la pone en una maceta.",
+   "tokens": [
+    "ella",
+    "la",
+    "pone",
+    "en",
+    "una",
+    "maceta"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "She puts it in a flowerpot.",
+   "ru": "Она кладёт его в цветочный горшок.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-3",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 3
+   },
+   "text": "Cada día le da agua.",
+   "tokens": [
+    "cada",
+    "dia",
+    "le",
+    "da",
+    "agua"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     3,
+     4,
+     0,
+     1
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "dia",
+      "día"
+     ],
+     "correct": "día"
+    }
+   ],
+   "en": "Every day she gives it water.",
+   "ru": "Каждый день она его поливает.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-4",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 4
+   },
+   "text": "Pero la semilla no crece.",
+   "tokens": [
+    "pero",
+    "la",
+    "semilla",
+    "no",
+    "crece"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "But the seed does not grow.",
+   "ru": "Но семечко не растёт.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-5",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 5
+   },
+   "text": "Sara espera con paciencia.",
+   "tokens": [
+    "sara",
+    "espera",
+    "con",
+    "paciencia"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3
+    ]
+   ],
+   "proper": [
+    0
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "Sara waits patiently.",
+   "ru": "Сара терпеливо ждёт.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-6",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 6
+   },
+   "text": "Un día ve una hoja verde.",
+   "tokens": [
+    "un",
+    "dia",
+    "ve",
+    "una",
+    "hoja",
+    "verde"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "dia",
+      "día"
+     ],
+     "correct": "día"
+    }
+   ],
+   "en": "One day she sees a green leaf.",
+   "ru": "Однажды она видит зелёный листок.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-7",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 7
+   },
+   "text": "Ahora Sara tiene una flor amarilla.",
+   "tokens": [
+    "ahora",
+    "sara",
+    "tiene",
+    "una",
+    "flor",
+    "amarilla"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [
+    1
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "Now Sara has a yellow flower.",
+   "ru": "Теперь у Сары есть жёлтый цветок.",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-semilla-8",
+   "level": "A1",
+   "topic": "story",
+   "story": {
+    "id": "semilla",
+    "part": 8
+   },
+   "text": "¡Qué bonita es!",
+   "tokens": [
+    "que",
+    "bonita",
+    "es"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   "proper": [],
+   "open": "¡",
+   "close": "!",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "que",
+      "qué"
+     ],
+     "correct": "qué"
+    }
+   ],
+   "en": "How pretty it is!",
+   "ru": "Какой он красивый!",
+   "image": "scene.story.semilla",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-1",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 1
+   },
+   "text": "Cada noche, el farolero camina junto al río.",
+   "tokens": [
+    "cada",
+    "noche",
+    "el",
+    "farolero",
+    "camina",
+    "junto",
+    "al",
+    "rio"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     0,
+     1
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 7,
+     "options": [
+      "rio",
+      "río"
+     ],
+     "correct": "río"
+    }
+   ],
+   "en": "Every night, the lamplighter walks along the river.",
+   "ru": "Каждую ночь фонарщик идёт вдоль реки.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-2",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 2
+   },
+   "text": "Enciende las farolas una a una con su vara.",
+   "tokens": [
+    "enciende",
+    "las",
+    "farolas",
+    "una",
+    "a",
+    "una",
+    "con",
+    "su",
+    "vara"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "He lights the street lamps one by one with his pole.",
+   "ru": "Он зажигает фонари один за другим своим шестом.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-3",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 3
+   },
+   "text": "Los niños del pueblo lo saludan desde las ventanas.",
+   "tokens": [
+    "los",
+    "ninos",
+    "del",
+    "pueblo",
+    "lo",
+    "saludan",
+    "desde",
+    "las",
+    "ventanas"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "ninos",
+      "niños"
+     ],
+     "correct": "niños"
+    }
+   ],
+   "en": "The village children wave to him from the windows.",
+   "ru": "Деревенские дети машут ему из окон.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-4",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 4
+   },
+   "text": "Un día, el pueblo instala luces eléctricas.",
+   "tokens": [
+    "un",
+    "dia",
+    "el",
+    "pueblo",
+    "instala",
+    "luces",
+    "electricas"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "dia",
+      "día"
+     ],
+     "correct": "día"
+    },
+    {
+     "index": 6,
+     "options": [
+      "electricas",
+      "eléctricas"
+     ],
+     "correct": "eléctricas"
+    }
+   ],
+   "en": "One day, the village puts in electric lights.",
+   "ru": "Однажды в деревне ставят электрические фонари.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-5",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 5
+   },
+   "text": "Ya nadie necesita al viejo farolero.",
+   "tokens": [
+    "ya",
+    "nadie",
+    "necesita",
+    "al",
+    "viejo",
+    "farolero"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "Nobody needs the old lamplighter any more.",
+   "ru": "Старый фонарщик больше никому не нужен.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-6",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 6
+   },
+   "text": "Él guarda su vara y se siente solo.",
+   "tokens": [
+    "el",
+    "guarda",
+    "su",
+    "vara",
+    "y",
+    "se",
+    "siente",
+    "solo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "el",
+      "él"
+     ],
+     "correct": "él"
+    }
+   ],
+   "en": "He puts away his pole and feels lonely.",
+   "ru": "Он убирает свой шест и чувствует себя одиноким.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-7",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 7
+   },
+   "text": "Una noche encuentra una luz pequeña entre las piedras.",
+   "tokens": [
+    "una",
+    "noche",
+    "encuentra",
+    "una",
+    "luz",
+    "pequena",
+    "entre",
+    "las",
+    "piedras"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 5,
+     "options": [
+      "pequena",
+      "pequeña"
+     ],
+     "correct": "pequeña"
+    }
+   ],
+   "en": "One night he finds a small light among the stones.",
+   "ru": "Однажды ночью он находит между камнями маленький огонёк.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-8",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 8
+   },
+   "text": "La luz tiembla porque tiene miedo de la oscuridad.",
+   "tokens": [
+    "la",
+    "luz",
+    "tiembla",
+    "porque",
+    "tiene",
+    "miedo",
+    "de",
+    "la",
+    "oscuridad"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "The light trembles because it is afraid of the dark.",
+   "ru": "Огонёк дрожит, потому что боится темноты.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-9",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 9
+   },
+   "text": "La luz le dice que no quiere brillar sola.",
+   "tokens": [
+    "la",
+    "luz",
+    "le",
+    "dice",
+    "que",
+    "no",
+    "quiere",
+    "brillar",
+    "sola"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "The light tells him that it does not want to shine alone.",
+   "ru": "Огонёк говорит ему, что не хочет светить один.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-10",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 10
+   },
+   "text": "El farolero tampoco quiere estar solo.",
+   "tokens": [
+    "el",
+    "farolero",
+    "tampoco",
+    "quiere",
+    "estar",
+    "solo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "The lamplighter does not want to be alone either.",
+   "ru": "Фонарщик тоже не хочет быть один.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-11",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 11
+   },
+   "text": "Desde esa noche, pasean juntos por la orilla.",
+   "tokens": [
+    "desde",
+    "esa",
+    "noche",
+    "pasean",
+    "juntos",
+    "por",
+    "la",
+    "orilla"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    [
+     3,
+     4,
+     5,
+     6,
+     7,
+     0,
+     1,
+     2
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [],
+   "en": "From that night on, they walk together along the bank.",
+   "ru": "С той ночи они вместе гуляют по берегу.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-12",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 12
+   },
+   "text": "Él le cuenta historias y ella aprende a brillar.",
+   "tokens": [
+    "el",
+    "le",
+    "cuenta",
+    "historias",
+    "y",
+    "ella",
+    "aprende",
+    "a",
+    "brillar"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "el",
+      "él"
+     ],
+     "correct": "él"
+    }
+   ],
+   "en": "He tells it stories and it learns to shine.",
+   "ru": "Он рассказывает ему истории, и огонёк учится светить.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-13",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 13
+   },
+   "text": "Con los años, la luz sube hasta el cielo.",
+   "tokens": [
+    "con",
+    "los",
+    "anos",
+    "la",
+    "luz",
+    "sube",
+    "hasta",
+    "el",
+    "cielo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [
+    {
+     "index": 2,
+     "options": [
+      "anos",
+      "años"
+     ],
+     "correct": "años"
+    }
+   ],
+   "en": "Over the years, the light rises up to the sky.",
+   "ru": "С годами огонёк поднимается до самого неба.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-14",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 14
+   },
+   "text": "Desde entonces, el río tiene una estrella más.",
+   "tokens": [
+    "desde",
+    "entonces",
+    "el",
+    "rio",
+    "tiene",
+    "una",
+    "estrella",
+    "mas"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     0,
+     1
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "rio",
+      "río"
+     ],
+     "correct": "río"
+    },
+    {
+     "index": 7,
+     "options": [
+      "mas",
+      "más"
+     ],
+     "correct": "más"
+    }
+   ],
+   "en": "Since then, the river has one more star.",
+   "ru": "С тех пор у реки на одну звезду больше.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-farolero-15",
+   "level": "A2",
+   "topic": "story",
+   "story": {
+    "id": "farolero",
+    "part": 15
+   },
+   "text": "Y cada noche, ella brilla para el farolero.",
+   "tokens": [
+    "y",
+    "cada",
+    "noche",
+    "ella",
+    "brilla",
+    "para",
+    "el",
+    "farolero"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [],
+   "en": "And every night, it shines for the lamplighter.",
+   "ru": "И каждую ночь огонёк светит для фонарщика.",
+   "image": "scene.story.farolero",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-1",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 1
+   },
+   "text": "El reloj de la plaza llevaba años parado.",
+   "tokens": [
+    "el",
+    "reloj",
+    "de",
+    "la",
+    "plaza",
+    "llevaba",
+    "anos",
+    "parado"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 6,
+     "options": [
+      "anos",
+      "años"
+     ],
+     "correct": "años"
+    }
+   ],
+   "en": "The clock in the square had been stopped for years.",
+   "ru": "Часы на площади стояли уже много лет.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-2",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 2
+   },
+   "text": "Nadie recordaba por qué se había detenido.",
+   "tokens": [
+    "nadie",
+    "recordaba",
+    "por",
+    "que",
+    "se",
+    "habia",
+    "detenido"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "que",
+      "qué"
+     ],
+     "correct": "qué"
+    },
+    {
+     "index": 5,
+     "options": [
+      "habia",
+      "había"
+     ],
+     "correct": "había"
+    }
+   ],
+   "en": "Nobody remembered why it had stopped.",
+   "ru": "Никто не помнил, почему они остановились.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-3",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 3
+   },
+   "text": "Lucía decidió preguntar al relojero más anciano del pueblo.",
+   "tokens": [
+    "lucia",
+    "decidio",
+    "preguntar",
+    "al",
+    "relojero",
+    "mas",
+    "anciano",
+    "del",
+    "pueblo"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [
+    0
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "lucia",
+      "lucía"
+     ],
+     "correct": "lucía"
+    },
+    {
+     "index": 1,
+     "options": [
+      "decidio",
+      "decidió",
+      "decidí"
+     ],
+     "correct": "decidió"
+    },
+    {
+     "index": 5,
+     "options": [
+      "mas",
+      "más"
+     ],
+     "correct": "más"
+    }
+   ],
+   "en": "Lucía decided to ask the oldest clockmaker in the village.",
+   "ru": "Лусия решила спросить самого старого часовщика в деревне.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-4",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 4
+   },
+   "text": "Él le contó que se paró durante una tormenta.",
+   "tokens": [
+    "el",
+    "le",
+    "conto",
+    "que",
+    "se",
+    "paro",
+    "durante",
+    "una",
+    "tormenta"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "el",
+      "él"
+     ],
+     "correct": "él"
+    },
+    {
+     "index": 2,
+     "options": [
+      "conto",
+      "contó",
+      "conté"
+     ],
+     "correct": "contó"
+    },
+    {
+     "index": 5,
+     "options": [
+      "paro",
+      "paró"
+     ],
+     "correct": "paró"
+    }
+   ],
+   "en": "He told her that it stopped during a storm.",
+   "ru": "Он рассказал ей, что часы остановились во время грозы.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-5",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 5
+   },
+   "text": "Desde entonces, el pueblo vivía sin prisa.",
+   "tokens": [
+    "desde",
+    "entonces",
+    "el",
+    "pueblo",
+    "vivia",
+    "sin",
+    "prisa"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    [
+     2,
+     3,
+     4,
+     5,
+     6,
+     0,
+     1
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "vivia",
+      "vivía"
+     ],
+     "correct": "vivía"
+    }
+   ],
+   "en": "Since then, the village had lived without hurrying.",
+   "ru": "С тех пор деревня жила без спешки.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-6",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 6
+   },
+   "text": "Si lo arreglaran, quizá todo volvería a ir deprisa.",
+   "tokens": [
+    "si",
+    "lo",
+    "arreglaran",
+    "quiza",
+    "todo",
+    "volveria",
+    "a",
+    "ir",
+    "deprisa"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "quiza",
+      "quizá"
+     ],
+     "correct": "quizá"
+    },
+    {
+     "index": 5,
+     "options": [
+      "volveria",
+      "volvería"
+     ],
+     "correct": "volvería"
+    }
+   ],
+   "en": "If they repaired it, perhaps everything would rush again.",
+   "ru": "Если бы их починили, может быть, всё снова стало бы спешить.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-7",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 7
+   },
+   "text": "Aun así, Lucía quería oírlo sonar otra vez.",
+   "tokens": [
+    "aun",
+    "asi",
+    "lucia",
+    "queria",
+    "oirlo",
+    "sonar",
+    "otra",
+    "vez"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   ],
+   "proper": [
+    2
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 0,
+     "options": [
+      "aun",
+      "aún"
+     ],
+     "correct": "aun"
+    },
+    {
+     "index": 1,
+     "options": [
+      "asi",
+      "así"
+     ],
+     "correct": "así"
+    },
+    {
+     "index": 2,
+     "options": [
+      "lucia",
+      "lucía"
+     ],
+     "correct": "lucía"
+    },
+    {
+     "index": 3,
+     "options": [
+      "queria",
+      "quería"
+     ],
+     "correct": "quería"
+    },
+    {
+     "index": 4,
+     "options": [
+      "oirlo",
+      "oírlo"
+     ],
+     "correct": "oírlo"
+    }
+   ],
+   "en": "Even so, Lucía wanted to hear it ring again.",
+   "ru": "И всё же Лусия хотела снова услышать их бой.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-8",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 8
+   },
+   "text": "Juntos limpiaron cada rueda y cada muelle.",
+   "tokens": [
+    "juntos",
+    "limpiaron",
+    "cada",
+    "rueda",
+    "y",
+    "cada",
+    "muelle"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [],
+   "en": "Together they cleaned every wheel and every spring.",
+   "ru": "Вместе они почистили каждое колёсико и каждую пружину.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-9",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 9
+   },
+   "text": "Cuando por fin sonó, todos salieron a mirar.",
+   "tokens": [
+    "cuando",
+    "por",
+    "fin",
+    "sono",
+    "todos",
+    "salieron",
+    "a",
+    "mirar"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    [
+     4,
+     5,
+     6,
+     7,
+     0,
+     1,
+     2,
+     3
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    3
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "sono",
+      "sonó",
+      "soñó"
+     ],
+     "correct": "sonó"
+    }
+   ],
+   "en": "When it finally rang, everyone came out to look.",
+   "ru": "Когда часы наконец пробили, все вышли посмотреть.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-reloj-10",
+   "level": "B1",
+   "topic": "story",
+   "story": {
+    "id": "reloj",
+    "part": 10
+   },
+   "text": "Pero decidieron que solo sonaría una vez al día.",
+   "tokens": [
+    "pero",
+    "decidieron",
+    "que",
+    "solo",
+    "sonaria",
+    "una",
+    "vez",
+    "al",
+    "dia"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "solo",
+      "sólo"
+     ],
+     "correct": "solo"
+    },
+    {
+     "index": 4,
+     "options": [
+      "sonaria",
+      "sonaría"
+     ],
+     "correct": "sonaría"
+    },
+    {
+     "index": 8,
+     "options": [
+      "dia",
+      "día"
+     ],
+     "correct": "día"
+    }
+   ],
+   "en": "But they decided it would ring only once a day.",
+   "ru": "Но они решили, что часы будут бить только раз в день.",
+   "image": "scene.story.reloj",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-1",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 1
+   },
+   "text": "Durante años, Inés recibió cartas sin remitente.",
+   "tokens": [
+    "durante",
+    "anos",
+    "ines",
+    "recibio",
+    "cartas",
+    "sin",
+    "remitente"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [
+    2
+   ],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "anos",
+      "años"
+     ],
+     "correct": "años"
+    },
+    {
+     "index": 2,
+     "options": [
+      "ines",
+      "inés"
+     ],
+     "correct": "inés"
+    },
+    {
+     "index": 3,
+     "options": [
+      "recibio",
+      "recibió"
+     ],
+     "correct": "recibió"
+    }
+   ],
+   "en": "For years, Inés received letters with no sender.",
+   "ru": "Много лет Инес получала письма без обратного адреса.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-2",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 2
+   },
+   "text": "Hablaban de lugares que jamás había visitado.",
+   "tokens": [
+    "hablaban",
+    "de",
+    "lugares",
+    "que",
+    "jamas",
+    "habia",
+    "visitado"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "jamas",
+      "jamás"
+     ],
+     "correct": "jamás"
+    },
+    {
+     "index": 5,
+     "options": [
+      "habia",
+      "había"
+     ],
+     "correct": "había"
+    }
+   ],
+   "en": "They spoke of places she had never visited.",
+   "ru": "В них говорилось о местах, где она никогда не бывала.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-3",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 3
+   },
+   "text": "Al principio pensó que se trataba de un error.",
+   "tokens": [
+    "al",
+    "principio",
+    "penso",
+    "que",
+    "se",
+    "trataba",
+    "de",
+    "un",
+    "error"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 2,
+     "options": [
+      "penso",
+      "pensó",
+      "pensé"
+     ],
+     "correct": "pensó"
+    }
+   ],
+   "en": "At first she thought it was a mistake.",
+   "ru": "Сначала она подумала, что это ошибка.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-4",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 4
+   },
+   "text": "Sin embargo, cada carta parecía conocerla mejor.",
+   "tokens": [
+    "sin",
+    "embargo",
+    "cada",
+    "carta",
+    "parecia",
+    "conocerla",
+    "mejor"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    1
+   ],
+   "accents": [
+    {
+     "index": 4,
+     "options": [
+      "parecia",
+      "parecía"
+     ],
+     "correct": "parecía"
+    }
+   ],
+   "en": "Yet every letter seemed to know her better.",
+   "ru": "Однако каждое письмо будто знало её всё лучше.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-5",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 5
+   },
+   "text": "Le dolía no saber quién las escribía.",
+   "tokens": [
+    "le",
+    "dolia",
+    "no",
+    "saber",
+    "quien",
+    "las",
+    "escribia"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "dolia",
+      "dolía"
+     ],
+     "correct": "dolía"
+    },
+    {
+     "index": 4,
+     "options": [
+      "quien",
+      "quién"
+     ],
+     "correct": "quién"
+    },
+    {
+     "index": 6,
+     "options": [
+      "escribia",
+      "escribía"
+     ],
+     "correct": "escribía"
+    }
+   ],
+   "en": "It hurt not to know who was writing them.",
+   "ru": "Ей было больно не знать, кто их пишет.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-6",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 6
+   },
+   "text": "Un día reconoció en la letra su propia mano.",
+   "tokens": [
+    "un",
+    "dia",
+    "reconocio",
+    "en",
+    "la",
+    "letra",
+    "su",
+    "propia",
+    "mano"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 1,
+     "options": [
+      "dia",
+      "día"
+     ],
+     "correct": "día"
+    },
+    {
+     "index": 2,
+     "options": [
+      "reconocio",
+      "reconoció"
+     ],
+     "correct": "reconoció"
+    }
+   ],
+   "en": "One day she recognised her own hand in the writing.",
+   "ru": "Однажды она узнала в почерке свою собственную руку.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-7",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 7
+   },
+   "text": "Si no hubiera sido tan prudente, ya habría viajado.",
+   "tokens": [
+    "si",
+    "no",
+    "hubiera",
+    "sido",
+    "tan",
+    "prudente",
+    "ya",
+    "habria",
+    "viajado"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    5
+   ],
+   "accents": [
+    {
+     "index": 7,
+     "options": [
+      "habria",
+      "habría"
+     ],
+     "correct": "habría"
+    }
+   ],
+   "en": "If she had not been so cautious, she would have travelled by now.",
+   "ru": "Если бы она не была такой осторожной, она бы уже путешествовала.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-8",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 8
+   },
+   "text": "Esa misma noche, compró un billete de ida.",
+   "tokens": [
+    "esa",
+    "misma",
+    "noche",
+    "compro",
+    "un",
+    "billete",
+    "de",
+    "ida"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    [
+     3,
+     4,
+     5,
+     6,
+     7,
+     0,
+     1,
+     2
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [
+    2
+   ],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "compro",
+      "compró",
+      "compré"
+     ],
+     "correct": "compró"
+    }
+   ],
+   "en": "That very night, she bought a one-way ticket.",
+   "ru": "В ту же ночь она купила билет в один конец.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  },
+  {
+   "id": "c-story-cartas-9",
+   "level": "B2",
+   "topic": "story",
+   "story": {
+    "id": "cartas",
+    "part": 9
+   },
+   "text": "Ahora es ella quien escribe las cartas.",
+   "tokens": [
+    "ahora",
+    "es",
+    "ella",
+    "quien",
+    "escribe",
+    "las",
+    "cartas"
+   ],
+   "orders": [
+    [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   "proper": [],
+   "open": "",
+   "close": ".",
+   "commas": [],
+   "accents": [
+    {
+     "index": 3,
+     "options": [
+      "quien",
+      "quién"
+     ],
+     "correct": "quien"
+    }
+   ],
+   "en": "Now she is the one who writes the letters.",
+   "ru": "Теперь письма пишет она сама.",
+   "image": "scene.story.cartas",
+   "audio": null,
+   "reviewed": false
+  }
+ ],
+ "stories": [
+  {
+   "id": "semilla",
+   "title_es": "La semilla de Sara",
+   "level": "A1",
+   "constellations": [
+    "c-story-semilla-1",
+    "c-story-semilla-2",
+    "c-story-semilla-3",
+    "c-story-semilla-4",
+    "c-story-semilla-5",
+    "c-story-semilla-6",
+    "c-story-semilla-7",
+    "c-story-semilla-8"
+   ],
+   "breaks": [
+    4
+   ],
+   "image": "scene.story.semilla",
+   "reviewed": false
+  },
+  {
+   "id": "farolero",
+   "title_es": "El farolero del río",
+   "level": "A2",
+   "constellations": [
+    "c-story-farolero-1",
+    "c-story-farolero-2",
+    "c-story-farolero-3",
+    "c-story-farolero-4",
+    "c-story-farolero-5",
+    "c-story-farolero-6",
+    "c-story-farolero-7",
+    "c-story-farolero-8",
+    "c-story-farolero-9",
+    "c-story-farolero-10",
+    "c-story-farolero-11",
+    "c-story-farolero-12",
+    "c-story-farolero-13",
+    "c-story-farolero-14",
+    "c-story-farolero-15"
+   ],
+   "breaks": [
+    3,
+    6,
+    10,
+    13
+   ],
+   "image": "scene.story.farolero",
+   "reviewed": false
+  },
+  {
+   "id": "reloj",
+   "title_es": "El reloj de la plaza",
+   "level": "B1",
+   "constellations": [
+    "c-story-reloj-1",
+    "c-story-reloj-2",
+    "c-story-reloj-3",
+    "c-story-reloj-4",
+    "c-story-reloj-5",
+    "c-story-reloj-6",
+    "c-story-reloj-7",
+    "c-story-reloj-8",
+    "c-story-reloj-9",
+    "c-story-reloj-10"
+   ],
+   "breaks": [
+    2,
+    5,
+    7
+   ],
+   "image": "scene.story.reloj",
+   "reviewed": false
+  },
+  {
+   "id": "cartas",
+   "title_es": "Cartas sin remitente",
+   "level": "B2",
+   "constellations": [
+    "c-story-cartas-1",
+    "c-story-cartas-2",
+    "c-story-cartas-3",
+    "c-story-cartas-4",
+    "c-story-cartas-5",
+    "c-story-cartas-6",
+    "c-story-cartas-7",
+    "c-story-cartas-8",
+    "c-story-cartas-9"
+   ],
+   "breaks": [
+    3,
+    6
+   ],
+   "image": "scene.story.cartas",
+   "reviewed": false
+  }
+ ]
+}

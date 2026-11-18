@@ -31,7 +31,7 @@ const NOW = Date.now();
 const STATE: Record<string, string> = {
   'kz.pet': JSON.stringify({ species: 'dragon', name: 'Chispa' }),
   'kz.settings': JSON.stringify({ lang: 'es', sound: false, soundOffered: true, reduceMotion: true, textSize: 'normal' }),
-  'kz.cz.progress': JSON.stringify({ cleared: Object.fromEntries(['c-a1-001', 'c-story-farolero-1', 'c-story-farolero-2', 'c-story-farolero-3', 'c-story-farolero-4']
+  'kz.cz.progress': JSON.stringify({ cleared: Object.fromEntries(['c-a1-001', ...Array.from({ length: 15 }, (_, i) => `c-story-farolero-${i + 1}`)]
     .map((id, i) => [id, { firstAt: NOW - 2e8, step: 0, due: i ? NOW + 8.64e7 : NOW - 1000, reviews: 0, hints: 0 }])) }),
 };
 const WIDTHS = [360, 375];

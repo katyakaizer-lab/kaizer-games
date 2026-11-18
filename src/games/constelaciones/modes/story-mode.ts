@@ -11,6 +11,13 @@ import { isCleared } from '../progress';
 import type { Story } from '../sentence';
 import { buildFlow, emptyNote, mapItems, standardButtons, type Mode, type ModeCtx } from './common';
 
+/** The story's sentences joined into paragraphs at its breaks. */
+function paragraphs(s: Story, parts: { text: string }[]): string[] {
+  const out: string[][] = [[]];
+  parts.forEach((c, i) => { out[out.length - 1].push(c.text); if (s.breaks?.includes(i + 1)) out.push([]); });
+  return out.filter((p) => p.length).map((p) => p.join(' '));
+}
+
 const storyDone = (s: Story) => storyParts(s).every((c) => isCleared(c.id));
 
 export const storyMode: Mode = {
@@ -60,6 +67,6 @@ export function storyReader(storyId: string, ctx: ModeCtx): HTMLElement {
     h('div', { class: 'cz-reader__art' }, artEl(s.image || `scene.story.${s.id}`, { alt: s.title_es })),
     h('h2', null, t('cz.story.title')),
     done
-      ? h('div', { class: 'cz-reader__text', lang: 'es' }, parts.map((c) => h('p', null, c.text)))
+      ? h('div', { class: 'cz-reader__text', lang: 'es' }, paragraphs(s, parts).map((p) => h('p', null, p)))
       : emptyNote(t('cz.story.progress', { done: parts.filter((c) => isCleared(c.id)).length, total: parts.length })));
 }

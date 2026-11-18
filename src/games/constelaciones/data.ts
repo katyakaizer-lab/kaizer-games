@@ -1,8 +1,9 @@
 /** Constelaciones content (data, not UI). Reviewed flags are shown in dev mode only. */
-import raw from '../../data/constelaciones/sample-sentences.json';
-import { LEVELS, levelRank, type Constellation, type ConstellationData, type Level, type Story } from './sentence';
+import { LEVELS, levelRank, mergeData, type Constellation, type ConstellationData, type Level, type Story } from './sentence';
 
-export const data = raw as unknown as ConstellationData;
+// Every JSON file in src/data/constelaciones/ is content (sentences, stories). Add files there; no code change.
+const files = import.meta.glob<Partial<ConstellationData>>('../../data/constelaciones/*.json', { eager: true, import: 'default' });
+export const data: ConstellationData = mergeData(Object.keys(files).sort().map((k) => files[k]));
 
 /** All constellations in map order: by level, story parts kept together and in order. */
 export const ALL: Constellation[] = [...data.constellations].sort((a, b) => {

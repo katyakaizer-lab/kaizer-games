@@ -7,10 +7,7 @@ const SETTINGS = JSON.stringify({ lang: 'en', sound: false, soundOffered: true, 
 const now = Date.now();
 const PROGRESS = JSON.stringify({ cleared: {
   'c-a1-001': { firstAt: now - 2e8, step: 0, due: now - 1000, reviews: 0, hints: 0 },
-  'c-story-farolero-1': { firstAt: now, step: 0, due: now + 8.64e7, reviews: 0, hints: 0 },
-  'c-story-farolero-2': { firstAt: now, step: 0, due: now + 8.64e7, reviews: 0, hints: 0 },
-  'c-story-farolero-3': { firstAt: now, step: 0, due: now + 8.64e7, reviews: 0, hints: 0 },
-  'c-story-farolero-4': { firstAt: now, step: 0, due: now + 8.64e7, reviews: 0, hints: 0 },
+  ...Object.fromEntries(Array.from({ length: 15 }, (_, i) => [`c-story-farolero-${i + 1}`, { firstAt: now, step: 0, due: now + 8.64e7, reviews: 0, hints: 0 }])),
 } });
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));

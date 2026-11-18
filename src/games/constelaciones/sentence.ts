@@ -22,8 +22,17 @@ export interface Constellation {
   audio?: string | null;
   reviewed: boolean;
 }
-export interface Story { id: string; title_es: string; level: Level; constellations: string[]; image: string; reviewed: boolean }
+export interface Story {
+  id: string; title_es: string; level: Level; constellations: string[]; image: string; reviewed: boolean;
+  /** parts after which the finished story starts a new paragraph */
+  breaks?: number[];
+}
 export interface ConstellationData { constellations: Constellation[]; stories: Story[] }
+
+/** All data files merged into one set. */
+export function mergeData(files: Partial<ConstellationData>[]): ConstellationData {
+  return { constellations: files.flatMap((f) => f.constellations ?? []), stories: files.flatMap((f) => f.stories ?? []) };
+}
 
 export const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const;
 export type Level = (typeof LEVELS)[number];
@@ -47,6 +56,18 @@ export function matchedOrder(c: Pick<Constellation, 'orders'>, seq: number[]): n
 export function nextHint(c: Pick<Constellation, 'orders'>, seq: number[]): number | null {
   const o = c.orders.find((ord) => seq.length < ord.length && seq.every((t, i) => ord[i] === t));
   return o ? o[seq.length] : null;
+}
+
+/**
+ * Which token a tap on star `p` stands for. Identical words are interchangeable: tapping either
+ * "a" in "voy a viajar a Valencia" is right when an "a" comes next. Returns the token index that
+ * keeps the sequence on an accepted order (preferring `p` itself), or null when the word does not fit.
+ */
+export function resolveTap(c: Pick<Constellation, 'orders' | 'tokens'>, seq: number[], p: number): number | null {
+  const word = c.tokens[p];
+  const candidates = c.tokens.map((_, i) => i).filter((i) => c.tokens[i] === word && !seq.includes(i));
+  candidates.sort((a, b) => Number(b === p) - Number(a === p));
+  return candidates.find((i) => isPrefixOfAnyOrder(c, [...seq, i])) ?? null;
 }
 
 /* ---------- Canonical sentence ---------- */

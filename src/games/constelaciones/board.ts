@@ -8,7 +8,7 @@
 import { h } from '../../ui/h';
 import { t } from '../../i18n';
 import { playNote } from '../../audio/synth';
-import { isPrefixOfAnyOrder, matchedOrder, nextHint, type Constellation } from './sentence';
+import { matchedOrder, nextHint, resolveTap, type Constellation } from './sentence';
 import { starLayout } from './layout';
 
 export interface BoardOpts {
@@ -77,12 +77,17 @@ export function createBoard(o: BoardOpts): Board {
     svg.append(l);
   }
 
-  function tap(i: number) {
-    if (matchedOrder(c, seq) || seq.includes(i)) return;
-    const next = [...seq, i];
+  // `seq` holds token indexes (the logic); `physOf` maps each to the star actually tapped.
+  // They differ only for repeated words, which are interchangeable.
+  const physOf = new Map<number, number>();
+  const used = new Set<number>();
+
+  function tap(p: number) {
+    if (matchedOrder(c, seq) || used.has(p)) return;
     stars.forEach((s) => s.classList.remove('is-hint'));
-    if (!isPrefixOfAnyOrder(c, next)) {
-      const s = stars[i];
+    const i = resolveTap(c, seq, p);
+    if (i === null) {
+      const s = stars[p];
       s.classList.remove('is-wrong');
       void s.offsetWidth; // restart the gentle dim
       s.classList.add('is-wrong');
@@ -94,13 +99,15 @@ export function createBoard(o: BoardOpts): Board {
     }
     wrongStreak = 0;
     o.onWrongStreak?.(0);
-    if (seq.length) line(seq[seq.length - 1], i);
+    if (seq.length) line(physOf.get(seq[seq.length - 1])!, p);
     seq.push(i);
-    stars[i].classList.add('is-done');
-    stars[i].setAttribute('aria-disabled', 'true');
+    physOf.set(i, p);
+    used.add(p);
+    stars[p].classList.add('is-done');
+    stars[p].setAttribute('aria-disabled', 'true');
     refreshLabels();
     playNote(seq.length - 1);
-    o.announce(c.tokens[i]);
+    o.announce(c.tokens[p]);
     const done = matchedOrder(c, seq);
     if (done) { el.classList.add('is-complete'); o.onDone(done); }
   }
@@ -148,7 +155,9 @@ export function createBoard(o: BoardOpts): Board {
     showHint() {
       const i = nextHint(c, seq);
       if (i === null) return false;
-      stars[i].classList.add('is-hint');
+      // glow that star, or an untapped star with the same word
+      const p = !used.has(i) ? i : c.tokens.findIndex((w, k) => w === c.tokens[i] && !used.has(k));
+      stars[p].classList.add('is-hint');
       o.announce(t('cz.hintShown'));
       return true;
     },

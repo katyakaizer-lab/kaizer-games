@@ -1,8 +1,9 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import raw from '../src/data/constelaciones/sample-sentences.json';
+import sample from '../src/data/constelaciones/sample-sentences.json';
+import storiesFile from '../src/data/constelaciones/stories.json';
 import {
-  initialLightState, isPrefixOfAnyOrder, lightIssues, matchedOrder, nextHint, renderLight, targetSentence, tasksFor,
-  type Constellation, type ConstellationData,
+  initialLightState, isPrefixOfAnyOrder, resolveTap, lightIssues, matchedOrder, nextHint, renderLight, targetSentence, tasksFor,
+  mergeData, type Constellation, type ConstellationData,
 } from '../src/games/constelaciones/sentence';
 import { validateConstelaciones } from '../src/games/constelaciones/validate';
 import { galaxyLayout, minSpacing, starLayout } from '../src/games/constelaciones/layout';
@@ -10,7 +11,7 @@ import { DAY, REVIEW_DAYS, entry, isDue, markCleared, markReviewed } from '../sr
 import { moodFor, CHEER_MINUTES, REST_DAYS } from '../src/app/pet-state';
 import { _setBackend } from '../src/data/storage';
 
-const data = raw as unknown as ConstellationData;
+const data = mergeData([sample, storiesFile] as unknown as ConstellationData[]);
 const byId = (id: string) => structuredClone(data.constellations.find((c) => c.id === id)!) as Constellation;
 const clone = (): ConstellationData => structuredClone(data);
 
@@ -26,6 +27,18 @@ describe('order checking', () => {
     expect(matchedOrder(c, c.orders[1])).toEqual(c.orders[1]);
     expect(matchedOrder(c, c.orders[1].slice(0, 2))).toBe(null);
     expect(nextHint(c, c.orders[0].slice(0, 1))).toBe(c.orders[0][1]);
+  });
+});
+
+describe('repeated words are interchangeable', () => {
+  it('either copy of a repeated word is right when that word comes next', () => {
+    const c = byId('c-b2-003'); // Cuanto más lo pienso, menos entiendo lo que pasó.
+    const [lo1, lo2] = c.tokens.map((w, i) => (w === 'lo' ? i : -1)).filter((i) => i >= 0);
+    const seq = c.orders[0].slice(0, c.orders[0].indexOf(lo1));
+    expect(resolveTap(c, seq, lo2)).toBe(lo1);
+    expect(resolveTap(c, seq, lo1)).toBe(lo1);
+    expect(resolveTap(c, [...seq, lo1], lo1)).toBe(null);
+    expect(resolveTap(c, [], c.orders[0][1])).toBe(null);
   });
 });
 
@@ -82,7 +95,8 @@ describe('validator', () => {
   it('passes the sample data and counts unreviewed items', () => {
     const r = validateConstelaciones(clone());
     expect(r.errors).toEqual([]);
-    expect(r.unreviewed.length).toBe(25);
+    expect(r.unreviewed.length).toBe(data.constellations.length + data.stories.length);
+    expect(data.stories.map((x) => x.id).sort()).toEqual(['cartas', 'farolero', 'reloj', 'semilla']);
   });
   const broken = (f: (d: ConstellationData) => void) => { const d = clone(); f(d); return validateConstelaciones(d).errors.join('\n'); };
   it('fails an order that is not a permutation', () => expect(broken((d) => { d.constellations[0].orders[0] = [0, 0, 1, 2, 3, 4]; })).toMatch(/not a permutation/));
@@ -90,6 +104,8 @@ describe('validator', () => {
   it('fails accent options without the correct form', () => expect(broken((d) => { d.constellations[1].accents[0].options = ['donde', 'dondé']; })).toMatch(/lack the correct form/));
   it('fails repeated ids', () => expect(broken((d) => { d.constellations[1].id = d.constellations[0].id; })).toMatch(/id repeats/));
   it('fails a story that references a missing constellation', () => expect(broken((d) => { d.stories[0].constellations.push('c-nope'); })).toMatch(/missing constellation c-nope/));
+  it('fails a paragraph break outside the story', () => expect(broken((d) => { d.stories[0].breaks = [99]; })).toMatch(/break after part 99/));
+  it('fails a repeated id across files', () => expect(broken((d) => { d.constellations.push({ ...d.constellations[0] }); })).toMatch(/id repeats/));
 });
 
 describe('layout', () => {

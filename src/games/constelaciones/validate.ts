@@ -35,6 +35,7 @@ export function validateConstelaciones(data: ConstellationData): ValidationResul
   for (const s of data.stories ?? []) {
     if (storyIds.has(s.id)) errors.push(`story ${s.id}: id repeats`);
     storyIds.add(s.id);
+    for (const b of s.breaks ?? []) if (!(b >= 1 && b < s.constellations.length)) errors.push(`story ${s.id}: break after part ${b} is out of range`);
     s.constellations.forEach((cid, k) => {
       const c = data.constellations.find((x) => x.id === cid);
       if (!c) errors.push(`story ${s.id}: references missing constellation ${cid}`);

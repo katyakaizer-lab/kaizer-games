@@ -1,5 +1,5 @@
 {
- "_note": "Starter set written by Claude. All Spanish is reviewed:false until Katya checks it. Token indexes refer to the tokens array; orders lists every accepted order; accents lists the words whose written accent the learner must restore in stage two.",
+ "_note": "Starter set written by Claude. All Spanish is reviewed:false until Katya checks it. Token indexes refer to the tokens array; orders lists every accepted order; accents lists the words whose written accent the learner must restore in stage two. Stories live in stories.json.",
  "constellations": [
   {
    "id": "c-a1-001",
@@ -23,6 +23,14 @@
      3,
      4,
      5
+    ],
+    [
+     3,
+     4,
+     5,
+     2,
+     0,
+     1
     ]
    ],
    "proper": [],
@@ -94,6 +102,14 @@
      3,
      4,
      5
+    ],
+    [
+     4,
+     5,
+     3,
+     0,
+     1,
+     2
     ]
    ],
    "proper": [
@@ -259,6 +275,14 @@
      4,
      5,
      0
+    ],
+    [
+     0,
+     3,
+     4,
+     5,
+     1,
+     2
     ]
    ],
    "proper": [],
@@ -356,6 +380,14 @@
      4,
      5,
      0
+    ],
+    [
+     1,
+     2,
+     3,
+     0,
+     4,
+     5
     ]
    ],
    "proper": [
@@ -402,6 +434,14 @@
      3,
      4,
      5
+    ],
+    [
+     3,
+     4,
+     5,
+     0,
+     1,
+     2
     ]
    ],
    "proper": [],
@@ -437,6 +477,14 @@
      3,
      4,
      5
+    ],
+    [
+     3,
+     4,
+     5,
+     0,
+     1,
+     2
     ]
    ],
    "proper": [
@@ -494,6 +542,14 @@
      3,
      4,
      5
+    ],
+    [
+     1,
+     2,
+     3,
+     4,
+     5,
+     0
     ]
    ],
    "proper": [],
@@ -538,6 +594,14 @@
      3,
      4,
      5
+    ],
+    [
+     4,
+     5,
+     0,
+     1,
+     2,
+     3
     ]
    ],
    "proper": [],
@@ -598,6 +662,13 @@
      2,
      3,
      4
+    ],
+    [
+     0,
+     1,
+     2,
+     4,
+     3
     ]
    ],
    "proper": [],
@@ -692,6 +763,14 @@
      3,
      4,
      5
+    ],
+    [
+     3,
+     4,
+     5,
+     0,
+     1,
+     2
     ]
    ],
    "proper": [],
@@ -779,7 +858,7 @@
     }
    ],
    "en": "Could you tell me where the station is?",
-   "ru": "Не могли бы вы сказать, где вокзал?",
+   "ru": "Не мог бы ты сказать мне, где вокзал?",
    "image": "scene.sentence.c-b1-005",
    "audio": null,
    "reviewed": false
@@ -812,6 +891,17 @@
      6,
      7,
      8
+    ],
+    [
+     5,
+     6,
+     0,
+     8,
+     7,
+     1,
+     2,
+     3,
+     4
     ]
    ],
    "proper": [],
@@ -945,232 +1035,7 @@
    "image": "scene.sentence.c-b2-003",
    "audio": null,
    "reviewed": false
-  },
-  {
-   "id": "c-story-farolero-1",
-   "level": "A2",
-   "topic": "story",
-   "story": {
-    "id": "farolero",
-    "part": 1
-   },
-   "text": "Cada noche, el farolero camina junto al río.",
-   "tokens": [
-    "cada",
-    "noche",
-    "el",
-    "farolero",
-    "camina",
-    "junto",
-    "al",
-    "rio"
-   ],
-   "orders": [
-    [
-     0,
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ]
-   ],
-   "proper": [],
-   "open": "",
-   "close": ".",
-   "commas": [
-    1
-   ],
-   "accents": [
-    {
-     "index": 7,
-     "options": [
-      "rio",
-      "río"
-     ],
-     "correct": "río"
-    }
-   ],
-   "en": "Every night, the lamplighter walks along the river.",
-   "ru": "Каждую ночь фонарщик идёт вдоль реки.",
-   "image": "scene.sentence.c-story-farolero-1",
-   "audio": null,
-   "reviewed": false
-  },
-  {
-   "id": "c-story-farolero-2",
-   "level": "A2",
-   "topic": "story",
-   "story": {
-    "id": "farolero",
-    "part": 2
-   },
-   "text": "Una noche encuentra una luz pequeña entre las piedras.",
-   "tokens": [
-    "una",
-    "noche",
-    "encuentra",
-    "una",
-    "luz",
-    "pequena",
-    "entre",
-    "las",
-    "piedras"
-   ],
-   "orders": [
-    [
-     0,
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7,
-     8
-    ]
-   ],
-   "proper": [],
-   "open": "",
-   "close": ".",
-   "commas": [],
-   "accents": [
-    {
-     "index": 5,
-     "options": [
-      "pequena",
-      "pequeña"
-     ],
-     "correct": "pequeña"
-    }
-   ],
-   "en": "One night he finds a small light among the stones.",
-   "ru": "Однажды ночью он находит между камнями маленький огонёк.",
-   "image": "scene.sentence.c-story-farolero-2",
-   "audio": null,
-   "reviewed": false
-  },
-  {
-   "id": "c-story-farolero-3",
-   "level": "A2",
-   "topic": "story",
-   "story": {
-    "id": "farolero",
-    "part": 3
-   },
-   "text": "La luz le dice que no quiere brillar sola.",
-   "tokens": [
-    "la",
-    "luz",
-    "le",
-    "dice",
-    "que",
-    "no",
-    "quiere",
-    "brillar",
-    "sola"
-   ],
-   "orders": [
-    [
-     0,
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7,
-     8
-    ]
-   ],
-   "proper": [],
-   "open": "",
-   "close": ".",
-   "commas": [],
-   "accents": [],
-   "en": "The light tells him that it does not want to shine alone.",
-   "ru": "Огонёк говорит ему, что не хочет светить один.",
-   "image": "scene.sentence.c-story-farolero-3",
-   "audio": null,
-   "reviewed": false
-  },
-  {
-   "id": "c-story-farolero-4",
-   "level": "A2",
-   "topic": "story",
-   "story": {
-    "id": "farolero",
-    "part": 4
-   },
-   "text": "Desde entonces, el río tiene una estrella más.",
-   "tokens": [
-    "desde",
-    "entonces",
-    "el",
-    "rio",
-    "tiene",
-    "una",
-    "estrella",
-    "mas"
-   ],
-   "orders": [
-    [
-     0,
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ]
-   ],
-   "proper": [],
-   "open": "",
-   "close": ".",
-   "commas": [
-    1
-   ],
-   "accents": [
-    {
-     "index": 3,
-     "options": [
-      "rio",
-      "río"
-     ],
-     "correct": "río"
-    },
-    {
-     "index": 7,
-     "options": [
-      "mas",
-      "más"
-     ],
-     "correct": "más"
-    }
-   ],
-   "en": "Since then, the river has one more star.",
-   "ru": "С тех пор у реки на одну звезду больше.",
-   "image": "scene.sentence.c-story-farolero-4",
-   "audio": null,
-   "reviewed": false
   }
  ],
- "stories": [
-  {
-   "id": "farolero",
-   "title_es": "El farolero del río",
-   "level": "A2",
-   "constellations": [
-    "c-story-farolero-1",
-    "c-story-farolero-2",
-    "c-story-farolero-3",
-    "c-story-farolero-4"
-   ],
-   "image": "scene.story.farolero",
-   "reviewed": false
-  }
- ]
+ "stories": []
 }

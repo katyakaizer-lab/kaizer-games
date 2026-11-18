@@ -652,6 +652,57 @@
    "games": [
     "constelaciones"
    ]
+  },
+  {
+   "id": "scene.story.semilla",
+   "kind": "scene",
+   "alt": "La semilla de Sara",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-18",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "constelaciones"
+   ]
+  },
+  {
+   "id": "scene.story.reloj",
+   "kind": "scene",
+   "alt": "El reloj de la plaza",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-18",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "constelaciones"
+   ]
+  },
+  {
+   "id": "scene.story.cartas",
+   "kind": "scene",
+   "alt": "Cartas sin remitente",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-18",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "constelaciones"
+   ]
   }
  ]
 }
