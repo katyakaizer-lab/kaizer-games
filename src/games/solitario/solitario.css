@@ -1,0 +1,84 @@
+/* Solitario de categorías. Tokens only; day theme. Our own word cards: no suits, ranks or playing-card look. */
+.sol { max-width: 52rem; margin: 0 auto; padding: var(--space-3) var(--space-4) var(--space-6); }
+.sol-list, .sol-play { display: grid; gap: var(--space-4); }
+.sol-header, .sol-bar { display: flex; align-items: center; gap: var(--space-2); margin-left: calc(-1 * var(--space-2)); flex-wrap: wrap; }
+.sol-title { margin: 0; }
+.sol-title:focus, .sol-title:focus-visible { outline: none; }
+.sol-soft { color: var(--text-soft); margin: 0; }
+.sol-small { font-size: var(--fs-small); }
+.sol-badge { display: inline-block; padding: 2px var(--space-2); border-radius: var(--radius-pill); border: 1px solid var(--border); color: var(--text-soft); font-size: var(--fs-small); font-weight: 700; }
+.sol-filters { display: grid; gap: var(--space-3); }
+.sol-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.sol-expert { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+
+.sol-sets { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); }
+.sol-set {
+  display: grid; gap: var(--space-1); align-content: start; padding: var(--space-3) var(--space-4); min-height: var(--tap-min);
+  background: var(--surface); color: var(--text); text-decoration: none;
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+}
+.sol-set:hover { border-color: var(--primary); }
+.sol-set__top { display: flex; justify-content: space-between; gap: var(--space-2); align-items: baseline; }
+.sol-set__title { font-size: 1.125rem; }
+.sol-set__cats { font-size: var(--fs-small); font-weight: 700; color: var(--link); }
+.sol-set__done { display: flex; gap: var(--space-3); font-size: var(--fs-small); font-weight: 700; color: var(--correct-line); }
+.sol-set__done span { display: inline-flex; align-items: center; gap: 2px; }
+
+/* Piles: a category card with a soft stack behind it. */
+.sol-piles { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 46%), 1fr)); }
+.sol-pile {
+  position: relative; display: grid; gap: var(--space-1); align-content: start; text-align: left;
+  min-height: 7.5rem; padding: var(--space-3);
+  background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
+  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+  box-shadow: 4px 4px 0 -1px var(--surface), 4px 4px 0 1px var(--border);
+  transition: transform var(--dur-fast) var(--ease), border-color var(--dur) var(--ease);
+}
+.sol-pile__name { font-weight: 700; font-size: 1.0625rem; }
+.sol-pile__top { font-family: var(--font-body); font-size: 1.125rem; min-height: 1.6em; color: var(--text); }
+.sol-pile.is-empty .sol-pile__top { color: var(--text-soft); font-size: var(--fs-small); }
+.sol-pile__count { display: inline-flex; align-items: center; gap: 2px; font-size: var(--fs-small); color: var(--text-soft); }
+.sol-pile.is-target { border-style: dashed; border-color: var(--primary); }
+.sol-pile.is-over { transform: scale(1.03); border-color: var(--primary); border-style: solid; }
+.sol-pile.is-hint { border-color: var(--highlight); border-style: solid; box-shadow: 0 0 0 4px var(--highlight); }
+.sol-pile.is-complete { background: var(--correct-bg); border-color: var(--correct-line); }
+.sol-pile.is-complete .sol-pile__count { color: var(--text); font-weight: 700; }
+
+/* Table: three open cards and the pile tools. */
+.sol-table { display: grid; gap: var(--space-3); }
+.sol-cards { display: grid; gap: var(--space-3); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sol-card, .sol-slot { min-height: 5.5rem; border-radius: var(--radius-tile); }
+.sol-card {
+  display: grid; place-content: center; gap: 2px; padding: var(--space-2); text-align: center;
+  background: var(--bg); color: var(--text); font: inherit; cursor: grab;
+  border: var(--border-w) solid var(--text); box-shadow: var(--shadow);
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.sol-card__word { font-weight: 700; font-size: 1.125rem; overflow-wrap: anywhere; }
+.sol-card__tr { font-size: var(--fs-small); color: var(--text-soft); }
+.sol-card.is-selected { background: var(--secondary); color: var(--on-secondary); transform: translateY(-4px); box-shadow: 0 0 0 3px var(--on-secondary); }
+.sol-card.is-selected .sol-card__tr { color: var(--on-secondary); }
+.sol-card.is-dragging { position: relative; z-index: 10; cursor: grabbing; transition: none; }
+/* Wrong: the card wobbles and gets a dashed border (shape change); the words come from the status line. */
+.sol-card.is-wrong { border-style: dashed; animation: sol-nudge .4s var(--ease) 1; }
+@keyframes sol-nudge { 0%, 100% { translate: 0 0; } 30% { translate: -4px 0; } 60% { translate: 4px 0; } }
+.sol-slot { border: var(--border-w) dashed var(--border); }
+.sol-tools { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.sol-status { margin: 0; min-height: 1.6em; color: var(--text-soft); }
+
+/* Naming (experto) and the summary. */
+.sol-names, .sol-summary { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }
+.sol-name, .sol-sum { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); background: var(--surface); border: var(--border-w) solid var(--border); border-radius: var(--radius-card); }
+.sol-name.is-wrong { border-style: dashed; border-color: var(--retry-line); background: var(--retry-bg); }
+.sol-name__label { font-weight: 700; }
+.sol-name__words { margin: 0; }
+.sol-select { min-height: var(--tap-min); font: inherit; color: var(--text); background: var(--bg); border: var(--border-w) solid var(--border); border-radius: var(--radius-tile); padding: 0 var(--space-2); }
+.sol-sum h2 { margin: 0; font-size: var(--fs-h3); }
+.sol-sum ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 2px; }
+.sol-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.sol-finish.is-glowing { animation: sol-glow 1.6s var(--ease) 1; border-radius: var(--radius-card); }
+@keyframes sol-glow { 0% { box-shadow: 0 0 0 0 transparent; } 40% { box-shadow: 0 0 32px 6px var(--highlight); } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+@media (prefers-reduced-motion: reduce) { .sol-card.is-wrong, .sol-finish.is-glowing { animation: none; } }
+:root[data-motion="reduce"] .sol-card.is-wrong, :root[data-motion="reduce"] .sol-finish.is-glowing { animation: none; }

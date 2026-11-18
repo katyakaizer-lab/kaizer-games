@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 (hub, pet picker, Constelaciones with four modes).** Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías.** Games: Constelaciones (four modes, four stories), Solitario de categorías (12 sets, normal and experto). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -31,6 +31,8 @@ src/pets/                     pet loader (shared rig, mood fallback, item placem
 src/audio/                    soft pentatonic sounds (Web Audio), speech (recordings or a Spanish device voice)
 src/data/                     storage, games.registry.json, content data (constelaciones/sample-sentences.json)
 src/games/constelaciones/     the game: sentence logic, validator rules, seeded layouts, board, "Ilumina la frase", map, modes/
+src/games/solitario/          sorting engine (also meant for Dos buzones), validator rules, screens
+src/data/solitario/           Solitario sets (every JSON file in the folder is loaded)
 src/i18n/                     UI strings: en and es complete, ru partial (falls back to English per key)
 src/style-test/               the style-test page
 tools/                        build checks, validator, build report, re-skin test
@@ -44,6 +46,7 @@ docs/                         planning documents (kept locally, not in the repos
 - **A game:** add an entry to `src/data/games.registry.json`. While it is `"pronto"` it shows as coming soon. When it is playable, create `src/games/<id>/index.ts` exporting `mount(el, ctx)`; the hub finds it by id and loads it only when opened.
 - **Constellations and stories:** add them to `src/data/constelaciones/sample-sentences.json` (or a new file in that folder). The build fails if a rule is broken; unreviewed items are counted in the build report and marked "Sin revisar (dev)" when the app runs with `?dev`.
 - **A Constelaciones mode:** one new file in `src/games/constelaciones/modes/` that implements `Mode` and reuses the board, the light stage and the finish panel; then add it to `MODES` in `index.ts`.
+- **Solitario sets:** add them to `src/data/solitario/sets.json` (or a new file there). Each set has 2 to 4 categories of 3 to 8 cards; a word may appear in only one category of a set (the build fails otherwise). `decoyNames` are wrong names offered when naming groups in experto.
 - **Recordings:** drop `public/audio/<id>.mp3` (and optionally `<id>-slow.mp3`). They are used instead of the device voice automatically.
 
 ## Decisions worth knowing
@@ -59,8 +62,16 @@ docs/                         planning documents (kept locally, not in the repos
 - **"Ilumina la frase":** tapping a word toggles its capital. Words that may need an accent are marked and open a small row with the capital toggle and the accent options (shuffled), so one tap never does two things.
 - **Sound** is off by default and offered once, when Constelaciones is first opened.
 
+### Solitario de categorías
+
+- Our own word cards and rules, no playing-card look (your list warns against card decks styled like a famous game).
+- Normal: tap a card, then its category, or drag it. A wrong pile changes nothing; the card wobbles and the status line says why. "Pista" appears after two misses on the same card. "Otras cartas" swaps the three open cards. No score, no timer.
+- Modo experto: the piles have no names; a card may start an empty pile only if no pile holds its kind yet, so groups stay pure. At the end each group is named from a list that includes one wrong option.
+- Translations under the cards are on by default for A1 sets and can be switched off.
+- Spanish from Spain in the vocabulary sets (zumo, plátano, patata, el metro).
+
 ## Open items
 
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
 - Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
-- All 24 sentences and the story are `reviewed: false` until Katya checks them.
+- All Constelaciones sentences and stories (66) and all Solitario sets (12) are `reviewed: false` until Katya checks them.
