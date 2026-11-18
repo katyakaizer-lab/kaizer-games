@@ -26,10 +26,16 @@ import ear from '@tabler/icons/outline/ear.svg?raw';
 import lock from '@tabler/icons/outline/lock.svg?raw';
 import slow from '@tabler/icons/outline/snail.svg?raw';
 import language from '@tabler/icons/outline/language.svg?raw';
+import backspace from '@tabler/icons/outline/backspace.svg?raw';
+import list from '@tabler/icons/outline/list.svg?raw';
+import chevronLeft from '@tabler/icons/outline/chevron-left.svg?raw';
+import chevronRight from '@tabler/icons/outline/chevron-right.svg?raw';
+import listCheck from '@tabler/icons/outline/list-check.svg?raw';
 
 export const ICONS = {
   check, refresh, x, settings, volume, volumeOff, bulb, star, eye, home, play, pause,
   download, upload, clock, info, back, undo, sparkles, moon, sun, palette, book, ear, lock, slow, language,
+  backspace, list, chevronLeft, chevronRight, listCheck,
 } as const;
 export type IconName = keyof typeof ICONS;
 

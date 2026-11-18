@@ -84,6 +84,10 @@
   --slot-tab-h: 1.125rem;       /* label tab above a filled category slot (18px) */
   --bottom-btn: 3.75rem;        /* bottom bar buttons (60px) */
   --card-line: 1.15;            /* line height inside cards */
+  /* crosswords (Crucigramas) */
+  --cw-cell-max: 2.75rem;       /* grid cells never larger than this (44px); smaller when the grid needs it */
+  --cw-key-h: 2.875rem;         /* on-screen keyboard key height (46px) */
+  --cw-key-gap: 0.3125rem;      /* space between keys (5px) */
 }
 @media (prefers-reduced-motion: reduce) { :root { --dur-fast: 0ms; --dur: 0ms; } }
 :root[data-motion="reduce"] { --dur-fast: 0ms; --dur: 0ms; }

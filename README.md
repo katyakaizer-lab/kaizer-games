@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 plus Solitario de categorías.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (16 topics, 197 words in 4 levels). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -34,6 +34,8 @@ src/games/constelaciones/     the game: sentence logic, validator rules, seeded 
 src/games/solitario/          sorting engine (also meant for Dos buzones), validator rules, screens, card sizing
 src/games/shared/             code shared by games (syllabify.ts: Spanish syllable breaks for wrapping words)
 src/data/solitario/           Solitario categories by level (every JSON file in the folder is loaded)
+src/games/crucigramas/        crossword engine (seeded grid generator, numbering, checking), validator rules, screen and keyboard
+src/data/crucigramas/         Crucigramas topics by level, with Spanish clues (every JSON file in the folder is loaded)
 src/i18n/                     UI strings: en and es complete, ru partial (falls back to English per key)
 src/style-test/               the style-test page
 tools/                        build checks, validator, build report, re-skin test
@@ -48,6 +50,7 @@ docs/                         planning documents (kept locally, not in the repos
 - **Constellations and stories:** add them to `src/data/constelaciones/sample-sentences.json` (or a new file in that folder). The build fails if a rule is broken; unreviewed items are counted in the build report and marked "Sin revisar (dev)" when the app runs with `?dev`.
 - **A Constelaciones mode:** one new file in `src/games/constelaciones/modes/` that implements `Mode` and reuses the board, the light stage and the finish panel; then add it to `MODES` in `index.ts`.
 - **Solitario categories:** add them to `src/data/solitario/categories.json` with a `level`. Each has 3 to 8 cards (a game uses 4 to 6); a word may appear only once per level (the build fails otherwise). Use `avoid` for categories that must not be dealt together.
+- **Crossword topics:** add them to `src/data/crucigramas/topics.json` with a `level`. Each word is one word in small letters with its accents and ñ (3 to 9 letters at A1, longer at higher levels), with one or more Spanish clues: `def` (definition), `syn` (synonym) or `ant` (antonym), at most 70 characters, never containing the answer. A topic needs at least 2 more words than a puzzle uses. The build generates 30 puzzles per topic and fails if they do not come out full and within the level's grid size.
 - **Recordings:** drop `public/audio/<id>.mp3` (and optionally `<id>-slow.mp3`). They are used instead of the device voice automatically.
 
 ## Decisions worth knowing
@@ -79,8 +82,16 @@ docs/                         planning documents (kept locally, not in the repos
 - A wrong move changes nothing; a short message says why (and screen readers hear every step). "Pista" shows where a chosen card goes, or with nothing chosen a good next move (or the deck).
 - Translations are on by default at A1. Category cards are solid amber with a dark frame. Spanish from Spain (plátano, patata, nevera).
 
-## Open items
+### Crucigramas
+
+- Choices Katya made (2026-11-18): our own on-screen Spanish keyboard (no phone keyboard), accents required (Ó is not O; the keyboard has Ñ and a row of Á É Í Ó Ú Ü), puzzles generated from topics, clues in Spanish only: definitions, synonyms and antonyms (no translations, no pictures for now).
+- Each puzzle takes one topic of the chosen level and places some of its words (A1 6, A2 7, B1 8, B2 9) on a grid of at most 9x9 (A1) to 11x12 (B2). Every word crosses another, no letters touch by accident, and the same seed gives the same puzzle. Clue kinds per level: A1 and A2 definitions; B1 and B2 a mix of definitions, synonyms and antonyms.
+- Phone screen: top bar (back, level and topic, clue list), the grid with cells as big as fit (up to 44px), the current clue with previous and next, Pista and Comprobar, then the keyboard. On short phones (under 760px tall) Pista and Comprobar become icon buttons in the top bar so the grid keeps its size. Wide screens show the clue list beside the grid. A physical keyboard works too (letters, Backspace, arrows, Tab).
+- Tap a square to choose it; tap it again (or the clue) to switch between across and down. A finished word turns green and the next unfinished word is chosen.
+- Pista writes the right letter in the current square. Comprobar marks wrong letters; a letter that only lacks or has an extra accent is marked with a dashed border and the message says so. Nothing is ever lost or timed; a game in progress is kept per level and comes back when you return.
+- Finished: the whole grid, every word with its clue, and the number of hints used (only as information). Games finished per level show on the level screen.
+
 
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
 - Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
-- All Constelaciones sentences and stories (66) and all Solitario categories (34) are `reviewed: false` until Katya checks them.
+- All Constelaciones sentences and stories (66), all Solitario categories (34) and all Crucigramas topics (16, 197 words with clues) are `reviewed: false` until Katya checks them.

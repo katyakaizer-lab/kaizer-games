@@ -16,15 +16,16 @@
     },
     {
       "id": "crucigramas",
-      "status": "pronto",
+      "status": "playable",
       "name": "Crucigramas",
       "icon": "book",
       "art": "ui.game.crucigramas",
       "about": {
-        "en": "Crosswords from pictures and clues.",
-        "es": "Crucigramas con dibujos y pistas.",
-        "ru": "Кроссворды с картинками и подсказками."
-      }
+        "en": "Crosswords on a topic, with clues in Spanish.",
+        "es": "Crucigramas por temas, con pistas en español.",
+        "ru": "Кроссворды по темам, с подсказками на испанском."
+      },
+      "levels": "A1–B2"
     },
     {
       "id": "solitario",

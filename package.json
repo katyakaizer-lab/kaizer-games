@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node tools/copy-fonts.mjs && node tools/check-contrast.mjs && node tools/check-hardcoded.mjs && node tools/check-fonts.mjs && node tools/check-art.mjs && node tools/validate-constelaciones.ts && node tools/validate-solitario.ts",
+    "prebuild": "node tools/copy-fonts.mjs && node tools/check-contrast.mjs && node tools/check-hardcoded.mjs && node tools/check-fonts.mjs && node tools/check-art.mjs && node tools/validate-constelaciones.ts && node tools/validate-solitario.ts && node tools/validate-crucigramas.ts",
     "build": "tsc --noEmit && vite build && node tools/check-card-words.mjs && node tools/build-report.mjs",
     "preview": "vite preview",
     "test": "vitest run",
@@ -16,7 +16,7 @@
     "report": "node tools/build-report.mjs",
     "reskin:test": "node tools/reskin-test.mjs",
     "icons": "node tools/make-icons.mjs",
-    "validate": "node tools/validate-constelaciones.ts && node tools/validate-solitario.ts",
+    "validate": "node tools/validate-constelaciones.ts && node tools/validate-solitario.ts && node tools/validate-crucigramas.ts",
     "test:dist": "node tools/test-dist.mjs"
   },
   "devDependencies": {
