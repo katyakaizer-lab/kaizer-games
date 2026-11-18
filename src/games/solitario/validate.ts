@@ -1,5 +1,8 @@
 /** Content rules for Solitario de categorías. Used by tools/validate-solitario.ts (build) and the tests. */
-import { CATS_PER_GAME, LEVELS, pickCategories, type SolitarioData } from './engine.ts';
+import { LEVELS, pickCategories, type SolitarioData } from './engine.ts';
+
+/** The most categories one deal uses (wide screens). */
+export const MAX_CATS_PER_GAME = 6;
 
 export interface SolitarioValidation { errors: string[]; unreviewed: string[]; total: number }
 
@@ -45,7 +48,7 @@ export function validateSolitario(data: SolitarioData, artIds?: Set<string>): So
     }
     // Every level needs enough categories that can be dealt together.
     for (let seed = 0; seed < 20; seed++) {
-      if (pickCategories(cats, seed).length < CATS_PER_GAME) { errors.push(`${level}: fewer than ${CATS_PER_GAME} categories can be dealt together`); break; }
+      if (pickCategories(cats, seed, MAX_CATS_PER_GAME).length < MAX_CATS_PER_GAME) { errors.push(`${level}: fewer than ${MAX_CATS_PER_GAME} categories can be dealt together`); break; }
     }
   }
   return { errors, unreviewed: data.categories.filter((c) => !c.reviewed).map((c) => c.id), total: data.categories.length };

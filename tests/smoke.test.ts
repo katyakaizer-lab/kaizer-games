@@ -47,7 +47,7 @@ describe('smoke: every screen loads without console errors', () => {
     ['constelaciones listen', '#game/constelaciones/listen', '.cz-view'],
     ['solitario levels', '#game/solitario', '.sol-level'],
     ['solitario play', '#game/solitario/play/A1', '.sol-col .sol-card'],
-    ['solitario experto', '#game/solitario/play/B1/experto', '.sol-pile'],
+    ['solitario B2', '#game/solitario/play/B2/seed-3', '.sol-slots .sol-slot'],
   ];
   for (const [name, hash, selector] of screens) {
     it(name, async () => {

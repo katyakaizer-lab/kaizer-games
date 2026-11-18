@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 plus Solitario de categorías.** Games: Constelaciones (four modes, four stories), Solitario de categorías (35 categories in 4 levels, normal and experto). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -46,7 +46,7 @@ docs/                         planning documents (kept locally, not in the repos
 - **A game:** add an entry to `src/data/games.registry.json`. While it is `"pronto"` it shows as coming soon. When it is playable, create `src/games/<id>/index.ts` exporting `mount(el, ctx)`; the hub finds it by id and loads it only when opened.
 - **Constellations and stories:** add them to `src/data/constelaciones/sample-sentences.json` (or a new file in that folder). The build fails if a rule is broken; unreviewed items are counted in the build report and marked "Sin revisar (dev)" when the app runs with `?dev`.
 - **A Constelaciones mode:** one new file in `src/games/constelaciones/modes/` that implements `Mode` and reuses the board, the light stage and the finish panel; then add it to `MODES` in `index.ts`.
-- **Solitario categories:** add them to `src/data/solitario/categories.json` with a `level`. Each has 3 to 8 cards (a game uses up to 5); a word may appear only once per level (the build fails otherwise). Use `avoid` for categories that must not be dealt together.
+- **Solitario categories:** add them to `src/data/solitario/categories.json` with a `level`. Each has 3 to 8 cards (a game uses 4 to 6); a word may appear only once per level (the build fails otherwise). Use `avoid` for categories that must not be dealt together.
 - **Recordings:** drop `public/audio/<id>.mp3` (and optionally `<id>-slow.mp3`). They are used instead of the device voice automatically.
 
 ## Decisions worth knowing
@@ -64,15 +64,17 @@ docs/                         planning documents (kept locally, not in the repos
 
 ### Solitario de categorías
 
-- Classic solitaire layout, adapted to word cards: four category foundations on top, columns of face-down cards with a face-up card on top, and the deck on the right (one card turned over at a time, as often as you like). Plain cards with just the word, on a card-table theme (`mesa` in tokens.css). Not a copy of the Windows game's look.
-- You choose only a level. Each deal takes four categories from every topic of that level, mixed (categories listed in `avoid` are never dealt together because a word could fit both).
-- On the columns a card goes only on a card of the same category; an empty column takes any card. Any uncovered card can go up to its category; double-tap sends it there. Every deal can be finished (tested on 600 automatic games).
-- A wrong move changes nothing; the cards wobble and the status line says why. "Pista" appears after two misses. No score, no timer; the level screen counts games won.
-- Modo experto: the foundations have no names; each must hold one category, and at the end you name them from options that include two other categories of the level.
-- Translations under the cards are on by default at A1 and can be switched off. Spanish from Spain (zumo, plátano, patata, el metro).
+- Mechanics follow Katya's reference (a word-association solitaire); the look is our own (`mesa` card-table theme in tokens.css, plain small word cards, our own card back). No crown, ribbon or other graphics from that app.
+- Top: the move counter, then the turned-over card and the deck on the right. Below: one empty slot per category, then the columns (all cards face up).
+- Each category is also a card (coloured frame, with how many words it needs). A category card in an empty slot opens it; then its words go on it. A complete category leaves the table and frees its slot.
+- On the columns a card goes on any card of the same category (word or category card), or on an empty column; a run of one category moves together. Tap or drag; double-tap sends a card to its slot.
+- You choose only a level. Each deal mixes 5 categories (phones) or 6 (wider screens) from that level's concrete topics, 4 to 6 words each.
+- Moves are counted (every move and every turn of the deck) with no limit and no failure; the level screen shows games won and the best (fewest) moves. Undo is always there. Every deal is checked by a solver before it is shown, so it can always be won (tested on 320 deals per run, each replayed to the end).
+- A wrong move changes nothing and the status line says why. "Pista" appears after two misses.
+- Translations under the cards are on by default at A1 and can be switched off. Spanish from Spain (plátano, patata, nevera).
 
 ## Open items
 
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
 - Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
-- All Constelaciones sentences and stories (66) and all Solitario categories (35) are `reviewed: false` until Katya checks them.
+- All Constelaciones sentences and stories (66) and all Solitario categories (34) are `reviewed: false` until Katya checks them.

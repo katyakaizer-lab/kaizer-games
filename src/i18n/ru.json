@@ -47,10 +47,11 @@
   "cz.done.translation": "Перевод",
   "cz.done.map": "К карте",
   "cz.done.next": "Следующее созвездие",
-  "sol.expert": "Modo experto",
+  "sol.moves": "Ходы",
+  "sol.undo": "Отменить",
   "sol.hint": "Pista",
   "sol.translation": "Перевод",
-  "sol.finished": "Всё разложено!",
+  "sol.finished": "Стол чист!",
   "sol.newGame": "Новая игра",
   "sol.levelsBack": "Уровни"
 }
