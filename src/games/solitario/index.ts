@@ -18,10 +18,13 @@ import {
   LEVELS, canPlace, catName, drawCard, hintFor, isWon, move, movesLeft, newGame, outOfMoves, restart, runAt, undo,
   type Category, type GameState, type Level, type SolitarioData, type Source, type Target,
 } from './engine';
+import { canvasMeasure, computeLayout, heights, readTokens, type CardText } from './sizing';
 import './solitario.css';
 
 const files = import.meta.glob<SolitarioData>('../../data/solitario/*.json', { eager: true, import: 'default' });
-export const CATEGORIES: Category[] = Object.keys(files).sort().flatMap((k) => files[k].categories ?? []);
+// Tests may inject their own categories (window.__solTestCategories) to check extreme word lengths.
+const injected = (globalThis as { __solTestCategories?: Category[] }).__solTestCategories;
+export const CATEGORIES: Category[] = injected ?? Object.keys(files).sort().flatMap((k) => files[k].categories ?? []);
 const poolFor = (l: Level) => CATEGORIES.filter((c) => c.level === l);
 const LEVELS_WITH_CARDS = LEVELS.filter((l) => poolFor(l).length >= 6);
 
@@ -36,14 +39,7 @@ function addWin(l: Level, moves: number): Record_ {
   return r[l]!;
 }
 /** Long words get a smaller font so they fit a narrow card without breaking mid-word. */
-const sizeClass = (w: string) => { const n = Math.max(...w.split(' ').map((p) => p.length)); return n > 12 ? ' is-xlong' : n > 8 ? ' is-long' : ''; };
 const trOf = (x: { en: string; ru: string }) => (getLang() === 'ru' ? x.ru : x.en);
-/** Phones: 5 columns and 5 categories. Wider screens: as many 5rem columns as fit (6 to 9) and 5 to 7 categories. */
-export function layoutFor(w: number): { columns: number; categories: number } {
-  if (w < 560) return { columns: 5, categories: 5 };
-  const columns = Math.max(6, Math.min(9, Math.floor((w + 8) / 88)));
-  return { columns, categories: columns >= 9 ? 7 : columns >= 7 ? 6 : 5 };
-}
 /** Move limits a player can choose (null = no limit). Deals are checked to be winnable within the limit. */
 export const LIMITS: (number | null)[] = [null, 80, 65, 50];
 const getLimit = (): number | null => { const v = store.get<number | null>('sol.limit', null); return LIMITS.includes(v) ? v : null; };
@@ -75,10 +71,18 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
   const content = h('div', { class: 'sol' });
   put(root, content);
 
-  function render(path: string[]): void {
+  let renderToken = 0;
+  async function render(path: string[]): Promise<void> {
+    const token = ++renderToken;
     const [head, lvl, seedSeg] = path;
     const level = LEVELS_WITH_CARDS.find((l) => l === lvl);
     const seed = seedSeg?.startsWith('seed-') ? Number(seedSeg.slice(5)) : undefined;
+    if (head === 'play' && level) {
+      // Card sizes are measured from the text, so the card font must be loaded first.
+      const fam = getComputedStyle(html).getPropertyValue('--font-body').trim();
+      try { await Promise.all([document.fonts?.load(`700 16px ${fam}`, 'áñ'), document.fonts?.load(`400 16px ${fam}`, 'áñ')]); } catch { /* measure with what is there */ }
+      if (token !== renderToken) return;
+    }
     put(content, head === 'play' && level ? playView(level, seed) : levelsView());
     window.scrollTo(0, 0);
     content.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true });
@@ -113,17 +117,27 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
   /* ---------------- A game ---------------- */
   function playView(level: Level, seed?: number): HTMLElement {
     const pool = poolFor(level);
-    const lay = layoutFor(content.clientWidth || window.innerWidth);
-    let s: GameState = newGame(pool, { ...lay, seed, limit: getLimit() });
+    let showTr = store.get<boolean>('sol.showTr', level === 'A1');
+    // Sizes from the real words of this level (see sizing.ts): one card size per game.
+    const tk = readTokens();
+    const measure = canvasMeasure(getComputedStyle(document.documentElement).getPropertyValue('--font-body') || 'sans-serif');
+    const csContent = getComputedStyle(content);
+    const availW = (content.clientWidth || window.innerWidth) - parseFloat(csContent.paddingLeft || '0') - parseFloat(csContent.paddingRight || '0');
+    const levelWords = pool.flatMap((c) => [...c.items.map((i) => i.es), ...c.name_es.split(' ')]);
+    const textsOf = (st: GameState): CardText[] => Object.values(st.cards).map((c) => ({ es: c.item.es, tr: c.kind === 'cat' ? undefined : trOf(c.item), isCat: c.kind === 'cat' }));
+    const sizeInput = () => ({ availW, availH: window.innerHeight, levelWords, tk, m: measure, showTr, headH: tk.rootPx * 9 });
+    let lay = computeLayout({ ...sizeInput(), cards: [] });
+    const dealOpts = () => ({ columns: lay.columns, categories: lay.categories, rows: lay.rows, limit: getLimit() });
+    let s: GameState = newGame(pool, { ...dealOpts(), seed });
+    const resize = () => { lay = { ...lay, ...heights({ ...sizeInput(), tk: lay.tk, cards: textsOf(s) }, lay.cardW, Math.ceil(lay.categories / lay.columns)) }; };
+    resize();
     let burstSlot: number | null = null;
-    const deal = () => { s = newGame(pool, { ...lay, limit: getLimit() }); select(null); announce(t('sol.newDeal')); draw(); };
+    const deal = () => { s = newGame(pool, dealOpts()); resize(); select(null); announce(t('sol.newDeal')); draw(); };
     let sel: Source | null = null;
     let missesOnSel = 0;
     let hint: Target | null = null;
-    let showTr = store.get<boolean>('sol.showTr', level === 'A1');
 
     const el = h('div', { class: 'sol-play' });
-    el.style.setProperty('--ncols', String(lay.columns)); // wide screens: the play area is as wide as the table
     const status = h('p', { class: 'sol-status', role: 'status', 'aria-live': 'polite' });
     const announce = (m: string) => { status.textContent = m; };
     const word = (id: string) => s.cards[id].item.es;
@@ -166,18 +180,26 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     function cardEl(id: string, src: Source | null, selected: boolean, extra = '') {
       const c = s.cards[id];
       const isCat = c.kind === 'cat';
+      const f = lay.fonts.get(c.item.es + '|' + (isCat ? '' : trOf(c.item))) ?? { word: lay.tk.wordMin, tr: lay.tk.trMin, trLines: 1, nameLines: 1 };
       return h(src ? 'button' : 'div', {
         type: src ? 'button' : undefined,
         class: `sol-card${isCat ? ' is-cat' : ''}${selected ? ' is-selected' : ''}${extra}`, 'data-id': id,
         'data-src': src ? JSON.stringify(src) : undefined, 'aria-pressed': src ? String(selected) : undefined,
         'aria-label': isCat ? `${t('sol.categoryCard')}: ${c.item.es} (${s.size[c.cat]})` : undefined,
       },
-        isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), String(s.size[c.cat])) : null,
-        h('span', { class: 'sol-card__word' + sizeClass(c.item.es), lang: 'es' }, c.item.es),
-        showTr ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en' }, trOf(c.item)) : null);
+        // Category cards: the book icon and count have their own row above the name, never over text.
+        isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), h('span', null, String(s.size[c.cat]))) : null,
+        h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${f.word}px` } }, c.item.es),
+        // Category cards show no translation: the name is the clue, and an extra line would make every card taller.
+        showTr && !isCat ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en', style: { fontSize: `${f.tr}px` } }, trOf(c.item)) : null);
     }
 
     function draw() {
+      // one card size for the whole game (sizing.ts)
+      el.style.setProperty('--card-w', `${lay.cardW}px`);
+      el.style.setProperty('--card-h', `${lay.cardH}px`);
+      el.style.setProperty('--stack-peek', `${lay.peek}px`);
+      el.style.setProperty('--ncols', String(lay.columns));
       const focusKey = (document.activeElement as HTMLElement | null)?.dataset?.focusKey;
       const selRun = sel ? runAt(s, sel) ?? [] : [];
       const slots = s.slots.map((slot, i) => {
@@ -195,7 +217,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
           type: 'button', class: `sol-slotcat${hinted ? ' is-hint' : ''}${fits ? ' is-fit' : ''}`, 'data-target': tg, 'data-focus-key': `slot-${i}`,
           'aria-label': `${catName(s, slot.cat)}: ${slot.words.length}/${s.size[slot.cat]}${slot.words.length ? `, ${slot.words.map(word).join(', ')}` : ''}`,
         },
-          h('span', { class: 'sol-slotcat__tab', lang: 'es' }, h('span', { class: 'sol-slotcat__name' }, catName(s, slot.cat)), h('span', null, `${slot.words.length}/${s.size[slot.cat]}`)),
+          h('span', { class: 'sol-slotcat__tab' }, h('span', { class: 'sol-slotcat__name', lang: 'es' }, catName(s, slot.cat)), h('span', { class: 'sol-slotcat__count' }, `${slot.words.length}/${s.size[slot.cat]}`)),
           last ? cardEl(last, null, false, ' in-slot') : cardEl(`${slot.cat}:cat`, null, false, ' in-slot'));
       });
       const cols = s.cols.map((col, ci) => {
@@ -219,11 +241,12 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
           Button({ label: t('sol.levelsBack'), icon: 'back', variant: 'quiet', onClick: () => ctx.go([]) }),
           h('span', { class: 'sol-badge' }, level),
           h('span', { class: 'sol-bar__space' }),
-          Chip({ label: t('sol.translation'), pressed: showTr, onToggle: (on) => { showTr = on; store.set('sol.showTr', on); draw(); } }),
+          Chip({ label: t('sol.translation'), pressed: showTr, onToggle: (on) => { showTr = on; store.set('sol.showTr', on); resize(); draw(); } }),
           Button({ label: t('sol.undo'), icon: 'undo', iconOnly: true, variant: 'quiet', disabled: !s.history.length, onClick: () => { if (undo(s)) { select(null); announce(t('sol.undone')); draw(); } } }),
           Button({ label: t('sol.newGame'), icon: 'refresh', iconOnly: true, variant: 'quiet', onClick: deal })),
         h('h1', { tabindex: '-1', class: 'sol-title k-sr', lang: 'es' }, 'Solitario de categorías'),
-        h('div', { class: 'sol-head' },
+        // Narrow tables: the move counter becomes a slim bar above the deck, so the deck stays on one row.
+        h('div', { class: `sol-head${2 * lay.cardW + 2 * tk.gap + 5.5 * tk.rootPx > availW ? ' is-narrow' : ''}` },
           s.limit === null
             ? h('div', { class: 'sol-moves', role: 'status', 'aria-label': t('sol.movesLabel', { n: s.moves }) },
               h('span', { class: 'sol-moves__label' }, t('sol.moves')), h('span', { class: 'sol-moves__n' }, String(s.moves)))
@@ -238,8 +261,8 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
             type: 'button', class: `sol-stock${s.stock.length ? '' : ' is-empty'}`, 'data-stock': 'true', 'data-focus-key': 'stock',
             'aria-label': s.stock.length ? t('sol.stock', { n: s.stock.length }) : s.waste.length ? t('sol.recycle') : t('sol.deckEmpty'),
           }, s.stock.length ? h('span', { class: 'sol-back' }, h('span', { class: 'sol-stock__n' }, String(s.stock.length))) : h('span', { class: 'sol-stock__again' }, icon('refresh')))),
-        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations'), style: { gridTemplateColumns: `repeat(${s.slots.length}, var(--col-w))` } }, slots),
-        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns'), style: { gridTemplateColumns: `repeat(${s.cols.length}, var(--col-w))` } }, cols),
+        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations'), style: { gridTemplateColumns: `repeat(${Math.min(s.slots.length, lay.columns)}, var(--card-w))` } }, slots),
+        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns'), style: { gridTemplateColumns: `repeat(${s.cols.length}, var(--card-w))` } }, cols),
         outOfMoves(s) ? h('div', { class: 'sol-out' },
           FeedbackBanner({ kind: 'retry', title: t('sol.outTitle'), hint: t('sol.outHint') }),
           h('div', { class: 'sol-actions' },
@@ -351,6 +374,6 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     return el;
   }
 
-  render(ctx.path);
-  return { update: render, destroy: () => { html.dataset.theme = 'brote'; } };
+  void render(ctx.path);
+  return { update: (p) => void render(p), destroy: () => { renderToken++; html.dataset.theme = 'brote'; } };
 }

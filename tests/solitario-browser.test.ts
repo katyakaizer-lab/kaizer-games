@@ -42,11 +42,21 @@ const cats = (JSON.parse(readFileSync(`${ROOT}/src/data/solitario/categories.jso
 /** Click the visible top strip of a card (cards overlap in columns). */
 async function clickSource(page: Page, src: Source) {
   const loc = page.locator(`[data-src='${JSON.stringify(src)}']`);
+  await loc.scrollIntoViewIfNeeded();
   const box = (await loc.boundingBox())!;
   await page.mouse.click(box.x + box.width / 2, box.y + 6);
 }
+/** The layout the game chose for this screen (columns, categories, rows), read from the table. */
+async function layoutOf(page: Page) {
+  return page.evaluate(() => ({
+    columns: document.querySelectorAll('.sol-col').length,
+    categories: document.querySelectorAll('.sol-slots > *').length,
+    rows: Math.max(...[...document.querySelectorAll('.sol-col')].map((c) => c.querySelectorAll('.sol-card').length)),
+  }));
+}
 async function clickTarget(page: Page, t: Target) {
   const loc = page.locator(`[data-target='${JSON.stringify(t)}']`).first();
+  await loc.scrollIntoViewIfNeeded();
   const box = (await loc.boundingBox())!;
   await page.mouse.click(box.x + box.width / 2, box.y + 6);
 }
@@ -62,7 +72,7 @@ describe('Solitario de categorías start to finish in a real browser', () => {
     expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('mesa');
 
     // Same deal in the engine (phone layout: 5 columns, 5 categories) and its winning line.
-    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, columns: 5, categories: 5 }))!;
+    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, ...(await layoutOf(page)) }))!;
     expect(steps).not.toBe(null);
 
     // Undo: turn a card over, undo, the counter goes back to 0.
@@ -99,11 +109,12 @@ describe('Solitario de categorías start to finish in a real browser', () => {
     expect(await page.textContent('.sol-moves__n')).toBe('0');
     await clickSource(page, JSON.parse(word)); // put it down
     // drag the first winning move instead of tapping it
-    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, columns: 5, categories: 5 }))!;
+    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, ...(await layoutOf(page)) }))!;
     const first = steps.find((s) => s.kind === 'move')!;
     const idx = steps.indexOf(first);
     for (let i = 0; i < idx; i++) await page.click('[data-stock]');
     if (first.kind === 'move') {
+      await page.locator(`[data-src='${JSON.stringify(first.src)}']`).scrollIntoViewIfNeeded();
       const a = (await page.locator(`[data-src='${JSON.stringify(first.src)}']`).boundingBox())!;
       const b = (await page.locator(`[data-target='${JSON.stringify(first.dst)}']`).first().boundingBox())!;
       await page.mouse.move(a.x + a.width / 2, a.y + 6);
@@ -122,7 +133,7 @@ describe('Solitario de categorías start to finish in a real browser', () => {
     await page.goto(base + 'index.html#game/solitario/play/A1/seed-5');
     await page.waitForSelector('.sol-col .sol-card');
     expect(await page.textContent('.sol-moves')).toContain('Quedan');
-    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, columns: 5, categories: 5, limit: 50 }))!;
+    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, limit: 50, ...(await layoutOf(page)) }))!;
     let burst = false;
     for (const step of steps) {
       if (step.kind === 'draw') await page.click('[data-stock]');
@@ -130,7 +141,9 @@ describe('Solitario de categorías start to finish in a real browser', () => {
       if (await page.locator('.sol-burst .sol-burst__star').count()) { burst = true; break; }
     }
     expect(burst).toBe(true);
-    // use up the remaining moves on the deck
+    // a fresh deal: use up all moves by turning the deck (which always has cards at the start)
+    await page.click('button[aria-label="Nueva partida"]');
+    await page.waitForSelector('.sol-col .sol-card');
     for (let i = 0; i < 60 && !(await page.locator('.sol-out').count()); i++) await page.click('[data-stock]');
     expect(await page.textContent('.sol-out')).toContain('No quedan movimientos');
     await page.click('.sol-out button:has-text("Repetir esta partida")');

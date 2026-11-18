@@ -63,6 +63,17 @@
   --focus-w: 3px;
   --dur-fast: 120ms; --dur: 220ms; --ease: cubic-bezier(.2,.8,.2,1);
   --measure: 36rem; /* comfortable line length */
+  /* word cards (Solitario). rem-based, so the text-size setting scales them. */
+  --card-pad: 0.25rem;          /* inside spacing of a card */
+  --card-gap: 0.375rem;         /* space between columns */
+  --card-word-max: 1.125rem;    /* Spanish word, preferred size */
+  --card-word-min: 1rem;        /* Spanish word, never smaller (16px at normal text size); one line */
+  --card-tr-max: 0.9375rem;     /* translation, preferred size */
+  --card-tr-min: 0.875rem;      /* translation, never smaller (14px); may wrap to two lines */
+  --card-tag-size: 0.75rem;     /* icon and count row on category cards and slot headers */
+  --card-line: 1.25;            /* line height inside cards */
+  --stack-peek-extra: 0.25rem;  /* extra room in the visible strip of a covered card (dropped first if the table is too tall) */
+  --card-min-w: 5rem;           /* cards are never narrower than this on wide screens */
 }
 @media (prefers-reduced-motion: reduce) { :root { --dur-fast: 0ms; --dur: 0ms; } }
 :root[data-motion="reduce"] { --dur-fast: 0ms; --dur: 0ms; }
