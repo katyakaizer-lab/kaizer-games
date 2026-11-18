@@ -64,20 +64,21 @@
   --dur-fast: 120ms; --dur: 220ms; --ease: cubic-bezier(.2,.8,.2,1);
   --measure: 36rem; /* comfortable line length */
   /* word cards (Solitario), from the card-layout mockup v4 (measured at 390px). rem-based: the text-size setting scales them. */
-  --board-pad: 0.75rem;         /* side padding of the board (12px) */
-  --col-gap: 0.625rem;          /* space between columns (10px) */
+  --board-pad: 0.5rem;          /* side padding of the board (8px) */
+  --col-gap: 0.375rem;          /* space between columns (6px) */
   --card-max: 4.5rem;           /* card width never larger than this (72px) */
   --card-ratio: 1.36;           /* card height = width x ratio */
   --card-radius: 0.625rem;      /* outer corner (10px) */
-  --card-edge: 0.25rem;         /* white (or amber) edge around the inner panel (4px) */
+  --card-edge: 0.1875rem;       /* white (or amber) edge around the inner panel (3px) */
   --card-frame-w: 1.5px;        /* line around the inner panel */
-  --card-pad: 0.125rem;         /* inside the inner panel */
+  --card-pad: 0.0625rem;        /* inside the inner panel, around the word (1px) */
   --down-peek: 1rem;            /* visible strip of a face-down card in a column (16px) */
-  --stack-gap: 0.375rem;        /* space between face-up cards stacked in a column (6px) */
+  --up-step: 0.6;               /* a face-up card on another sits card height x this lower (covers the lower part) */
   --card-word-max: 1rem;        /* Spanish word, preferred size (16px) */
-  --card-word-min: 0.8125rem;   /* Spanish word, never smaller (13px); then it wraps at a syllable, 2 lines at most */
+  --card-word-min: 0.8125rem;   /* Spanish word on one line, never smaller (13px); then it wraps at a syllable */
+  --card-word-floor: 0.6875rem; /* wrapped word (2 lines at most), never smaller (11px); else a content problem */
   --card-tr-max: 0.75rem;       /* translation (12px) */
-  --card-tr-min: 0.75rem;
+  --card-tr-min: 0.6875rem;     /* translation, smallest (11px), only when a short card needs the room */
   --card-name-min: 0.8125rem;   /* category name: same rule as words */
   --card-tag-size: 0.6875rem;   /* book icon and count on cards (11px) */
   --slot-tab-h: 1.125rem;       /* label tab above a filled category slot (18px) */

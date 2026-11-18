@@ -6,7 +6,7 @@
 .sol-list { display: grid; gap: var(--space-3); }
 .sol-play {
   display: grid; gap: var(--col-gap); width: 100%; max-width: 30rem; margin-inline: auto;
-  padding-bottom: calc(var(--bottom-btn) + var(--space-5) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(var(--bottom-btn) + var(--space-3) + var(--space-1) + env(safe-area-inset-bottom, 0px));
 }
 .sol-header { display: flex; align-items: center; gap: var(--space-1); margin-left: calc(-1 * var(--space-2)); flex-wrap: wrap; }
 .sol-bar__space { flex: 1; }
@@ -41,23 +41,25 @@
 .sol-card {
   display: block; flex: none; width: var(--card-w); height: var(--card-h); padding: var(--card-edge); margin: 0;
   background: var(--card-edge-c); color: var(--on-card); border: 0; border-radius: var(--card-radius); box-shadow: var(--shadow);
-  font: inherit; text-align: center; line-height: var(--card-line); cursor: pointer; overflow: hidden;
+  font: inherit; text-align: center; line-height: var(--card-line); cursor: pointer;
   touch-action: none; user-select: none; -webkit-user-select: none;
 }
 div.sol-card, span.sol-card { cursor: default; }
 .sol-card__panel {
   display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;
   padding: var(--card-pad); background: var(--card-panel); border: var(--card-frame-w) solid var(--card-frame);
-  border-radius: calc(var(--card-radius) - var(--card-edge)); overflow: hidden;
+  border-radius: calc(var(--card-radius) - var(--card-edge));
 }
-/* Spanish word: 16px down to 13px on one line, then wrapped at a syllable (soft hyphens from syllables.ts), 2 lines at most. */
+/* Spanish word: 16px down to 13px on one line; else wrapped at a syllable (soft hyphens from shared/syllabify.ts), 16px down to 11px, 2 lines at most.
+   white-space and hyphens are set here for every word (iOS Safari reads only -webkit-hyphens). */
 .sol-card__word {
   display: block; max-width: 100%; font-weight: 700; line-height: var(--card-line);
   white-space: normal; overflow-wrap: normal; word-break: keep-all; hyphens: manual; -webkit-hyphens: manual;
 }
-.sol-card__tr { display: block; align-self: stretch; max-width: 100%; font-size: var(--card-tr-max); line-height: var(--card-line); opacity: .85; overflow-wrap: anywhere; hyphens: auto; }
+.sol-card__tr { display: block; align-self: stretch; max-width: 100%; font-size: var(--card-tr-max); line-height: var(--card-line); opacity: .85; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
 .sol-card__tr::before { content: ''; display: block; width: 45%; height: 1.5px; margin: 3px auto 2px; background: var(--card-rule); }
-/* Covered (squeezed) cards keep their word at the top, where it stays visible. */
+/* Covered cards (a face-up card lies on their lower part) keep their word at the top, where it stays visible.
+   No overflow: hidden on cards or words: a word that does not fit shows up in tests instead of being cut off. */
 .sol-card.is-squeezed .sol-card__panel { justify-content: flex-start; }
 
 /* Category card: amber edge, a row with the book icon and the count, then the name. */

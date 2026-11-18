@@ -19,8 +19,8 @@ import {
   LEVELS, canPlace, catName, drawCard, hintFor, isFaceDown, isWon, move, movesLeft, newGame, nextStep, outOfMoves, restart, runAt, undo,
   type Category, type GameState, type Level, type LevelConfig, type SolitarioData, type Source, type Target,
 } from './engine';
-import { boardLayout, canvasMeasure, cardFont, columnOffsets, readTokens, visibleTop, type BoardLayout, type CardFont } from './sizing';
-import { softHyphenate } from './syllables';
+import { MAX_NAME_LINES, MAX_WORD_LINES, boardLayout, canvasMeasure, cardFont, cardSize, columnOffsets, readTokens, visibleTop, type BoardLayout, type CardFont } from './sizing';
+import { softHyphenate } from '../shared/syllabify.ts';
 import './solitario.css';
 
 const files = import.meta.glob<SolitarioData>('../../data/solitario/*.json', { eager: true, import: 'default' });
@@ -87,7 +87,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     if (head === 'play' && level) {
       // Card sizes are measured from the text, so the card font must be loaded first.
       const fam = getComputedStyle(html).getPropertyValue('--font-body').trim();
-      try { await Promise.all([document.fonts?.load(`700 16px ${fam}`, 'áñ'), document.fonts?.load(`400 16px ${fam}`, 'áñ')]); } catch { /* measure with what is there */ }
+      try { await Promise.all([document.fonts?.load(`700 16px ${fam}`, 'áñ'), document.fonts?.load(`400 16px ${fam}`, 'áñ')]); await document.fonts?.ready; } catch { /* measure with what is there */ }
       if (token !== renderToken) return;
     }
     cleanupView?.();
@@ -145,6 +145,8 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     let sel: Source | null = null;
     let hint: { src?: Source; dst?: Target } | null = null;
     let faceDownBefore = new Set<string>();
+    let dropFrom = new Map<string, DOMRect>(); // where moved cards were, for the drop animation
+    let viewW = content.clientWidth || window.innerWidth;
 
     const el = h('div', { class: 'sol-play' });
     // Screen readers hear every message; on screen, messages that matter appear as a short toast.
@@ -162,6 +164,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       if (!run) return;
       const doneBefore = s.done.length;
       faceDownBefore = faceDownIds();
+      dropFrom = new Map(run.map((id) => [id, el.querySelector(`[data-id="${CSS.escape(id)}"]`)?.getBoundingClientRect()]).filter((x): x is [string, DOMRect] => !!x[1]));
       if (move(s, src, tg)) {
         select(null);
         const first = s.cards[run[0]];
@@ -203,7 +206,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       },
         h('span', { class: 'sol-card__panel' },
           isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), h('span', null, o.count ?? String(s.size[c.cat]))) : null,
-          h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${f.word}px` }, 'aria-hidden': 'true' }, f.wordLines > 1 ? softHyphenate(c.item.es) : c.item.es),
+          h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${f.word}px` }, 'aria-hidden': 'true' }, f.wrap ? softHyphenate(c.item.es) : c.item.es),
           showTr && !isCat ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en', style: { fontSize: `${f.tr}px` }, 'aria-hidden': 'true' }, trOf(c.item)) : null));
     }
     /** Label tab above a filled slot: the category name on one line (11px down to 9px), else wrapped at a syllable. */
@@ -243,7 +246,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
           h('span', { class: 'sol-card is-slot' },
             h('span', { class: 'sol-card__panel' },
               h('span', { class: 'sol-card__tag is-count', 'aria-hidden': 'true' }, h('span', null, count)),
-              h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${lf.word}px` }, 'aria-hidden': 'true' }, lf.wordLines > 1 ? softHyphenate(word(last)) : word(last)))));
+              h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${lf.word}px` }, 'aria-hidden': 'true' }, lf.wrap ? softHyphenate(word(last)) : word(last)))));
       });
 
       const cols = s.cols.map((col, ci) => {
@@ -305,6 +308,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
         status);
       faceDownBefore = new Set();
       layoutStacks();
+      animateDrop();
       if (focusKey) el.querySelector<HTMLElement>(`[data-focus-key="${focusKey}"]`)?.focus({ preventScroll: true });
       if (burstSlot !== null) {
         const at = el.querySelectorAll<HTMLElement>('.sol-slots > *')[burstSlot];
@@ -343,13 +347,53 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       if (over() > 0 && waste.dataset.under === '2') { waste.dataset.under = '1'; waste.querySelector('.is-u2')?.remove(); shrink(); }
     }
 
+    /** Moved cards glide from where they were to their final (overlapping) place. None with reduced motion. */
+    function animateDrop() {
+      const from = dropFrom;
+      dropFrom = new Map();
+      if (prefersReducedMotion()) return;
+      for (const [id, r0] of from) {
+        const e = el.querySelector<HTMLElement>(`[data-id="${CSS.escape(id)}"]`);
+        if (!e) continue;
+        const r1 = e.getBoundingClientRect();
+        const dx = r0.left - r1.left, dy = r0.top - r1.top;
+        if (Math.abs(dx) < 1 && Math.abs(dy) < 1) continue;
+        e.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0, 0)' }], { duration: 180, easing: 'ease-out' });
+      }
+    }
+
+    /**
+     * Checks every word on screen against its card's inner panel, as the browser actually draws it (the canvas
+     * estimate can differ, e.g. a different font on iOS). A word that is too wide or over 2 lines is wrapped at its
+     * syllables and made smaller, down to --card-word-floor. Run after every render.
+     */
+    function verifyFit() {
+      for (const w of el.querySelectorAll<HTMLElement>('.sol-card__word')) {
+        const card = w.closest<HTMLElement>('[data-id]');
+        const id = card?.dataset.id;
+        const panel = w.parentElement!;
+        const f = id ? fonts.get(id) : undefined;
+        const maxW = panel.clientWidth - 2 * lay.tk.pad;
+        let px = parseFloat(w.style.fontSize) || lay.tk.wordMax;
+        const maxLines = card?.classList.contains('is-cat') ? MAX_NAME_LINES : MAX_WORD_LINES;
+        const tooBig = () => w.scrollWidth > maxW + 0.5 || w.getBoundingClientRect().height > maxLines * px * lay.tk.line + 1 || panel.scrollHeight > panel.clientHeight + 1;
+        if (!tooBig()) continue;
+        const es = (id ? s.cards[id]?.item.es : undefined) ?? w.textContent!.replace(/­/g, '');
+        w.textContent = softHyphenate(es);
+        while (tooBig() && px > lay.tk.wordFloor) { px = Math.max(lay.tk.wordFloor, px - 0.5); w.style.fontSize = `${px}px`; }
+        const lines = Math.max(1, Math.round(w.getBoundingClientRect().height / (px * lay.tk.line)));
+        if (f && id) fonts.set(id, { ...f, word: px, wrap: true, wordLines: lines, misfit: tooBig() });
+      }
+    }
+
     function layoutStacks() {
       fitHead();
+      verifyFit();
       const board = el.querySelector<HTMLElement>('.sol-cols');
-      const bar = el.querySelector<HTMLElement>('.sol-bottom');
+      const bar = el.querySelector<HTMLElement>('.sol-bottom__btn');
       if (!board) return;
       const barTop = bar ? bar.getBoundingClientRect().top : window.innerHeight;
-      const availH = Math.max(lay.cardH, barTop - board.getBoundingClientRect().top - lay.tk.stackGap);
+      const availH = Math.max(lay.cardH, barTop - board.getBoundingClientRect().top - 4);
       for (const colEl of board.querySelectorAll<HTMLElement>('.sol-col')) {
         const ci = Number(colEl.dataset.col);
         const col = s.cols[ci];
@@ -457,7 +501,18 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     el.addEventListener('pointermove', onMove);
     el.addEventListener('pointerup', onUp);
     el.addEventListener('pointercancel', () => { if (drag) { for (const c of drag.els) { c.classList.remove('is-dragging'); c.style.transform = ''; } drag = null; } });
-    const onResize = () => layoutStacks();
+    // On resize the card width may change (same columns): new sizes, words fitted again, then redrawn.
+    const onResize = () => {
+      const w = content.clientWidth || window.innerWidth;
+      if (Math.abs(w - viewW) < 1) { layoutStacks(); return; }
+      viewW = w;
+      lay.tk = readTokens();
+      Object.assign(lay, cardSize(w, s.cols.length, lay.tk));
+      refit();
+      draw();
+    };
+    // Tests (with injected data only) can arrange a table, e.g. a column of stacked face-up cards.
+    if (injected) (globalThis as { __solGame?: unknown }).__solGame = { state: () => s, redraw: () => { refit(); draw(); } };
     window.addEventListener('resize', onResize);
     cleanupView = () => window.removeEventListener('resize', onResize);
     queueMicrotask(draw);

@@ -88,7 +88,8 @@ export function buildReport() {
   L.push(`- Hard-coded colours or fonts: ${hard.problems.length}`);
   L.push(`- Art: ${art.assets.length} ids, ${placeholders.length} on placeholders, ${art.errors.length} errors`);
   const cwS = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : null;
-  L.push(`- Solitario words too long for their cards: ${cwS?.checked ? Object.values(cwS.levels).reduce((n, l) => n + l.tooLong.length, 0) : 'not checked'}`);
+  const cwTotal = (c) => Object.values(c.byPhone).reduce((n, lv) => n + Object.values(lv).reduce((k, l) => k + l.tooLong.length, 0), 0);
+  L.push(`- Solitario words too long for their cards: ${cwS?.checked ? cwTotal(cwS) : 'not checked'}`);
   L.push(`- Un-reviewed content: ${cont.reduce((n, c) => n + c.unreviewed, 0)} item(s)`);
   L.push(`- Bundle: ${kb(files.reduce((n, [, s]) => n + s, 0))} total, JS ${kb(sum(/\.js$/))}, CSS ${kb(sum(/\.css$/))}, fonts ${kb(sum(/\.woff2$/))}`);
   L.push(`- First screen: ${kb(fs1.total)} (budget ${kb(FIRST_SCREEN_BUDGET)}) ${fs1.total <= FIRST_SCREEN_BUDGET ? 'ok' : 'OVER BUDGET'}`, '');
@@ -103,8 +104,10 @@ export function buildReport() {
   const cw = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : { checked: false, reason: 'check-card-words did not run' };
   if (!cw.checked) L.push(`- not checked: ${cw.reason}`);
   else {
-    L.push(`Measured with the card font on a ${cw.phoneWidth}px phone with each level's column count: ${cw.minPx}px minimum, then wrapped at a syllable (2 lines; category names 3). A word listed here makes the game use fewer columns on small phones: shorten it or lower the level's columns.`, '');
-    for (const [lvl, r] of Object.entries(cw.levels)) L.push(`- ${lvl} (${r.columns} columns${r.usedColumns !== undefined && r.usedColumns !== r.columns ? `, uses ${r.usedColumns}` : ''}, ${r.inner}px of text width): ${r.tooLong.length ? r.tooLong.map((w) => `"${w.es}" (${w.lines}${typeof w.lines === 'number' ? ' lines' : ''})`).join(', ') : 'all words fit'}`);
+    L.push(`Measured with the card font at ${cw.phones.join(', ')}px with each level's column count: 16px down to 13px on one line, else wrapped at a syllable down to ${cw.floorPx}px, 2 lines (category names 3 if needed). A word listed as not fitting is a content problem: shorten it or lower the level's columns (until then the game uses fewer columns on that phone).`, '');
+    for (const [phone, lv] of Object.entries(cw.byPhone)) for (const [lvl, r] of Object.entries(lv)) {
+      L.push(`- ${phone}px ${lvl} (${r.columns} columns${r.usedColumns !== r.columns ? `, uses ${r.usedColumns}` : ''}, ${r.inner}px of text width): ${r.tooLong.length ? `does not fit: ${r.tooLong.map((w) => `"${w.es}"`).join(', ')}` : 'all words fit'}${r.wrapped.length ? `; wrapped: ${r.wrapped.join('; ')}` : ''}`);
+    }
   }
   L.push('', '## Contrast', '', '| theme | pair | kind | ratio | result |', '|---|---|---|---|---|');
   contrastRes.forEach((r) => L.push(`| ${r.theme} | \`${r.fg}\` on \`${r.bg}\` | ${r.kind} | ${r.na ? 'n/a' : r.ratio.toFixed(2)} | ${r.na ? 'not used' : r.ok ? 'pass' : 'LOW'} |`));

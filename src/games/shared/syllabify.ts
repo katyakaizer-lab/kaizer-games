@@ -72,8 +72,6 @@ export function syllabify(word: string): string[] {
 export function softHyphenate(text: string): string {
   return text.split(' ').map((w) => {
     const s = syllabify(w);
-    // Do not break a line between two vowels (hiatus): typographic convention (to-a-lla wraps as toa-lla).
-    for (let k = s.length - 1; k > 0; k--) if (isVowel(s[k - 1].slice(-1).toLowerCase()) && isVowel(s[k][0].toLowerCase())) s.splice(k - 1, 2, s[k - 1] + s[k]);
     if (s.length > 1 && s[0].length === 1) s.splice(0, 2, s[0] + s[1]);
     if (s.length > 1 && s[s.length - 1].length === 1) s.splice(s.length - 2, 2, s[s.length - 2] + s[s.length - 1]);
     return s.join('­');
@@ -85,3 +83,6 @@ export function breakOptions(word: string): [string, string][] {
   const parts = softHyphenate(word).split('­');
   return parts.slice(1).map((_, k) => [parts.slice(0, k + 1).join(''), parts.slice(k + 1).join('')]);
 }
+
+/** The word with visible hyphens at its break points, e.g. "naranja" -> "na-ran-ja" (for tests and reports). */
+export const hyphenated = (text: string, sep = '-') => softHyphenate(text).split('­').join(sep);

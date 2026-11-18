@@ -1,11 +1,12 @@
 // @vitest-environment node
-// Smoke test, Solitario board (card-layout mockup v4).
-// At 360, 375, 390 and 430px wide, levels set to 3, 5 and 7 columns (2 face-down cards each), normal and the
-// largest text size, both themes:
+// Smoke test, Solitario board (mockup v4 + word-fit and stacking fixes).
+// At 360, 375, 390 and 430px wide, levels set to 3, 5, 6 and 7 columns (2 face-down cards each), normal and the
+// largest text size, both themes, before and after some play and with a column of 3 stacked face-up cards:
 // - no sideways scrolling; the board fits above the bottom bar;
 // - card width = min(72px, available / columns), height = width x 1.36, one size for every card;
-// - face-down cards show a 16px strip and are never tappable; face-up cards are fully visible;
-// - no text overlaps, is clipped or ends in "…"; words >= 13px and at most 2 lines (category names 3);
+// - face-down cards show a 16px strip and are never tappable; a face-up card on another covers its lower part
+//   (step card height x 0.6) and the covered word stays visible;
+// - no word runs out of the inner panel, is clipped or has "…"; at most 2 lines, never under 11px;
 // - top bar: back, title, translation; bottom bar: Pista, Deshacer, Reiniciar (60px, with labels);
 // - filled slots: the label tab sits between the status row and the slot, not over anything.
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -13,8 +14,7 @@ import { existsSync } from 'node:fs';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { createServer, preview } from 'vite';
 import { ROOT } from './helpers';
-import { columnOffsets, type CardTokens } from '../src/games/solitario/sizing';
-import { softHyphenate, syllabify } from '../src/games/solitario/syllables';
+import { columnOffsets, fitSpanish } from '../src/games/solitario/sizing';
 
 const CANDIDATES = [process.env.CHROME_PATH, 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', 'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
   'C:/Program Files/Google/Chrome/Application/chrome.exe', '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium', '/usr/bin/chromium-browser'].filter(Boolean) as string[];
@@ -27,9 +27,9 @@ const CATS = [
   cat('d2', 'Baño', [['toalla', 'towel'], ['ducha', 'shower'], ['jabón', 'soap'], ['espejo', 'mirror']]),
   cat('d3', 'Animales salvajes', [['tigre', 'tiger'], ['jirafa', 'giraffe'], ['león', 'lion'], ['cebra', 'zebra'], ['oso', 'bear']]),
   cat('d4', 'Tiendas', [['carnicería', "butcher's"], ['floristería', "florist's"], ['panadería', 'bakery'], ['frutería', "greengrocer's"]]),
-  cat('d5', 'Verduras', [['zanahoria', 'carrot'], ['cebolla', 'onion'], ['patata', 'potato'], ['lechuga', 'lettuce']]),
+  cat('d5', 'Verduras', [['zanahoria', 'carrot'], ['cebolla', 'onion'], ['patata', 'potato'], ['naranja', 'orange'], ['cuchara', 'spoon']]),
   cat('d6', 'Deportes', [['tenis', 'tennis'], ['golf', 'golf'], ['esquí', 'skiing'], ['ciclismo', 'cycling']]),
-  cat('d7', 'Ropa', [['falda', 'skirt'], ['abrigo', 'coat'], ['gorra', 'cap'], ['botas', 'boots']]),
+  cat('d7', 'Cuerpo', [['cabeza', 'head'], ['pierna', 'leg'], ['brazo', 'arm'], ['mano', 'hand']]),
 ];
 const level = (columns: number) => ({ levels: { A1: { columns, down: 2 } }, categories: CATS });
 
@@ -101,7 +101,7 @@ function check(page: Page) {
     const w = cards[0].offsetWidth, hgt = cards[0].offsetHeight;
     // Tokens are rem-based, so at a larger text size 72px, 12px and 10px grow with the root font size.
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
-    const expected = Math.floor(Math.min(72 * rem, (vw - 24 * rem - 10 * rem * (cols.length - 1)) / cols.length));
+    const expected = Math.floor(Math.min(72 * rem, (vw - 16 * rem - 6 * rem * (cols.length - 1)) / cols.length));
     if (w !== expected) problems.push(`card width ${w}, expected ${expected}`);
     if (Math.abs(hgt - Math.round(w * 1.36)) > 0.5) problems.push(`card height ${hgt} is not width x 1.36`);
 
@@ -122,7 +122,10 @@ function check(page: Page) {
     if (boardBottom > barTop + 0.5) problems.push(`board bottom ${boardBottom} passes the bottom bar at ${barTop}`);
     if (document.documentElement.scrollHeight > innerHeight + 0.5) problems.push(`page scrolls: ${document.documentElement.scrollHeight} > ${innerHeight}`);
 
-    // Columns: face-down strips 16px apart and never tappable; face-up cards fully visible.
+    // Columns: face-down strips 16px apart and never tappable. A face-up card on another sits card height x 0.6
+    // lower (or more if the covered word needs it, less only if the column would pass the bottom bar), and the
+    // covered card's word is never under the next card.
+    let stacked = 0;
     for (const col of cols) {
       const kids = [...col.children] as HTMLElement[];
       kids.forEach((k, i) => {
@@ -131,7 +134,15 @@ function check(page: Page) {
           if (next && Math.abs(r(next).top - r(k).top - 16 * rem) > 0.5) problems.push(`face-down strip ${r(next).top - r(k).top}px, expected ${16 * rem}`);
           const at = document.elementFromPoint(r(k).left + r(k).width / 2, r(k).top + 8) as HTMLElement | null;
           if (at?.closest('[data-src]')) problems.push('a face-down card can be tapped');
-        } else if (next && r(next).top < r(k).bottom - 0.5 && !k.classList.contains('is-squeezed')) problems.push('a face-up card is covered');
+        } else if (next) {
+          stacked++;
+          const step = r(next).top - r(k).top;
+          const word = k.querySelector('.sol-card__word')!;
+          if (r(word).bottom > r(next).top + 0.5) problems.push(`"${word.textContent}": word covered by the next card`);
+          if (step >= k.offsetHeight - 0.5) problems.push(`face-up card not overlapped (step ${step})`);
+          const roomy = boardBottom < barTop - 12;
+          if (roomy && step < k.offsetHeight * 0.6 - 0.5) problems.push(`face-up step ${step} < 0.6 x card height with room to spare`);
+        }
       });
     }
 
@@ -145,17 +156,28 @@ function check(page: Page) {
       const label = word.textContent;
       const parts = [word, tr, tag].filter((x): x is HTMLElement => !!x);
       for (let i = 0; i < parts.length; i++) for (let j = i + 1; j < parts.length; j++) if (overlap(r(parts[i]), r(parts[j]))) problems.push(`"${label}": ${parts[i].className} overlaps ${parts[j].className}`);
+      // The inner panel's content box (inside its frame line).
+      const pr = r(panel), pcs = getComputedStyle(panel);
+      const inner = new DOMRect(pr.left + parseFloat(pcs.borderLeftWidth), pr.top + parseFloat(pcs.borderTopWidth), panel.clientWidth, panel.clientHeight);
       for (const p of parts) {
-        if (!inside(r(p), r(panel))) problems.push(`"${label}": ${p.className} sticks out of the card`);
+        if (!inside(r(p), inner)) problems.push(`"${label}": ${p.className} sticks out of the inner panel`);
         if (p.scrollWidth > p.clientWidth + 1) problems.push(`"${label}": ${p.className} clipped`);
         if (/…/.test(p.textContent ?? '')) problems.push(`"${label}": has …`);
       }
+      // The word itself: its text never wider than its box (nothing hidden; cards have no overflow: hidden).
+      const range = document.createRange();
+      range.selectNodeContents(word);
+      const tr0 = range.getBoundingClientRect();
+      if (tr0.left < inner.left - 0.5 || tr0.right > inner.right + 0.5) problems.push(`"${label}": text runs out of the card (${Math.round(tr0.width)}px in ${Math.round(inner.width)}px)`);
       const wpx = parseFloat(getComputedStyle(word).fontSize);
-      if (wpx < 13 - 0.05) problems.push(`"${label}": text ${wpx}px < 13px`);
+      if (wpx < 11 - 0.05) problems.push(`"${label}": text ${wpx}px < 11px`);
       const lines = Math.round(r(word).height / (wpx * 1.15));
-      const isName = card.classList.contains('is-cat');
-      if (lines > (isName ? 3 : 2)) problems.push(`"${label}": ${lines} lines`);
-      if (getComputedStyle(word).hyphens === 'none') problems.push(`"${label}": hyphens off`);
+      if (lines > (card.classList.contains('is-cat') ? 3 : 2)) problems.push(`"${label}": ${lines} lines`); // category names may use 3
+      if (lines > 1 && !word.textContent!.includes('­') && !word.textContent!.includes(' ')) problems.push(`"${label}": wraps without syllable marks`);
+      if (lines === 1 && wpx < 13 - 0.05 && !word.textContent!.includes('­')) problems.push(`"${label}": one line under 13px`);
+      const ws = getComputedStyle(word);
+      if (ws.hyphens !== 'manual' || ws.whiteSpace !== 'normal') problems.push(`"${label}": hyphens ${ws.hyphens}, white-space ${ws.whiteSpace}`);
+      if (ws.overflow !== 'visible') problems.push(`"${label}": overflow ${ws.overflow}`);
       if (word.lang !== 'es') problems.push(`"${label}": no lang=es`);
       if (tr && Math.round(r(tr).height / (parseFloat(getComputedStyle(tr).fontSize) * 1.15)) > 3) problems.push(`"${label}": translation over 2 lines`);
     }
@@ -178,31 +200,65 @@ function check(page: Page) {
       if (t.scrollWidth > t.clientWidth + 1) problems.push(`tab "${t.textContent}" clipped`);
       for (const o of tabs.slice(i + 1)) if (overlap(r(t), r(o))) problems.push(`tabs overlap: ${t.textContent} / ${o.textContent}`);
     });
-    return { problems, columns: cols.length, tabs: tabs.length, w };
+    return { problems, columns: cols.length, tabs: tabs.length, w, stacked };
   });
 }
 
-describe('Solitario board (mockup v4) on phones', () => {
+/**
+ * Builds a column of `n` face-up cards (long words first, so the covered cards wrap), taking cards
+ * from the deck and the drawn pile, through the test hook. The game rules do not matter here, only the layout.
+ */
+async function stackColumn(page: Page, n: number) {
+  await page.evaluate((count) => {
+    const g = (globalThis as unknown as { __solGame: { state: () => { cols: string[][]; stock: string[]; waste: string[]; cards: Record<string, { item: { es: string } }> }; redraw: () => void } }).__solGame;
+    const s = g.state();
+    const byLength = [...s.stock, ...s.waste].sort((a, b) => s.cards[b].item.es.length - s.cards[a].item.es.length);
+    // The first column that has a card gets count - 1 more; an empty one gets count.
+    let ci = s.cols.findIndex((c) => c.length);
+    if (ci < 0) ci = 0;
+    const take = byLength.slice(0, s.cols[ci].length ? count - 1 : count);
+    s.stock = s.stock.filter((id) => !take.includes(id));
+    s.waste = s.waste.filter((id) => !take.includes(id));
+    s.cols[ci].push(...take);
+    g.redraw();
+  }, n);
+  await page.waitForTimeout(50);
+}
+
+describe('Solitario board on phones', () => {
   for (const width of [360, 375, 390, 430]) {
-    for (const columns of [3, 5, 7]) {
+    for (const columns of [3, 5, 6, 7]) {
       for (const theme of ['mesa', 'night'] as const) {
         it(`${width}px, ${columns} columns, ${theme}`, async () => {
           const { page, errors } = await open(width, level(columns), 'normal', theme);
           const a = await check(page);
           await playSome(page);
           const b = await check(page);
+          await stackColumn(page, 3);
+          const c = await check(page);
           await page.close();
           expect(a.problems).toEqual([]);
           expect(b.problems).toEqual([]);
+          expect(c.problems).toEqual([]);
+          expect(c.stacked).toBeGreaterThanOrEqual(2); // a column of 3 face-up cards: 2 covered
           expect(errors).toEqual([]);
           expect(a.columns).toBeLessThanOrEqual(columns);
-          if (columns === 3) expect(a.columns).toBe(3);
-          if (columns === 5 && width >= 375) expect(a.columns).toBe(5);
+          if (columns <= 5) expect(a.columns).toBe(columns);
+          if (width >= 390) expect(a.columns).toBe(width < 400 ? Math.min(columns, 6) : columns);
           expect(a.w).toBeLessThanOrEqual(72); // normal text size
         }, 60_000);
       }
     }
   }
+  it('a tall column of face-up cards closes up above the bottom bar, words still visible (360x640)', async () => {
+    const { page, errors } = await open(360, level(5), 'normal', 'mesa', 640);
+    await stackColumn(page, 7);
+    const a = await check(page);
+    await page.close();
+    expect(a.problems).toEqual([]);
+    expect(a.stacked).toBeGreaterThanOrEqual(6);
+    expect(errors).toEqual([]);
+  }, 60_000);
   for (const width of [360, 430]) {
     for (const theme of ['mesa', 'night'] as const) {
       it(`${width}px, largest text, ${theme}`, async () => {
@@ -213,15 +269,18 @@ describe('Solitario board (mockup v4) on phones', () => {
         const a = await check(page);
         await playSome(page);
         const b = await check(page);
+        await stackColumn(page, 3);
+        const c = await check(page);
         await page.close();
         expect(a.problems).toEqual([]);
         expect(b.problems).toEqual([]);
+        expect(c.problems).toEqual([]);
         expect(errors).toEqual([]);
         expect(a.columns).toBeLessThan(nCols);
       }, 60_000);
     }
   }
-  it('a short phone (360x640) still fits the board above the bottom bar', async () => {
+  it("a short phone (360x640) with 4 face-down cards per column fits above the bottom bar", async () => {
     const { page, errors } = await open(360, { ...level(5), levels: { A1: { columns: 5, down: 4 } } }, 'normal', 'mesa', 640);
     const a = await check(page);
     await page.close();
@@ -230,21 +289,35 @@ describe('Solitario board (mockup v4) on phones', () => {
   }, 60_000);
 });
 
-describe('column offsets and syllables', () => {
-  const tk = { downPeek: 16, stackGap: 6 } as CardTokens;
-  it('face-down strips are 16px; face-up cards full height + 6px when there is room', () => {
-    expect(columnOffsets(2, [20, 20, 20], 88, tk, 1000)).toEqual([0, 16, 32, 32 + 94, 32 + 188]);
+describe('column offsets and word fit', () => {
+  const tk = { downPeek: 16, upStep: 0.6 };
+  it('face-down strips are 16px; a face-up card on another sits card height x 0.6 lower', () => {
+    expect(columnOffsets(2, [20, 20, 20], 88, tk, 1000)).toEqual([0, 16, 32, 32 + 52.8, 32 + 105.6]);
   });
-  it('a tall column squeezes only face-up cards, each keeping its word, and fits the room', () => {
+  it('a covered word that needs more room gets a bigger step for that card only', () => {
+    expect(columnOffsets(0, [20, 60, 20], 88, tk, 1000)).toEqual([0, 52.8, 112.8]);
+  });
+  it('a tall column closes up to fit, never below what keeps each covered word visible', () => {
     const offs = columnOffsets(3, [30, 30, 30, 30, 30, 30], 88, tk, 300);
     expect(offs.slice(0, 3)).toEqual([0, 16, 32]);
     for (let i = 3; i < offs.length - 1; i++) expect(offs[i + 1] - offs[i]).toBeGreaterThanOrEqual(30);
     expect(offs[offs.length - 1] + 88).toBeLessThanOrEqual(300 + 0.5);
+    const tight = columnOffsets(0, [40, 40, 40, 40], 88, tk, 100); // no room: words still win
+    for (let i = 0; i < 3; i++) expect(tight[i + 1] - tight[i]).toBeGreaterThanOrEqual(40);
   });
-  it('Spanish words wrap at syllables', () => {
-    expect(syllabify('zanahoria')).toEqual(['za', 'na', 'ho', 'ria']);
-    expect(softHyphenate('carnicería').split('\u00AD')).toEqual(['car', 'ni', 'ce', 'ría']);
-    expect(softHyphenate('toalla').split('\u00AD')).toEqual(['toa', 'lla']);
-    expect(softHyphenate('abuela').split('\u00AD')).toEqual(['abue', 'la']);
+  // Character widths roughly like the card font: 0.6 x size per letter.
+  const m = (t: string, px: number) => t.length * px * 0.6;
+  const ftk = { wordMax: 16, wordMin: 13, wordFloor: 11 };
+  it('fit order: one line from 16 to 13px; else wrapped at a syllable from 16px, 2 lines; floor 11px', () => {
+    expect(fitSpanish('pera', 40, ftk, m)).toMatchObject({ px: 16, lines: 1, wrap: false });
+    const n = fitSpanish("naranja", 56, ftk, m); // 7 x 13 x 0.6 = 54.6: one line, between 13 and 14px
+    expect(n).toMatchObject({ lines: 1, wrap: false });
+    expect(n.px).toBeGreaterThanOrEqual(13);
+    expect(n.px).toBeLessThan(14);
+    const z = fitSpanish('zanahoria', 50, ftk, m); // too wide at 13px on one line
+    expect(z.wrap).toBe(true);
+    expect(z.lines).toBe(2);
+    expect(z.px).toBeGreaterThanOrEqual(11);
+    expect(fitSpanish('electrodoméstico', 20, ftk, m).misfit).toBe(true);
   });
 });
