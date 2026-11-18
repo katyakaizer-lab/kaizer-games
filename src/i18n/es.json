@@ -154,5 +154,16 @@
   "sol.hint": "Pista",
   "sol.hintShown": "Un buen sitio brilla.",
   "sol.hintNone": "Todavía no hay sitio para esta carta. Prueba el mazo u otra carta.",
-  "sol.finished": "¡Mesa limpia!"
+  "sol.finished": "¡Mesa limpia!",
+  "sol.limitTitle": "Movimientos",
+  "sol.noLimit": "Sin límite",
+  "sol.limitN": "{n} movimientos",
+  "sol.left": "Quedan",
+  "sol.leftLabel": "Quedan {n} de {total} movimientos",
+  "sol.outTitle": "No quedan movimientos",
+  "sol.outHint": "Esta partida se puede ganar dentro del límite. Deshaz algunos movimientos, empieza otra vez la misma partida o sigue jugando sin límite.",
+  "sol.keepGoing": "Seguir sin límite",
+  "sol.keptGoing": "Ahora esta partida no tiene límite.",
+  "sol.retry": "Repetir esta partida",
+  "sol.retried": "Vuelves al principio de esta partida."
 }

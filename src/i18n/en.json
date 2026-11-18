@@ -154,5 +154,16 @@
   "sol.hint": "Pista",
   "sol.hintShown": "A good place is glowing.",
   "sol.hintNone": "Nowhere for this card yet. Try the deck or another card.",
-  "sol.finished": "Table cleared!"
+  "sol.finished": "Table cleared!",
+  "sol.limitTitle": "Moves",
+  "sol.noLimit": "No limit",
+  "sol.limitN": "{n} moves",
+  "sol.left": "Moves left",
+  "sol.leftLabel": "{n} of {total} moves left",
+  "sol.outTitle": "No moves left",
+  "sol.outHint": "This deal can be cleared within the limit. Undo a few moves, try it again from the start, or keep playing without the limit.",
+  "sol.keepGoing": "Keep playing without a limit",
+  "sol.keptGoing": "No limit for this game now.",
+  "sol.retry": "Try this deal again",
+  "sol.retried": "Back to the start of this deal."
 }

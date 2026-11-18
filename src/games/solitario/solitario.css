@@ -1,6 +1,6 @@
 /* Solitario de categorías on the "mesa" (card table) theme. Tokens only. Plain, small word cards. */
-.sol { --card-h: 3.5rem; --peek: 1.3rem; max-width: 60rem; margin: 0 auto; padding: var(--space-2) var(--space-3) var(--space-6); }
-@media (min-width: 560px) { .sol { --card-h: 4.1rem; --peek: 1.5rem; padding-inline: var(--space-4); } }
+.sol { --card-h: 4.6rem; --peek: 1.45rem; --col-w: minmax(0, 1fr); --deck-w: calc((100% - var(--space-2) * 4) / 5); max-width: 60rem; margin: 0 auto; padding: var(--space-2) var(--space-3) var(--space-6); }
+@media (min-width: 560px) { .sol { --card-h: 5.4rem; --peek: 1.6rem; --col-w: 5rem; --deck-w: 5rem; padding-inline: var(--space-4); } .sol-slots, .sol-cols { justify-content: center; } }
 .sol-list, .sol-play { display: grid; gap: var(--space-3); }
 .sol-header, .sol-bar { display: flex; align-items: center; gap: var(--space-1); margin-left: calc(-1 * var(--space-2)); flex-wrap: wrap; }
 .sol-bar__space { flex: 1; }
@@ -30,11 +30,15 @@
   font: inherit; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none;
 }
 div.sol-card { cursor: default; }
-.sol-card__word { font-weight: 700; font-size: 0.72rem; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
+.sol-card__word { font-weight: 700; font-size: 0.8rem; line-height: 1.2; overflow-wrap: anywhere; hyphens: auto; max-width: 100%; }
+/* A partly covered card shows its word on one line; only the fully visible card wraps and shows the translation. */
+.sol-col > .sol-card:not(:last-child) .sol-card__word { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sol-col > .sol-card:not(:last-child) .sol-card__tr { display: none; }
 @media (min-width: 560px) { .sol-card__word { font-size: 0.875rem; } }
-.sol-card__tr { font-size: 0.65rem; line-height: 1.15; opacity: .75; }
+.sol-card__tr { font-size: 0.68rem; line-height: 1.2; opacity: .8; margin-top: 2px; padding-top: 2px; border-top: 1px solid var(--border); max-width: 100%; overflow-wrap: anywhere; }
 /* Category card: a thicker coloured frame and a small tag with how many words it needs. */
-.sol-card.is-cat { border: 3px solid var(--highlight); }
+/* Category card: solid amber with a dark inner frame, clearly not a word card. */
+.sol-card.is-cat { background: var(--highlight); color: var(--on-highlight); border: 2px solid var(--on-highlight); box-shadow: inset 0 0 0 2px var(--highlight), inset 0 0 0 3px var(--on-highlight), var(--shadow); }
 .sol-card.is-cat .sol-card__word { font-family: var(--font-body); }
 /* The tag sits in the bottom corner, so a buried category card still shows its name in the visible strip. */
 .sol-card__tag { position: absolute; right: 3px; bottom: 2px; display: inline-flex; align-items: center; gap: 1px; font-size: 0.6rem; font-weight: 700; line-height: 1; opacity: .85; }
@@ -60,7 +64,7 @@ div.sol-card { cursor: default; }
 }
 .sol-moves__label { font-size: 0.7rem; color: var(--text-soft); font-weight: 700; }
 .sol-moves__n { font-size: 1.5rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.sol-waste, .sol-stock { width: calc((100% - var(--space-2) * 4) / 5); max-width: 5.5rem; flex: none; }
+.sol-waste, .sol-stock { width: var(--deck-w); flex: none; }
 .sol-waste { position: relative; }
 .sol-waste__under { position: absolute; inset: 0; transform: translateX(-12%); opacity: .9; }
 .sol-stock { position: relative; display: block; padding: 0; background: transparent; border: 0; border-radius: 7px; cursor: pointer; }
@@ -103,3 +107,18 @@ div.sol-card { cursor: default; }
 
 @media (prefers-reduced-motion: reduce) { .sol-card.is-wrong, .sol-finish.is-glowing { animation: none; } .sol-card.is-selected { transform: none; } }
 :root[data-motion="reduce"] .sol-card.is-wrong, :root[data-motion="reduce"] .sol-finish.is-glowing { animation: none; }
+
+/* Move limit chooser */
+.sol-limit { border: 2px solid var(--border); border-radius: var(--radius-card); padding: var(--space-2) var(--space-3) var(--space-3); margin: 0; }
+.sol-limit legend { font-weight: 700; padding: 0 var(--space-1); }
+.sol-limit__opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.sol-limit__opt { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--tap-min); padding: 0 var(--space-3); border: 2px solid var(--border); border-radius: var(--radius-pill); cursor: pointer; }
+.sol-limit__radio { accent-color: var(--primary); margin: 0; }
+.sol-limit__opt:has(:checked) { background: var(--secondary); color: var(--on-secondary); border-color: var(--on-secondary); font-weight: 700; }
+.sol-moves__of { font-size: 0.8rem; color: var(--text-soft); font-weight: 400; }
+.sol-moves.is-low { border-color: var(--highlight); }
+.sol-out { display: grid; gap: var(--space-2); }
+/* Stars that pop out when a category is complete */
+.sol-burst { position: absolute; width: 0; height: 0; z-index: 60; pointer-events: none; }
+.sol-burst__star { position: absolute; left: 0; top: 0; color: var(--star); font-size: calc(16px * var(--s, 1)); line-height: 1; animation: sol-pop 900ms ease-out forwards; opacity: 0; }
+@keyframes sol-pop { 0% { transform: translate(-50%, -50%) scale(.3); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(120deg); opacity: 0; } }

@@ -15,7 +15,7 @@ import { recordCelebration } from '../../app/pet-state';
 import { prefersReducedMotion } from '../../app/settings';
 import type { GameContext, GameHandle } from '../../app/router';
 import {
-  LEVELS, canPlace, catName, drawCard, hintFor, isWon, move, newGame, runAt, undo,
+  LEVELS, canPlace, catName, drawCard, hintFor, isWon, move, movesLeft, newGame, outOfMoves, restart, runAt, undo,
   type Category, type GameState, type Level, type SolitarioData, type Source, type Target,
 } from './engine';
 import './solitario.css';
@@ -36,8 +36,36 @@ function addWin(l: Level, moves: number): Record_ {
   return r[l]!;
 }
 const trOf = (x: { en: string; ru: string }) => (getLang() === 'ru' ? x.ru : x.en);
-/** Phones: 5 columns and 5 categories; wider screens: 7 and 6. */
-const layoutFor = (w: number) => (w < 560 ? { columns: 5, categories: 5 } : { columns: 7, categories: 6 });
+/** Phones: 5 columns and 5 categories. Wider screens: as many 5rem columns as fit (6 to 9) and 5 to 7 categories. */
+export function layoutFor(w: number): { columns: number; categories: number } {
+  if (w < 560) return { columns: 5, categories: 5 };
+  const columns = Math.max(6, Math.min(9, Math.floor((w + 8) / 88)));
+  return { columns, categories: columns >= 9 ? 7 : columns >= 7 ? 6 : 5 };
+}
+/** Move limits a player can choose (null = no limit). Deals are checked to be winnable within the limit. */
+export const LIMITS: (number | null)[] = [null, 80, 65, 50];
+const getLimit = (): number | null => { const v = store.get<number | null>('sol.limit', null); return LIMITS.includes(v) ? v : null; };
+
+/** Little stars that pop out around an element (a completed category). Skipped with reduced motion. */
+function starBurst(at: HTMLElement): void {
+  if (prefersReducedMotion()) return;
+  const r = at.getBoundingClientRect();
+  const layer = h('div', { class: 'sol-burst', 'aria-hidden': 'true' });
+  layer.style.left = `${r.left + r.width / 2 + window.scrollX}px`;
+  layer.style.top = `${r.top + r.height / 2 + window.scrollY}px`;
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2 + Math.random() * 0.4;
+    const d = 38 + Math.random() * 34;
+    const star = h('span', { class: 'sol-burst__star' }, '★');
+    star.style.setProperty('--dx', `${Math.cos(a) * d}px`);
+    star.style.setProperty('--dy', `${Math.sin(a) * d}px`);
+    star.style.setProperty('--s', String(0.7 + Math.random() * 0.8));
+    star.style.animationDelay = `${Math.random() * 90}ms`;
+    layer.append(star);
+  }
+  document.body.append(layer);
+  setTimeout(() => layer.remove(), 1100);
+}
 
 export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
   const html = document.documentElement;
@@ -63,6 +91,14 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
         h('h1', { tabindex: '-1', class: 'sol-title', lang: 'es' }, 'Solitario de categorías')),
       h('p', { class: 'sol-soft' }, t('sol.intro')),
       h('p', { class: 'sol-soft sol-small' }, t('sol.rules')),
+      h('fieldset', { class: 'sol-limit' },
+        h('legend', null, t('sol.limitTitle')),
+        h('div', { class: 'sol-limit__opts' }, LIMITS.map((v) => {
+          const id = `sol-limit-${v ?? 'none'}`;
+          const input = h('input', { type: 'radio', name: 'sol-limit', id, checked: getLimit() === v, class: 'sol-limit__radio' }) as HTMLInputElement;
+          input.addEventListener('change', () => store.set('sol.limit', v));
+          return h('label', { class: 'sol-limit__opt', for: id }, input, h('span', null, v === null ? t('sol.noLimit') : t('sol.limitN', { n: v })));
+        }))),
       h('div', { class: 'sol-levels' }, LEVELS_WITH_CARDS.map((l) => {
         const r = rec[l];
         return h('button', { type: 'button', class: 'sol-level', onClick: () => ctx.go(['play', l]) },
@@ -76,7 +112,9 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
   function playView(level: Level, seed?: number): HTMLElement {
     const pool = poolFor(level);
     const lay = layoutFor(content.clientWidth || window.innerWidth);
-    let s: GameState = newGame(pool, { ...lay, seed });
+    let s: GameState = newGame(pool, { ...lay, seed, limit: getLimit() });
+    let burstSlot: number | null = null;
+    const deal = () => { s = newGame(pool, { ...lay, limit: getLimit() }); select(null); announce(t('sol.newDeal')); draw(); };
     let sel: Source | null = null;
     let missesOnSel = 0;
     let hint: Target | null = null;
@@ -90,13 +128,14 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     const select = (src: Source | null) => { sel = src; missesOnSel = 0; hint = null; };
 
     function tryMove(src: Source, tg: Target) {
+      if (outOfMoves(s)) { announce(t('sol.outTitle')); return; }
       const run = runAt(s, src);
       if (!run) return;
       const doneBefore = s.done.length;
       if (move(s, src, tg)) {
         select(null);
         const first = s.cards[run[0]];
-        if (s.done.length > doneBefore) { playMelody(); announce(t('sol.complete', { cat: catName(s, s.done[s.done.length - 1]) })); }
+        if (s.done.length > doneBefore) { playMelody(); burstSlot = tg.kind === 'slot' ? tg.index : null; announce(t('sol.complete', { cat: catName(s, s.done[s.done.length - 1]) })); }
         else {
           playNote(s.moves % 10);
           announce(tg.kind === 'slot' ? (first.kind === 'cat' ? t('sol.opened', { cat: first.item.es }) : t('sol.toSlot', { word: first.item.es, cat: catName(s, first.cat) }))
@@ -179,11 +218,15 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
           h('span', { class: 'sol-bar__space' }),
           Chip({ label: t('sol.translation'), pressed: showTr, onToggle: (on) => { showTr = on; store.set('sol.showTr', on); draw(); } }),
           Button({ label: t('sol.undo'), icon: 'undo', iconOnly: true, variant: 'quiet', disabled: !s.history.length, onClick: () => { if (undo(s)) { select(null); announce(t('sol.undone')); draw(); } } }),
-          Button({ label: t('sol.newGame'), icon: 'refresh', iconOnly: true, variant: 'quiet', onClick: () => { s = newGame(pool, lay); select(null); announce(t('sol.newDeal')); draw(); } })),
+          Button({ label: t('sol.newGame'), icon: 'refresh', iconOnly: true, variant: 'quiet', onClick: deal })),
         h('h1', { tabindex: '-1', class: 'sol-title k-sr', lang: 'es' }, 'Solitario de categorías'),
         h('div', { class: 'sol-head' },
-          h('div', { class: 'sol-moves', role: 'status', 'aria-label': t('sol.movesLabel', { n: s.moves }) },
-            h('span', { class: 'sol-moves__label' }, t('sol.moves')), h('span', { class: 'sol-moves__n' }, String(s.moves))),
+          s.limit === null
+            ? h('div', { class: 'sol-moves', role: 'status', 'aria-label': t('sol.movesLabel', { n: s.moves }) },
+              h('span', { class: 'sol-moves__label' }, t('sol.moves')), h('span', { class: 'sol-moves__n' }, String(s.moves)))
+            : h('div', { class: `sol-moves is-limit${movesLeft(s)! <= 5 ? ' is-low' : ''}`, role: 'status', 'aria-label': t('sol.leftLabel', { n: movesLeft(s)!, total: s.limit }) },
+              h('span', { class: 'sol-moves__label' }, t('sol.left')),
+              h('span', { class: 'sol-moves__n' }, String(movesLeft(s)), h('span', { class: 'sol-moves__of' }, ` / ${s.limit}`))),
           h('span', { class: 'sol-bar__space' }),
           h('div', { class: 'sol-waste', 'aria-label': t('sol.waste') },
             wastePrev ? h('div', { class: 'sol-card sol-waste__under', 'aria-hidden': 'true' }) : null,
@@ -192,18 +235,31 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
             type: 'button', class: `sol-stock${s.stock.length ? '' : ' is-empty'}`, 'data-stock': 'true', 'data-focus-key': 'stock',
             'aria-label': s.stock.length ? t('sol.stock', { n: s.stock.length }) : s.waste.length ? t('sol.recycle') : t('sol.deckEmpty'),
           }, s.stock.length ? h('span', { class: 'sol-back' }, h('span', { class: 'sol-stock__n' }, String(s.stock.length))) : h('span', { class: 'sol-stock__again' }, icon('refresh')))),
-        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations'), style: { gridTemplateColumns: `repeat(${s.slots.length}, minmax(0, 1fr))` } }, slots),
-        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns'), style: { gridTemplateColumns: `repeat(${s.cols.length}, minmax(0, 1fr))` } }, cols),
+        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations'), style: { gridTemplateColumns: `repeat(${s.slots.length}, var(--col-w))` } }, slots),
+        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns'), style: { gridTemplateColumns: `repeat(${s.cols.length}, var(--col-w))` } }, cols),
+        outOfMoves(s) ? h('div', { class: 'sol-out' },
+          FeedbackBanner({ kind: 'retry', title: t('sol.outTitle'), hint: t('sol.outHint') }),
+          h('div', { class: 'sol-actions' },
+            Button({ label: t('sol.undo'), icon: 'undo', variant: 'secondary', onClick: () => { undo(s); select(null); draw(); } }),
+            Button({ label: t('sol.keepGoing'), icon: 'play', variant: 'secondary', onClick: () => { s.limit = null; announce(t('sol.keptGoing')); draw(); } }),
+            Button({ label: t('sol.retry'), icon: 'refresh', variant: 'outline', onClick: () => { restart(s); select(null); announce(t('sol.retried')); draw(); } }),
+            Button({ label: t('sol.newGame'), icon: 'star', variant: 'outline', onClick: deal }))) : null,
         h('div', { class: 'sol-foot' },
           sel && missesOnSel >= 2 ? Button({ label: t('sol.hint'), icon: 'bulb', variant: 'secondary', onClick: () => { hint = sel ? hintFor(s, sel) : null; s.hintsUsed++; announce(hint ? t('sol.hintShown') : t('sol.hintNone')); draw(); } }) : null,
           status));
       if (focusKey) el.querySelector<HTMLElement>(`[data-focus-key="${focusKey}"]`)?.focus({ preventScroll: true });
+      if (burstSlot !== null) {
+        const at = el.querySelectorAll<HTMLElement>('.sol-slots > *')[burstSlot];
+        burstSlot = null;
+        if (at) starBurst(at);
+      }
     }
 
     function onClick(e: MouseEvent) {
       if (suppressClick) { suppressClick = false; return; }
       const tEl = e.target as HTMLElement;
       if (tEl.closest('[data-stock]')) {
+        if (outOfMoves(s)) { announce(t('sol.outTitle')); return; }
         const r = drawCard(s);
         select(null);
         announce(r === 'drawn' ? t('sol.drew', { word: word(s.waste[s.waste.length - 1]) }) : r === 'recycled' ? t('sol.recycled') : '');

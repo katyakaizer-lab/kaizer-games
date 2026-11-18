@@ -29,16 +29,22 @@ export interface GameState {
   slots: Slot[];
   done: string[];
   moves: number;
+  /** move limit for this game (null = no limit); every deal can be won within it */
+  limit: number | null;
+  /** how many moves the solver needed (for the record; a person may need more or fewer) */
+  par: number;
   misses: number;
   hintsUsed: number;
   history: string[];
+  /** the deal as it started, for "try this deal again" */
+  start: string;
 }
 
 export type Source = { kind: 'waste' } | { kind: 'col'; col: number; index: number };
 export type Target = { kind: 'slot'; index: number } | { kind: 'col'; col: number };
 export type Step = { kind: 'draw' } | { kind: 'move'; src: Source; dst: Target };
 
-export interface DealOptions { seed?: number; columns?: number; categories?: number; rows?: number }
+export interface DealOptions { seed?: number; columns?: number; categories?: number; rows?: number; limit?: number | null }
 
 /* ---------- seeded randomness ---------- */
 function rng(seed: number): () => number {
@@ -68,7 +74,7 @@ export function pickCategories(pool: Category[], seed: number, n: number): Categ
 }
 
 /** One random deal (not yet checked). */
-export function dealOnce(pool: Category[], o: Required<DealOptions>): GameState {
+export function dealOnce(pool: Category[], o: Omit<Required<DealOptions>, 'limit'>): GameState {
   const r = rng(o.seed);
   const cats = pickCategories(pool, o.seed, o.categories);
   const cards: Record<string, Card> = {};
@@ -86,24 +92,49 @@ export function dealOnce(pool: Category[], o: Required<DealOptions>): GameState 
   return {
     cats, cards, size, stock: deck, waste: [], cols,
     slots: cats.map(() => ({ cat: null, words: [] })),
-    done: [], moves: 0, misses: 0, hintsUsed: 0, history: [],
+    done: [], moves: 0, limit: null, par: 0, misses: 0, hintsUsed: 0, history: [], start: '',
   };
 }
 
-/** A deal that the solver can win (tries further seeds if needed). */
+/**
+ * A deal the solver can win, within the move limit if there is one (tries further seeds if needed).
+ * If no deal fits a very tight limit, the shortest winnable deal found is used and the limit is raised to it.
+ */
 export function newGame(pool: Category[], o: DealOptions = {}): GameState {
-  const base: Required<DealOptions> = {
+  const base = {
     seed: o.seed ?? Math.floor(Math.random() * 2 ** 31),
     columns: o.columns ?? 5,
     categories: o.categories ?? 5,
     rows: o.rows ?? 4,
   };
-  for (let k = 0; k < 200; k++) {
+  const limit = o.limit ?? null;
+  let shortest: { s: GameState; n: number } | null = null;
+  for (let k = 0; k < 400; k++) {
     const s = dealOnce(pool, { ...base, seed: base.seed + k * 7919 });
-    if (solve(s)) return s;
+    const steps = solve(s);
+    if (!steps) continue;
+    if (limit === null || steps.length <= limit) return finishDeal(s, limit, steps.length);
+    if (!shortest || steps.length < shortest.n) shortest = { s, n: steps.length };
   }
-  return dealOnce(pool, base); // not reached in practice (tested)
+  if (shortest) return finishDeal(shortest.s, Math.max(limit ?? 0, shortest.n), shortest.n);
+  return finishDeal(dealOnce(pool, base), null, 0); // not reached in practice (tested)
 }
+
+function finishDeal(s: GameState, limit: number | null, par: number): GameState {
+  s.limit = limit;
+  s.par = par;
+  s.start = snapshot(s);
+  return s;
+}
+
+/** Back to the start of this deal (moves to 0, history cleared). */
+export function restart(s: GameState): void {
+  Object.assign(s, JSON.parse(s.start));
+  s.history = [];
+}
+
+export const movesLeft = (s: GameState): number | null => (s.limit === null ? null : Math.max(0, s.limit - s.moves));
+export const outOfMoves = (s: GameState): boolean => s.limit !== null && s.moves >= s.limit && !isWon(s);
 
 /* ---------- reading the table ---------- */
 

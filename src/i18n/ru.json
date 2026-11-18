@@ -53,5 +53,8 @@
   "sol.translation": "Перевод",
   "sol.finished": "Стол чист!",
   "sol.newGame": "Новая игра",
-  "sol.levelsBack": "Уровни"
+  "sol.levelsBack": "Уровни",
+  "sol.limitTitle": "Ходы",
+  "sol.noLimit": "Без ограничения",
+  "sol.left": "Осталось"
 }

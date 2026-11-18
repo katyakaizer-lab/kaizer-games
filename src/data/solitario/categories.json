@@ -1,40 +1,40 @@
 {
- "_note": "Solitario de categorías, written by Claude. Concrete topics only, by level. A game deals some categories of one level; each category is also a card. Spanish from Spain (plátano, patata, nevera). Every word appears in only one category of its level. \"avoid\" (optional) lists categories never dealt together because a word could fit both. All reviewed:false until Katya checks them.",
+ "_note": "Solitario de categorías, written by Claude. Concrete topics only, by level. A game deals some categories of one level; each category is also a card. Words and names without articles (Katya, 2026-11-18). Spanish from Spain (plátano, patata, nevera). Every word appears in only one category of its level. \"avoid\" (optional) lists categories never dealt together because a word could fit both. All reviewed:false until Katya checks them.",
  "categories": [
   {
    "id": "flores",
    "level": "A1",
-   "name_es": "Las flores",
+   "name_es": "Flores",
    "en": "Flowers",
    "ru": "Цветы",
    "items": [
     {
-     "es": "la rosa",
+     "es": "rosa",
      "en": "rose",
      "ru": "роза"
     },
     {
-     "es": "el tulipán",
+     "es": "tulipán",
      "en": "tulip",
      "ru": "тюльпан"
     },
     {
-     "es": "la margarita",
+     "es": "margarita",
      "en": "daisy",
      "ru": "ромашка"
     },
     {
-     "es": "el girasol",
+     "es": "girasol",
      "en": "sunflower",
      "ru": "подсолнух"
     },
     {
-     "es": "el clavel",
+     "es": "clavel",
      "en": "carnation",
      "ru": "гвоздика"
     },
     {
-     "es": "el lirio",
+     "es": "lirio",
      "en": "lily",
      "ru": "лилия"
     }
@@ -44,37 +44,37 @@
   {
    "id": "cocina",
    "level": "A1",
-   "name_es": "La cocina",
+   "name_es": "Cocina",
    "en": "The kitchen",
    "ru": "Кухня",
    "items": [
     {
-     "es": "la olla",
+     "es": "olla",
      "en": "pot",
      "ru": "кастрюля"
     },
     {
-     "es": "la sartén",
+     "es": "sartén",
      "en": "frying pan",
      "ru": "сковорода"
     },
     {
-     "es": "el horno",
+     "es": "horno",
      "en": "oven",
      "ru": "духовка"
     },
     {
-     "es": "la nevera",
+     "es": "nevera",
      "en": "fridge",
      "ru": "холодильник"
     },
     {
-     "es": "la cuchara",
+     "es": "cuchara",
      "en": "spoon",
      "ru": "ложка"
     },
     {
-     "es": "el tenedor",
+     "es": "tenedor",
      "en": "fork",
      "ru": "вилка"
     }
@@ -84,37 +84,37 @@
   {
    "id": "juguetes",
    "level": "A1",
-   "name_es": "Los juguetes",
+   "name_es": "Juguetes",
    "en": "Toys",
    "ru": "Игрушки",
    "items": [
     {
-     "es": "la pelota",
+     "es": "pelota",
      "en": "ball",
      "ru": "мяч"
     },
     {
-     "es": "la muñeca",
+     "es": "muñeca",
      "en": "doll",
      "ru": "кукла"
     },
     {
-     "es": "el peluche",
+     "es": "peluche",
      "en": "soft toy",
      "ru": "мягкая игрушка"
     },
     {
-     "es": "el yoyó",
+     "es": "yoyó",
      "en": "yo-yo",
      "ru": "йо-йо"
     },
     {
-     "es": "la cometa",
+     "es": "cometa",
      "en": "kite",
      "ru": "воздушный змей"
     },
     {
-     "es": "el puzle",
+     "es": "puzle",
      "en": "jigsaw",
      "ru": "пазл"
     }
@@ -124,37 +124,37 @@
   {
    "id": "vehiculos",
    "level": "A1",
-   "name_es": "Los vehículos",
+   "name_es": "Vehículos",
    "en": "Vehicles",
    "ru": "Транспорт",
    "items": [
     {
-     "es": "el coche",
+     "es": "coche",
      "en": "car",
      "ru": "машина"
     },
     {
-     "es": "el autobús",
+     "es": "autobús",
      "en": "bus",
      "ru": "автобус"
     },
     {
-     "es": "la moto",
+     "es": "moto",
      "en": "motorbike",
      "ru": "мотоцикл"
     },
     {
-     "es": "el tren",
+     "es": "tren",
      "en": "train",
      "ru": "поезд"
     },
     {
-     "es": "el avión",
+     "es": "avión",
      "en": "plane",
      "ru": "самолёт"
     },
     {
-     "es": "el barco",
+     "es": "barco",
      "en": "boat",
      "ru": "корабль"
     }
@@ -164,37 +164,37 @@
   {
    "id": "frutas",
    "level": "A1",
-   "name_es": "Las frutas",
+   "name_es": "Frutas",
    "en": "Fruit",
    "ru": "Фрукты",
    "items": [
     {
-     "es": "la manzana",
+     "es": "manzana",
      "en": "apple",
      "ru": "яблоко"
     },
     {
-     "es": "el plátano",
+     "es": "plátano",
      "en": "banana",
      "ru": "банан"
     },
     {
-     "es": "la fresa",
+     "es": "fresa",
      "en": "strawberry",
      "ru": "клубника"
     },
     {
-     "es": "la uva",
+     "es": "uva",
      "en": "grape",
      "ru": "виноград"
     },
     {
-     "es": "la pera",
+     "es": "pera",
      "en": "pear",
      "ru": "груша"
     },
     {
-     "es": "la naranja",
+     "es": "naranja",
      "en": "orange",
      "ru": "апельсин"
     }
@@ -204,37 +204,37 @@
   {
    "id": "ropa",
    "level": "A1",
-   "name_es": "La ropa",
+   "name_es": "Ropa",
    "en": "Clothes",
    "ru": "Одежда",
    "items": [
     {
-     "es": "la camisa",
+     "es": "camisa",
      "en": "shirt",
      "ru": "рубашка"
     },
     {
-     "es": "los pantalones",
+     "es": "pantalones",
      "en": "trousers",
      "ru": "брюки"
     },
     {
-     "es": "la falda",
+     "es": "falda",
      "en": "skirt",
      "ru": "юбка"
     },
     {
-     "es": "el vestido",
+     "es": "vestido",
      "en": "dress",
      "ru": "платье"
     },
     {
-     "es": "el abrigo",
+     "es": "abrigo",
      "en": "coat",
      "ru": "пальто"
     },
     {
-     "es": "los calcetines",
+     "es": "calcetines",
      "en": "socks",
      "ru": "носки"
     }
@@ -244,37 +244,37 @@
   {
    "id": "granja",
    "level": "A1",
-   "name_es": "La granja",
+   "name_es": "Granja",
    "en": "The farm",
    "ru": "Ферма",
    "items": [
     {
-     "es": "la vaca",
+     "es": "vaca",
      "en": "cow",
      "ru": "корова"
     },
     {
-     "es": "el cerdo",
+     "es": "cerdo",
      "en": "pig",
      "ru": "свинья"
     },
     {
-     "es": "la oveja",
+     "es": "oveja",
      "en": "sheep",
      "ru": "овца"
     },
     {
-     "es": "la gallina",
+     "es": "gallina",
      "en": "hen",
      "ru": "курица"
     },
     {
-     "es": "el caballo",
+     "es": "caballo",
      "en": "horse",
      "ru": "лошадь"
     },
     {
-     "es": "el pato",
+     "es": "pato",
      "en": "duck",
      "ru": "утка"
     }
@@ -284,37 +284,37 @@
   {
    "id": "cuerpo",
    "level": "A1",
-   "name_es": "El cuerpo",
+   "name_es": "Cuerpo",
    "en": "The body",
    "ru": "Тело",
    "items": [
     {
-     "es": "la mano",
+     "es": "mano",
      "en": "hand",
      "ru": "рука (кисть)"
     },
     {
-     "es": "el pie",
+     "es": "pie",
      "en": "foot",
      "ru": "ступня"
     },
     {
-     "es": "la cabeza",
+     "es": "cabeza",
      "en": "head",
      "ru": "голова"
     },
     {
-     "es": "el brazo",
+     "es": "brazo",
      "en": "arm",
      "ru": "рука"
     },
     {
-     "es": "la pierna",
+     "es": "pierna",
      "en": "leg",
      "ru": "нога"
     },
     {
-     "es": "la boca",
+     "es": "boca",
      "en": "mouth",
      "ru": "рот"
     }
@@ -324,37 +324,37 @@
   {
    "id": "familia",
    "level": "A1",
-   "name_es": "La familia",
+   "name_es": "Familia",
    "en": "The family",
    "ru": "Семья",
    "items": [
     {
-     "es": "la madre",
+     "es": "madre",
      "en": "mother",
      "ru": "мама"
     },
     {
-     "es": "el padre",
+     "es": "padre",
      "en": "father",
      "ru": "папа"
     },
     {
-     "es": "el hermano",
+     "es": "hermano",
      "en": "brother",
      "ru": "брат"
     },
     {
-     "es": "la abuela",
+     "es": "abuela",
      "en": "grandmother",
      "ru": "бабушка"
     },
     {
-     "es": "el tío",
+     "es": "tío",
      "en": "uncle",
      "ru": "дядя"
     },
     {
-     "es": "la prima",
+     "es": "prima",
      "en": "cousin (female)",
      "ru": "двоюродная сестра"
     }
@@ -364,37 +364,37 @@
   {
    "id": "colegio",
    "level": "A1",
-   "name_es": "El colegio",
+   "name_es": "Colegio",
    "en": "School",
    "ru": "Школа",
    "items": [
     {
-     "es": "el lápiz",
+     "es": "lápiz",
      "en": "pencil",
      "ru": "карандаш"
     },
     {
-     "es": "la goma",
+     "es": "goma",
      "en": "rubber",
      "ru": "ластик"
     },
     {
-     "es": "la mochila",
+     "es": "mochila",
      "en": "school bag",
      "ru": "рюкзак"
     },
     {
-     "es": "el cuaderno",
+     "es": "cuaderno",
      "en": "exercise book",
      "ru": "тетрадь"
     },
     {
-     "es": "la regla",
+     "es": "regla",
      "en": "ruler",
      "ru": "линейка"
     },
     {
-     "es": "la pizarra",
+     "es": "pizarra",
      "en": "board",
      "ru": "доска"
     }
@@ -404,37 +404,37 @@
   {
    "id": "bano",
    "level": "A2",
-   "name_es": "El baño",
+   "name_es": "Baño",
    "en": "The bathroom",
    "ru": "Ванная",
    "items": [
     {
-     "es": "la ducha",
+     "es": "ducha",
      "en": "shower",
      "ru": "душ"
     },
     {
-     "es": "la bañera",
+     "es": "bañera",
      "en": "bathtub",
      "ru": "ванна"
     },
     {
-     "es": "el jabón",
+     "es": "jabón",
      "en": "soap",
      "ru": "мыло"
     },
     {
-     "es": "la toalla",
+     "es": "toalla",
      "en": "towel",
      "ru": "полотенце"
     },
     {
-     "es": "el champú",
+     "es": "champú",
      "en": "shampoo",
      "ru": "шампунь"
     },
     {
-     "es": "el espejo",
+     "es": "espejo",
      "en": "mirror",
      "ru": "зеркало"
     }
@@ -444,37 +444,37 @@
   {
    "id": "profesiones",
    "level": "A2",
-   "name_es": "Las profesiones",
+   "name_es": "Profesiones",
    "en": "Jobs",
    "ru": "Профессии",
    "items": [
     {
-     "es": "el médico",
+     "es": "médico",
      "en": "doctor",
      "ru": "врач"
     },
     {
-     "es": "la profesora",
+     "es": "profesora",
      "en": "teacher",
      "ru": "учительница"
     },
     {
-     "es": "el bombero",
+     "es": "bombero",
      "en": "firefighter",
      "ru": "пожарный"
     },
     {
-     "es": "la cocinera",
+     "es": "cocinera",
      "en": "cook",
      "ru": "повар"
     },
     {
-     "es": "el cartero",
+     "es": "cartero",
      "en": "postman",
      "ru": "почтальон"
     },
     {
-     "es": "la policía",
+     "es": "policía",
      "en": "police officer",
      "ru": "полицейская"
     }
@@ -484,37 +484,37 @@
   {
    "id": "deportes",
    "level": "A2",
-   "name_es": "Los deportes",
+   "name_es": "Deportes",
    "en": "Sports",
    "ru": "Виды спорта",
    "items": [
     {
-     "es": "el fútbol",
+     "es": "fútbol",
      "en": "football",
      "ru": "футбол"
     },
     {
-     "es": "el tenis",
+     "es": "tenis",
      "en": "tennis",
      "ru": "теннис"
     },
     {
-     "es": "la natación",
+     "es": "natación",
      "en": "swimming",
      "ru": "плавание"
     },
     {
-     "es": "el baloncesto",
+     "es": "baloncesto",
      "en": "basketball",
      "ru": "баскетбол"
     },
     {
-     "es": "el ciclismo",
+     "es": "ciclismo",
      "en": "cycling",
      "ru": "велоспорт"
     },
     {
-     "es": "el esquí",
+     "es": "esquí",
      "en": "skiing",
      "ru": "лыжи"
     }
@@ -524,37 +524,37 @@
   {
    "id": "instrumentos",
    "level": "A2",
-   "name_es": "Los instrumentos",
+   "name_es": "Instrumentos",
    "en": "Musical instruments",
    "ru": "Музыкальные инструменты",
    "items": [
     {
-     "es": "la guitarra",
+     "es": "guitarra",
      "en": "guitar",
      "ru": "гитара"
     },
     {
-     "es": "el piano",
+     "es": "piano",
      "en": "piano",
      "ru": "пианино"
     },
     {
-     "es": "la flauta",
+     "es": "flauta",
      "en": "flute",
      "ru": "флейта"
     },
     {
-     "es": "el violín",
+     "es": "violín",
      "en": "violin",
      "ru": "скрипка"
     },
     {
-     "es": "la trompeta",
+     "es": "trompeta",
      "en": "trumpet",
      "ru": "труба"
     },
     {
-     "es": "el tambor",
+     "es": "tambor",
      "en": "drum",
      "ru": "барабан"
     }
@@ -564,37 +564,37 @@
   {
    "id": "verduras",
    "level": "A2",
-   "name_es": "Las verduras",
+   "name_es": "Verduras",
    "en": "Vegetables",
    "ru": "Овощи",
    "items": [
     {
-     "es": "la zanahoria",
+     "es": "zanahoria",
      "en": "carrot",
      "ru": "морковь"
     },
     {
-     "es": "la lechuga",
+     "es": "lechuga",
      "en": "lettuce",
      "ru": "салат-латук"
     },
     {
-     "es": "la cebolla",
+     "es": "cebolla",
      "en": "onion",
      "ru": "лук"
     },
     {
-     "es": "el pepino",
+     "es": "pepino",
      "en": "cucumber",
      "ru": "огурец"
     },
     {
-     "es": "el pimiento",
+     "es": "pimiento",
      "en": "pepper",
      "ru": "перец"
     },
     {
-     "es": "la patata",
+     "es": "patata",
      "en": "potato",
      "ru": "картофель"
     }
@@ -604,37 +604,37 @@
   {
    "id": "salvajes",
    "level": "A2",
-   "name_es": "Los animales salvajes",
+   "name_es": "Animales salvajes",
    "en": "Wild animals",
    "ru": "Дикие животные",
    "items": [
     {
-     "es": "el león",
+     "es": "león",
      "en": "lion",
      "ru": "лев"
     },
     {
-     "es": "el tigre",
+     "es": "tigre",
      "en": "tiger",
      "ru": "тигр"
     },
     {
-     "es": "la jirafa",
+     "es": "jirafa",
      "en": "giraffe",
      "ru": "жираф"
     },
     {
-     "es": "el elefante",
+     "es": "elefante",
      "en": "elephant",
      "ru": "слон"
     },
     {
-     "es": "el mono",
+     "es": "mono",
      "en": "monkey",
      "ru": "обезьяна"
     },
     {
-     "es": "la cebra",
+     "es": "cebra",
      "en": "zebra",
      "ru": "зебра"
     }
@@ -644,37 +644,37 @@
   {
    "id": "tiempo",
    "level": "A2",
-   "name_es": "El tiempo",
+   "name_es": "Tiempo",
    "en": "The weather",
    "ru": "Погода",
    "items": [
     {
-     "es": "la lluvia",
+     "es": "lluvia",
      "en": "rain",
      "ru": "дождь"
     },
     {
-     "es": "la nieve",
+     "es": "nieve",
      "en": "snow",
      "ru": "снег"
     },
     {
-     "es": "el viento",
+     "es": "viento",
      "en": "wind",
      "ru": "ветер"
     },
     {
-     "es": "la niebla",
+     "es": "niebla",
      "en": "fog",
      "ru": "туман"
     },
     {
-     "es": "el sol",
+     "es": "sol",
      "en": "sun",
      "ru": "солнце"
     },
     {
-     "es": "la tormenta",
+     "es": "tormenta",
      "en": "storm",
      "ru": "гроза"
     }
@@ -684,37 +684,37 @@
   {
    "id": "tiendas",
    "level": "A2",
-   "name_es": "Las tiendas",
+   "name_es": "Tiendas",
    "en": "Shops",
    "ru": "Магазины",
    "items": [
     {
-     "es": "la panadería",
+     "es": "panadería",
      "en": "bakery",
      "ru": "булочная"
     },
     {
-     "es": "la farmacia",
+     "es": "farmacia",
      "en": "pharmacy",
      "ru": "аптека"
     },
     {
-     "es": "la librería",
+     "es": "librería",
      "en": "bookshop",
      "ru": "книжный магазин"
     },
     {
-     "es": "la carnicería",
+     "es": "carnicería",
      "en": "butcher's",
      "ru": "мясная лавка"
     },
     {
-     "es": "la frutería",
+     "es": "frutería",
      "en": "greengrocer's",
      "ru": "фруктовая лавка"
     },
     {
-     "es": "la floristería",
+     "es": "floristería",
      "en": "florist's",
      "ru": "цветочный магазин"
     }
@@ -724,37 +724,37 @@
   {
    "id": "herramientas",
    "level": "B1",
-   "name_es": "Las herramientas",
+   "name_es": "Herramientas",
    "en": "Tools",
    "ru": "Инструменты",
    "items": [
     {
-     "es": "el martillo",
+     "es": "martillo",
      "en": "hammer",
      "ru": "молоток"
     },
     {
-     "es": "el destornillador",
+     "es": "destornillador",
      "en": "screwdriver",
      "ru": "отвёртка"
     },
     {
-     "es": "la sierra",
+     "es": "sierra",
      "en": "saw",
      "ru": "пила"
     },
     {
-     "es": "el taladro",
+     "es": "taladro",
      "en": "drill",
      "ru": "дрель"
     },
     {
-     "es": "los alicates",
+     "es": "alicates",
      "en": "pliers",
      "ru": "плоскогубцы"
     },
     {
-     "es": "la llave inglesa",
+     "es": "llave inglesa",
      "en": "spanner",
      "ru": "разводной ключ"
     }
@@ -764,37 +764,37 @@
   {
    "id": "muebles",
    "level": "B1",
-   "name_es": "Los muebles",
+   "name_es": "Muebles",
    "en": "Furniture",
    "ru": "Мебель",
    "items": [
     {
-     "es": "el sofá",
+     "es": "sofá",
      "en": "sofa",
      "ru": "диван"
     },
     {
-     "es": "la estantería",
+     "es": "estantería",
      "en": "bookcase",
      "ru": "стеллаж"
     },
     {
-     "es": "el armario",
+     "es": "armario",
      "en": "wardrobe",
      "ru": "шкаф"
     },
     {
-     "es": "la cómoda",
+     "es": "cómoda",
      "en": "chest of drawers",
      "ru": "комод"
     },
     {
-     "es": "el escritorio",
+     "es": "escritorio",
      "en": "desk",
      "ru": "письменный стол"
     },
     {
-     "es": "la mesilla",
+     "es": "mesilla",
      "en": "bedside table",
      "ru": "тумбочка"
     }
@@ -809,32 +809,32 @@
    "ru": "В больнице",
    "items": [
     {
-     "es": "la camilla",
+     "es": "camilla",
      "en": "stretcher",
      "ru": "носилки"
     },
     {
-     "es": "la jeringa",
+     "es": "jeringa",
      "en": "syringe",
      "ru": "шприц"
     },
     {
-     "es": "la venda",
+     "es": "venda",
      "en": "bandage",
      "ru": "бинт"
     },
     {
-     "es": "el termómetro",
+     "es": "termómetro",
      "en": "thermometer",
      "ru": "градусник"
     },
     {
-     "es": "la receta",
+     "es": "receta",
      "en": "prescription",
      "ru": "рецепт"
     },
     {
-     "es": "la ambulancia",
+     "es": "ambulancia",
      "en": "ambulance",
      "ru": "скорая помощь"
     }
@@ -844,37 +844,37 @@
   {
    "id": "joyas",
    "level": "B1",
-   "name_es": "Las joyas",
+   "name_es": "Joyas",
    "en": "Jewellery",
    "ru": "Украшения",
    "items": [
     {
-     "es": "el anillo",
+     "es": "anillo",
      "en": "ring",
      "ru": "кольцо"
     },
     {
-     "es": "el collar",
+     "es": "collar",
      "en": "necklace",
      "ru": "ожерелье"
     },
     {
-     "es": "la pulsera",
+     "es": "pulsera",
      "en": "bracelet",
      "ru": "браслет"
     },
     {
-     "es": "los pendientes",
+     "es": "pendientes",
      "en": "earrings",
      "ru": "серьги"
     },
     {
-     "es": "el broche",
+     "es": "broche",
      "en": "brooch",
      "ru": "брошь"
     },
     {
-     "es": "la cadena",
+     "es": "cadena",
      "en": "chain",
      "ru": "цепочка"
     }
@@ -884,37 +884,37 @@
   {
    "id": "aeropuerto",
    "level": "B1",
-   "name_es": "El aeropuerto",
+   "name_es": "Aeropuerto",
    "en": "The airport",
    "ru": "Аэропорт",
    "items": [
     {
-     "es": "el pasaporte",
+     "es": "pasaporte",
      "en": "passport",
      "ru": "паспорт"
     },
     {
-     "es": "la maleta",
+     "es": "maleta",
      "en": "suitcase",
      "ru": "чемодан"
     },
     {
-     "es": "la aduana",
+     "es": "aduana",
      "en": "customs",
      "ru": "таможня"
     },
     {
-     "es": "la terminal",
+     "es": "terminal",
      "en": "terminal",
      "ru": "терминал"
     },
     {
-     "es": "el equipaje",
+     "es": "equipaje",
      "en": "luggage",
      "ru": "багаж"
     },
     {
-     "es": "la azafata",
+     "es": "azafata",
      "en": "flight attendant",
      "ru": "стюардесса"
     }
@@ -924,37 +924,37 @@
   {
    "id": "insectos",
    "level": "B1",
-   "name_es": "Los insectos",
+   "name_es": "Insectos",
    "en": "Insects",
    "ru": "Насекомые",
    "items": [
     {
-     "es": "la abeja",
+     "es": "abeja",
      "en": "bee",
      "ru": "пчела"
     },
     {
-     "es": "la hormiga",
+     "es": "hormiga",
      "en": "ant",
      "ru": "муравей"
     },
     {
-     "es": "la mariposa",
+     "es": "mariposa",
      "en": "butterfly",
      "ru": "бабочка"
     },
     {
-     "es": "el mosquito",
+     "es": "mosquito",
      "en": "mosquito",
      "ru": "комар"
     },
     {
-     "es": "la mariquita",
+     "es": "mariquita",
      "en": "ladybird",
      "ru": "божья коровка"
     },
     {
-     "es": "el saltamontes",
+     "es": "saltamontes",
      "en": "grasshopper",
      "ru": "кузнечик"
     }
@@ -964,37 +964,37 @@
   {
    "id": "playa",
    "level": "B1",
-   "name_es": "La playa",
+   "name_es": "Playa",
    "en": "The beach",
    "ru": "Пляж",
    "items": [
     {
-     "es": "la arena",
+     "es": "arena",
      "en": "sand",
      "ru": "песок"
     },
     {
-     "es": "la sombrilla",
+     "es": "sombrilla",
      "en": "beach umbrella",
      "ru": "пляжный зонт"
     },
     {
-     "es": "el bañador",
+     "es": "bañador",
      "en": "swimsuit",
      "ru": "купальник"
     },
     {
-     "es": "la ola",
+     "es": "ola",
      "en": "wave",
      "ru": "волна"
     },
     {
-     "es": "la concha",
+     "es": "concha",
      "en": "shell",
      "ru": "ракушка"
     },
     {
-     "es": "la crema solar",
+     "es": "crema solar",
      "en": "sun cream",
      "ru": "солнцезащитный крем"
     }
@@ -1004,37 +1004,37 @@
   {
    "id": "postres",
    "level": "B1",
-   "name_es": "Los postres",
+   "name_es": "Postres",
    "en": "Desserts",
    "ru": "Десерты",
    "items": [
     {
-     "es": "el flan",
+     "es": "flan",
      "en": "crème caramel",
      "ru": "флан (крем-карамель)"
     },
     {
-     "es": "el helado",
+     "es": "helado",
      "en": "ice cream",
      "ru": "мороженое"
     },
     {
-     "es": "la tarta",
+     "es": "tarta",
      "en": "cake",
      "ru": "торт"
     },
     {
-     "es": "las natillas",
+     "es": "natillas",
      "en": "custard",
      "ru": "заварной крем"
     },
     {
-     "es": "el churro",
+     "es": "churro",
      "en": "churro",
      "ru": "чуррос"
     },
     {
-     "es": "el bizcocho",
+     "es": "bizcocho",
      "en": "sponge cake",
      "ru": "бисквит"
     }
@@ -1044,37 +1044,37 @@
   {
    "id": "coche",
    "level": "B2",
-   "name_es": "Las partes del coche",
+   "name_es": "Partes del coche",
    "en": "Parts of a car",
    "ru": "Части автомобиля",
    "items": [
     {
-     "es": "el volante",
+     "es": "volante",
      "en": "steering wheel",
      "ru": "руль"
     },
     {
-     "es": "el freno",
+     "es": "freno",
      "en": "brake",
      "ru": "тормоз"
     },
     {
-     "es": "el maletero",
+     "es": "maletero",
      "en": "boot",
      "ru": "багажник"
     },
     {
-     "es": "el capó",
+     "es": "capó",
      "en": "bonnet",
      "ru": "капот"
     },
     {
-     "es": "el retrovisor",
+     "es": "retrovisor",
      "en": "rear-view mirror",
      "ru": "зеркало заднего вида"
     },
     {
-     "es": "el parabrisas",
+     "es": "parabrisas",
      "en": "windscreen",
      "ru": "лобовое стекло"
     }
@@ -1084,37 +1084,37 @@
   {
    "id": "oficina",
    "level": "B2",
-   "name_es": "La oficina",
+   "name_es": "Oficina",
    "en": "The office",
    "ru": "Офис",
    "items": [
     {
-     "es": "la grapadora",
+     "es": "grapadora",
      "en": "stapler",
      "ru": "степлер"
     },
     {
-     "es": "el archivador",
+     "es": "archivador",
      "en": "filing cabinet",
      "ru": "картотека"
     },
     {
-     "es": "la fotocopiadora",
+     "es": "fotocopiadora",
      "en": "photocopier",
      "ru": "ксерокс"
     },
     {
-     "es": "el clip",
+     "es": "clip",
      "en": "paper clip",
      "ru": "скрепка"
     },
     {
-     "es": "la impresora",
+     "es": "impresora",
      "en": "printer",
      "ru": "принтер"
     },
     {
-     "es": "la agenda",
+     "es": "agenda",
      "en": "diary",
      "ru": "ежедневник"
     }
@@ -1124,37 +1124,37 @@
   {
    "id": "jardin",
    "level": "B2",
-   "name_es": "El jardín",
+   "name_es": "Jardín",
    "en": "The garden",
    "ru": "Сад",
    "items": [
     {
-     "es": "el césped",
+     "es": "césped",
      "en": "lawn",
      "ru": "газон"
     },
     {
-     "es": "la manguera",
+     "es": "manguera",
      "en": "hose",
      "ru": "шланг"
     },
     {
-     "es": "el rastrillo",
+     "es": "rastrillo",
      "en": "rake",
      "ru": "грабли"
     },
     {
-     "es": "la regadera",
+     "es": "regadera",
      "en": "watering can",
      "ru": "лейка"
     },
     {
-     "es": "el seto",
+     "es": "seto",
      "en": "hedge",
      "ru": "живая изгородь"
     },
     {
-     "es": "la maceta",
+     "es": "maceta",
      "en": "flowerpot",
      "ru": "цветочный горшок"
     }
@@ -1164,37 +1164,37 @@
   {
    "id": "naturaleza",
    "level": "B2",
-   "name_es": "Los desastres naturales",
+   "name_es": "Desastres naturales",
    "en": "Natural disasters",
    "ru": "Стихийные бедствия",
    "items": [
     {
-     "es": "el terremoto",
+     "es": "terremoto",
      "en": "earthquake",
      "ru": "землетрясение"
     },
     {
-     "es": "el huracán",
+     "es": "huracán",
      "en": "hurricane",
      "ru": "ураган"
     },
     {
-     "es": "la inundación",
+     "es": "inundación",
      "en": "flood",
      "ru": "наводнение"
     },
     {
-     "es": "la sequía",
+     "es": "sequía",
      "en": "drought",
      "ru": "засуха"
     },
     {
-     "es": "la avalancha",
+     "es": "avalancha",
      "en": "avalanche",
      "ru": "лавина"
     },
     {
-     "es": "la erupción",
+     "es": "erupción",
      "en": "eruption",
      "ru": "извержение"
     }
@@ -1204,37 +1204,37 @@
   {
    "id": "justicia",
    "level": "B2",
-   "name_es": "La justicia",
+   "name_es": "Justicia",
    "en": "Justice",
    "ru": "Правосудие",
    "items": [
     {
-     "es": "el juez",
+     "es": "juez",
      "en": "judge",
      "ru": "судья"
     },
     {
-     "es": "el abogado",
+     "es": "abogado",
      "en": "lawyer",
      "ru": "адвокат"
     },
     {
-     "es": "el juicio",
+     "es": "juicio",
      "en": "trial",
      "ru": "суд (процесс)"
     },
     {
-     "es": "la sentencia",
+     "es": "sentencia",
      "en": "sentence",
      "ru": "приговор"
     },
     {
-     "es": "el testigo",
+     "es": "testigo",
      "en": "witness",
      "ru": "свидетель"
     },
     {
-     "es": "la multa",
+     "es": "multa",
      "en": "fine",
      "ru": "штраф"
     }
@@ -1244,37 +1244,37 @@
   {
    "id": "aves",
    "level": "B2",
-   "name_es": "Las aves",
+   "name_es": "Aves",
    "en": "Birds",
    "ru": "Птицы",
    "items": [
     {
-     "es": "el águila",
+     "es": "águila",
      "en": "eagle",
      "ru": "орёл"
     },
     {
-     "es": "el búho",
+     "es": "búho",
      "en": "owl",
      "ru": "сова"
     },
     {
-     "es": "la cigüeña",
+     "es": "cigüeña",
      "en": "stork",
      "ru": "аист"
     },
     {
-     "es": "el gorrión",
+     "es": "gorrión",
      "en": "sparrow",
      "ru": "воробей"
     },
     {
-     "es": "la golondrina",
+     "es": "golondrina",
      "en": "swallow",
      "ru": "ласточка"
     },
     {
-     "es": "el halcón",
+     "es": "halcón",
      "en": "falcon",
      "ru": "сокол"
     }
@@ -1284,37 +1284,37 @@
   {
    "id": "especias",
    "level": "B2",
-   "name_es": "Las especias",
+   "name_es": "Especias",
    "en": "Spices",
    "ru": "Специи",
    "items": [
     {
-     "es": "el azafrán",
+     "es": "azafrán",
      "en": "saffron",
      "ru": "шафран"
     },
     {
-     "es": "la canela",
+     "es": "canela",
      "en": "cinnamon",
      "ru": "корица"
     },
     {
-     "es": "el pimentón",
+     "es": "pimentón",
      "en": "paprika",
      "ru": "паприка"
     },
     {
-     "es": "el comino",
+     "es": "comino",
      "en": "cumin",
      "ru": "кумин"
     },
     {
-     "es": "la pimienta",
+     "es": "pimienta",
      "en": "pepper (spice)",
      "ru": "перец (специя)"
     },
     {
-     "es": "el orégano",
+     "es": "orégano",
      "en": "oregano",
      "ru": "орегано"
     }
@@ -1324,37 +1324,37 @@
   {
    "id": "teatro",
    "level": "B2",
-   "name_es": "El teatro",
+   "name_es": "Teatro",
    "en": "The theatre",
    "ru": "Театр",
    "items": [
     {
-     "es": "el escenario",
+     "es": "escenario",
      "en": "stage",
      "ru": "сцена"
     },
     {
-     "es": "el telón",
+     "es": "telón",
      "en": "curtain",
      "ru": "занавес"
     },
     {
-     "es": "el decorado",
+     "es": "decorado",
      "en": "scenery",
      "ru": "декорации"
     },
     {
-     "es": "el ensayo",
+     "es": "ensayo",
      "en": "rehearsal",
      "ru": "репетиция"
     },
     {
-     "es": "el camerino",
+     "es": "camerino",
      "en": "dressing room",
      "ru": "гримёрка"
     },
     {
-     "es": "el público",
+     "es": "público",
      "en": "audience",
      "ru": "зрители"
     }
