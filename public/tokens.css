@@ -63,18 +63,26 @@
   --focus-w: 3px;
   --dur-fast: 120ms; --dur: 220ms; --ease: cubic-bezier(.2,.8,.2,1);
   --measure: 36rem; /* comfortable line length */
-  /* word cards (Solitario): dense one-screen board. rem-based, so the text-size setting scales them. */
-  --board-pad: 0.5rem;          /* side padding of the board */
-  --card-gap: 0.3125rem;        /* space between columns and between stacked cards */
-  --card-ratio: 1.35;           /* card height = width x ratio */
-  --card-pad: 0.125rem;         /* inside spacing of a card (2px; 3px would push nine words just over the card width) */
-  --card-word-max: 1.0625rem;   /* Spanish word, preferred size (17px) */
-  --card-word-min: 0.8125rem;   /* Spanish word, never smaller (13px); always one line */
-  --card-tr-max: 0.8125rem;     /* translation, preferred size */
-  --card-tr-min: 0.75rem;       /* translation, never smaller (12px); may wrap to two lines */
-  --card-name-min: 0.625rem;    /* category name on a category card, never smaller; wraps between words */
-  --card-tag-size: 0.6875rem;   /* book icon and count row on category cards */
-  --card-line: 1.2;             /* line height inside cards */
+  /* word cards (Solitario), from the card-layout mockup v4 (measured at 390px). rem-based: the text-size setting scales them. */
+  --board-pad: 0.75rem;         /* side padding of the board (12px) */
+  --col-gap: 0.625rem;          /* space between columns (10px) */
+  --card-max: 4.5rem;           /* card width never larger than this (72px) */
+  --card-ratio: 1.36;           /* card height = width x ratio */
+  --card-radius: 0.625rem;      /* outer corner (10px) */
+  --card-edge: 0.25rem;         /* white (or amber) edge around the inner panel (4px) */
+  --card-frame-w: 1.5px;        /* line around the inner panel */
+  --card-pad: 0.125rem;         /* inside the inner panel */
+  --down-peek: 1rem;            /* visible strip of a face-down card in a column (16px) */
+  --stack-gap: 0.375rem;        /* space between face-up cards stacked in a column (6px) */
+  --card-word-max: 1rem;        /* Spanish word, preferred size (16px) */
+  --card-word-min: 0.8125rem;   /* Spanish word, never smaller (13px); then it wraps at a syllable, 2 lines at most */
+  --card-tr-max: 0.75rem;       /* translation (12px) */
+  --card-tr-min: 0.75rem;
+  --card-name-min: 0.8125rem;   /* category name: same rule as words */
+  --card-tag-size: 0.6875rem;   /* book icon and count on cards (11px) */
+  --slot-tab-h: 1.125rem;       /* label tab above a filled category slot (18px) */
+  --bottom-btn: 3.75rem;        /* bottom bar buttons (60px) */
+  --card-line: 1.15;            /* line height inside cards */
 }
 @media (prefers-reduced-motion: reduce) { :root { --dur-fast: 0ms; --dur: 0ms; } }
 :root[data-motion="reduce"] { --dur-fast: 0ms; --dur: 0ms; }
@@ -119,6 +127,11 @@
   --card-face: var(--white);    /* word cards (Solitario) */
   --on-card: var(--ink);
   --card-back: var(--forest);
+  --card-edge-c: var(--white);
+  --card-panel: var(--card);
+  --card-frame: var(--line);
+  --slot-empty: var(--line);
+  --card-rule: var(--primary);   /* short line between word and translation */
 }
 
 /* ---------- Theme: night (star-map games) ---------- */
@@ -156,6 +169,11 @@
   --card-face: var(--text);
   --on-card: var(--bg);
   --card-back: var(--coral);
+  --card-edge-c: var(--text);
+  --card-panel: var(--text);
+  --card-frame: #E6D3AC;
+  --slot-empty: var(--navy-2);
+  --card-rule: var(--primary);
 }
 
 /* ---------- Theme: mesa (card table, Solitario) ---------- */
@@ -197,5 +215,10 @@
   --card-face: var(--paper-white);
   --on-card: var(--ink);
   --card-back: var(--coral);
+  --card-edge-c: #FFFFFF;       /* white edge around the inner panel */
+  --card-panel: var(--paper-white);
+  --card-frame: #EBDDBF;        /* beige line around the inner panel */
+  --slot-empty: #1A4A30;        /* empty category slot: darker felt */
+  --card-rule: var(--felt);
 }
 

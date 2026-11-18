@@ -2,8 +2,9 @@
  * Solitario de categorías. Routes inside the game (after #game/solitario):
  *   (none)                       choose a level
  *   play/<level>[/seed-<n>]      a game (the seed makes a deal repeatable, for tests and sharing)
- * Dense one-screen board: a compact top bar, a status row (moves, discard and draw pile), one row of
- * category slots, then the board. Sizes from tokens and the level's data (sizing.ts).
+ * Layout follows the card-layout mockup v4: top bar (back, level title, translation), status row
+ * (moves, drawn pile, deck), one row of category slots, the columns (face-down strips under face-up
+ * cards), and a bottom bar with Pista, Deshacer and Reiniciar. Sizes from tokens (sizing.ts).
  */
 import { h, mount as put } from '../../ui/h';
 import { icon } from '../../ui/icons';
@@ -15,10 +16,11 @@ import { recordCelebration } from '../../app/pet-state';
 import { getSettings, prefersReducedMotion } from '../../app/settings';
 import type { GameContext, GameHandle } from '../../app/router';
 import {
-  LEVELS, canPlace, catName, drawCard, hintFor, isWon, move, movesLeft, newGame, outOfMoves, restart, runAt, undo,
+  LEVELS, canPlace, catName, drawCard, hintFor, isFaceDown, isWon, move, movesLeft, newGame, nextStep, outOfMoves, restart, runAt, undo,
   type Category, type GameState, type Level, type LevelConfig, type SolitarioData, type Source, type Target,
 } from './engine';
-import { canvasMeasure, cardFont, denseLayout, peekFor, readTokens, stackOffsets, type CardFont, type DenseLayout } from './sizing';
+import { boardLayout, canvasMeasure, cardFont, columnOffsets, readTokens, visibleTop, type BoardLayout, type CardFont } from './sizing';
+import { softHyphenate } from './syllables';
 import './solitario.css';
 
 const files = import.meta.glob<SolitarioData>('../../data/solitario/*.json', { eager: true, import: 'default' });
@@ -30,8 +32,8 @@ const DATA: SolitarioData = injected ?? {
 };
 export const CATEGORIES: Category[] = DATA.categories;
 const poolFor = (l: Level) => CATEGORIES.filter((c) => c.level === l);
-const levelConfig = (l: Level): LevelConfig => ({ columns: 6, rows: 5, ...DATA.levels?.[l] });
-const LEVELS_WITH_CARDS = LEVELS.filter((l) => poolFor(l).length >= Math.min(levelConfig(l).columns, 4));
+const levelConfig = (l: Level): LevelConfig => ({ columns: 5, down: 2, ...DATA.levels?.[l] });
+const LEVELS_WITH_CARDS = LEVELS.filter((l) => poolFor(l).length >= Math.min(levelConfig(l).columns, 3));
 
 interface Record_ { wins: number; best?: number }
 type Records = Partial<Record<Level, Record_>>;
@@ -128,22 +130,21 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     const cfg = levelConfig(level);
     let showTr = store.get<boolean>('sol.showTr', level === 'A1');
     const measure = canvasMeasure(getComputedStyle(html).getPropertyValue('--font-body') || 'sans-serif');
-    const levelWords = pool.flatMap((c) => c.items.map((i) => i.es));
-    const lay: DenseLayout = denseLayout({
-      viewW: content.clientWidth || window.innerWidth, levelColumns: cfg.columns, levelRows: cfg.rows,
-      textSize: getSettings().textSize, levelWords, tk: readTokens(), m: measure,
+    const lay: BoardLayout = boardLayout({
+      viewW: content.clientWidth || window.innerWidth, levelColumns: cfg.columns, levelDown: cfg.down,
+      textSize: getSettings().textSize, levelWords: pool.flatMap((c) => c.items.map((i) => i.es)), levelNames: pool.map((c) => c.name_es), tk: readTokens(), m: measure,
     });
-    const dealOpts = () => ({ columns: lay.columns, categories: lay.categories, rows: lay.rows, limit: getLimit() });
+    const dealOpts = () => ({ columns: lay.columns, categories: Math.min(lay.categories, pool.length), down: lay.down, limit: getLimit() });
     let s: GameState = newGame(pool, { ...dealOpts(), seed });
     let fonts = new Map<string, CardFont>();
     const refit = () => {
-      fonts = new Map(Object.values(s.cards).map((c) => [c.id, cardFont({ es: c.item.es, tr: showTr && c.kind === 'word' ? trOf(c.item) : undefined, isCat: c.kind === 'cat' }, lay.cardW, lay.cardH, lay.tk, measure)]));
+      fonts = new Map(Object.values(s.cards).map((c) => [c.id, cardFont({ es: c.item.es, tr: showTr && c.kind === 'word' ? trOf(c.item) : undefined, isCat: c.kind === 'cat' }, lay.cardW, lay.tk, measure)]));
     };
     refit();
     let burstSlot: number | null = null;
     let sel: Source | null = null;
-    let missesOnSel = 0;
-    let hint: Target | null = null;
+    let hint: { src?: Source; dst?: Target } | null = null;
+    let faceDownBefore = new Set<string>();
 
     const el = h('div', { class: 'sol-play' });
     // Screen readers hear every message; on screen, messages that matter appear as a short toast.
@@ -151,14 +152,16 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     const announce = (m: string, show = false) => { status.textContent = m; if (show && m) toast(m); };
     const word = (id: string) => s.cards[id].item.es;
     const sameSrc = (a: Source | null, b: Source) => !!a && a.kind === b.kind && (a.kind === 'waste' || (b.kind === 'col' && a.col === b.col && a.index === b.index));
-    const select = (src: Source | null) => { sel = src; missesOnSel = 0; hint = null; };
+    const select = (src: Source | null) => { sel = src; hint = null; };
     const deal = () => { s = newGame(pool, dealOpts()); refit(); select(null); announce(t('sol.newDeal')); draw(); };
+    const faceDownIds = () => new Set(s.cols.flatMap((col, ci) => col.filter((_, i) => isFaceDown(s, ci, i))));
 
     function tryMove(src: Source, tg: Target) {
       if (outOfMoves(s)) { announce(t('sol.outTitle'), true); return; }
       const run = runAt(s, src);
       if (!run) return;
       const doneBefore = s.done.length;
+      faceDownBefore = faceDownIds();
       if (move(s, src, tg)) {
         select(null);
         const first = s.cards[run[0]];
@@ -172,7 +175,6 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
         draw();
         return;
       }
-      missesOnSel++;
       const w0 = word(run[0]);
       const slot = tg.kind === 'slot' ? s.slots[tg.index] : null;
       announce(tg.kind === 'col' ? t('sol.notOnColumn', { word: w0 })
@@ -187,21 +189,30 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       }
     }
 
-    /** A card face: category cards have a tag row (book icon + count) above the name; word cards the word and (uncovered) translation. */
-    function cardEl(id: string, src: Source | null, selected: boolean, o: { tag?: string; covered?: boolean } = {}) {
+    /** A face-up card: outer edge, inner framed panel; category cards have a row with the book icon and count. */
+    function cardEl(id: string, src: Source | null, selected: boolean, o: { count?: string; squeezed?: boolean; hinted?: boolean } = {}) {
       const c = s.cards[id];
       const isCat = c.kind === 'cat';
       const f = fonts.get(id)!;
+      const isNew = faceDownBefore.has(id) && !prefersReducedMotion();
       return h(src ? 'button' : 'div', {
         type: src ? 'button' : undefined,
-        class: `sol-card${isCat ? ' is-cat' : ''}${selected ? ' is-selected' : ''}${o.covered ? ' is-covered' : ''}`, 'data-id': id,
+        class: `sol-card${isCat ? ' is-cat' : ''}${selected ? ' is-selected' : ''}${o.squeezed ? ' is-squeezed' : ''}${o.hinted ? ' is-hint' : ''}${isNew ? ' is-flipping' : ''}`, 'data-id': id,
         'data-src': src ? JSON.stringify(src) : undefined, 'aria-pressed': src ? String(selected) : undefined,
-        'aria-label': isCat ? `${t('sol.categoryCard')}: ${c.item.es} (${o.tag ?? s.size[c.cat]})` : undefined,
+        'aria-label': isCat ? `${t('sol.categoryCard')}: ${c.item.es} (${o.count ?? s.size[c.cat]})` : `${c.item.es}${showTr ? `, ${trOf(c.item)}` : ''}`,
       },
-        isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), h('span', null, o.tag ?? String(s.size[c.cat]))) : null,
-        h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${f.word}px` } }, c.item.es),
-        showTr && !isCat && !o.covered ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en', style: { fontSize: `${f.tr}px` } }, trOf(c.item)) : null);
+        h('span', { class: 'sol-card__panel' },
+          isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), h('span', null, o.count ?? String(s.size[c.cat]))) : null,
+          h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${f.word}px` }, 'aria-hidden': 'true' }, f.wordLines > 1 ? softHyphenate(c.item.es) : c.item.es),
+          showTr && !isCat ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en', style: { fontSize: `${f.tr}px` }, 'aria-hidden': 'true' }, trOf(c.item)) : null));
     }
+    /** Label tab above a filled slot: the category name on one line (11px down to 9px), else wrapped at a syllable. */
+    const tabFont = (name: string) => {
+      const inner = lay.cardW - 10;
+      for (let px = lay.tk.tag; px >= 9; px -= 0.25) if (measure(name, px, 800) <= inner) return { px, wrap: false };
+      return { px: 9, wrap: true };
+    };
+    const back = (extra = '') => h('div', { class: `sol-card is-down${extra}`, 'aria-hidden': 'true' });
 
     function draw() {
       el.style.setProperty('--card-w', `${lay.cardW}px`);
@@ -209,67 +220,81 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       el.style.setProperty('--ncols', String(lay.columns));
       const focusKey = (document.activeElement as HTMLElement | null)?.dataset?.focusKey;
       const selRun = sel ? runAt(s, sel) ?? [] : [];
+      const isHintSrc = (src: Source) => !!hint?.src && sameSrc(hint.src, src);
 
+      // Category slots: empty (darker felt + book), category placed (book, 0/N, name), or filled (tab above, count, last word).
       const slots = s.slots.map((slot, i) => {
         const tg = JSON.stringify({ kind: 'slot', index: i });
-        const cls = `${hint?.kind === 'slot' && hint.index === i ? ' is-hint' : ''}${sel && canPlace(s, selRun, { kind: 'slot', index: i }) ? ' is-fit' : ''}`;
+        const cls = `${hint?.dst?.kind === 'slot' && hint.dst.index === i ? ' is-hint' : ''}${sel && canPlace(s, selRun, { kind: 'slot', index: i }) ? ' is-fit' : ''}`;
         if (!slot.cat) {
           return h('button', { type: 'button', class: `sol-slot is-open${cls}`, 'data-target': tg, 'data-focus-key': `slot-${i}`, 'aria-label': t('sol.emptySlot') },
             h('span', { 'aria-hidden': 'true' }, icon('book')));
         }
-        // An open slot is its category card, with progress in the tag row (n/total).
-        return h('button', {
-          type: 'button', class: `sol-slotcat${cls}`, 'data-target': tg, 'data-focus-key': `slot-${i}`,
-          'aria-label': `${catName(s, slot.cat)}: ${slot.words.length}/${s.size[slot.cat]}${slot.words.length ? `, ${slot.words.map(word).join(', ')}` : ''}`,
-        }, cardEl(`${slot.cat}:cat`, null, false, { tag: `${slot.words.length}/${s.size[slot.cat]}` }));
+        const count = `${slot.words.length}/${s.size[slot.cat]}`;
+        const label = `${catName(s, slot.cat)}: ${count}${slot.words.length ? `, ${slot.words.map(word).join(', ')}` : ''}`;
+        if (!slot.words.length) {
+          return h('button', { type: 'button', class: `sol-slotcat${cls}`, 'data-target': tg, 'data-focus-key': `slot-${i}`, 'aria-label': label },
+            cardEl(`${slot.cat}:cat`, null, false, { count }));
+        }
+        const last = slot.words[slot.words.length - 1];
+        const lf = fonts.get(last)!;
+        return h('button', { type: 'button', class: `sol-slotcat is-filled${cls}`, 'data-target': tg, 'data-focus-key': `slot-${i}`, 'aria-label': label },
+          (() => { const name = catName(s, slot.cat); const f = tabFont(name); return h('span', { class: 'sol-slotcat__tab', lang: 'es', style: { fontSize: `${f.px}px` }, 'aria-hidden': 'true' }, f.wrap ? softHyphenate(name) : name); })(),
+          h('span', { class: 'sol-card is-slot' },
+            h('span', { class: 'sol-card__panel' },
+              h('span', { class: 'sol-card__tag is-count', 'aria-hidden': 'true' }, h('span', null, count)),
+              h('span', { class: 'sol-card__word', lang: 'es', style: { fontSize: `${lf.word}px` }, 'aria-hidden': 'true' }, lf.wordLines > 1 ? softHyphenate(word(last)) : word(last)))));
       });
 
       const cols = s.cols.map((col, ci) => {
         const tg = JSON.stringify({ kind: 'col', col: ci });
+        const down = s.down[ci] ?? 0;
         return h('div', {
-          class: `sol-col${hint?.kind === 'col' && hint.col === ci ? ' is-hint' : ''}`, 'data-target': tg, 'data-col': String(ci), role: 'group',
-          'aria-label': `${t('sol.column', { n: ci + 1 })}${col.length ? '' : `, ${t('sol.emptyColumn')}`}`,
+          class: `sol-col${hint?.dst?.kind === 'col' && hint.dst.col === ci ? ' is-hint' : ''}`, 'data-target': tg, 'data-col': String(ci), role: 'group',
+          'aria-label': `${t('sol.column', { n: ci + 1 })}${col.length ? (down ? `, ${t('sol.faceDown', { n: down })}` : '') : `, ${t('sol.emptyColumn')}`}`,
         },
           col.length ? col.map((id, idx) => {
+            if (idx < down) return back();
             const src: Source = { kind: 'col', col: ci, index: idx };
             const movable = !!runAt(s, src);
-            const e = cardEl(id, movable ? src : null, sel?.kind === 'col' && sel.col === ci && selRun.includes(id), { covered: idx < col.length - 1 });
+            const e = cardEl(id, movable ? src : null, sel?.kind === 'col' && sel.col === ci && selRun.includes(id), { hinted: isHintSrc(src) });
             if (movable) e.dataset.focusKey = `col-${ci}-${idx}`;
             return e;
-          }) : h('button', { type: 'button', class: 'sol-slot', 'data-target': tg, 'data-focus-key': `col-${ci}-empty`, 'aria-label': `${t('sol.column', { n: ci + 1 })}, ${t('sol.emptyColumn')}` }));
+          }) : h('button', { type: 'button', class: 'sol-slot is-col', 'data-target': tg, 'data-focus-key': `col-${ci}-empty`, 'aria-label': `${t('sol.column', { n: ci + 1 })}, ${t('sol.emptyColumn')}` }));
       });
 
+      // Drawn pile: the top card face up; up to two cards underneath show their word along the edge.
       const wasteTop = s.waste[s.waste.length - 1];
-      const wastePrev = s.waste[s.waste.length - 2];
+      const under = s.waste.slice(-3, -1).reverse(); // [just below top, below that]
       const left = movesLeft(s);
       put(el,
-        // 1. Top bar: one row of 44px targets.
+        // Top bar: back, level title, translation toggle.
         h('div', { class: 'sol-bar' },
           Button({ label: t('sol.levelsBack'), icon: 'back', iconOnly: true, variant: 'quiet', onClick: () => ctx.go([]) }),
-          h('span', { class: 'sol-badge' }, level),
-          h('span', { class: 'sol-bar__space' }),
-          sel && missesOnSel >= 2 ? Button({ label: t('sol.hint'), icon: 'bulb', iconOnly: true, variant: 'secondary', onClick: () => { hint = sel ? hintFor(s, sel) : null; s.hintsUsed++; announce(hint ? t('sol.hintShown') : t('sol.hintNone'), true); draw(); } }) : null,
-          Button({ label: t('sol.undo'), icon: 'undo', iconOnly: true, variant: 'quiet', disabled: !s.history.length, onClick: () => { if (undo(s)) { select(null); announce(t('sol.undone')); draw(); } } }),
-          Button({ label: t('sol.newGame'), icon: 'refresh', iconOnly: true, variant: 'quiet', onClick: deal }),
-          Button({ label: t('sol.translation'), icon: 'language', iconOnly: true, variant: showTr ? 'secondary' : 'quiet', pressed: showTr, onClick: () => { showTr = !showTr; store.set('sol.showTr', showTr); refit(); draw(); } })),
-        h('h1', { tabindex: '-1', class: 'sol-title k-sr', lang: 'es' }, 'Solitario de categorías'),
-        // 2. Status row: moves on the left, discard and draw pile on the right (card height).
-        h('div', { class: `sol-head${2 * lay.cardW + 2 * lay.tk.gap + 4.5 * lay.tk.rootPx > lay.columns * lay.cardW + (lay.columns - 1) * lay.tk.gap ? ' is-narrow' : ''}` },
+          h('h1', { tabindex: '-1', class: 'sol-title sol-bar__title', lang: getLang() }, t('sol.levelTitle', { level, n: LEVELS.indexOf(level) + 1 })),
+          Button({ label: t('sol.translation'), icon: 'language', iconOnly: true, variant: 'quiet', pressed: showTr, onClick: () => { showTr = !showTr; store.set('sol.showTr', showTr); refit(); draw(); } })),
+        // Status row: moves, drawn pile, deck.
+        h('div', { class: 'sol-head' },
           h('div', { class: `sol-moves${left !== null && left <= 5 ? ' is-low' : ''}`, 'aria-label': left === null ? t('sol.movesLabel', { n: s.moves }) : t('sol.leftLabel', { n: left, total: s.limit! }) },
             h('span', { class: 'sol-moves__label' }, left === null ? t('sol.moves') : t('sol.left')),
-            h('span', { class: 'sol-moves__n' }, String(left ?? s.moves), left !== null ? h('span', { class: 'sol-moves__of' }, ` / ${s.limit}`) : null)),
+            h('span', { class: 'sol-moves__n' }, String(left ?? s.moves))),
           h('span', { class: 'sol-bar__space' }),
-          h('div', { class: 'sol-waste', 'aria-label': t('sol.waste') },
-            wastePrev ? h('div', { class: 'sol-card sol-waste__under', 'aria-hidden': 'true' }) : null,
-            wasteTop ? (() => { const e = cardEl(wasteTop, { kind: 'waste' }, sel?.kind === 'waste'); e.dataset.focusKey = 'waste'; return e; })() : h('span', { class: 'sol-slot is-quiet', 'aria-hidden': 'true' })),
+          h('div', { class: 'sol-waste', 'data-under': String(under.length), 'aria-label': `${t('sol.waste')}${under.length ? `. ${t('sol.under', { words: under.map(word).join(', ') })}` : ''}` },
+            ...under.slice().reverse().map((id, k) => h('div', { class: `sol-card sol-waste__under is-u${under.length - k}`, 'aria-hidden': 'true' },
+              h('span', { class: 'sol-card__panel' }, h('span', { class: 'sol-waste__edge', lang: 'es' }, word(id))))),
+            wasteTop ? (() => { const e = cardEl(wasteTop, { kind: 'waste' }, sel?.kind === 'waste', { hinted: isHintSrc({ kind: 'waste' }) }); e.classList.add('sol-waste__top'); e.dataset.focusKey = 'waste'; return e; })()
+              : h('span', { class: 'sol-slot is-quiet sol-waste__top', 'aria-hidden': 'true' })),
           h('button', {
-            type: 'button', class: `sol-stock${s.stock.length ? '' : ' is-empty'}`, 'data-stock': 'true', 'data-focus-key': 'stock',
+            type: 'button', class: `sol-stock${s.stock.length ? '' : ' is-empty'}${hint && !hint.src && !hint.dst ? ' is-hint' : ''}`, 'data-stock': 'true', 'data-focus-key': 'stock',
             'aria-label': s.stock.length ? t('sol.stock', { n: s.stock.length }) : s.waste.length ? t('sol.recycle') : t('sol.deckEmpty'),
-          }, s.stock.length ? h('span', { class: 'sol-back' }, h('span', { class: 'sol-stock__n' }, String(s.stock.length))) : h('span', { class: 'sol-stock__again' }, icon('refresh')))),
-        // 3. Category slots: one row, one slot per column.
-        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations'), style: { gridTemplateColumns: `repeat(${s.slots.length}, var(--card-w))` } }, slots),
-        // 4. Board.
-        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns'), style: { gridTemplateColumns: `repeat(${s.cols.length}, var(--card-w))` } }, cols),
+          }, s.stock.length ? h('span', { class: 'sol-card is-down' }, h('span', { class: 'sol-stock__n' }, String(s.stock.length))) : h('span', { class: 'sol-stock__again' }, icon('refresh')))),
+        h('section', { class: 'sol-slots', 'aria-label': t('sol.foundations') }, slots),
+        h('section', { class: 'sol-cols', 'aria-label': t('sol.columns') }, cols),
+        // Bottom bar: Pista, Deshacer, Reiniciar.
+        h('nav', { class: 'sol-bottom', 'aria-label': t('sol.columns') },
+          h('button', { type: 'button', class: 'sol-bottom__btn', onClick: () => { giveHint(); } }, icon('bulb'), h('span', null, t('sol.hint'))),
+          h('button', { type: 'button', class: 'sol-bottom__btn', disabled: !s.history.length, onClick: () => { if (undo(s)) { select(null); announce(t('sol.undone')); draw(); } } }, icon('undo'), h('span', null, t('sol.undo'))),
+          h('button', { type: 'button', class: 'sol-bottom__btn', onClick: () => { restart(s); select(null); announce(t('sol.retried')); draw(); } }, icon('refresh'), h('span', null, t('sol.restart')))),
         outOfMoves(s) ? h('div', { class: 'sol-out', role: 'dialog', 'aria-label': t('sol.outTitle') },
           FeedbackBanner({ kind: 'retry', title: t('sol.outTitle'), hint: t('sol.outHint') }),
           h('div', { class: 'sol-actions' },
@@ -278,6 +303,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
             Button({ label: t('sol.retry'), icon: 'refresh', variant: 'outline', onClick: () => { restart(s); select(null); announce(t('sol.retried')); draw(); } }),
             Button({ label: t('sol.newGame'), icon: 'star', variant: 'outline', onClick: deal }))) : null,
         status);
+      faceDownBefore = new Set();
       layoutStacks();
       if (focusKey) el.querySelector<HTMLElement>(`[data-focus-key="${focusKey}"]`)?.focus({ preventScroll: true });
       if (burstSlot !== null) {
@@ -287,25 +313,63 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       }
     }
 
-    /** Full cards with a gap; a column overlaps only when it would run past the bottom of the screen. */
+    /** Pista: with a card chosen, where it goes; otherwise a good next move (or the deck). */
+    function giveHint() {
+      s.hintsUsed++;
+      if (sel) { const d = hintFor(s, sel); hint = { src: sel, dst: d ?? undefined }; announce(d ? t('sol.hintShown') : t('sol.hintNone'), true); draw(); return; }
+      const step = nextStep(s);
+      hint = step?.kind === 'move' ? { src: step.src, dst: step.dst } : {};
+      announce(t('sol.hintNext'), true);
+      draw();
+    }
+
+    /** Face-down strips, then face-up cards fully visible; squeeze face-up cards only if a column would pass the bottom bar. */
+    /** Status row: narrower under-card strips (down to 14px), then a smaller move label, so it never passes the screen edge. */
+    function fitHead() {
+      const head = el.querySelector<HTMLElement>('.sol-head');
+      const waste = el.querySelector<HTMLElement>('.sol-waste');
+      if (!head || !waste) return;
+      head.classList.remove('is-tight');
+      waste.style.removeProperty('--under-w');
+      const over = () => head.scrollWidth - head.clientWidth;
+      // A strip must show its vertical word: card edge, frame, padding and one line of tag-size text.
+      const minW = Math.ceil(lay.tk.edge + lay.tk.frame + lay.tk.pad + lay.tk.tag * 1.1 + 2);
+      const shrink = () => {
+        const n = Number(waste.dataset.under) || 0;
+        if (over() > 0 && n) waste.style.setProperty('--under-w', `${Math.max(minW, lay.tk.rootPx * 1.5 - over() / n)}px`);
+      };
+      shrink();
+      if (over() > 0) head.classList.add('is-tight');
+      if (over() > 0 && waste.dataset.under === '2') { waste.dataset.under = '1'; waste.querySelector('.is-u2')?.remove(); shrink(); }
+    }
+
     function layoutStacks() {
+      fitHead();
       const board = el.querySelector<HTMLElement>('.sol-cols');
+      const bar = el.querySelector<HTMLElement>('.sol-bottom');
       if (!board) return;
-      const bottomRoom = lay.tk.boardPad;
-      const availH = Math.max(lay.cardH, window.innerHeight - board.getBoundingClientRect().top - bottomRoom);
+      const barTop = bar ? bar.getBoundingClientRect().top : window.innerHeight;
+      const availH = Math.max(lay.cardH, barTop - board.getBoundingClientRect().top - lay.tk.stackGap);
       for (const colEl of board.querySelectorAll<HTMLElement>('.sol-col')) {
-        const col = s.cols[Number(colEl.dataset.col)];
+        const ci = Number(colEl.dataset.col);
+        const col = s.cols[ci];
         if (!col?.length) continue;
-        const peeks = col.map((id) => peekFor(fonts.get(id)!, s.cards[id].kind === 'cat', lay.tk));
-        const offs = stackOffsets(peeks, lay.cardH, lay.tk.gap, availH);
+        const down = s.down[ci] ?? 0;
+        const ups = col.slice(down).map((id) => visibleTop(fonts.get(id)!, s.cards[id].kind === 'cat', lay.tk));
+        const offs = columnOffsets(down, ups, lay.cardH, lay.tk, availH);
         const cards = [...colEl.children] as HTMLElement[];
-        cards.forEach((c, i) => { c.style.marginTop = i === 0 ? '0' : `${offs[i] - offs[i - 1] - lay.cardH}px`; });
+        cards.forEach((c, i) => {
+          c.style.marginTop = i === 0 ? '0' : `${offs[i] - offs[i - 1] - lay.cardH}px`;
+          const next = offs[i + 1];
+          c.classList.toggle('is-squeezed', i >= down && next !== undefined && next - offs[i] < lay.cardH);
+        });
       }
     }
 
     function onClick(e: MouseEvent) {
       if (suppressClick) { suppressClick = false; return; }
       const tEl = e.target as HTMLElement;
+      if (tEl.closest('.sol-bottom, .sol-bar, .sol-out')) return;
       if (tEl.closest('[data-stock]')) {
         if (outOfMoves(s)) { announce(t('sol.outTitle'), true); return; }
         const r = drawCard(s);

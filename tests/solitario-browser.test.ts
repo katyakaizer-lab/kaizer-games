@@ -46,12 +46,12 @@ async function clickSource(page: Page, src: Source) {
   const box = (await loc.boundingBox())!;
   await page.mouse.click(box.x + box.width / 2, box.y + 6);
 }
-/** The layout the game chose for this screen (columns, categories, rows), read from the table. */
+/** The layout the game chose for this screen (columns, categories, face-down cards per column), read from the table. */
 async function layoutOf(page: Page) {
   return page.evaluate(() => ({
     columns: document.querySelectorAll('.sol-col').length,
     categories: document.querySelectorAll('.sol-slots > *').length,
-    rows: Math.max(...[...document.querySelectorAll('.sol-col')].map((c) => c.querySelectorAll('.sol-card').length)),
+    down: document.querySelector(".sol-col")!.querySelectorAll(".is-down").length,
   }));
 }
 async function clickTarget(page: Page, t: Target) {
@@ -78,7 +78,7 @@ describe('Solitario de categorías start to finish in a real browser', () => {
     // Undo: turn a card over, undo, the counter goes back to 0.
     await page.click('[data-stock]');
     expect(await page.textContent('.sol-moves__n')).toBe('1');
-    await page.click('button[aria-label="Deshacer"]');
+    await page.click(".sol-bottom button:has-text(\"Deshacer\")");
     expect(await page.textContent('.sol-moves__n')).toBe('0');
 
     for (const st of steps) {
@@ -141,8 +141,8 @@ describe('Solitario de categorías start to finish in a real browser', () => {
       if (await page.locator('.sol-burst .sol-burst__star').count()) { burst = true; break; }
     }
     expect(burst).toBe(true);
-    // a fresh deal: use up all moves by turning the deck (which always has cards at the start)
-    await page.click('button[aria-label="Nueva partida"]');
+    // the same deal again: use up all moves by turning the deck (which always has cards at the start)
+    await page.click(".sol-bottom button:has-text(\"Reiniciar\")");
     await page.waitForSelector('.sol-col .sol-card');
     for (let i = 0; i < 60 && !(await page.locator('.sol-out').count()); i++) await page.click('[data-stock]');
     expect(await page.textContent('.sol-out')).toContain('No quedan movimientos');

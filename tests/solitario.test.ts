@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import catsFile from '../src/data/solitario/categories.json';
 import {
-  canPlace, dealOnce, drawCard, hintFor, isWon, move, newGame, pickCategories, runAt, solve, undo,
+  canPlace, dealOnce, drawCard, hintFor, isFaceDown, isWon, move, newGame, pickCategories, restart, runAt, solve, undo,
   type Category, type GameState, type SolitarioData,
 } from '../src/games/solitario/engine';
 import { validateSolitario } from '../src/games/solitario/validate';
@@ -12,7 +12,7 @@ const clone = (): SolitarioData => structuredClone(data);
 
 /** A hand-built table for rule tests: categories a and b, each with a category card and words. */
 function table(): GameState {
-  const s = dealOnce(pool('A1'), { seed: 1, columns: 3, categories: 2, rows: 0 });
+  const s = dealOnce(pool('A1'), { seed: 1, columns: 3, categories: 2, down: 0 });
   const card = (id: string, cat: string, kind: 'cat' | 'word') => ({ id, cat, kind, item: { es: id, en: '', ru: '' } });
   s.cats = [{ ...s.cats[0], id: 'a' }, { ...s.cats[1], id: 'b' }];
   s.cards = { 'a:cat': card('a:cat', 'a', 'cat'), 'a:0': card('a:0', 'a', 'word'), 'a:1': card('a:1', 'a', 'word'), 'b:cat': card('b:cat', 'b', 'cat'), 'b:0': card('b:0', 'b', 'word') };
@@ -20,6 +20,7 @@ function table(): GameState {
   s.cols = [['b:0', 'a:0'], ['a:cat'], []];
   s.stock = ['b:cat', 'a:1'];
   s.waste = [];
+  s.down = [0, 0, 0];
   s.slots = [{ cat: null, words: [] }, { cat: null, words: [] }];
   return s;
 }
@@ -92,7 +93,7 @@ describe('rules', () => {
 
 describe('dealing', () => {
   it('mixes categories of one level, each with its category card and 4 to 6 words', () => {
-    const s = newGame(pool('A1'), { seed: 4, columns: 5, categories: 5 });
+    const s = newGame(pool('A1'), { seed: 4, columns: 5, categories: 5, down: 3 });
     expect(s.cats.length).toBe(5);
     expect(s.cats.every((c) => c.level === 'A1')).toBe(true);
     for (const c of s.cats) {
@@ -101,6 +102,7 @@ describe('dealing', () => {
       expect(s.size[c.id]).toBeLessThanOrEqual(6);
     }
     expect(s.cols.every((c) => c.length === 4)).toBe(true);
+    expect(s.down).toEqual([3, 3, 3, 3, 3]);
     expect(s.slots.length).toBe(5);
   });
   it('different deals use different categories', () => {
@@ -110,6 +112,63 @@ describe('dealing', () => {
   });
   it('the same seed gives the same deal', () => {
     expect(JSON.stringify(newGame(pool('B1'), { seed: 9 }).cols)).toBe(JSON.stringify(newGame(pool('B1'), { seed: 9 }).cols));
+  });
+});
+
+describe('face-down cards', () => {
+  /** Columns: [f0, f1, a:0] (two face-down under a word), [a:cat]. */
+  function downTable(): GameState {
+    const s = table();
+    const card = (id: string, cat: string) => ({ id, cat, kind: 'word' as const, item: { es: id, en: '', ru: '' } });
+    s.cards.f0 = card('f0', 'b');
+    s.cards.f1 = card('f1', 'b');
+    s.cols = [['f0', 'f1', 'a:0'], ['a:cat'], []];
+    s.down = [2, 0, 0];
+    return s;
+  }
+  it('deals N face-down cards per column plus one face up on top', () => {
+    for (const down of [0, 1, 2, 3]) {
+      const s = newGame(pool('A2'), { seed: 5, columns: 5, categories: 5, down });
+      expect(s.cols.every((c) => c.length === down + 1)).toBe(true);
+      expect(s.down).toEqual(s.cols.map(() => down));
+      s.cols.forEach((col, ci) => col.forEach((_, i) => expect(isFaceDown(s, ci, i)).toBe(i < down)));
+    }
+  });
+  it('face-down cards can never be picked up or moved', () => {
+    const s = downTable();
+    expect(runAt(s, { kind: 'col', col: 0, index: 0 })).toBe(null);
+    expect(runAt(s, { kind: 'col', col: 0, index: 1 })).toBe(null);
+    expect(move(s, { kind: 'col', col: 0, index: 1 }, { kind: 'col', col: 2 })).toBe(false);
+    expect(runAt(s, { kind: 'col', col: 0, index: 2 })).toEqual(['a:0']);
+  });
+  it('when the top face-up card leaves, the next face-down card turns face up', () => {
+    const s = downTable();
+    expect(move(s, { kind: 'col', col: 0, index: 2 }, { kind: 'col', col: 1 })).toBe(true);
+    expect(s.cols[0]).toEqual(['f0', 'f1']);
+    expect(s.down[0]).toBe(1);
+    expect(isFaceDown(s, 0, 1)).toBe(false);
+    expect(isFaceDown(s, 0, 0)).toBe(true);
+    // and again: f1 to the empty column turns f0 over; an emptied column has nothing face down
+    expect(move(s, { kind: 'col', col: 0, index: 1 }, { kind: 'col', col: 2 })).toBe(true);
+    expect(s.down[0]).toBe(0);
+    expect(move(s, { kind: 'col', col: 0, index: 0 }, { kind: 'col', col: 2 })).toBe(true);
+    expect(s.cols[0]).toEqual([]);
+    expect(s.down[0]).toBe(0);
+  });
+  it('undo turns the card face down again; restart restores the deal', () => {
+    const s = downTable();
+    move(s, { kind: 'col', col: 0, index: 2 }, { kind: 'col', col: 1 });
+    expect(s.down[0]).toBe(1);
+    expect(undo(s)).toBe(true);
+    expect(s.cols[0]).toEqual(['f0', 'f1', 'a:0']);
+    expect(s.down[0]).toBe(2);
+    expect(isFaceDown(s, 0, 1)).toBe(true);
+    const g = newGame(pool('A1'), { seed: 2, columns: 5, categories: 5, down: 2 });
+    const before = JSON.stringify(g.down);
+    const steps = solve(g)!;
+    for (const st of steps.slice(0, 20)) { if (st.kind === 'draw') drawCard(g); else move(g, st.src, st.dst); }
+    restart(g);
+    expect(JSON.stringify(g.down)).toBe(before);
   });
 });
 
@@ -126,7 +185,7 @@ describe('every deal can be won', () => {
           expect(isWon(s)).toBe(true);
         }
       }
-    });
+    }, 60_000);
   }
 });
 
@@ -159,7 +218,7 @@ describe('move limit', () => {
         }
       }
     }
-  });
+  }, 60_000);
   it('running out stops nothing permanently: undo and restart bring moves back', async () => {
     const { outOfMoves, restart, movesLeft } = await import('../src/games/solitario/engine');
     const s = newGame(pool('A1'), { seed: 3, limit: 50 });

@@ -49,7 +49,7 @@ export function validateSolitario(data: SolitarioData, artIds?: Set<string>): So
     // Every level needs as many categories as its columns (one category per column), dealt together.
     const cfg = data.levels?.[level];
     if (cfg && !(cfg.columns >= 2 && cfg.columns <= 7)) errors.push(`${level}: columns must be 2 to 7 (is ${cfg.columns})`);
-    if (cfg && !(cfg.rows >= 1 && cfg.rows <= 8)) errors.push(`${level}: rows must be 1 to 8 (is ${cfg.rows})`);
+    if (cfg && !(cfg.down >= 0 && cfg.down <= 5)) errors.push(`${level}: face-down cards per column must be 0 to 5 (is ${cfg.down})`);
     const needCats = cfg?.columns ?? MAX_CATS_PER_GAME;
     for (let seed = 0; seed < 20; seed++) {
       if (pickCategories(cats, seed, needCats).length < needCats) { errors.push(`${level}: fewer than ${needCats} categories can be dealt together`); break; }

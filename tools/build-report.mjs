@@ -103,8 +103,8 @@ export function buildReport() {
   const cw = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : { checked: false, reason: 'check-card-words did not run' };
   if (!cw.checked) L.push(`- not checked: ${cw.reason}`);
   else {
-    L.push(`Measured with the card font at ${cw.minPx}px on a ${cw.phoneWidth}px phone, with each level's column count. A word listed here is a content problem: shorten it or lower the level's columns.`, '');
-    for (const [lvl, r] of Object.entries(cw.levels)) L.push(`- ${lvl} (${r.columns} columns, ${r.inner}px of text width): ${r.tooLong.length ? r.tooLong.map((w) => `"${w.es}" ${w.width}px`).join(', ') : 'all words fit'}`);
+    L.push(`Measured with the card font on a ${cw.phoneWidth}px phone with each level's column count: ${cw.minPx}px minimum, then wrapped at a syllable (2 lines; category names 3). A word listed here makes the game use fewer columns on small phones: shorten it or lower the level's columns.`, '');
+    for (const [lvl, r] of Object.entries(cw.levels)) L.push(`- ${lvl} (${r.columns} columns${r.usedColumns !== undefined && r.usedColumns !== r.columns ? `, uses ${r.usedColumns}` : ''}, ${r.inner}px of text width): ${r.tooLong.length ? r.tooLong.map((w) => `"${w.es}" (${w.lines}${typeof w.lines === 'number' ? ' lines' : ''})`).join(', ') : 'all words fit'}`);
   }
   L.push('', '## Contrast', '', '| theme | pair | kind | ratio | result |', '|---|---|---|---|---|');
   contrastRes.forEach((r) => L.push(`| ${r.theme} | \`${r.fg}\` on \`${r.bg}\` | ${r.kind} | ${r.na ? 'n/a' : r.ratio.toFixed(2)} | ${r.na ? 'not used' : r.ok ? 'pass' : 'LOW'} |`));

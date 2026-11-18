@@ -14,8 +14,8 @@ export type Level = (typeof LEVELS)[number];
 
 export interface Item { es: string; en: string; ru: string; art?: string }
 export interface Category { id: string; level: Level; name_es: string; en: string; ru: string; items: Item[]; avoid?: string[]; reviewed: boolean }
-/** Per level: columns on phones (2 to 7) and cards per column at the start. */
-export interface LevelConfig { columns: number; rows: number }
+/** Per level: columns on phones (2 to 7) and face-down cards under the face-up card of each column. */
+export interface LevelConfig { columns: number; down: number }
 export interface SolitarioData { categories: Category[]; levels?: Partial<Record<Level, LevelConfig>> }
 
 export interface Card { id: string; cat: string; kind: 'cat' | 'word'; item: Item }
@@ -28,6 +28,8 @@ export interface GameState {
   stock: string[];
   waste: string[];
   cols: string[][];
+  /** per column: how many cards at the bottom are face down (never tappable; the next one turns up when uncovered) */
+  down: number[];
   slots: Slot[];
   done: string[];
   moves: number;
@@ -46,7 +48,7 @@ export type Source = { kind: 'waste' } | { kind: 'col'; col: number; index: numb
 export type Target = { kind: 'slot'; index: number } | { kind: 'col'; col: number };
 export type Step = { kind: 'draw' } | { kind: 'move'; src: Source; dst: Target };
 
-export interface DealOptions { seed?: number; columns?: number; categories?: number; rows?: number; limit?: number | null }
+export interface DealOptions { seed?: number; columns?: number; categories?: number; down?: number; limit?: number | null }
 
 /* ---------- seeded randomness ---------- */
 function rng(seed: number): () => number {
@@ -90,9 +92,11 @@ export function dealOnce(pool: Category[], o: Omit<Required<DealOptions>, 'limit
   }
   const deck = shuffle(Object.keys(cards), o.seed ^ 0x9e3779b9);
   const cols: string[][] = Array.from({ length: o.columns }, () => []);
-  for (let row = 0; row < o.rows; row++) for (const col of cols) if (deck.length) col.push(deck.pop()!);
+  // Each column: o.down face-down cards and one face-up card on top.
+  for (let row = 0; row <= o.down; row++) for (const col of cols) if (deck.length) col.push(deck.pop()!);
+  const down = cols.map((c) => Math.max(0, c.length - 1));
   return {
-    cats, cards, size, stock: deck, waste: [], cols,
+    cats, cards, size, stock: deck, waste: [], cols, down,
     slots: cats.map(() => ({ cat: null, words: [] })),
     done: [], moves: 0, limit: null, par: 0, misses: 0, hintsUsed: 0, history: [], start: '',
   };
@@ -107,7 +111,7 @@ export function newGame(pool: Category[], o: DealOptions = {}): GameState {
     seed: o.seed ?? Math.floor(Math.random() * 2 ** 31),
     columns: o.columns ?? 5,
     categories: o.categories ?? 5,
-    rows: o.rows ?? 4,
+    down: o.down ?? 2,
   };
   const limit = o.limit ?? null;
   let shortest: { s: GameState; n: number } | null = null;
@@ -144,7 +148,7 @@ export const outOfMoves = (s: GameState): boolean => s.limit !== null && s.moves
 export function runAt(s: GameState, src: Source): string[] | null {
   if (src.kind === 'waste') return s.waste.length ? [s.waste[s.waste.length - 1]] : null;
   const col = s.cols[src.col];
-  if (!col || src.index < 0 || src.index >= col.length) return null;
+  if (!col || src.index < (s.down[src.col] ?? 0) || src.index >= col.length) return null; // face-down cards never move
   const run = col.slice(src.index);
   const cat = s.cards[run[0]].cat;
   return run.every((id) => s.cards[id].cat === cat) ? run : null;
@@ -164,14 +168,24 @@ export function canPlace(s: GameState, run: string[], t: Target): boolean {
   return !col.length || s.cards[col[col.length - 1]].cat === cat;
 }
 
-const snapshot = (s: GameState) => JSON.stringify({ stock: s.stock, waste: s.waste, cols: s.cols, slots: s.slots, done: s.done, moves: s.moves });
+const snapshot = (s: GameState) => JSON.stringify({ stock: s.stock, waste: s.waste, cols: s.cols, down: s.down, slots: s.slots, done: s.done, moves: s.moves });
+
+/** Is this card face down? */
+export const isFaceDown = (s: GameState, col: number, index: number): boolean => index < (s.down[col] ?? 0);
 
 /** Move cards. A wrong move changes nothing except the miss count. */
 export function move(s: GameState, src: Source, t: Target, record = true): boolean {
   const run = runAt(s, src);
   if (!run || !canPlace(s, run, t)) { s.misses++; return false; }
   if (record) s.history.push(snapshot(s));
-  if (src.kind === 'waste') s.waste.pop(); else s.cols[src.col].splice(src.index);
+  if (src.kind === 'waste') s.waste.pop();
+  else {
+    const col = s.cols[src.col];
+    col.splice(src.index);
+    // Uncovered a face-down card: it turns face up.
+    if (col.length && s.down[src.col] >= col.length) s.down[src.col] = col.length - 1;
+    if (!col.length) s.down[src.col] = 0;
+  }
   if (t.kind === 'col') s.cols[t.col].push(...run);
   else {
     const slot = s.slots[t.index];
@@ -224,7 +238,7 @@ function sources(s: GameState): Source[] {
   s.cols.forEach((col, ci) => {
     if (!col.length) return;
     let i = col.length - 1;
-    while (i > 0 && s.cards[col[i - 1]].cat === s.cards[col[i]].cat) i--;
+    while (i > (s.down[ci] ?? 0) && s.cards[col[i - 1]].cat === s.cards[col[i]].cat) i--;
     out.push({ kind: 'col', col: ci, index: i });
     if (i < col.length - 1) out.push({ kind: 'col', col: ci, index: col.length - 1 });
   });

@@ -1363,22 +1363,22 @@
   }
  ],
  "levels": {
-  "_note": "Columns per level on phones (Katya, 2026-11-18). A game deals as many categories as columns. Fewer columns are used automatically when the screen is narrow or the text size is raised, so no word is ever cut.",
+  "_note": "Per level: columns on phones and face-down cards under the face-up card of each column (Katya, mockup v4). A game deals as many categories as columns. Fewer columns are used automatically on narrow screens or with larger text, so no word is ever cut.",
   "A1": {
    "columns": 6,
-   "rows": 5
+   "down": 2
   },
   "A2": {
    "columns": 5,
-   "rows": 5
+   "down": 2
   },
   "B1": {
    "columns": 4,
-   "rows": 5
+   "down": 2
   },
   "B2": {
    "columns": 4,
-   "rows": 5
+   "down": 3
   }
  }
 }

@@ -165,5 +165,10 @@
   "sol.keepGoing": "Seguir sin límite",
   "sol.keptGoing": "Ahora esta partida no tiene límite.",
   "sol.retry": "Repetir esta partida",
-  "sol.retried": "Vuelves al principio de esta partida."
+  "sol.retried": "Vuelves al principio de esta partida.",
+  "sol.restart": "Reiniciar",
+  "sol.levelTitle": "{level} · Nivel {n}",
+  "sol.faceDown": "{n} cartas boca abajo",
+  "sol.under": "Cartas debajo: {words}",
+  "sol.hintNext": "Un buen movimiento brilla."
 }

@@ -165,5 +165,10 @@
   "sol.keepGoing": "Keep playing without a limit",
   "sol.keptGoing": "No limit for this game now.",
   "sol.retry": "Try this deal again",
-  "sol.retried": "Back to the start of this deal."
+  "sol.retried": "Back to the start of this deal.",
+  "sol.restart": "Restart",
+  "sol.levelTitle": "{level} · Level {n}",
+  "sol.faceDown": "{n} face-down cards",
+  "sol.under": "Cards underneath: {words}",
+  "sol.hintNext": "A good next move is glowing."
 }

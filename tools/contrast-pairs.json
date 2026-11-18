@@ -23,6 +23,7 @@
     [ "--placeholder-ink", "--placeholder-fill", "large", "placeholder dev label" ],
     [ "--art-halo", "--bg", "icon", "pet outline vs --bg, with halo" ],
     [ "--on-card", "--card-face", "body", "word on a card" ],
-    [ "--card-back", "--bg", "icon", "face-down card on the table" ]
+    [ "--card-back", "--bg", "icon", "face-down card on the table" ],
+    [ "--on-card", "--card-panel", "body", "word on a card panel" ]
   ]
 }

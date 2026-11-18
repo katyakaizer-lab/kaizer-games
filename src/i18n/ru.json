@@ -56,5 +56,7 @@
   "sol.levelsBack": "Уровни",
   "sol.limitTitle": "Ходы",
   "sol.noLimit": "Без ограничения",
-  "sol.left": "Осталось"
+  "sol.left": "Осталось",
+  "sol.restart": "Заново",
+  "sol.levelTitle": "{level} · Уровень {n}"
 }
