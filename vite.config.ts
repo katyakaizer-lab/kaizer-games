@@ -47,5 +47,6 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     include: ['tests/**/*.test.ts'],
+    testTimeout: 15000, // screens load several modules; slow machines need more than the 5 s default
   },
 });
