@@ -19,9 +19,9 @@
      "ru": "тюльпан"
     },
     {
-     "es": "margarita",
-     "en": "daisy",
-     "ru": "ромашка"
+     "es": "dalia",
+     "en": "dahlia",
+     "ru": "георгин"
     },
     {
      "es": "girasol",
@@ -134,9 +134,9 @@
      "ru": "машина"
     },
     {
-     "es": "autobús",
-     "en": "bus",
-     "ru": "автобус"
+     "es": "metro",
+     "en": "underground",
+     "ru": "метро"
     },
     {
      "es": "moto",
@@ -169,9 +169,9 @@
    "ru": "Фрукты",
    "items": [
     {
-     "es": "manzana",
-     "en": "apple",
-     "ru": "яблоко"
+     "es": "melón",
+     "en": "melon",
+     "ru": "дыня"
     },
     {
      "es": "plátano",
@@ -214,9 +214,9 @@
      "ru": "рубашка"
     },
     {
-     "es": "pantalones",
-     "en": "trousers",
-     "ru": "брюки"
+     "es": "gorra",
+     "en": "cap",
+     "ru": "кепка"
     },
     {
      "es": "falda",
@@ -234,9 +234,9 @@
      "ru": "пальто"
     },
     {
-     "es": "calcetines",
-     "en": "socks",
-     "ru": "носки"
+     "es": "botas",
+     "en": "boots",
+     "ru": "сапоги"
     }
    ],
    "reviewed": false
@@ -339,9 +339,9 @@
      "ru": "папа"
     },
     {
-     "es": "hermano",
-     "en": "brother",
-     "ru": "брат"
+     "es": "hijo",
+     "en": "son",
+     "ru": "сын"
     },
     {
      "es": "abuela",
@@ -384,9 +384,9 @@
      "ru": "рюкзак"
     },
     {
-     "es": "cuaderno",
-     "en": "exercise book",
-     "ru": "тетрадь"
+     "es": "libro",
+     "en": "book",
+     "ru": "книга"
     },
     {
      "es": "regla",
@@ -504,9 +504,9 @@
      "ru": "плавание"
     },
     {
-     "es": "baloncesto",
-     "en": "basketball",
-     "ru": "баскетбол"
+     "es": "golf",
+     "en": "golf",
+     "ru": "гольф"
     },
     {
      "es": "ciclismo",
@@ -524,9 +524,9 @@
   {
    "id": "instrumentos",
    "level": "A2",
-   "name_es": "Instrumentos",
-   "en": "Musical instruments",
-   "ru": "Музыкальные инструменты",
+   "name_es": "Música",
+   "en": "Music",
+   "ru": "Музыка",
    "items": [
     {
      "es": "guitarra",
@@ -734,9 +734,9 @@
      "ru": "молоток"
     },
     {
-     "es": "destornillador",
-     "en": "screwdriver",
-     "ru": "отвёртка"
+     "es": "lima",
+     "en": "file (tool)",
+     "ru": "напильник"
     },
     {
      "es": "sierra",
@@ -1099,9 +1099,9 @@
      "ru": "картотека"
     },
     {
-     "es": "fotocopiadora",
-     "en": "photocopier",
-     "ru": "ксерокс"
+     "es": "escáner",
+     "en": "scanner",
+     "ru": "сканер"
     },
     {
      "es": "clip",
@@ -1361,5 +1361,24 @@
    ],
    "reviewed": false
   }
- ]
+ ],
+ "levels": {
+  "_note": "Columns per level on phones (Katya, 2026-11-18). A game deals as many categories as columns. Fewer columns are used automatically when the screen is narrow or the text size is raised, so no word is ever cut.",
+  "A1": {
+   "columns": 6,
+   "rows": 5
+  },
+  "A2": {
+   "columns": 5,
+   "rows": 5
+  },
+  "B1": {
+   "columns": 4,
+   "rows": 5
+  },
+  "B2": {
+   "columns": 4,
+   "rows": 5
+  }
+ }
 }

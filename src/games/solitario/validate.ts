@@ -2,7 +2,7 @@
 import { LEVELS, pickCategories, type SolitarioData } from './engine.ts';
 
 /** The most categories one deal uses (wide screens). */
-export const MAX_CATS_PER_GAME = 6;
+export const MAX_CATS_PER_GAME = 7;
 
 export interface SolitarioValidation { errors: string[]; unreviewed: string[]; total: number }
 
@@ -46,9 +46,13 @@ export function validateSolitario(data: SolitarioData, artIds?: Set<string>): So
         words.set(k, c.id);
       }
     }
-    // Every level needs enough categories that can be dealt together.
+    // Every level needs as many categories as its columns (one category per column), dealt together.
+    const cfg = data.levels?.[level];
+    if (cfg && !(cfg.columns >= 2 && cfg.columns <= 7)) errors.push(`${level}: columns must be 2 to 7 (is ${cfg.columns})`);
+    if (cfg && !(cfg.rows >= 1 && cfg.rows <= 8)) errors.push(`${level}: rows must be 1 to 8 (is ${cfg.rows})`);
+    const needCats = cfg?.columns ?? MAX_CATS_PER_GAME;
     for (let seed = 0; seed < 20; seed++) {
-      if (pickCategories(cats, seed, MAX_CATS_PER_GAME).length < MAX_CATS_PER_GAME) { errors.push(`${level}: fewer than ${MAX_CATS_PER_GAME} categories can be dealt together`); break; }
+      if (pickCategories(cats, seed, needCats).length < needCats) { errors.push(`${level}: fewer than ${needCats} categories can be dealt together`); break; }
     }
   }
   return { errors, unreviewed: data.categories.filter((c) => !c.reviewed).map((c) => c.id), total: data.categories.length };

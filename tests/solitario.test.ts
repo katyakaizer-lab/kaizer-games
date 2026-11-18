@@ -140,7 +140,7 @@ describe('validator', () => {
   it('fails a word used twice in one level', () => expect(broken((d) => { const a1 = d.categories.filter((c) => c.level === 'A1'); a1[1].items.push({ ...a1[0].items[0] }); })).toMatch(/is in both/));
   it('fails too few cards', () => expect(broken((d) => { d.categories[0].items.length = 2; })).toMatch(/3 to 8 cards/));
   it('fails an unknown avoid', () => expect(broken((d) => { d.categories[0].avoid = ['nope']; })).toMatch(/unknown category/));
-  it('fails a level that cannot deal six categories', () => expect(broken((d) => { d.categories = d.categories.filter((c) => !(c.level === 'B2' && (c.id === 'aves' || c.id === 'teatro' || c.id === 'especias'))); })).toMatch(/B2: fewer than 6/));
+  it('fails a level that cannot deal as many categories as its columns', () => expect(broken((d) => { const keep = new Set(['coche', 'oficina', 'jardin']); d.categories = d.categories.filter((c) => c.level !== 'B2' || keep.has(c.id)); })).toMatch(/B2: fewer than 4/));
   it('fails a missing translation', () => expect(broken((d) => { d.categories[0].items[0].ru = ''; })).toMatch(/needs en and ru/));
 });
 

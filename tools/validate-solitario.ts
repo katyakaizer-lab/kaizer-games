@@ -7,9 +7,11 @@ import { validateSolitario } from '../src/games/solitario/validate.ts';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dir = process.argv[2] ?? join(ROOT, 'src/data/solitario');
 const files = readdirSync(dir).filter((f) => f.endsWith('.json')).sort();
-const categories = files.flatMap((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')).categories ?? []);
+const parsed = files.map((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')));
+const categories = parsed.flatMap((p) => p.categories ?? []);
+const levels = Object.assign({}, ...parsed.map((p) => p.levels ?? {}));
 const manifest = JSON.parse(readFileSync(join(ROOT, 'public/assets/manifest.json'), 'utf8'));
-const res = validateSolitario({ categories }, new Set(manifest.assets.map((a: { id: string }) => a.id)));
+const res = validateSolitario({ categories, levels }, new Set(manifest.assets.map((a: { id: string }) => a.id)));
 if (res.errors.length) {
   console.error(res.errors.map((e) => `  ${e}`).join('\n'));
   console.error(`validate-solitario: ${res.errors.length} error(s)`);

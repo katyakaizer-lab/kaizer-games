@@ -87,6 +87,8 @@ export function buildReport() {
   L.push(`- Fonts: ${fonts.every((r) => r.ok) ? 'pass' : 'FAIL'}${fonts.some((r) => r.note) ? ' (with notes)' : ''}`);
   L.push(`- Hard-coded colours or fonts: ${hard.problems.length}`);
   L.push(`- Art: ${art.assets.length} ids, ${placeholders.length} on placeholders, ${art.errors.length} errors`);
+  const cwS = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : null;
+  L.push(`- Solitario words too long for their cards: ${cwS?.checked ? Object.values(cwS.levels).reduce((n, l) => n + l.tooLong.length, 0) : 'not checked'}`);
   L.push(`- Un-reviewed content: ${cont.reduce((n, c) => n + c.unreviewed, 0)} item(s)`);
   L.push(`- Bundle: ${kb(files.reduce((n, [, s]) => n + s, 0))} total, JS ${kb(sum(/\.js$/))}, CSS ${kb(sum(/\.css$/))}, fonts ${kb(sum(/\.woff2$/))}`);
   L.push(`- First screen: ${kb(fs1.total)} (budget ${kb(FIRST_SCREEN_BUDGET)}) ${fs1.total <= FIRST_SCREEN_BUDGET ? 'ok' : 'OVER BUDGET'}`, '');
@@ -97,6 +99,13 @@ export function buildReport() {
   L.push('', '## Un-reviewed content', '');
   if (!cont.length) L.push('- none');
   cont.forEach((c) => L.push(`- \`${c.file}\` ${c.key}: ${c.unreviewed} of ${c.total} not reviewed`));
+  L.push('', '## Solitario: words that do not fit their cards', '');
+  const cw = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : { checked: false, reason: 'check-card-words did not run' };
+  if (!cw.checked) L.push(`- not checked: ${cw.reason}`);
+  else {
+    L.push(`Measured with the card font at ${cw.minPx}px on a ${cw.phoneWidth}px phone, with each level's column count. A word listed here is a content problem: shorten it or lower the level's columns.`, '');
+    for (const [lvl, r] of Object.entries(cw.levels)) L.push(`- ${lvl} (${r.columns} columns, ${r.inner}px of text width): ${r.tooLong.length ? r.tooLong.map((w) => `"${w.es}" ${w.width}px`).join(', ') : 'all words fit'}`);
+  }
   L.push('', '## Contrast', '', '| theme | pair | kind | ratio | result |', '|---|---|---|---|---|');
   contrastRes.forEach((r) => L.push(`| ${r.theme} | \`${r.fg}\` on \`${r.bg}\` | ${r.kind} | ${r.na ? 'n/a' : r.ratio.toFixed(2)} | ${r.na ? 'not used' : r.ok ? 'pass' : 'LOW'} |`));
   L.push('', '## Fonts', '');

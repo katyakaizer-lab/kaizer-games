@@ -14,7 +14,9 @@ export type Level = (typeof LEVELS)[number];
 
 export interface Item { es: string; en: string; ru: string; art?: string }
 export interface Category { id: string; level: Level; name_es: string; en: string; ru: string; items: Item[]; avoid?: string[]; reviewed: boolean }
-export interface SolitarioData { categories: Category[] }
+/** Per level: columns on phones (2 to 7) and cards per column at the start. */
+export interface LevelConfig { columns: number; rows: number }
+export interface SolitarioData { categories: Category[]; levels?: Partial<Record<Level, LevelConfig>> }
 
 export interface Card { id: string; cat: string; kind: 'cat' | 'word'; item: Item }
 export interface Slot { cat: string | null; words: string[] }

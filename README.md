@@ -65,14 +65,17 @@ docs/                         planning documents (kept locally, not in the repos
 ### Solitario de categorías
 
 - Mechanics follow Katya's reference (a word-association solitaire); the look is our own (`mesa` card-table theme in tokens.css, plain small word cards, our own card back). No crown, ribbon or other graphics from that app.
-- Top: the move counter, then the turned-over card and the deck on the right. Below: one empty slot per category, then the columns (all cards face up).
+- Dense one-screen board (phone): a top bar of 44px icon buttons (levels, undo, new game, translation on/off, and "Pista" when it applies); a status row one card high (moves on the left, turned-over card and deck on the right); one row of category slots; then the board.
+- Columns per level come from the data (`levels` in categories.json: A1 6, A2 5, B1 4, B2 4), at most 6 under 400px, one fewer per text-size step, and fewer still if a word would not fit at 13px. Card width = (screen - side padding - gaps) / columns, height = width x `--card-ratio`; one size for every card and slot. As many categories as columns.
+- Cards are fully visible with a small gap; a column overlaps only when it would run past the bottom of the screen, and a covered card always keeps its word visible.
+- The Spanish word fits per card from 17px down to 13px, one line, never cut. `npm run build` lists any word that does not fit its level's cards on a 375px phone (dist/build-report.md). Translations go down to 12px and wrap (a single English word wider than the card may break, with a hyphen where supported). Category cards show the book icon and count above the name, and no translation.
 - Each category is also a card (coloured frame, with how many words it needs). A category card in an empty slot opens it; then its words go on it. A complete category leaves the table and frees its slot.
 - On the columns a card goes on any card of the same category (word or category card), or on an empty column; a run of one category moves together. Tap or drag; double-tap sends a card to its slot.
-- You choose only a level. Each deal mixes 5 categories on phones (5 columns), or 5 to 7 on wider screens (as many 5rem columns as fit, up to 9), from that level's concrete topics, 4 to 6 words each. Words and category names have no articles.
+- You choose only a level. Each deal mixes that level's concrete topics, 4 to 6 words each. Words and category names have no articles.
 - Moves are counted (every move and every turn of the deck). On the level screen the player can choose a move limit: no limit, 80, 65 or 50. Every deal is checked by a solver before it is shown, so it can always be won, within the limit if one is set. Running out is not a "game over": undo, keep playing without the limit, try the same deal again, or deal a new one. The level screen shows games won and the best (fewest) moves.
 - A complete category leaves the table with a small burst of stars (skipped with reduced motion).
-- A wrong move changes nothing and the status line says why. "Pista" appears after two misses.
-- Cards partly covered in a column show their word on one line; long words get a smaller font. Translations (on by default at A1) show only on fully visible cards. Category cards are solid amber with a dark frame. Spanish from Spain (plátano, patata, nevera).
+- A wrong move changes nothing; a short message says why (and screen readers hear every step). "Pista" appears after two misses.
+- Translations are on by default at A1. Category cards are solid amber with a dark frame. Spanish from Spain (plátano, patata, nevera).
 
 ## Open items
 
