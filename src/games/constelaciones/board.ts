@@ -49,6 +49,7 @@ export function createBoard(o: BoardOpts): Board {
   svg.setAttribute('aria-hidden', 'true');
 
   const el = h('div', { class: 'cz-board', style: { aspectRatio: `1 / ${aspect}` }, 'data-labels': labelsHidden ? 'hidden' : 'show' }, svg);
+  el.style.setProperty('--aspect', String(aspect)); // lets CSS fit the board to the window height
   el.setAttribute('role', 'group');
   el.setAttribute('aria-label', t('cz.tapInOrder'));
 

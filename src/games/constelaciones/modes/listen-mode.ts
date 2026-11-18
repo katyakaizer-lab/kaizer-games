@@ -36,7 +36,7 @@ export const listenMode: Mode = {
       before: controls,
       finishButtons: () => standardButtons(c, ctx, nextAfter(c, ctx.levels)),
     });
-    if (!speaker.available) screen.body.prepend(emptyNote(t('cz.listen.unavailable')));
+    if (!speaker.available) screen.stage.prepend(emptyNote(t('cz.listen.unavailable')));
     else setTimeout(() => void speaker.play(false), 300);
     return screen.el;
   },

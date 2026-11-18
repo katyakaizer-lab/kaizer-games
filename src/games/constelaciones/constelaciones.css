@@ -1,5 +1,7 @@
 /* Constelaciones. Tokens only; the game sets data-theme="night" while it is open. */
 .cz { max-width: 44rem; margin: 0 auto; padding: var(--space-3) var(--space-4) var(--space-6); }
+/* Laptops: a wider sky (more map columns) and a play screen with the stars and the sentence side by side. */
+@media (min-width: 960px) { .cz { max-width: 64rem; } }
 .cz-content { display: grid; gap: var(--space-4); }
 .cz-header { display: grid; gap: var(--space-3); }
 .cz-header__top { display: flex; align-items: center; gap: var(--space-2); margin-left: calc(-1 * var(--space-2)); }
@@ -18,7 +20,7 @@
 .cz-due-count { color: var(--text); font-weight: 700; }
 
 /* ---------- Map ---------- */
-.cz-map { position: relative; width: 100%; max-width: 100%; }
+.cz-map { position: relative; width: 100%; max-width: 100%; container-type: inline-size; --cell: calc(100cqw / var(--cols, 3)); }
 .cz-map__sky { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .cz-sky-dot { fill: var(--star-dim); opacity: .35; }
 .cz-story-link { stroke: var(--star-dim); stroke-width: .35; stroke-dasharray: 1 1.2; opacity: .7; }
@@ -34,13 +36,20 @@
 
 .cz-map__star {
   position: absolute; transform: translate(-50%, -50%);
-  width: 64px; height: 64px; display: grid; align-items: end; justify-items: center;
-  padding: 0 0 2px; border: var(--border-w) solid transparent; border-radius: var(--radius-pill);
+  /* The button covers the whole cluster, so its size follows the cell size (never below a 64px tap target). */
+  width: max(64px, calc(var(--cell) * 0.66)); aspect-ratio: 1; height: auto; display: block;
+  padding: 0; border: var(--border-w) solid transparent; border-radius: var(--radius-pill);
   background: transparent; color: var(--text); font: inherit; cursor: pointer;
 }
 .cz-map__star:hover { border-color: var(--border); }
 .cz-map__star[aria-disabled="true"] { cursor: default; color: var(--text-soft); }
-.cz-map__tag { display: inline-flex; align-items: center; gap: 2px; font-size: var(--fs-small); font-weight: 700; line-height: 1; transform: translateY(70%); }
+/* The number sits just below the cluster on a small pill of sky colour, so lines and dots never run through it. */
+.cz-map__tag {
+  position: absolute; left: 50%; top: 100%; transform: translate(-50%, -35%);
+  display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px;
+  border-radius: var(--radius-pill); background: var(--bg);
+  font-size: var(--fs-small); font-weight: 700; line-height: 1.1; white-space: nowrap;
+}
 .cz-map__tag .k-icon { width: 1em; height: 1em; }
 .cz-map__star.is-suggested .cz-map__tag { color: var(--star); }
 
@@ -50,13 +59,33 @@
 .cz-play__level { display: inline-block; padding: 2px var(--space-2); border-radius: var(--radius-pill); border: 1px solid var(--border); color: var(--text-soft); font-size: var(--fs-small); font-weight: 700; }
 .cz-dev { padding: 2px var(--space-2); border-radius: var(--radius-pill); background: var(--highlight); color: var(--on-highlight); font-size: var(--fs-small); font-weight: 700; }
 .cz-play__intro { margin: 0; color: var(--text-soft); }
-.cz-play__body { display: grid; gap: var(--space-4); }
-.cz-controls { display: flex; flex-wrap: wrap; gap: var(--space-2); min-height: var(--tap-min); }
+.cz-play__cols, .cz-play__side, .cz-play__stage, .cz-play__body { display: grid; gap: var(--space-3); align-content: start; min-width: 0; }
+.cz-play__body { gap: var(--space-4); }
+.cz-play__body:empty { display: none; }
+@media (min-width: 960px) {
+  /* Title across the top; the board on the left; instructions, controls and the sentence stage on the right. */
+  .cz-play { grid-template-columns: minmax(0, 1fr) minmax(20rem, 28rem); grid-template-rows: auto auto auto 1fr; column-gap: var(--space-5); row-gap: var(--space-2); align-items: start; }
+  .cz-play__bar, .cz-play__title { grid-column: 1 / -1; }
+  .cz-play__cols { display: contents; }
+  .cz-play__stage { grid-column: 1; grid-row: 3 / span 2; }
+  .cz-play__intro { grid-column: 2; grid-row: 3; }
+  .cz-play__side { grid-column: 2; grid-row: 4; }
+  .cz-play .cz-board { width: min(100%, max(20rem, calc((100dvh - 9rem) / var(--aspect, 1)))); }
+  /* Once the stars are connected, the tapping instructions are done with. */
+  .cz-play:has(.cz-light, .cz-done) .cz-play__intro { display: none; }
+  .cz-play:has(.cz-light, .cz-done) .cz-play__side { grid-row: 3 / span 2; }
+  .cz-light { padding: var(--space-3); gap: var(--space-2); }
+  .cz-light__tasks { font-size: var(--fs-small); line-height: 1.4; }
+  .cz-word, .cz-gap, .cz-tray__mark { min-height: var(--tap-min); }
+}
+.cz-controls { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.cz-controls:not(:has(> :not([hidden]))) { display: none; }
 .cz-status { margin: 0; min-height: 1.6em; color: var(--text-soft); }
 .cz-listen { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 
 /* Only a swipe that starts on a star is kept for drawing a line; a swipe on empty sky scrolls the page. */
-.cz-board { position: relative; width: 100%; max-width: 100%; margin-inline: auto; touch-action: manipulation; user-select: none; -webkit-user-select: none; border-radius: var(--radius-card); }
+/* Fits the window height (title and controls above it stay visible), never narrower than the 320px phone frame. */
+.cz-board { position: relative; width: min(100%, max(20rem, calc((100dvh - 14rem) / var(--aspect, 1)))); max-width: 100%; margin-inline: auto; touch-action: manipulation; user-select: none; -webkit-user-select: none; border-radius: var(--radius-card); }
 .cz-board__lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .cz-line { stroke: var(--star-line); stroke-width: 5; stroke-linecap: round; }
 .cz-board.is-lit .cz-line { stroke: var(--star); }

@@ -11,6 +11,9 @@ import type { Board } from './board';
 
 export interface PlayScreen {
   el: HTMLElement;
+  /** the star board column */
+  stage: HTMLElement;
+  /** everything that follows the board: controls, status, the light stage, the finish panel (beside the board on laptops) */
   body: HTMLElement;
   status: HTMLElement;
   controls: HTMLElement;
@@ -20,6 +23,7 @@ export interface PlayScreen {
 export function playScreen(c: Constellation, o: { title?: string; intro: string; back(): void }): PlayScreen {
   const status = h('p', { class: 'cz-status', role: 'status', 'aria-live': 'polite' });
   const controls = h('div', { class: 'cz-controls' });
+  const stage = h('div', { class: 'cz-play__stage' });
   const body = h('div', { class: 'cz-play__body' });
   const el = h('div', { class: 'cz-play' },
     h('div', { class: 'cz-play__bar' },
@@ -28,8 +32,8 @@ export function playScreen(c: Constellation, o: { title?: string; intro: string;
       showDev() && !c.reviewed ? h('span', { class: 'cz-dev' }, t('cz.unreviewed')) : null),
     h('h1', { tabindex: '-1', class: 'cz-play__title' }, o.title ?? t('cz.constellation', { n: numberOf(c.id) })),
     h('p', { class: 'cz-play__intro' }, o.intro),
-    body, controls, status);
-  return { el, body, status, controls, announce: (msg) => { status.textContent = msg; } };
+    h('div', { class: 'cz-play__cols' }, stage, h('div', { class: 'cz-play__side' }, controls, status, body)));
+  return { el, stage, body, status, controls, announce: (msg) => { status.textContent = msg; } };
 }
 
 /** "Pista" appears after two wrong taps in a row. */

@@ -54,6 +54,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     backToMap: () => ctx.go(mode.id === 'map' ? [] : [mode.id]),
     readStory: (id) => ctx.go(['read', id]),
     map: (items: MapItem[]) => createMap(items, {
+      widthPx: content.clientWidth || window.innerWidth,
       onPick: (it, from) => {
         const mapEl = from.closest<HTMLElement>('.cz-map')!;
         const x = parseFloat(from.style.left), y = parseFloat(from.style.top);
@@ -129,6 +130,9 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     } else {
       window.scrollTo(0, 0);
       focusTitle(content);
+      // If the suggested next constellation is below the fold, bring it into view.
+      const next = content.querySelector<HTMLElement>('.cz-map__star.is-suggested');
+      if (next && next.getBoundingClientRect().bottom > window.innerHeight) next.scrollIntoView?.({ block: 'center' });
     }
   }
 

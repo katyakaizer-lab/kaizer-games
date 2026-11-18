@@ -66,7 +66,7 @@ function memoryPlay(c: Constellation, ctx: ModeCtx): HTMLElement {
   });
   const again = Button({ label: t('cz.memory.again'), icon: 'eye', variant: 'secondary', onClick: () => { hints++; board!.reveal(LOOK_MS); } });
   again.lang = 'es';
-  screen.body.append(board.el);
+  screen.stage.append(board.el);
   screen.controls.append(again);
   board.reveal(LOOK_MS);
   return screen.el;

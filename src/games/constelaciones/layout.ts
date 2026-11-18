@@ -50,15 +50,18 @@ export function minSpacing(pts: Pt[], aspect: number): number {
 
 /* ---------- Galaxy map ---------- */
 
-export const MAP_W = 100;
-const COLS = 3;
+/** One cell of the map grid, in map units. Phones use 3 columns; wider screens use more, so cells keep about the same size on screen. */
+export const CELL_W = 100 / 3;
 const ROW_H = 34;
+export const mapColumns = (widthPx: number): number => Math.max(3, Math.min(6, Math.floor(widthPx / 130)));
 
 /**
  * Cluster positions in map units (width 100). Items fill a 3-column grid in snake order,
  * so consecutive story parts sit next to each other; each cell gets a seeded nudge.
  */
-export function galaxyLayout(ids: string[]): { pos: Map<string, Pt>; height: number } {
+export function galaxyLayout(ids: string[], cols = 3): { pos: Map<string, Pt>; width: number; height: number } {
+  const COLS = cols;
+  const MAP_W = cols * CELL_W;
   const pos = new Map<string, Pt>();
   ids.forEach((id, i) => {
     const row = Math.floor(i / COLS);
@@ -66,7 +69,7 @@ export function galaxyLayout(ids: string[]): { pos: Map<string, Pt>; height: num
     const r = rng(hashString(`map:${id}`));
     pos.set(id, { x: (col + 0.5) * (MAP_W / COLS) + (r() - 0.5) * 9, y: row * ROW_H + ROW_H / 2 + 4 + (r() - 0.5) * 10 });
   });
-  return { pos, height: Math.max(1, Math.ceil(ids.length / COLS)) * ROW_H + 8 };
+  return { pos, width: MAP_W, height: Math.max(1, Math.ceil(ids.length / COLS)) * ROW_H + 8 };
 }
 
 /** The little star pattern drawn for a cluster on the map (offsets in map units). */

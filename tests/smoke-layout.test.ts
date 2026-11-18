@@ -131,3 +131,24 @@ describe('smoke: play one constellation start to finish in a real browser', () =
     expect(errors).toEqual([]);
   }, 30_000);
 });
+
+describe('smoke: laptop window', () => {
+  it('the longest sentence and its light stage fit a 1366x768 window', async () => {
+    const page = await browser.newPage({ viewport: { width: 1366, height: 768 } });
+    await page.addInitScript((st) => { for (const [k, v] of Object.entries(st)) localStorage.setItem(k, v); }, { ...STATE, 'kz.cz.progress': '{}' });
+    await page.goto(base + 'index.html#game/constelaciones/play/map/c-b2-001'); // 9 words, B2: every task
+    await page.waitForSelector('.cz-star');
+    const order = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    for (const i of order) await page.click('.cz-star[data-index="' + i + '"]');
+    await page.waitForSelector('.cz-light');
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const r = await page.evaluate(() => ({
+      board: document.querySelector('.cz-board')!.getBoundingClientRect().bottom,
+      check: [...document.querySelectorAll('.cz-light button')].find((b) => b.textContent?.includes('Comprobar'))!.getBoundingClientRect().bottom,
+      h: window.innerHeight,
+    }));
+    await page.close();
+    expect(r.board).toBeLessThanOrEqual(r.h);
+    expect(r.check).toBeLessThanOrEqual(r.h);
+  }, 30_000);
+});

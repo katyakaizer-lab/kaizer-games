@@ -7,7 +7,7 @@ import { h } from '../../ui/h';
 import { icon } from '../../ui/icons';
 import { t } from '../../i18n';
 import { numberOf } from './data';
-import { clusterShape, galaxyLayout, MAP_W } from './layout';
+import { clusterShape, galaxyLayout, mapColumns } from './layout';
 import { hashString, rng, type Constellation } from './sentence';
 
 export interface MapItem { c: Constellation; state: 'locked' | 'open' | 'cleared'; due: boolean; suggested: boolean; lockedNote?: string }
@@ -19,13 +19,14 @@ const svgEl = (tag: string, attrs: Record<string, string | number>) => {
   return e;
 };
 
-export function createMap(items: MapItem[], o: { onPick(item: MapItem, from: HTMLElement): void }): HTMLElement {
-  const { pos, height } = galaxyLayout(items.map((i) => i.c.id));
+export function createMap(items: MapItem[], o: { onPick(item: MapItem, from: HTMLElement): void; widthPx?: number; cols?: number }): HTMLElement {
+  const cols = o.cols ?? mapColumns(o.widthPx ?? 360);
+  const { pos, width: MAP_W, height } = galaxyLayout(items.map((i) => i.c.id), cols);
   const svg = svgEl('svg', { viewBox: `0 0 ${MAP_W} ${height}`, class: 'cz-map__sky', 'aria-hidden': 'true' });
 
   // A quiet starfield (decoration only).
   const r = rng(hashString(`sky:${items.length}`));
-  for (let i = 0; i < Math.round(height * 0.9); i++) svg.append(svgEl('circle', { cx: r() * MAP_W, cy: r() * height, r: 0.15 + r() * 0.25, class: 'cz-sky-dot' }));
+  for (let i = 0; i < Math.round(height * MAP_W * 0.009); i++) svg.append(svgEl('circle', { cx: r() * MAP_W, cy: r() * height, r: 0.15 + r() * 0.25, class: 'cz-sky-dot' }));
 
   // Story links between consecutive parts.
   items.forEach((it, k) => {
@@ -67,5 +68,7 @@ export function createMap(items: MapItem[], o: { onPick(item: MapItem, from: HTM
     buttons.push(b);
   }
 
-  return h('div', { class: 'cz-map', style: { aspectRatio: `${MAP_W} / ${height}` }, role: 'group', 'aria-label': t('cz.mapLabel') }, svg, buttons);
+  const el = h('div', { class: 'cz-map', style: { aspectRatio: `${MAP_W} / ${height}` }, role: 'group', 'aria-label': t('cz.mapLabel') }, svg, buttons);
+  el.style.setProperty('--cols', String(cols)); // button and label size follow the cell size
+  return el;
 }

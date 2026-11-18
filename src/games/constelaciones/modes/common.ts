@@ -110,8 +110,8 @@ export function buildFlow(c: Constellation, ctx: ModeCtx, o: {
       light.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
     },
   });
-  if (o.before) screen.body.append(o.before);
-  screen.body.append(board.el);
+  if (o.before) screen.stage.append(o.before);
+  screen.stage.append(board.el);
   screen.controls.append(hint.el);
   return screen;
 }
