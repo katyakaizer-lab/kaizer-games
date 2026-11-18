@@ -30,11 +30,18 @@
   font: inherit; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none;
 }
 div.sol-card { cursor: default; }
-.sol-card__word { font-weight: 700; font-size: 0.8rem; line-height: 1.2; overflow-wrap: anywhere; hyphens: auto; max-width: 100%; }
+.sol-card__word { font-weight: 700; font-size: 0.8rem; line-height: 1.2; overflow-wrap: break-word; hyphens: auto; max-width: 100%; }
+.sol-card__word.is-long { font-size: 0.68rem; }
+.sol-card__word.is-xlong { font-size: 0.6rem; }
 /* A partly covered card shows its word on one line; only the fully visible card wraps and shows the translation. */
 .sol-col > .sol-card:not(:last-child) .sol-card__word { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sol-col > .sol-card:not(:last-child) .sol-card__tr { display: none; }
-@media (min-width: 560px) { .sol-card__word { font-size: 0.875rem; } }
+@media (min-width: 560px) {
+  .sol-card__word { font-size: 0.875rem; }
+  .sol-card__word.is-long { font-size: 0.78rem; }
+  .sol-card__word.is-xlong { font-size: 0.68rem; }
+  .sol-play { max-width: calc(var(--ncols, 7) * 5rem + (var(--ncols, 7) - 1) * var(--space-2)); margin-inline: auto; width: 100%; }
+}
 .sol-card__tr { font-size: 0.68rem; line-height: 1.2; opacity: .8; margin-top: 2px; padding-top: 2px; border-top: 1px solid var(--border); max-width: 100%; overflow-wrap: anywhere; }
 /* Category card: a thicker coloured frame and a small tag with how many words it needs. */
 /* Category card: solid amber with a dark inner frame, clearly not a word card. */

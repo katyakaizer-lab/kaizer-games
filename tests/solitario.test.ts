@@ -143,3 +143,34 @@ describe('validator', () => {
   it('fails a level that cannot deal six categories', () => expect(broken((d) => { d.categories = d.categories.filter((c) => !(c.level === 'B2' && (c.id === 'aves' || c.id === 'teatro' || c.id === 'especias'))); })).toMatch(/B2: fewer than 6/));
   it('fails a missing translation', () => expect(broken((d) => { d.categories[0].items[0].ru = ''; })).toMatch(/needs en and ru/));
 });
+
+describe('move limit', () => {
+  it('every deal can be won within the chosen limit', async () => {
+    const { movesLeft, outOfMoves } = await import('../src/games/solitario/engine');
+    for (const limit of [50, 65, 80]) {
+      for (let seed = 0; seed < 15; seed++) {
+        for (const lay of [{ columns: 5, categories: 5 }, { columns: 9, categories: 7 }]) {
+          const s = newGame(pool('A2'), { ...lay, seed, limit });
+          expect(s.limit).toBeGreaterThanOrEqual(limit);
+          const steps = solve(s)!;
+          expect(steps.length).toBeLessThanOrEqual(s.limit!);
+          expect(movesLeft(s)).toBe(s.limit);
+          expect(outOfMoves(s)).toBe(false);
+        }
+      }
+    }
+  });
+  it('running out stops nothing permanently: undo and restart bring moves back', async () => {
+    const { outOfMoves, restart, movesLeft } = await import('../src/games/solitario/engine');
+    const s = newGame(pool('A1'), { seed: 3, limit: 50 });
+    const start = JSON.stringify(s.cols);
+    while (!outOfMoves(s)) drawCard(s);
+    expect(movesLeft(s)).toBe(0);
+    expect(undo(s)).toBe(true);
+    expect(outOfMoves(s)).toBe(false);
+    restart(s);
+    expect(s.moves).toBe(0);
+    expect(JSON.stringify(s.cols)).toBe(start);
+    expect(s.history).toEqual([]);
+  });
+});

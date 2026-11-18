@@ -114,4 +114,27 @@ describe('Solitario de categorías start to finish in a real browser', () => {
     expect(await page.textContent('.sol-moves__n')).toBe(String(idx + 1));
     await page.close();
   }, 60_000);
+
+  it('stars pop when a category completes; with a limit, running out offers ways on', async () => {
+    const page = await browser.newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
+    const st = { ...STATE, 'kz.settings': JSON.stringify({ lang: 'es', sound: false, soundOffered: true, reduceMotion: false, textSize: 'normal' }), 'kz.sol.limit': '50' };
+    await page.addInitScript((x) => { for (const [k, v] of Object.entries(x)) localStorage.setItem(k, v); }, st);
+    await page.goto(base + 'index.html#game/solitario/play/A1/seed-5');
+    await page.waitForSelector('.sol-col .sol-card');
+    expect(await page.textContent('.sol-moves')).toContain('Quedan');
+    const steps = solve(newGame(cats.filter((c) => c.level === 'A1'), { seed: 5, columns: 5, categories: 5, limit: 50 }))!;
+    let burst = false;
+    for (const step of steps) {
+      if (step.kind === 'draw') await page.click('[data-stock]');
+      else { await clickSource(page, step.src); await clickTarget(page, step.dst); }
+      if (await page.locator('.sol-burst .sol-burst__star').count()) { burst = true; break; }
+    }
+    expect(burst).toBe(true);
+    // use up the remaining moves on the deck
+    for (let i = 0; i < 60 && !(await page.locator('.sol-out').count()); i++) await page.click('[data-stock]');
+    expect(await page.textContent('.sol-out')).toContain('No quedan movimientos');
+    await page.click('.sol-out button:has-text("Repetir esta partida")');
+    expect(await page.textContent('.sol-moves__n')).toContain('50');
+    await page.close();
+  }, 120_000);
 });

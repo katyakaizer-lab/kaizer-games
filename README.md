@@ -68,10 +68,11 @@ docs/                         planning documents (kept locally, not in the repos
 - Top: the move counter, then the turned-over card and the deck on the right. Below: one empty slot per category, then the columns (all cards face up).
 - Each category is also a card (coloured frame, with how many words it needs). A category card in an empty slot opens it; then its words go on it. A complete category leaves the table and frees its slot.
 - On the columns a card goes on any card of the same category (word or category card), or on an empty column; a run of one category moves together. Tap or drag; double-tap sends a card to its slot.
-- You choose only a level. Each deal mixes 5 categories (phones) or 6 (wider screens) from that level's concrete topics, 4 to 6 words each.
-- Moves are counted (every move and every turn of the deck) with no limit and no failure; the level screen shows games won and the best (fewest) moves. Undo is always there. Every deal is checked by a solver before it is shown, so it can always be won (tested on 320 deals per run, each replayed to the end).
+- You choose only a level. Each deal mixes 5 categories on phones (5 columns), or 5 to 7 on wider screens (as many 5rem columns as fit, up to 9), from that level's concrete topics, 4 to 6 words each. Words and category names have no articles.
+- Moves are counted (every move and every turn of the deck). On the level screen the player can choose a move limit: no limit, 80, 65 or 50. Every deal is checked by a solver before it is shown, so it can always be won, within the limit if one is set. Running out is not a "game over": undo, keep playing without the limit, try the same deal again, or deal a new one. The level screen shows games won and the best (fewest) moves.
+- A complete category leaves the table with a small burst of stars (skipped with reduced motion).
 - A wrong move changes nothing and the status line says why. "Pista" appears after two misses.
-- Translations under the cards are on by default at A1 and can be switched off. Spanish from Spain (plátano, patata, nevera).
+- Cards partly covered in a column show their word on one line; long words get a smaller font. Translations (on by default at A1) show only on fully visible cards. Category cards are solid amber with a dark frame. Spanish from Spain (plátano, patata, nevera).
 
 ## Open items
 

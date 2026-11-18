@@ -35,6 +35,8 @@ function addWin(l: Level, moves: number): Record_ {
   store.set('sol.records', r);
   return r[l]!;
 }
+/** Long words get a smaller font so they fit a narrow card without breaking mid-word. */
+const sizeClass = (w: string) => { const n = Math.max(...w.split(' ').map((p) => p.length)); return n > 12 ? ' is-xlong' : n > 8 ? ' is-long' : ''; };
 const trOf = (x: { en: string; ru: string }) => (getLang() === 'ru' ? x.ru : x.en);
 /** Phones: 5 columns and 5 categories. Wider screens: as many 5rem columns as fit (6 to 9) and 5 to 7 categories. */
 export function layoutFor(w: number): { columns: number; categories: number } {
@@ -121,6 +123,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     let showTr = store.get<boolean>('sol.showTr', level === 'A1');
 
     const el = h('div', { class: 'sol-play' });
+    el.style.setProperty('--ncols', String(lay.columns)); // wide screens: the play area is as wide as the table
     const status = h('p', { class: 'sol-status', role: 'status', 'aria-live': 'polite' });
     const announce = (m: string) => { status.textContent = m; };
     const word = (id: string) => s.cards[id].item.es;
@@ -170,7 +173,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
         'aria-label': isCat ? `${t('sol.categoryCard')}: ${c.item.es} (${s.size[c.cat]})` : undefined,
       },
         isCat ? h('span', { class: 'sol-card__tag', 'aria-hidden': 'true' }, icon('book'), String(s.size[c.cat])) : null,
-        h('span', { class: 'sol-card__word', lang: 'es' }, c.item.es),
+        h('span', { class: 'sol-card__word' + sizeClass(c.item.es), lang: 'es' }, c.item.es),
         showTr ? h('span', { class: 'sol-card__tr', lang: getLang() === 'ru' ? 'ru' : 'en' }, trOf(c.item)) : null);
     }
 
