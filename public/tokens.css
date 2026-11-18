@@ -104,6 +104,9 @@
   --placeholder-fill: var(--line);
   --placeholder-ink: var(--ink-soft);
   --art-halo: transparent;      /* no outline halo on day paper (ink outlines are 12:1) */
+  --card-face: var(--white);    /* word cards (Solitario) */
+  --on-card: var(--ink);
+  --card-back: var(--forest);
 }
 
 /* ---------- Theme: night (star-map games) ---------- */
@@ -138,4 +141,49 @@
   --placeholder-fill: var(--navy-3);
   --placeholder-ink: var(--text-soft);
   --art-halo: #FFF4E0;          /* light halo so ink-outlined pets and items read on the dark sky */
+  --card-face: var(--text);
+  --on-card: var(--bg);
+  --card-back: var(--coral);
 }
+
+/* ---------- Theme: mesa (card table, Solitario) ---------- */
+:root[data-theme="mesa"] {
+  /* palette */
+  --felt: #1E5B3A;
+  --felt-2: #256B45;
+  --felt-3: #3B8259;
+  --cream: #FFF4E0;
+  --cream-soft: #D9EBDD;
+  --paper-white: #FFFBF2;
+  --ink: #2B2D42;
+  --amber: #F2B84B;
+  --coral: #F08A73;
+  --mint: #8FD3C1;
+  --gold-light: #FFE9A8;
+
+  /* semantic */
+  --bg: var(--felt);
+  --surface: var(--felt-2);
+  --text: var(--cream);
+  --text-soft: var(--cream-soft);
+  --border: var(--felt-3);
+  --primary: var(--amber);      --on-primary: var(--ink);
+  --secondary: var(--mint);     --on-secondary: var(--ink);
+  --accent: var(--coral);       --on-accent: var(--ink);
+  --highlight: var(--amber);    --on-highlight: var(--ink);
+  --link: var(--gold-light);
+  --focus: var(--gold-light);
+  --star: var(--gold-light);    --star-line: var(--mint);   --star-dim: var(--cream-soft);
+  --correct-bg: #1F4A44;        --correct-line: var(--mint);
+  --retry-bg: #4A3B1C;          --retry-line: var(--amber);
+  --track: #154A2F;
+  --scrim: rgb(10 30 20 / .6);
+  --shadow: 0 2px 0 rgb(0 0 0 / .18), 0 6px 14px rgb(0 0 0 / .22);
+  --placeholder-fill: var(--felt-3);
+  --placeholder-ink: var(--cream-soft);
+  --art-halo: #FFF4E0;
+  --card-face: var(--paper-white);
+  --on-card: var(--ink);
+  --card-back: var(--coral);
+}
+

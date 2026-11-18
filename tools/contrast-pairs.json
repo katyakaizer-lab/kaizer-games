@@ -21,6 +21,8 @@
     [ "--star-line", "--bg", "icon", "constellation line" ],
     [ "--star-dim", "--bg", "icon", "dimmed star" ],
     [ "--placeholder-ink", "--placeholder-fill", "large", "placeholder dev label" ],
-    [ "--art-halo", "--bg", "icon", "pet outline vs --bg, with halo" ]
+    [ "--art-halo", "--bg", "icon", "pet outline vs --bg, with halo" ],
+    [ "--on-card", "--card-face", "body", "word on a card" ],
+    [ "--card-back", "--bg", "icon", "face-down card on the table" ]
   ]
 }

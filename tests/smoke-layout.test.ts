@@ -24,7 +24,7 @@ const SCREENS = [
   'index.html#picker', 'index.html#home', 'index.html#settings',
   'index.html#game/constelaciones', 'index.html#game/constelaciones/story', 'index.html#game/constelaciones/listen', 'index.html#game/constelaciones/memory',
   'index.html#game/constelaciones/play/map/c-b2-001', 'index.html#game/constelaciones/play/memory/c-a1-001', 'index.html#game/constelaciones/read/farolero',
-  'index.html#game/solitario', 'index.html#game/solitario/play/emociones', 'index.html#game/solitario/play/ser-estar/experto',
+  'index.html#game/solitario', 'index.html#game/solitario/play/A1', 'index.html#game/solitario/play/B2/experto',
   'style-test/index.html', 'style-test/index.html?theme=night',
 ];
 const NOW = Date.now();
@@ -155,40 +155,52 @@ describe('smoke: laptop window', () => {
 });
 
 describe('smoke: Solitario de categorías start to finish in a real browser', () => {
-  it('sorts a whole set by tapping and dragging, then shows the summary', async () => {
+  it('plays a whole A1 game by tapping, dragging and turning the deck', async () => {
     const page = await browser.newPage({ viewport: { width: 375, height: 800 }, isMobile: true, hasTouch: true });
     await page.addInitScript((st) => { for (const [k, v] of Object.entries(st)) localStorage.setItem(k, v); }, STATE);
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(String(e)));
-    await page.goto(base + 'index.html#game/solitario/play/colores-numeros-dias');
-    await page.waitForSelector('.sol-card');
-    // a wrong pile first: nothing moves, a hint is spoken
-    const first = (await page.getAttribute('.sol-card >> nth=0', 'data-id'))!;
-    const wrongKey = ['colores', 'numeros', 'dias'].find((k) => k !== first.split(':')[0])!;
-    await page.click('.sol-card >> nth=0');
-    await page.click('.sol-pile[data-key="' + wrongKey + '"]');
-    expect(await page.textContent('.sol-status')).toContain('no va');
-    // one card by drag (mouse), the rest by tapping
-    let dragged = false;
-    for (let guard = 0; guard < 40 && (await page.locator('.sol-card').count()) > 0; guard++) {
-      const id = (await page.getAttribute('.sol-card >> nth=0', 'data-id'))!;
-      const pile = '.sol-pile[data-key="' + id.split(':')[0] + '"]';
-      if (!dragged) {
-        const c = (await page.locator('.sol-card >> nth=0').boundingBox())!, p = (await page.locator(pile).boundingBox())!;
-        await page.mouse.move(c.x + c.width / 2, c.y + c.height / 2);
-        await page.mouse.down();
-        await page.mouse.move(p.x + p.width / 2, p.y + p.height / 2, { steps: 8 });
-        await page.mouse.up();
-        dragged = true;
-      } else {
-        await page.click('.sol-card >> nth=0');
-        await page.click(pile);
+    await page.goto(base + 'index.html#game/solitario/play/A1');
+    await page.waitForSelector('.sol-col .sol-card');
+    expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('mesa');
+    // Finds a playable card (waste top or a column top) and a foundation for it (or a wrong one).
+    // Returns stable selectors, since every move redraws the table.
+    const find = (wrong: boolean) => page.evaluate((wrong) => {
+      const tops = [document.querySelector('.sol-waste [data-src]'), ...[...document.querySelectorAll('.sol-col')].map((c) => [...c.querySelectorAll('[data-src]')].pop())].filter(Boolean) as HTMLElement[];
+      for (const c of tops) {
+        const cat = c.dataset.id!.split(':')[0];
+        const pile = [...document.querySelectorAll<HTMLElement>('.sol-pile')].find((p) => (JSON.parse(p.dataset.target!).key === cat) !== wrong);
+        if (pile) return { src: `[data-src][data-id="${c.dataset.id}"]`, dst: `.sol-pile[data-target='${pile.dataset.target}']` };
       }
+      return null;
+    }, wrong);
+    // a wrong foundation first: nothing moves, the status says why
+    const bad = (await find(true))!;
+    await page.click(bad.src);
+    await page.click(bad.dst);
+    expect(await page.textContent('.sol-status')).toContain('no va');
+    await page.click(bad.src); // put it down again
+    let dragged = false;
+    for (let guard = 0; guard < 300 && !(await page.locator('.sol-summary').count()); guard++) {
+      const m = await find(false);
+      if (m) {
+        if (!dragged) {
+          const c = (await page.locator(m.src).boundingBox())!, p = (await page.locator(m.dst).boundingBox())!;
+          await page.mouse.move(c.x + c.width / 2, c.y + 10);
+          await page.mouse.down();
+          await page.mouse.move(p.x + p.width / 2, p.y + p.height / 2, { steps: 8 });
+          await page.mouse.up();
+          dragged = true;
+        } else {
+          await page.click(m.src);
+          await page.click(m.dst);
+        }
+      } else await page.click('[data-stock]');
     }
     await page.waitForSelector('.sol-summary');
-    const done = await page.evaluate(() => JSON.parse(localStorage.getItem('kz.sol.progress') ?? '{}'));
-    expect(Object.keys(done.done)).toEqual(['colores-numeros-dias']);
+    const wins = await page.evaluate(() => JSON.parse(localStorage.getItem('kz.sol.wins') ?? '{}'));
+    expect(wins.A1.normal).toBe(1);
     await page.close();
     expect(errors).toEqual([]);
-  }, 60_000);
+  }, 120_000);
 });

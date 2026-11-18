@@ -48,10 +48,9 @@
   "cz.done.map": "К карте",
   "cz.done.next": "Следующее созвездие",
   "sol.expert": "Modo experto",
-  "sol.more": "Otras cartas",
   "sol.hint": "Pista",
   "sol.translation": "Перевод",
   "sol.finished": "Всё разложено!",
-  "sol.again": "Ещё раз",
-  "sol.list": "Все наборы"
+  "sol.newGame": "Новая игра",
+  "sol.levelsBack": "Уровни"
 }

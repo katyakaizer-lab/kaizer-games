@@ -1,5 +1,5 @@
 /** Content rules for Solitario de categorías. Used by tools/validate-solitario.ts (build) and the tests. */
-import { LEVELS, type SolitarioData } from './engine.ts';
+import { CATS_PER_GAME, LEVELS, pickCategories, type SolitarioData } from './engine.ts';
 
 export interface SolitarioValidation { errors: string[]; unreviewed: string[]; total: number }
 
@@ -7,33 +7,46 @@ const norm = (s: string) => s.toLocaleLowerCase('es').replace(/[….]/g, '').tri
 
 export function validateSolitario(data: SolitarioData, artIds?: Set<string>): SolitarioValidation {
   const errors: string[] = [];
-  const setIds = new Set<string>();
-  for (const set of data.sets) {
-    const w = `set ${set.id || '(no id)'}`;
-    if (setIds.has(set.id)) errors.push(`${w}: id repeats`);
-    setIds.add(set.id);
-    if (!LEVELS.includes(set.level)) errors.push(`${w}: unknown level ${set.level}`);
-    if (set.categories.length < 2 || set.categories.length > 4) errors.push(`${w}: needs 2 to 4 categories (has ${set.categories.length})`);
-    const catIds = new Set<string>();
-    const names = new Set<string>();
-    const seen = new Map<string, string>();
-    for (const c of set.categories) {
-      if (catIds.has(c.id)) errors.push(`${w}: category id ${c.id} repeats`);
-      catIds.add(c.id);
-      if (names.has(norm(c.name_es))) errors.push(`${w}: category name "${c.name_es}" repeats`);
-      names.add(norm(c.name_es));
-      if (!c.en || !c.ru) errors.push(`${w}: category ${c.id} needs en and ru`);
-      if (c.items.length < 3 || c.items.length > 8) errors.push(`${w}: category ${c.id} needs 3 to 8 cards (has ${c.items.length})`);
+  const ids = new Set(data.categories.map((c) => c.id));
+  const seenIds = new Set<string>();
+  for (const c of data.categories) {
+    const w = `category ${c.id || '(no id)'}`;
+    if (seenIds.has(c.id)) errors.push(`${w}: id repeats`);
+    seenIds.add(c.id);
+    if (!LEVELS.includes(c.level)) errors.push(`${w}: unknown level ${c.level}`);
+    if (!c.en || !c.ru) errors.push(`${w}: needs en and ru`);
+    if (c.items.length < 3 || c.items.length > 8) errors.push(`${w}: needs 3 to 8 cards (has ${c.items.length})`);
+    for (const it of c.items) {
+      if (!it.en || !it.ru) errors.push(`${w}: "${it.es}" needs en and ru`);
+      if (it.art && artIds && !artIds.has(it.art)) errors.push(`${w}: "${it.es}" uses art id ${it.art}, which is not in the manifest`);
+    }
+    for (const a of c.avoid ?? []) {
+      const other = data.categories.find((x) => x.id === a);
+      if (!ids.has(a)) errors.push(`${w}: avoid lists unknown category ${a}`);
+      else if (other && other.level !== c.level) errors.push(`${w}: avoid lists ${a}, which is another level`);
+    }
+  }
+  // Categories of one level are dealt together, so a word may appear only once per level,
+  // and category names must differ within a level.
+  for (const level of LEVELS) {
+    const cats = data.categories.filter((c) => c.level === level);
+    if (!cats.length) continue;
+    const words = new Map<string, string>();
+    const names = new Map<string, string>();
+    for (const c of cats) {
+      const n = norm(c.name_es);
+      if (names.has(n)) errors.push(`${level}: category name "${c.name_es}" is used by ${names.get(n)} and ${c.id}`);
+      names.set(n, c.id);
       for (const it of c.items) {
         const k = norm(it.es);
-        // A card that could belong to two categories would be unfair: every word appears once per set.
-        if (seen.has(k)) errors.push(`${w}: "${it.es}" is in both ${seen.get(k)} and ${c.id}`);
-        seen.set(k, c.id);
-        if (!it.en || !it.ru) errors.push(`${w}: "${it.es}" needs en and ru`);
-        if (it.art && artIds && !artIds.has(it.art)) errors.push(`${w}: "${it.es}" uses art id ${it.art}, which is not in the manifest`);
+        if (words.has(k)) errors.push(`${level}: "${it.es}" is in both ${words.get(k)} and ${c.id}`);
+        words.set(k, c.id);
       }
     }
-    for (const d of set.decoyNames ?? []) if (names.has(norm(d))) errors.push(`${w}: decoy name "${d}" is also a real category name`);
+    // Every level needs enough categories that can be dealt together.
+    for (let seed = 0; seed < 20; seed++) {
+      if (pickCategories(cats, seed).length < CATS_PER_GAME) { errors.push(`${level}: fewer than ${CATS_PER_GAME} categories can be dealt together`); break; }
+    }
   }
-  return { errors, unreviewed: data.sets.filter((s) => !s.reviewed).map((s) => s.id), total: data.sets.length };
+  return { errors, unreviewed: data.categories.filter((c) => !c.reviewed).map((c) => c.id), total: data.categories.length };
 }

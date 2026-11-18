@@ -45,9 +45,9 @@ describe('smoke: every screen loads without console errors', () => {
     ['constelaciones memory play', '#game/constelaciones/play/memory/c-a1-001', '.cz-board[data-labels="hidden"]'],
     ['constelaciones story reader', '#game/constelaciones/read/farolero', '.cz-reader__text p'],
     ['constelaciones listen', '#game/constelaciones/listen', '.cz-view'],
-    ['solitario list', '#game/solitario', '.sol-set'],
-    ['solitario play', '#game/solitario/play/casa', '.sol-card'],
-    ['solitario experto', '#game/solitario/play/conectores/experto', '.sol-pile.is-empty'],
+    ['solitario levels', '#game/solitario', '.sol-level'],
+    ['solitario play', '#game/solitario/play/A1', '.sol-col .sol-card'],
+    ['solitario experto', '#game/solitario/play/B1/experto', '.sol-pile'],
   ];
   for (const [name, hash, selector] of screens) {
     it(name, async () => {

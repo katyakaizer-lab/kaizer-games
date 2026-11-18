@@ -1,84 +1,102 @@
-/* Solitario de categorías. Tokens only; day theme. Our own word cards: no suits, ranks or playing-card look. */
-.sol { max-width: 52rem; margin: 0 auto; padding: var(--space-3) var(--space-4) var(--space-6); }
-.sol-list, .sol-play { display: grid; gap: var(--space-4); }
+/* Solitario de categorías on the "mesa" (card table) theme. Tokens only. Plain word cards. */
+.sol { --card-h: 4.75rem; --peek-down: 0.85rem; --peek-up: 1.9rem; max-width: 64rem; margin: 0 auto; padding: var(--space-3) var(--space-4) var(--space-6); }
+@media (min-width: 700px) { .sol { --card-h: 5.5rem; --peek-down: 1rem; --peek-up: 2.1rem; } }
+.sol-list, .sol-play { display: grid; gap: var(--space-3); }
 .sol-header, .sol-bar { display: flex; align-items: center; gap: var(--space-2); margin-left: calc(-1 * var(--space-2)); flex-wrap: wrap; }
+.sol-bar__space { flex: 1; }
 .sol-title { margin: 0; }
 .sol-title:focus, .sol-title:focus-visible { outline: none; }
 .sol-soft { color: var(--text-soft); margin: 0; }
 .sol-small { font-size: var(--fs-small); }
 .sol-badge { display: inline-block; padding: 2px var(--space-2); border-radius: var(--radius-pill); border: 1px solid var(--border); color: var(--text-soft); font-size: var(--fs-small); font-weight: 700; }
-.sol-filters { display: grid; gap: var(--space-3); }
-.sol-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .sol-expert { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 
-.sol-sets { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); }
-.sol-set {
-  display: grid; gap: var(--space-1); align-content: start; padding: var(--space-3) var(--space-4); min-height: var(--tap-min);
-  background: var(--surface); color: var(--text); text-decoration: none;
-  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
+/* Level choice */
+.sol-levels { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(10rem, 45%), 1fr)); }
+.sol-level {
+  display: grid; gap: var(--space-1); justify-items: start; padding: var(--space-4); min-height: 7rem;
+  background: var(--card-face); color: var(--on-card); font: inherit; text-align: left; cursor: pointer;
+  border: 0; border-radius: var(--radius-tile); box-shadow: var(--shadow);
 }
-.sol-set:hover { border-color: var(--primary); }
-.sol-set__top { display: flex; justify-content: space-between; gap: var(--space-2); align-items: baseline; }
-.sol-set__title { font-size: 1.125rem; }
-.sol-set__cats { font-size: var(--fs-small); font-weight: 700; color: var(--link); }
-.sol-set__done { display: flex; gap: var(--space-3); font-size: var(--fs-small); font-weight: 700; color: var(--correct-line); }
-.sol-set__done span { display: inline-flex; align-items: center; gap: 2px; }
+.sol-level:focus-visible { outline-offset: 3px; }
+.sol-level__name { font-family: var(--font-head); font-size: var(--fs-h1); line-height: 1; }
+.sol-level__wins { display: inline-flex; align-items: center; gap: 2px; font-weight: 700; }
 
-/* Piles: a category card with a soft stack behind it. */
-.sol-piles { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 46%), 1fr)); }
-.sol-pile {
-  position: relative; display: grid; gap: var(--space-1); align-content: start; text-align: left;
-  min-height: 7.5rem; padding: var(--space-3);
-  background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
-  border: var(--border-w) solid var(--border); border-radius: var(--radius-card);
-  box-shadow: 4px 4px 0 -1px var(--surface), 4px 4px 0 1px var(--border);
-  transition: transform var(--dur-fast) var(--ease), border-color var(--dur) var(--ease);
-}
-.sol-pile__name { font-weight: 700; font-size: 1.0625rem; }
-.sol-pile__top { font-family: var(--font-body); font-size: 1.125rem; min-height: 1.6em; color: var(--text); }
-.sol-pile.is-empty .sol-pile__top { color: var(--text-soft); font-size: var(--fs-small); }
-.sol-pile__count { display: inline-flex; align-items: center; gap: 2px; font-size: var(--fs-small); color: var(--text-soft); }
-.sol-pile.is-target { border-style: dashed; border-color: var(--primary); }
-.sol-pile.is-over { transform: scale(1.03); border-color: var(--primary); border-style: solid; }
-.sol-pile.is-hint { border-color: var(--highlight); border-style: solid; box-shadow: 0 0 0 4px var(--highlight); }
-.sol-pile.is-complete { background: var(--correct-bg); border-color: var(--correct-line); }
-.sol-pile.is-complete .sol-pile__count { color: var(--text); font-weight: 700; }
-
-/* Table: three open cards and the pile tools. */
-.sol-table { display: grid; gap: var(--space-3); }
-.sol-cards { display: grid; gap: var(--space-3); grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.sol-card, .sol-slot { min-height: 5.5rem; border-radius: var(--radius-tile); }
+/* ---------- Cards ---------- */
 .sol-card {
-  display: grid; place-content: center; gap: 2px; padding: var(--space-2); text-align: center;
-  background: var(--bg); color: var(--text); font: inherit; cursor: grab;
-  border: var(--border-w) solid var(--text); box-shadow: var(--shadow);
-  touch-action: none; user-select: none; -webkit-user-select: none;
-  transition: transform var(--dur-fast) var(--ease);
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  width: 100%; height: var(--card-h); padding: 6px 7px; overflow: hidden;
+  background: var(--card-face); color: var(--on-card); text-align: left;
+  border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);
+  font: inherit; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none;
 }
-.sol-card__word { font-weight: 700; font-size: 1.125rem; overflow-wrap: anywhere; }
-.sol-card__tr { font-size: var(--fs-small); color: var(--text-soft); }
-.sol-card.is-selected { background: var(--secondary); color: var(--on-secondary); transform: translateY(-4px); box-shadow: 0 0 0 3px var(--on-secondary); }
-.sol-card.is-selected .sol-card__tr { color: var(--on-secondary); }
-.sol-card.is-dragging { position: relative; z-index: 10; cursor: grabbing; transition: none; }
-/* Wrong: the card wobbles and gets a dashed border (shape change); the words come from the status line. */
-.sol-card.is-wrong { border-style: dashed; animation: sol-nudge .4s var(--ease) 1; }
+.sol-card__word { font-weight: 700; font-size: 0.875rem; line-height: 1.2; overflow-wrap: anywhere; hyphens: auto; }
+@media (min-width: 700px) { .sol-card__word { font-size: 1rem; } }
+.sol-card__tr { font-size: 0.75rem; line-height: 1.2; opacity: .75; }
+/* Face down: our own simple back, a striped panel inside a white border. */
+.sol-card.is-down {
+  cursor: default; border: 3px solid var(--card-face);
+  background: repeating-linear-gradient(45deg, var(--card-back) 0 6px, var(--card-face) 6px 8px);
+}
+.sol-card:focus-visible { outline: var(--focus-w) solid var(--focus); outline-offset: 3px; }
+.sol-card.is-selected { box-shadow: 0 0 0 3px var(--highlight), var(--shadow); transform: translateY(-3px); }
+.sol-card.is-dragging { z-index: 20; pointer-events: none; box-shadow: var(--shadow); transition: none; }
+.sol-card.is-wrong { animation: sol-nudge .4s var(--ease) 1; box-shadow: 0 0 0 3px var(--retry-line); }
 @keyframes sol-nudge { 0%, 100% { translate: 0 0; } 30% { translate: -4px 0; } 60% { translate: 4px 0; } }
-.sol-slot { border: var(--border-w) dashed var(--border); }
-.sol-tools { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
-.sol-status { margin: 0; min-height: 1.6em; color: var(--text-soft); }
+.sol-slot {
+  display: block; width: 100%; height: var(--card-h); padding: 0;
+  background: transparent; border: 2px dashed var(--border); border-radius: 8px; cursor: pointer;
+}
+.sol-slot.is-quiet { cursor: default; }
 
-/* Naming (experto) and the summary. */
+/* ---------- Foundations (top row) ---------- */
+.sol-top { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); }
+.sol-pile {
+  display: grid; gap: 4px; align-content: start; padding: 4px; min-width: 0;
+  background: transparent; color: var(--text); font: inherit; cursor: pointer; text-align: left;
+  border: 2px solid var(--border); border-radius: 10px;
+}
+.sol-pile__name { font-weight: 700; font-size: 0.75rem; line-height: 1.2; min-height: 2.4em; padding: 0 2px; overflow-wrap: anywhere; }
+@media (min-width: 700px) { .sol-pile__name { font-size: var(--fs-small); } }
+.sol-pile__empty { display: block; height: var(--card-h); border: 2px dashed var(--border); border-radius: 8px; }
+.sol-pile__card { cursor: inherit; }
+.sol-pile__count { display: inline-flex; align-items: center; gap: 2px; font-size: 0.75rem; color: var(--text-soft); min-height: 1.2em; padding: 0 2px; }
+.sol-pile.is-target { border-style: dashed; border-color: var(--link); }
+.sol-pile.is-hint, .sol-col.is-hint { box-shadow: 0 0 0 3px var(--highlight); border-radius: 10px; }
+.sol-pile.is-full { border-color: var(--correct-line); background: var(--correct-bg); }
+.sol-pile.is-full .sol-pile__count { color: var(--text); font-weight: 700; }
+
+/* ---------- Columns and the deck on the right ---------- */
+.sol-table { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, calc((100% - var(--space-2) * var(--cols, 3)) / (var(--cols, 3) + 1))); gap: var(--space-2); align-items: start; }
+.sol-cols { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: var(--space-2); align-items: start; min-height: calc(var(--card-h) * 2.5); }
+.sol-col { display: flex; flex-direction: column; min-width: 0; border-radius: 8px; padding-bottom: var(--space-4); }
+/* Overlap: face-down cards show a thin edge, face-up cards show their word line. */
+.sol-col > .sol-card + .sol-card { margin-top: calc(-1 * (var(--card-h) - var(--peek-up))); }
+.sol-col > .sol-card.is-down + .sol-card { margin-top: calc(-1 * (var(--card-h) - var(--peek-down))); }
+.sol-deck { display: grid; gap: var(--space-2); }
+.sol-stock { position: relative; display: block; width: 100%; padding: 0; background: transparent; border: 0; border-radius: 8px; cursor: pointer; }
+.sol-stock .sol-card { cursor: pointer; }
+.sol-stock__n { position: absolute; right: 4px; bottom: 4px; padding: 0 6px; border-radius: var(--radius-pill); background: var(--card-face); color: var(--on-card); font-size: 0.75rem; font-weight: 700; }
+.sol-stock.is-empty { display: grid; place-items: center; height: var(--card-h); border: 2px dashed var(--border); color: var(--text); }
+.sol-stock__again .k-icon { width: 1.75rem; height: 1.75rem; }
+.sol-stock:focus-visible { outline: var(--focus-w) solid var(--focus); outline-offset: 3px; }
+
+.sol-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); min-height: var(--tap-min); }
+.sol-status { margin: 0; color: var(--text-soft); }
+
+/* ---------- Naming (experto) and summary ---------- */
 .sol-names, .sol-summary { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }
-.sol-name, .sol-sum { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); background: var(--surface); border: var(--border-w) solid var(--border); border-radius: var(--radius-card); }
-.sol-name.is-wrong { border-style: dashed; border-color: var(--retry-line); background: var(--retry-bg); }
+.sol-name, .sol-sum { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); background: var(--card-face); color: var(--on-card); border-radius: var(--radius-tile); box-shadow: var(--shadow); }
+.sol-name.is-wrong { box-shadow: 0 0 0 3px var(--retry-line); }
 .sol-name__label { font-weight: 700; }
 .sol-name__words { margin: 0; }
-.sol-select { min-height: var(--tap-min); font: inherit; color: var(--text); background: var(--bg); border: var(--border-w) solid var(--border); border-radius: var(--radius-tile); padding: 0 var(--space-2); }
-.sol-sum h2 { margin: 0; font-size: var(--fs-h3); }
+.sol-select { min-height: var(--tap-min); font: inherit; color: var(--on-card); background: var(--card-face); border: 2px solid var(--on-card); border-radius: var(--radius-tile); padding: 0 var(--space-2); }
+.sol-sum h2 { margin: 0; font-size: var(--fs-h3); color: var(--on-card); }
+.sol-sum .sol-soft { color: inherit; opacity: .8; }
 .sol-sum ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 2px; }
 .sol-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .sol-finish.is-glowing { animation: sol-glow 1.6s var(--ease) 1; border-radius: var(--radius-card); }
 @keyframes sol-glow { 0% { box-shadow: 0 0 0 0 transparent; } 40% { box-shadow: 0 0 32px 6px var(--highlight); } 100% { box-shadow: 0 0 0 0 transparent; } }
 
-@media (prefers-reduced-motion: reduce) { .sol-card.is-wrong, .sol-finish.is-glowing { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .sol-card.is-wrong, .sol-finish.is-glowing { animation: none; } .sol-card.is-selected { transform: none; } }
 :root[data-motion="reduce"] .sol-card.is-wrong, :root[data-motion="reduce"] .sol-finish.is-glowing { animation: none; }

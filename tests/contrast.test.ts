@@ -22,7 +22,7 @@ describe('contrast', () => {
   it('all component pairs pass in every theme', () => {
     const res: R[] = checkContrast();
     expect(res.filter((r) => !r.ok)).toEqual([]);
-    expect(new Set(res.map((r) => r.theme))).toEqual(new Set(['brote', 'night']));
+    expect(new Set(res.map((r) => r.theme))).toEqual(new Set(['brote', 'night', 'mesa']));
   });
   it('night theme uses the given values', () => {
     const t = parseTokens(readFileSync(publicFile('tokens.css'), 'utf8')).themes.night;
