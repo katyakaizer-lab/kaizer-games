@@ -33,7 +33,8 @@ export function checkHardcoded() {
   const problems = [];
   for (const file of files) {
     const rel = relative(ROOT, file).replace(/\\/g, '/');
-    const allow = ALLOW[rel] ?? [];
+    // Pet data holds the pets' own colours (art data, recoloured per pet), not interface colours.
+    const allow = ALLOW[rel] ?? (rel.startsWith('src/data/pets/') ? ['colour'] : []);
     const lines = readFileSync(file, 'utf8').split('\n');
     lines.forEach((line, i) => {
       const code = line.replace(/\/\/.*$/, '').replace(/\/\*.*?\*\//g, '');

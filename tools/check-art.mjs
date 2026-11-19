@@ -4,9 +4,9 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, read, isMain } from './lib.mjs';
 
-const KINDS = ['pet', 'pet-item', 'object', 'scene', 'character', 'ui', 'icon', 'background', 'decor'];
-const ANCHORS = ['head-top', 'face', 'neck', 'back', 'feet', 'top-extra'];
-const ID_IN_CODE = /['"](?:pet-item|pet|object|scene|character|ui|icon|background|decor)\.[a-z0-9][\w.-]*['"]/g;
+const KINDS = ['pet', 'pet-item', 'pet-part', 'object', 'scene', 'character', 'ui', 'icon', 'background', 'decor'];
+const ANCHORS = ['head', 'face', 'neck', 'body', 'feet', 'back']; // clothing slots (rig.json)
+const ID_IN_CODE = /['"](?:pet-part|pet-item|pet|object|scene|character|ui|icon|background|decor)\.[a-z0-9][\w.-]*['"]/g;
 
 function walk(dir, out = []) {
   for (const f of readdirSync(dir)) {

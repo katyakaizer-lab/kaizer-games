@@ -1,0 +1,35 @@
+{
+  "species": "fox", "name_es": "Zorro", "default": "rojo",
+  "layers": ["shadow", "wings", "tail", "body", "belly", "ears", "head", "pattern", "snout", "feet", "arms", "horns", "eyes", "mouth"],
+  "slots": ["fur1", "fur2", "fur3", "eyes", "nose"],
+  "rig": { "headWidth": 80, "anchors": { "head": [100, 50], "face": [100, 90], "neck": [100, 122], "body": [100, 165], "feet": [100, 210], "back": [100, 150] } },
+  "swatches": {
+    "fur": [
+      { "c": "#FFFFFF", "es": "blanco" }, { "c": "#F6EAD2", "es": "crema", "inv": true }, { "c": "#FBF0DC", "es": "marfil", "inv": true },
+      { "c": "#E8C690", "es": "arena", "inv": true }, { "c": "#D9783A", "es": "naranja", "inv": true }, { "c": "#B05A2E", "es": "rojizo" },
+      { "c": "#B98A55", "es": "pardo" }, { "c": "#C8CCD6", "es": "gris claro", "inv": true }, { "c": "#6E7180", "es": "gris" }, { "c": "#3A2E2A", "es": "negro" }
+    ],
+    "furFantasy": [
+      { "c": "#8EC9EE", "es": "azul cielo", "inv": true }, { "c": "#F2A7C3", "es": "rosa", "inv": true }, { "c": "#B9A3E3", "es": "lila", "inv": true },
+      { "c": "#9ED9C3", "es": "menta", "inv": true }
+    ],
+    "eyes": [ { "c": "#2B2D42", "es": "negro" }, { "c": "#6B4426", "es": "marrón" }, { "c": "#E8A33D", "es": "ámbar", "inv": true } ],
+    "eyesFantasy": [ { "c": "#8E6BD1", "es": "violeta", "inv": true }, { "c": "#4FB3B3", "es": "turquesa", "inv": true } ],
+    "nose": [ { "c": "#2B2D42", "es": "negro" }, { "c": "#7A4E2E", "es": "marrón" } ],
+    "noseFantasy": [ { "c": "#D9786A", "es": "rosa", "inv": true } ]
+  },
+  "breeds": [
+    { "id": "rojo", "name_es": "Rojo",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-brush", "ears": "ears-pointed", "head": "head-fox", "snout": "snout-fox", "feet": "feet-socks", "eyes": "eyes-fox", "mouth": "mouth-fox" },
+      "colors": { "fur1": "#D9783A", "fur2": "#F6EAD2", "fur3": "#3A2E2A", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest", "mask"] },
+    { "id": "artico", "name_es": "Ártico",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-brush", "ears": "ears-small", "head": "head-fox", "snout": "snout-fox", "feet": "feet-socks", "eyes": "eyes-fox", "mouth": "mouth-fox" },
+      "colors": { "fur1": "#FBF0DC", "fur2": "#FFFFFF", "fur3": "#C8CCD6", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest"] },
+    { "id": "fenec", "name_es": "Fénec",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-brush", "ears": "ears-huge", "head": "head-fox", "snout": "snout-fox", "feet": "feet-socks", "eyes": "eyes-fox", "mouth": "mouth-fox" },
+      "colors": { "fur1": "#E8C690", "fur2": "#FBF0DC", "fur3": "#B98A55", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest"] }
+  ]
+}

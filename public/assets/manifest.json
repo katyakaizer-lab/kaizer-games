@@ -2,306 +2,6 @@
  "_note": "Every picture by id. Add art here; never reference files by path in code. See RESKIN.md.",
  "assets": [
   {
-   "id": "pet.cat.calma",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/cat-calma.svg"
-   },
-   "alt": "El gato, tranquilo",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.cat.alegria",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/cat-alegria.svg"
-   },
-   "alt": "El gato, alegre",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.cat.siesta",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/cat-siesta.svg"
-   },
-   "alt": "El gato, descansando",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dog.calma",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dog-calma.svg"
-   },
-   "alt": "El perro, tranquilo",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dog.alegria",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dog-alegria.svg"
-   },
-   "alt": "El perro, alegre",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dog.siesta",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dog-siesta.svg"
-   },
-   "alt": "El perro, descansando",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dragon.calma",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dragon-calma.svg"
-   },
-   "alt": "El dragón, tranquilo",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dragon.alegria",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dragon-alegria.svg"
-   },
-   "alt": "El dragón, alegre",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.dragon.siesta",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/dragon-siesta.svg"
-   },
-   "alt": "El dragón, descansando",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.raven.calma",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/raven-calma.svg"
-   },
-   "alt": "El cuervo, tranquilo",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.raven.alegria",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/raven-alegria.svg"
-   },
-   "alt": "El cuervo, alegre",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.raven.siesta",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/raven-siesta.svg"
-   },
-   "alt": "El cuervo, descansando",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.fox.calma",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/fox-calma.svg"
-   },
-   "alt": "El zorro, tranquilo",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.fox.alegria",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/fox-alegria.svg"
-   },
-   "alt": "El zorro, alegre",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
-   "id": "pet.fox.siesta",
-   "kind": "pet",
-   "files": {
-    "1x": "pets/fox-siesta.svg"
-   },
-   "alt": "El zorro, descansando",
-   "status": "placeholder",
-   "aiGenerated": true,
-   "source": {
-    "tool": "Claude",
-    "date": "2026-11-17",
-    "terms": "https://www.anthropic.com/legal/consumer-terms",
-    "prompt": "Original starter pet in the Brote style, 200x240 shared rig."
-   },
-   "licence": "own",
-   "games": [
-    "hub"
-   ]
-  },
-  {
    "id": "pet.brote.calma",
    "kind": "pet",
    "files": {
@@ -382,7 +82,7 @@
    "games": [
     "hub"
    ],
-   "anchor": "head-top",
+   "anchor": "head",
    "pivot": [
     100,
     104
@@ -3762,6 +3462,2186 @@
    "licence": "own",
    "games": [
     "crucigramas"
+   ]
+  },
+  {
+   "id": "pet-part.shared.shadow",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/shared/shadow.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part: shadow"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.pattern.spots",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/spots.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: spots"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.pattern.stripes",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/stripes.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: stripes"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.pattern.saddle",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/saddle.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: saddle"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.pattern.mask",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/mask.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: mask"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.pattern.patches",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/patches.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: patches"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.body-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/body-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): body-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.body-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/body-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): body-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.body-fluffy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/body-fluffy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): body-fluffy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.body-slim",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/body-slim.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): body-slim"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.belly-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/belly-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): belly-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.belly-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/belly-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): belly-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.belly-slim",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/belly-slim.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): belly-slim"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.tail-wag",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/tail-wag.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): tail-wag"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.tail-bushy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/tail-bushy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): tail-bushy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.tail-pom",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/tail-pom.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): tail-pom"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.tail-thin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/tail-thin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): tail-thin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.ears-floppy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/ears-floppy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): ears-floppy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.ears-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/ears-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): ears-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.ears-pointy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/ears-pointy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): ears-pointy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.ears-curly",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/ears-curly.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): ears-curly"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.ears-big",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/ears-big.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): ears-big"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.head-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/head-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): head-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.head-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/head-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): head-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.head-fluffy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/head-fluffy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): head-fluffy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.head-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/head-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): head-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.snout-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/snout-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): snout-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.snout-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/snout-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): snout-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.feet-paws",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/feet-paws.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): feet-paws"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.feet-short",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/feet-short.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): feet-short"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.eyes-dot.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/eyes-dot-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): eyes-dot-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.mouth-dog.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/mouth-dog-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): mouth-dog-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.eyes-dot.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/eyes-dot-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): eyes-dot-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.mouth-dog.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/mouth-dog-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): mouth-dog-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.eyes-dot.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/eyes-dot-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): eyes-dot-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dog.mouth-dog.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dog/mouth-dog-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dog): mouth-dog-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.body-sit",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/body-sit.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): body-sit"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.body-fluffy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/body-fluffy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): body-fluffy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.belly-sit",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/belly-sit.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): belly-sit"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.belly-fluffy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/belly-fluffy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): belly-fluffy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.tail-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/tail-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): tail-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.tail-fluffy",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/tail-fluffy.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): tail-fluffy"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.ears-pointed",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/ears-pointed.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): ears-pointed"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.ears-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/ears-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): ears-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.head-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/head-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): head-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.head-flat",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/head-flat.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): head-flat"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.snout-cat",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/snout-cat.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): snout-cat"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.feet-paws",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/feet-paws.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): feet-paws"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.eyes-cat.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/eyes-cat-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): eyes-cat-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.eyes-cat.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/eyes-cat-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): eyes-cat-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.eyes-cat.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/eyes-cat-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): eyes-cat-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.mouth-cat.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/mouth-cat-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): mouth-cat-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.mouth-cat.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/mouth-cat-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): mouth-cat-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.mouth-cat.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/mouth-cat-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): mouth-cat-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.body-sit",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/body-sit.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): body-sit"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.belly-sit",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/belly-sit.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): belly-sit"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.tail-brush",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/tail-brush.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): tail-brush"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.ears-pointed",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/ears-pointed.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): ears-pointed"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.ears-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/ears-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): ears-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.ears-huge",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/ears-huge.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): ears-huge"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.head-fox",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/head-fox.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): head-fox"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.snout-fox",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/snout-fox.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): snout-fox"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.feet-socks",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/feet-socks.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): feet-socks"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.eyes-fox.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/eyes-fox-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): eyes-fox-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.eyes-fox.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/eyes-fox-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): eyes-fox-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.eyes-fox.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/eyes-fox-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): eyes-fox-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.mouth-fox.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/mouth-fox-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): mouth-fox-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.mouth-fox.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/mouth-fox-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): mouth-fox-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.fox.mouth-fox.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/fox/mouth-fox-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (fox): mouth-fox-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.body-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/body-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): body-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.belly-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/belly-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): belly-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.wings-wing",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/wings-wing.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): wings-wing"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.tail-fan",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/tail-fan.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): tail-fan"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.feet-talons",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/feet-talons.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): feet-talons"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.ears-crest",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/ears-crest.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): ears-crest"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.ears-tufts",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/ears-tufts.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): ears-tufts"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.head-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/head-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): head-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.head-owl",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/head-owl.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): head-owl"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.snout-beak",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/snout-beak.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): snout-beak"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.snout-hook",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/snout-hook.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): snout-hook"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.mouth-bird.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/mouth-bird-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): mouth-bird-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.mouth-bird.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/mouth-bird-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): mouth-bird-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.mouth-bird.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/mouth-bird-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): mouth-bird-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-bird.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-bird-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-bird-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-bird.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-bird-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-bird-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-bird.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-bird-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-bird-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-owl.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-owl-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-owl-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-owl.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-owl-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-owl-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.raven.eyes-owl.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/raven/eyes-owl-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (raven): eyes-owl-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.body-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/body-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): body-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.belly-round",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/belly-round.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): belly-round"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.wings-bat",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/wings-bat.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): wings-bat"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.wings-leaf",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/wings-leaf.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): wings-leaf"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.wings-fin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/wings-fin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): wings-fin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.tail-spike",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/tail-spike.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): tail-spike"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.tail-fin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/tail-fin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): tail-fin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.arms-claws",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/arms-claws.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): arms-claws"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.feet-claws",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/feet-claws.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): feet-claws"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.ears-frill",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/ears-frill.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): ears-frill"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.horns-nubs",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/horns-nubs.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): horns-nubs"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.horns-curved",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/horns-curved.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): horns-curved"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.head-dragon",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/head-dragon.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): head-dragon"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.snout-dragon",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/snout-dragon.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): snout-dragon"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.eyes-dragon.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/eyes-dragon-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): eyes-dragon-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.eyes-dragon.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/eyes-dragon-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): eyes-dragon-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.eyes-dragon.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/eyes-dragon-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): eyes-dragon-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.mouth-dragon.calma",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/mouth-dragon-calma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): mouth-dragon-calma"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.mouth-dragon.alegria",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/mouth-dragon-alegria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): mouth-dragon-alegria"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.mouth-dragon.siesta",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/mouth-dragon-siesta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): mouth-dragon-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
    ]
   }
  ]

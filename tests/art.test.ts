@@ -11,13 +11,13 @@ describe('art ids', () => {
   beforeEach(() => { setupPage(); setManifest(manifest); setRig(rig); });
 
   it('resolves a file by id', () => {
-    const r = art('pet.cat.calma');
+    const r = art('pet.brote.calma');
     expect(r.placeholder).toBe(false);
-    expect(r.src).toBe('./assets/pets/cat-calma.svg');
+    expect(r.src).toBe('./assets/pets/brote-calma.svg');
   });
   it('resolves relative to the page root', () => {
     setupPage('brote', '../');
-    expect(art('pet.dog.siesta').src).toBe('../assets/pets/dog-siesta.svg');
+    expect(art('pet.brote.siesta').src).toBe('../assets/pets/brote-siesta.svg');
   });
   it('gives a placeholder for an id with no file or an unknown id', () => {
     expect(art('object.silla').placeholder).toBe(true);
@@ -31,43 +31,36 @@ describe('art ids', () => {
     expect(svg).not.toMatch(/#[0-9a-f]{3,6}\b/i);
     expect(svg).toContain('var(--placeholder-fill)');
   });
-  it('registers all 18 pet SVGs with AI provenance', () => {
-    for (const p of ['brote', 'cat', 'dog', 'dragon', 'raven', 'fox']) {
-      for (const m of ['calma', 'alegria', 'siesta']) {
-        const e = manifest.find((a) => a.id === 'pet.' + p + '.' + m)!;
-        expect(e.aiGenerated).toBe(true);
-        expect(e.status).toBe('placeholder');
-        expect(e.source.tool).toBe('Claude');
-        expect(e.source.date).toBe('2026-11-17');
-      }
-    }
+  it('registers Brote and every pet part with AI provenance', () => {
+    for (const m of ['calma', 'alegria', 'siesta']) expect(manifest.find((a) => a.id === 'pet.brote.' + m)!.aiGenerated).toBe(true);
+    const parts = manifest.filter((a) => a.kind === 'pet-part');
+    expect(parts.length).toBeGreaterThan(100);
+    for (const e of parts) { expect(e.aiGenerated).toBe(true); expect(e.status).toBe('placeholder'); expect(e.source.tool).toBe('Claude'); }
   });
   it('loads the manifest over fetch', async () => {
     setManifest([]);
     mockFetch();
     await loadManifest();
-    expect(art('pet.fox.calma').placeholder).toBe(false);
+    expect(art('pet.brote.calma').placeholder).toBe(false);
   });
 });
 
-describe('pets', () => {
+describe('Brote (the mascot)', () => {
   beforeEach(() => { setupPage(); setManifest(manifest); setRig(rig); });
 
   it('falls back from a missing mood to calma', () => {
-    expect(petArtId('cat', 'alegria')).toBe('pet.cat.alegria');
-    expect(petArtId('cat', 'comiendo')).toBe('pet.cat.calma');
-    expect(petArtId('dragon', 'pensando')).toBe('pet.dragon.calma');
+    expect(petArtId('brote', 'alegria')).toBe('pet.brote.alegria');
+    expect(petArtId('brote', 'comiendo')).toBe('pet.brote.calma');
   });
   it('places items by anchor and head width', () => {
-    const p = itemPlacement('cat', 'pet-item.boina')!;
-    expect(p.scale).toBeCloseTo(0.76);
-    expect(p.x).toBeCloseTo(100 - 100 * 0.76);
-    expect(p.y).toBeCloseTo(46 - 104 * 0.76);
-    expect(itemPlacement('dragon', 'pet-item.boina')!.scale).toBeCloseTo(0.8);
+    const p = itemPlacement('brote', 'pet-item.boina')!;
+    expect(p.scale).toBeCloseTo(1.24);
+    expect(p.x).toBeCloseTo(100 - 100 * 1.24);
+    expect(p.y).toBeCloseTo(104 - 104 * 1.24);
   });
-  it('renders a pet with an item', () => {
-    const fig = PetFigure({ pet: 'fox', mood: 'siesta', items: ['pet-item.boina'] });
-    expect(fig.querySelector('img')!.getAttribute('src')).toContain('fox-siesta.svg');
+  it('renders Brote with an item', () => {
+    const fig = PetFigure({ pet: 'brote', mood: 'siesta', items: ['pet-item.boina'] });
+    expect(fig.querySelector('img')!.getAttribute('src')).toContain('brote-siesta.svg');
     expect(fig.querySelectorAll('.k-pet__item').length).toBe(1);
   });
 });

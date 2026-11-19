@@ -21,7 +21,7 @@ const CANDIDATES = [
 ].filter(Boolean) as string[];
 
 const SCREENS = [
-  'index.html#picker', 'index.html#home', 'index.html#settings',
+  'index.html#picker', 'index.html#pet', 'index.html#home', 'index.html#settings',
   'index.html#game/constelaciones', 'index.html#game/constelaciones/story', 'index.html#game/constelaciones/listen', 'index.html#game/constelaciones/memory',
   'index.html#game/constelaciones/play/map/c-b2-001', 'index.html#game/constelaciones/play/memory/c-a1-001', 'index.html#game/constelaciones/read/farolero',
   'index.html#game/solitario', 'index.html#game/solitario/play/A1', 'index.html#game/solitario/play/B2/seed-3',

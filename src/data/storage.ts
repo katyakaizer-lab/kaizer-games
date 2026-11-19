@@ -54,7 +54,9 @@ export const store = {
   clear(): void { for (const k of allKeys()) rawRemove(k); },
 };
 
-export interface ProgressFile { app: 'kaizer-games'; version: 1; savedAt: string; data: Record<string, unknown> }
+/** Save-file schema. 2 (2026-11-19): pets are profiles (pets[] + activePetId) instead of one { species, name }. */
+export const SAVE_VERSION = 2;
+export interface ProgressFile { app: 'kaizer-games'; version: 1 | 2; savedAt: string; data: Record<string, unknown> }
 
 export function exportProgress(now = new Date()): ProgressFile {
   const data: Record<string, unknown> = {};
@@ -63,16 +65,21 @@ export function exportProgress(now = new Date()): ProgressFile {
     if (v == null) continue;
     try { data[k.slice(PREFIX.length)] = JSON.parse(v); } catch { /* skip corrupt */ }
   }
-  return { app: 'kaizer-games', version: 1, savedAt: now.toISOString(), data };
+  return { app: 'kaizer-games', version: SAVE_VERSION, savedAt: now.toISOString(), data };
 }
+
+const afterImport: (() => void)[] = [];
+/** Runs after a progress file is loaded (used to migrate older saves). */
+export function onImport(fn: () => void): void { if (!afterImport.includes(fn)) afterImport.push(fn); }
 
 export function importProgress(text: string): { ok: true } | { ok: false; error: string } {
   let parsed: unknown;
   try { parsed = JSON.parse(text); } catch { return { ok: false, error: 'not-json' }; }
   const f = parsed as Partial<ProgressFile>;
-  if (!f || f.app !== 'kaizer-games' || f.version !== 1 || typeof f.data !== 'object' || f.data === null) return { ok: false, error: 'wrong-file' };
+  if (!f || f.app !== 'kaizer-games' || (f.version !== 1 && f.version !== 2) || typeof f.data !== 'object' || f.data === null) return { ok: false, error: 'wrong-file' };
   store.clear();
   for (const [k, v] of Object.entries(f.data)) store.set(k, v);
+  for (const fn of afterImport) fn(); // e.g. migrate an older save (pets)
   return { ok: true };
 }
 

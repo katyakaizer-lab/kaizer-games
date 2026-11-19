@@ -1,0 +1,13 @@
+{
+  "_note": "Pattern overlays for every species. art: drawn by pet-part.pattern.<id> in --fur-3 and clipped to body and head; vars: CSS variables the pattern sets instead (socks colour the feet, chest colours the chest). es / g: noun and its gender-number for the screen-reader description (m, f, mp, fp), e.g. 'con manchas blancas'.",
+  "patterns": {
+    "none": { "name_es": "Sin dibujo" },
+    "spots": { "name_es": "Manchas", "es": "manchas", "g": "fp", "art": true },
+    "stripes": { "name_es": "Rayas", "es": "rayas", "g": "fp", "art": true },
+    "saddle": { "name_es": "Manto", "es": "manto", "g": "m", "art": true },
+    "mask": { "name_es": "Antifaz", "es": "antifaz", "g": "m", "art": true },
+    "patches": { "name_es": "Parches", "es": "parches", "g": "mp", "art": true },
+    "socks": { "name_es": "Calcetines", "es": "calcetines", "g": "mp", "vars": { "--feet": "var(--fur-3)" } },
+    "chest": { "name_es": "Pecho", "es": "pecho", "g": "m", "vars": { "--chest": "var(--fur-3)" } }
+  }
+}

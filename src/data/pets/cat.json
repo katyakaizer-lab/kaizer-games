@@ -1,0 +1,46 @@
+{
+  "species": "cat", "name_es": "Gato", "default": "atigrado",
+  "layers": ["shadow", "wings", "tail", "body", "belly", "ears", "head", "pattern", "snout", "feet", "arms", "horns", "eyes", "mouth"],
+  "slots": ["fur1", "fur2", "fur3", "eyes", "nose"],
+  "rig": { "headWidth": 76, "anchors": { "head": [100, 46], "face": [100, 92], "neck": [100, 120], "body": [100, 165], "feet": [100, 210], "back": [100, 150] } },
+  "swatches": {
+    "fur": [
+      { "c": "#FAF6EF", "es": "blanco" }, { "c": "#EFE3CF", "es": "crema", "inv": true }, { "c": "#F3E2C4", "es": "beis", "inv": true },
+      { "c": "#E5A25A", "es": "naranja", "inv": true }, { "c": "#B9895A", "es": "pardo" }, { "c": "#6B4A2E", "es": "marrón" },
+      { "c": "#5A4236", "es": "chocolate", "inv": true }, { "c": "#BFC0C8", "es": "gris claro", "inv": true }, { "c": "#7E808C", "es": "gris" },
+      { "c": "#34384A", "es": "negro" }
+    ],
+    "furFantasy": [
+      { "c": "#8EC9EE", "es": "azul cielo", "inv": true }, { "c": "#F2A7C3", "es": "rosa", "inv": true }, { "c": "#B9A3E3", "es": "lila", "inv": true },
+      { "c": "#9ED9C3", "es": "menta", "inv": true }, { "c": "#F6D55C", "es": "amarillo" }
+    ],
+    "eyes": [
+      { "c": "#E8A33D", "es": "ámbar", "inv": true }, { "c": "#E8C33D", "es": "amarillo" }, { "c": "#6FA35A", "es": "verde" }, { "c": "#5AA9E6", "es": "azul" }, { "c": "#6B4426", "es": "marrón" }
+    ],
+    "eyesFantasy": [ { "c": "#8E6BD1", "es": "violeta", "inv": true }, { "c": "#E86FA3", "es": "rosa", "inv": true } ],
+    "nose": [ { "c": "#D9786A", "es": "rosa", "inv": true }, { "c": "#2B2D42", "es": "negro" }, { "c": "#7A4E2E", "es": "marrón" } ],
+    "noseFantasy": [ { "c": "#5B8DD9", "es": "azul" } ]
+  },
+  "breeds": [
+    { "id": "atigrado", "name_es": "Atigrado",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-long", "ears": "ears-pointed", "head": "head-round", "snout": "snout-cat", "feet": "feet-paws", "eyes": "eyes-cat", "mouth": "mouth-cat" },
+      "colors": { "fur1": "#B9895A", "fur2": "#F3E2C4", "fur3": "#6B4A2E", "eyes": "#6FA35A", "nose": "#D9786A" },
+      "pattern": "stripes", "patterns": ["stripes", "spots", "chest", "socks"] },
+    { "id": "siames", "name_es": "Siamés",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-long", "ears": "ears-pointed", "head": "head-round", "snout": "snout-cat", "feet": "feet-paws", "eyes": "eyes-cat", "mouth": "mouth-cat" },
+      "colors": { "fur1": "#EFE3CF", "fur2": "#FAF6EF", "fur3": "#5A4236", "eyes": "#5AA9E6", "nose": "#7A4E2E" },
+      "pattern": "mask", "patterns": ["mask", "socks"] },
+    { "id": "persa", "name_es": "Persa",
+      "parts": { "shadow": "shared.shadow", "body": "body-fluffy", "belly": "belly-fluffy", "tail": "tail-fluffy", "ears": "ears-small", "head": "head-flat", "snout": "snout-cat", "feet": "feet-paws", "eyes": "eyes-cat", "mouth": "mouth-cat" },
+      "colors": { "fur1": "#BFC0C8", "fur2": "#FAF6EF", "fur3": "#7E808C", "eyes": "#E8A33D", "nose": "#D9786A" },
+      "pattern": "none", "patterns": ["none", "chest", "patches"], "rig": { "headWidth": 88, "anchors": { "head": [0, 4] } } },
+    { "id": "negro", "name_es": "Negro",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "tail": "tail-long", "ears": "ears-pointed", "head": "head-round", "snout": "snout-cat", "feet": "feet-paws", "eyes": "eyes-cat", "mouth": "mouth-cat" },
+      "colors": { "fur1": "#34384A", "fur2": "#7E808C", "fur3": "#FAF6EF", "eyes": "#E8C33D", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest", "socks"] },
+    { "id": "carey", "name_es": "Carey",
+      "parts": { "shadow": "shared.shadow", "body": "body-sit", "belly": "belly-sit", "tail": "tail-long", "ears": "ears-pointed", "head": "head-round", "snout": "snout-cat", "feet": "feet-paws", "eyes": "eyes-cat", "mouth": "mouth-cat" },
+      "colors": { "fur1": "#5A4236", "fur2": "#F3E2C4", "fur3": "#E5A25A", "eyes": "#E8A33D", "nose": "#D9786A" },
+      "pattern": "patches", "patterns": ["patches", "chest"] }
+  ]
+}

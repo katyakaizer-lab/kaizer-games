@@ -2,13 +2,15 @@
 import { boot } from './app/boot';
 import { registerSW } from './app/pwa';
 import { applySettings } from './app/settings';
-import { getPet } from './app/pet-state';
+import { getActivePet, migratePets } from './app/pet-state';
+import { CreatorScreen } from './app/creator';
 import { gameLoader, navigate, parseRoute, type GameHandle } from './app/router';
-import { HomeScreen, MessageScreen, PickerScreen, SettingsScreen } from './app/screens';
+import { HomeScreen, MessageScreen, SettingsScreen } from './app/screens';
 import { t } from './i18n';
 import './app/app.css';
 
 await boot();
+migratePets(); // saves from before pet profiles (2026-11-19)
 registerSW();
 
 const root = document.getElementById('app')!;
@@ -23,9 +25,10 @@ async function render(): Promise<void> {
   game = null;
   applySettings();
   document.documentElement.dataset.theme = 'brote';
-  if (!getPet() && route.name !== 'picker' && route.name !== 'settings') { navigate('#picker'); return; }
+  if (!getActivePet() && route.name !== 'picker' && route.name !== 'settings') { navigate('#picker'); return; }
   root.className = `app app--${route.name}`;
-  if (route.name === 'picker') PickerScreen(root);
+  if (route.name === 'picker') CreatorScreen(root, { edit: !!getActivePet() });
+  else if (route.name === 'pet') CreatorScreen(root, { edit: true });
   else if (route.name === 'settings') SettingsScreen(root, render);
   else if (route.name === 'game') {
     const load = gameLoader(route.game!);

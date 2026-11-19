@@ -195,3 +195,11 @@ a.k-btn { text-decoration: none; }
 .k-pet { position: relative; margin: 0; aspect-ratio: 200 / 240; width: 100%; max-width: 100%; overflow-x: clip; }
 .k-pet > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .k-pet__item { transform-origin: 0 0; pointer-events: none; }
+
+/* Pets built from parts (src/pets/compose.ts): fillable shapes are coloured by the pet's own CSS variables. */
+.k-pet__body svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.k-pet .f1 { fill: var(--fur-1); } .k-pet .f2 { fill: var(--fur-2); } .k-pet .f3 { fill: var(--fur-3); }
+.k-pet .fe { fill: var(--eyes); } .k-pet .fn { fill: var(--nose); }
+.k-pet .ff { fill: var(--feet, var(--fur-2)); } .k-pet .fc { fill: var(--chest, var(--fur-2)); }
+.k-pet .s1 { stroke: var(--fur-1); } .k-pet .s3 { stroke: var(--fur-3); } .k-pet .se { stroke: var(--eyes); } .k-pet .sn { stroke: var(--nose); }
+.k-pet .k-oo * { fill: none !important; }

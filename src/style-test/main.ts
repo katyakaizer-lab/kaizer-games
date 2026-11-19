@@ -11,7 +11,9 @@ import {
   Button, Card, Chip, FeedbackBanner, Frame, Modal, Panel, ProgressBar, ScoreBadge, TabBar, Tile, Timer, toast, type TileEl,
 } from '../ui/components';
 import { allArt, artEl } from '../ui/art';
-import { PetFigure, PET_IDS, petArtId, petName, type Mood } from '../pets/pets';
+import { PetFigure, petArtId, type Mood } from '../pets/pets';
+import { PetPortrait } from '../pets/compose';
+import { allSpecies, describePet, makeProfile, type PetProfile } from '../pets/species';
 import { contrast, MIN } from '../ui/contrast';
 import { ACCENT_LINE, CYRILLIC_LINE, fontTest } from '../ui/fonttest';
 import pairsFile from '../../tools/contrast-pairs.json';
@@ -144,9 +146,25 @@ const petsSection = Panel({ title: 'Pets', children: [
   h('div', { class: 'st-pets' },
     moods.map((m) => h('figure', { class: 'st-pet' }, PetFigure({ pet: 'brote', mood: m }), h('figcaption', null, m))),
     h('figure', { class: 'st-pet' }, PetFigure({ pet: 'brote', mood: 'alegria', items: ['pet-item.boina'] }), h('figcaption', null, 'alegria + boina'))),
-  h('p', null, 'The five pets to choose from, each with the same item. The item is placed by each pet\'s anchor and scaled by its head width.'),
-  h('div', { class: 'st-pets' }, PET_IDS.map((p) => h('figure', { class: 'st-pet' }, PetFigure({ pet: p, items: ['pet-item.boina'] }), h('figcaption', { lang: 'es' }, petName(p))))),
-  h('p', { class: 'st-soft' }, `Mood fallback: "comiendo" is not drawn yet, so pet.cat.comiendo resolves to ${petArtId('cat', 'comiendo')}.`),
+  h('p', { class: 'st-soft' }, `Mood fallback: "comiendo" is not drawn yet, so pet.brote.comiendo resolves to ${petArtId('brote', 'comiendo')}.`),
+] });
+
+/* ---------- Mascotas: every breed, built from parts ---------- */
+/** A second colour set per breed: other swatches and the breed's second pattern (deterministic). */
+function altSet(p: PetProfile): PetProfile {
+  const sp = allSpecies().find((x) => x.species === p.species)!;
+  const fur = sp.swatches.fur, i = Math.max(0, fur.findIndex((s) => s.c === p.colors.fur1));
+  const br = sp.breeds.find((b) => b.id === p.breed)!;
+  return { ...p, id: `${p.id}-b`, colors: { ...p.colors, fur1: fur[(i + 3) % fur.length].c, fur3: fur[(i + 6) % fur.length].c, eyes: sp.swatches.eyes[1 % sp.swatches.eyes.length].c }, pattern: br.patterns[1] ?? br.pattern };
+}
+const mascotasSection = Panel({ title: 'Mascotas', children: [
+  h('p', null, 'Every breed, composed at runtime from parts (src/data/pets/<species>.json), in its default colours and a second set, each with pet-item.boina scaled by the breed’s headWidth. Use the theme switch at the top for both themes.'),
+  ...allSpecies().map((sp) => h('section', { class: 'st-mascotas' },
+    h('h3', { lang: 'es' }, sp.name_es),
+    h('div', { class: 'st-pets' }, sp.breeds.flatMap((b) => {
+      const a0 = makeProfile(sp.species, b.id, `g-${sp.species}-${b.id}`);
+      return [a0, altSet(a0)].map((pr) => h('figure', { class: 'st-pet', 'data-breed': b.id }, PetPortrait({ pet: pr, items: ['pet-item.boina'], decorative: true }), h('figcaption', { lang: 'es' }, describePet(pr))));
+    })))),
 ] });
 
 /* ---------- Mock game ---------- */
@@ -247,6 +265,7 @@ mount(app,
   typeSection,
   componentsSection,
   petsSection,
+  mascotasSection,
   gameSection,
   artReport(),
 );

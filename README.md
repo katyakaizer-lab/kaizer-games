@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (37 topics, 835 words in 4 levels). Stars are earned in every game. Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (37 topics, 835 words in 4 levels). Stars are earned in every game. Pets: a creator with 5 species and 19 breeds built from parts. Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -27,7 +27,9 @@ public/audio/                 (optional) Katya's recordings: <constellation id>.
 public/fonts/                 self-hosted woff2 (copied from @fontsource at build)
 src/main.ts, src/app/         boot, hash router, hub screens (picker, home, settings), pet state and mood, settings
 src/ui/                       component library, art helper, icons, contrast and font tests
-src/pets/                     pet loader (shared rig, mood fallback, item placement)
+src/pets/                     pets built from parts: species.ts (data, profiles, descriptions, Sorpréndeme), compose.ts (runtime SVG, moods, items), validate.ts; pets.ts is Brote, the mascot
+src/data/pets/                one JSON per species (rig, breeds, swatches) and patterns.json
+public/assets/pet-parts/      pet parts by species, shared parts and pattern overlays (made by tools/make-pet-parts.mjs)
 src/audio/                    soft pentatonic sounds (Web Audio), speech (recordings or a Spanish device voice)
 src/data/                     storage, games.registry.json, content data (constelaciones/sample-sentences.json)
 src/games/constelaciones/     the game: sentence logic, validator rules, seeded layouts, board, "Ilumina la frase", map, modes/
@@ -59,6 +61,14 @@ docs/                         planning documents (kept locally, not in the repos
 
 ## Decisions worth knowing
 
+- **Pets** (Katya, 2026-11-19):
+  - Pets are fully customisable: species, breed, colours, patterns, and later clothes, house and furniture.
+  - The house will be a front-view room (like a dollhouse), not isometric.
+  - Companions (later) are small living plant creatures in Brote's style that follow the pet. Brote is the app mascot and runs the shop; it is not a selectable pet.
+  - Later: a second pet, with friendship between pets raised by snacks and play.
+  - Stars are earned only in games and spent in the shop; never bought with money, never expire, never lost.
+  - Snacks (later) are treats that raise cariño/amistad. Pets are never hungry, sad or sick, and nothing goes down while the learner is away.
+  - Spanish item and breed names are shown without articles (Salchicha, Bufanda, Sofá).
 - **Stars** (changed 2026-11-19, approved by Katya; this replaces "no coins / no shop"): every game awards stars, earned only by playing. They can be spent on pet items (the pet shop is a later step; the wallet already has `spend`), can never be bought, never expire and are never lost or taken away. No penalties, no "you will lose your stars" messages. Nothing is sold, no real money, no ads. The total shows on the home screen next to the pet. Values are in `src/rewards/config.ts`: Crucigramas 1 per word solved, +3 for finishing, +3 with Sin ayuda or +1 with Poca ayuda (hints never subtract); Solitario 1 per category, +3 for clearing the table; Constelaciones 2 per constellation lit. The wallet is part of progress (save/load to a file, reset).
 - **Vibración** setting (on by default): a short vibration where the device supports it (Android browsers now, the store builds later through Capacitor); never with reduced motion.
 
@@ -91,13 +101,31 @@ docs/                         planning documents (kept locally, not in the repos
 
 ### Crucigramas
 
-- Choices Katya made (2026-11-18): our own on-screen Spanish keyboard (no phone keyboard), accents required (Ó is not O; the keyboard has Ñ and a row of Á É Í Ó Ú Ü), puzzles generated from topics, clues in Spanish only: definitions, synonyms and antonyms (no translations, no pictures for now).
-- Each puzzle takes one topic of the chosen level and places some of its words (A1 6, A2 7, B1 8, B2 9) on a grid of at most 10x10 (A1) to 11x12 (B2). Every word crosses another, no letters touch by accident, and the same seed gives the same puzzle. Every level uses all clue kinds; easier levels simply have easier words and clues.
-- Phone screen: top bar (back, level and topic, clue list), the grid with cells as big as fit (up to 44px), the current clue with previous and next, Pista and Comprobar, then the keyboard. On short phones (under 760px tall) Pista and Comprobar become icon buttons in the top bar so the grid keeps its size. Wide screens show the clue list beside the grid. A physical keyboard works too (letters, Backspace, arrows, Tab).
-- Tap a square to choose it; tap it again (or the clue) to switch between across and down. A finished word turns green and the next unfinished word is chosen.
-- Pista writes the right letter in the current square. Comprobar marks wrong letters; a letter that only lacks or has an extra accent is marked with a dashed border and the message says so. Nothing is ever lost or timed; a game in progress is kept per level and comes back when you return.
-- Finished: the whole grid, every word with its clue, and the number of hints used (only as information). Games finished per level show on the level screen.
+- Choices Katya made (2026-11-18): our own on-screen Spanish keyboard (no phone keyboard), accents required (Ó is not O; the keyboard has Ñ and a row of Á É Í Ó Ú Ü), puzzles generated from topics, clues in Spanish only. 2026-11-19: more topics and clue kinds, chosen and limited help, the "¡Casi!" window, decorations, stars, and a review of every word by level.
+- 37 topics, 9 or 10 per level, 20 to 28 words each (`src/data/crucigramas/<level>/<topic>.json`):
+  - A1: frutas, colores y formas, familia, animales, ropa, casa, cuerpo, los días y los meses, los números.
+  - A2: verduras y comida, desayuno, bebidas, escuela, tiempo, transporte, ciudad, la compra y las tiendas, la rutina diaria.
+  - B1: postres, accesorios, cocina, profesiones, deportes, música, aficiones, en el mercado, el trabajo.
+  - B2: festividades, tapas, naturaleza, salud, tecnología, viajes, emociones, medio ambiente, sociedad y política, el carácter.
+- Each word has 2 or 3 clues of different kinds (definition, a sentence with a gap, synonym or opposite, what it is for); a puzzle picks one at random. A puzzle places some words of one topic (A1 6, A2 7, B1 8, B2 9) on a grid of at most 10x10 (A1) to 11x12 (B2); every word crosses another and no letters touch by accident.
+- Level review (2026-11-19, after Katya's test): every word was checked against its level (Instituto Cervantes curriculum and everyday frequency). Words too rare for their level were removed or moved (for example mosto, horchata, sidra, cava and granizado left A2; harder fruit and vegetables moved to the B1 "En el mercado"; C-level words such as nazareno, ofrenda, petardo, banderilla, salmorejo, fabada, acantilado and musgo left B2, and hojaldre, gominola, horquilla, bisutería, riñonera and ganchillo left B1). A test keeps them out.
+- Before each crossword: the help level (Sin ayuda: no hint button; Poca ayuda: 1 letter per word; Ayuda normal: up to 2 letters per word, never more than a third of it; the last choice is the default) and the topic or "Sorpréndeme" (a topic not played recently; it goes round every topic before repeating). A hint writes one letter of the selected word; it never gives a whole word and there is no "solve" button. When a word's hints are used up the button says "Sin pistas para esta palabra".
+- No repeats: the words of the last 5 puzzles of each topic are kept on the device; a new puzzle takes words not seen in those first, then the ones seen longest ago.
+- Layout: top bar, decorations, the grid in its own container (cells 32 to 44px; a grid that still does not fit scrolls inside its container, with soft fades at the edges; the page never scrolls sideways), a slim border, then the clue list. Tapping a clue selects the word and scrolls the grid to it. Fixed at the bottom: the current clue (tap to switch across/down), Pista and Comprobar (icons in the top bar on short phones) and the keyboard. A physical keyboard works too.
+- "¡Casi!": a letter that only lacks its accent or the tilde of ñ (O for Ó, N for Ñ) is not a mistake. A coral window near the square says "¡Casi! Falta la tilde: Ó" (or "¡Casi! Es Ñ") with a button to put the right letter; it closes on tap or after 4 seconds, with a short vibration. The check lives in `src/games/shared/accents.ts` for other games.
+- Decorations: 4 to 6 small objects per topic and an ornament border (art ids `decor.<topic>.<object>` and `decor.border.<style>`, simple original silhouettes, placeholders), coloured by tokens, never behind letters or clue text, aria-hidden and not tappable; under 400px at most 2 objects.
+- Finished: the help level and hints used ("Poca ayuda · 1 pista"), the stars earned, the grid and every word with its clue. A crossword in progress is kept per level ("Continuar"). `?dev` marks unreviewed topics "Sin revisar (dev)".
 
+### Pets (stage 1: the creator)
+
+- A pet is a profile: `{ id, species, breed, parts, colors: { fur1, fur2, fur3, eyes, nose }, pattern, name, createdAt }`, kept in `pets[]` with `activePetId` (a second pet needs no migration). Save files are now version 2; an older save (one `{ species, name }`) becomes a profile of that species' default breed with the same name, and stars and progress are untouched (also when an old file is loaded). Reset and save/load cover the new fields.
+- Parts, not one drawing per breed: each species has a library of parts on the shared 200x240 rig (body, belly, head, ears, snout, tail, feet, wings, arms, horns), plus pattern overlays (manchas, rayas, manto, antifaz, parches) clipped to body and head, and two patterns that recolour parts (calcetines, pecho). Fillable shapes carry classes coloured by CSS variables set on each pet (`--fur-1`, `--fur-2`, `--fur-3`, `--eyes`, `--nose`), so recolouring costs nothing; outlines stay ink, and the night-theme halo still applies. Moods swap only eyes and mouth; a missing mood falls back to calma. The pet is composed at runtime as inline SVG and cached. Every part is in the manifest as kind `pet-part` (placeholder, AI-generated, tool Claude).
+- A breed is data: `src/data/pets/<species>.json` lists its parts, default colours, allowed patterns and rig adjustments (`headWidth`, anchor offsets). Starting breeds: Perro (Salchicha, Pastor, Caniche, Labrador, Chihuahua), Gato (Atigrado, Siamés, Persa, Negro, Carey), Zorro (Rojo, Ártico, Fénec), Cuervo (Cuervo, Urraca, Búho), Dragón (Del bosque, De fuego, De agua). New parts: add them to `tools/make-pet-parts.mjs` and run it.
+- The creator (first launch, and "Editar mascota" in Settings): Especie, Raza, Colores (swatches per slot, natural colours first, then a "Fantasía" row, and the pattern), Nombre (optional; the default is the breed name), with a large live preview that briefly shows its moods after a change (static with reduced motion). "Sorpréndeme" picks a breed, colours and pattern. Choices are native radio groups (keyboard arrows), tap targets are at least 44px, and the preview has a generated Spanish description such as "Perro Salchicha, marrón con manchas blancas". Editing changes only the look.
+- Ready for later: clothing slots on the rig (head, face, neck, body, feet, back; the boina sits on every breed, scaled by its headWidth) and a smaller companion rig in `rig.json`. Not built yet: the shop, wardrobe, room editor, snacks, companions and the second pet.
+- `npm run build` validates pets (`tools/validate-pets.ts`): required layers (shadow, body, head, eyes, mouth), every part id resolves, ink outlines stay visible on both themes' backgrounds (the day background and the night halo), default colours are swatches, breed names are unique and without articles. The style-test page has a "Mascotas" gallery: every breed in two colour sets, each with the boina.
+
+## Open items
 
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
 - The pet shop (spending stars on pet items) is the next step for rewards; the wallet is ready.

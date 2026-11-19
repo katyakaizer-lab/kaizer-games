@@ -30,14 +30,14 @@ describe('smoke: every screen loads without console errors', () => {
     await import('../src/main');
     await wait(100);
     expect(location.hash).toBe('#picker');
-    expect(document.querySelectorAll('.picker__pet').length).toBe(5);
+    expect(document.querySelectorAll('.creator__choice.is-card').length).toBe(5); // the five species
     expect(errors).toEqual([]);
   });
 
   const screens: [string, string, string][] = [
     ['home', '#home', '.home__games'],
     ['settings', '#settings', '.set__group'],
-    ['picker (change pet)', '#picker', '.picker__pet[aria-pressed="true"]'],
+    ['pet creator (edit)', '#pet', '.creator__choice.is-card input:checked'],
     ['constelaciones map', '#game/constelaciones', '.cz-map__star'],
     ['constelaciones play', '#game/constelaciones/play/map/c-b1-005', '.cz-star'],
     ['constelaciones stories', '#game/constelaciones/story', '.cz-story'],

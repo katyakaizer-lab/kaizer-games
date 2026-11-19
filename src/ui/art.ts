@@ -1,9 +1,9 @@
 /**
- * Art system. Every picture is referenced by id (e.g. 'pet.cat.calma'), never by path.
+ * Art system. Every picture is referenced by id (e.g. 'pet.brote.calma'), never by path.
  * The single source of truth is public/assets/manifest.json.
  * art(id) returns the file, or a generated vector placeholder when the id or its file is missing.
  */
-export type ArtKind = 'pet' | 'pet-item' | 'object' | 'scene' | 'character' | 'ui' | 'icon' | 'background' | 'decor';
+export type ArtKind = 'pet' | 'pet-item' | 'pet-part' | 'object' | 'scene' | 'character' | 'ui' | 'icon' | 'background' | 'decor';
 
 export interface ArtEntry {
   id: string;

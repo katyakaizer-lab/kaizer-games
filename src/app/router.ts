@@ -1,5 +1,5 @@
 /**
- * Hash router: #home, #picker, #settings, #game/<id>[/<more>].
+ * Hash router: #home, #picker (first pet), #pet (edit the pet), #settings, #game/<id>[/<more>].
  * Games are lazy-loaded from src/games/<id>/index.ts, so adding a game never touches this file.
  */
 import registryFile from '../data/games.registry.json';
@@ -35,12 +35,13 @@ export function gameLoader(id: string): (() => Promise<GameModule>) | null {
   return (loaders[`../games/${id}/index.ts`] as (() => Promise<GameModule>) | undefined) ?? null;
 }
 
-export interface Route { name: 'home' | 'picker' | 'settings' | 'game'; game?: string; path: string[] }
+export interface Route { name: 'home' | 'picker' | 'pet' | 'settings' | 'game'; game?: string; path: string[] }
 
 export function parseRoute(hash = location.hash): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
   const [head, id, ...rest] = parts;
   if (head === 'picker') return { name: 'picker', path: [] };
+  if (head === 'pet') return { name: 'pet', path: [] };
   if (head === 'settings') return { name: 'settings', path: [] };
   if (head === 'game' && id) return { name: 'game', game: id, path: rest };
   return { name: 'home', path: [] };

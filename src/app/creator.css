@@ -1,0 +1,59 @@
+/* Pet creator. Tokens only. The preview stays visible at the top while the steps scroll under it. */
+.creator { padding-bottom: calc(var(--space-6) + 4.5rem); }
+.creator__progress { display: grid; gap: var(--space-1); }
+.creator__step-label { margin: 0; color: var(--text-soft); }
+.creator__step-label strong { color: var(--text); }
+.creator__dots { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.creator__dots li { flex: 1; height: 6px; border-radius: var(--radius-pill); background: var(--track); }
+.creator__dots li.is-done, .creator__dots li.is-current { background: var(--primary); }
+.creator__dots li.is-current { opacity: .55; }
+
+.creator__preview {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3); background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-card); box-shadow: var(--shadow);
+}
+.creator__preview-fig { flex: none; width: min(40vw, 10rem); }
+.creator__preview-name { margin: 0; font-family: var(--font-head); font-size: var(--fs-h2); line-height: 1.1; overflow-wrap: anywhere; }
+.creator__preview-desc { margin: var(--space-1) 0 0; color: var(--text-soft); }
+
+.creator__fieldset { margin: 0; padding: var(--space-2) var(--space-3) var(--space-3); border: 2px solid var(--border); border-radius: var(--radius-card); min-width: 0; }
+.creator__fieldset legend { font-weight: 800; padding: 0 var(--space-1); }
+.creator__colors { display: grid; gap: var(--space-3); justify-items: start; }
+.creator__colors > .creator__fieldset { justify-self: stretch; }
+.creator__row-label { margin: var(--space-2) 0 var(--space-1); font-size: var(--fs-small); font-weight: 700; color: var(--text-soft); }
+
+/* Choices are native radios (keyboard: Tab into the group, arrows to move), drawn as cards, swatches or chips. */
+.creator__radio { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.creator__choice { position: relative; display: grid; cursor: pointer; }
+.creator__choice:focus-within { outline: var(--focus-w) solid var(--focus); outline-offset: 3px; border-radius: var(--radius-card); }
+
+.creator__cards { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(8.5rem, 44%), 1fr)); }
+.creator__choice.is-card {
+  justify-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-2) var(--space-3);
+  background: var(--surface); border: var(--border-w) solid var(--border); border-radius: var(--radius-card); box-shadow: var(--shadow);
+}
+.creator__choice.is-card:has(:checked) { border-color: var(--primary); box-shadow: inset 0 0 0 var(--border-w) var(--primary), var(--shadow); }
+.creator__card-pet { width: min(100%, 7.5rem); }
+.creator__card-name { font-weight: 800; font-size: 1.0625rem; text-align: center; }
+
+.creator__swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.creator__choice.is-swatch { width: var(--tap-min); height: var(--tap-min); place-items: center; border-radius: 50%; }
+.creator__swatch { width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--sw); border: 2px solid var(--text); box-shadow: inset 0 0 0 2px var(--surface); }
+.creator__choice.is-swatch:has(:checked) .creator__swatch { box-shadow: 0 0 0 3px var(--surface), 0 0 0 6px var(--primary); }
+
+.creator__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.creator__choice.is-chip {
+  align-items: center; min-height: var(--tap-min); padding: 0 var(--space-4);
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-pill); font-weight: 700;
+}
+.creator__choice.is-chip:has(:checked) { background: var(--secondary); color: var(--on-secondary); border-color: var(--on-secondary); }
+
+.creator__name { display: grid; gap: var(--space-2); }
+.creator__hint { margin: 0; color: var(--text-soft); }
+
+.creator__nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-3) max(var(--space-4), calc((100vw - 44rem) / 2 + var(--space-4))) calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  background: var(--bg); border-top: 2px solid var(--border);
+}
+.creator__nav .k-btn { min-height: var(--tap-min); }

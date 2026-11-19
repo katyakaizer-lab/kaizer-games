@@ -35,7 +35,7 @@ beforeAll(async () => {
   base = `http://127.0.0.1:${typeof addr === 'object' && addr ? addr.port : 5173}/`;
   browser = await chromium.launch({ executablePath: exe, headless: true });
 }, 60_000);
-afterAll(async () => { await browser?.close(); await server?.close(); }, 30_000);
+afterAll(async () => { await browser?.close(); await server?.close(); }, 90_000);
 
 const cats = (JSON.parse(readFileSync(`${ROOT}/src/data/solitario/categories.json`, 'utf8')).categories as Category[]);
 

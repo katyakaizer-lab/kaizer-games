@@ -1,0 +1,47 @@
+{
+  "species": "dog", "name_es": "Perro", "default": "labrador",
+  "_note": "A breed is data: parts by slot (pet-part.dog.<part>; eyes and mouth have moods), default colours, allowed patterns, rig adjustments (headWidth, anchor offsets in canvas px). Colours are hex values taken from the swatches below (each with its Spanish name for descriptions; inv = the name does not change for gender or number).",
+  "layers": ["shadow", "wings", "tail", "body", "belly", "ears", "head", "pattern", "snout", "feet", "arms", "horns", "eyes", "mouth"],
+  "slots": ["fur1", "fur2", "fur3", "eyes", "nose"],
+  "rig": { "headWidth": 76, "anchors": { "head": [100, 50], "face": [100, 90], "neck": [100, 120], "body": [100, 165], "feet": [100, 210], "back": [100, 160] } },
+  "swatches": {
+    "fur": [
+      { "c": "#FAF6EF", "es": "blanco" }, { "c": "#F2DDB6", "es": "crema", "inv": true }, { "c": "#E8C39E", "es": "beis", "inv": true },
+      { "c": "#E3B46E", "es": "dorado" }, { "c": "#C98A4B", "es": "canela", "inv": true }, { "c": "#9C5A2E", "es": "rojizo" },
+      { "c": "#7A4E2E", "es": "marrón" }, { "c": "#5A3A28", "es": "chocolate", "inv": true }, { "c": "#9A9CA6", "es": "gris" },
+      { "c": "#3A2A22", "es": "negro" }
+    ],
+    "furFantasy": [
+      { "c": "#8EC9EE", "es": "azul cielo", "inv": true }, { "c": "#F2A7C3", "es": "rosa", "inv": true }, { "c": "#B9A3E3", "es": "lila", "inv": true },
+      { "c": "#9ED9C3", "es": "menta", "inv": true }, { "c": "#F6D55C", "es": "amarillo" }
+    ],
+    "eyes": [
+      { "c": "#2B2D42", "es": "negro" }, { "c": "#6B4426", "es": "marrón" }, { "c": "#C8902E", "es": "miel", "inv": true }, { "c": "#5AA9E6", "es": "azul" }
+    ],
+    "eyesFantasy": [ { "c": "#8E6BD1", "es": "violeta", "inv": true }, { "c": "#E86FA3", "es": "rosa", "inv": true } ],
+    "nose": [ { "c": "#2B2D42", "es": "negro" }, { "c": "#7A4E2E", "es": "marrón" }, { "c": "#D9786A", "es": "rosa", "inv": true } ],
+    "noseFantasy": [ { "c": "#5B8DD9", "es": "azul" } ]
+  },
+  "breeds": [
+    { "id": "salchicha", "name_es": "Salchicha",
+      "parts": { "shadow": "shared.shadow", "body": "body-long", "belly": "belly-long", "tail": "tail-thin", "ears": "ears-long", "head": "head-round", "snout": "snout-long", "feet": "feet-short", "eyes": "eyes-dot", "mouth": "mouth-dog" },
+      "colors": { "fur1": "#9C5A2E", "fur2": "#E8C39E", "fur3": "#3A2A22", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest", "socks", "saddle"], "rig": { "anchors": { "head": [0, 0] } } },
+    { "id": "pastor", "name_es": "Pastor",
+      "parts": { "shadow": "shared.shadow", "body": "body-round", "belly": "belly-round", "tail": "tail-bushy", "ears": "ears-pointy", "head": "head-long", "snout": "snout-long", "feet": "feet-paws", "eyes": "eyes-dot", "mouth": "mouth-dog" },
+      "colors": { "fur1": "#C98A4B", "fur2": "#E8C39E", "fur3": "#3A2A22", "eyes": "#6B4426", "nose": "#2B2D42" },
+      "pattern": "saddle", "patterns": ["saddle", "none", "mask"], "rig": { "anchors": { "head": [0, -2] } } },
+    { "id": "caniche", "name_es": "Caniche",
+      "parts": { "shadow": "shared.shadow", "body": "body-fluffy", "tail": "tail-pom", "ears": "ears-curly", "head": "head-fluffy", "snout": "snout-round", "feet": "feet-paws", "eyes": "eyes-dot", "mouth": "mouth-dog" },
+      "colors": { "fur1": "#FAF6EF", "fur2": "#F2DDB6", "fur3": "#9A9CA6", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "patches"], "rig": { "headWidth": 84, "anchors": { "head": [0, -12] } } },
+    { "id": "labrador", "name_es": "Labrador",
+      "parts": { "shadow": "shared.shadow", "body": "body-round", "belly": "belly-round", "tail": "tail-wag", "ears": "ears-floppy", "head": "head-round", "snout": "snout-round", "feet": "feet-paws", "eyes": "eyes-dot", "mouth": "mouth-dog" },
+      "colors": { "fur1": "#E3B46E", "fur2": "#F2DDB6", "fur3": "#7A4E2E", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "chest", "spots", "socks"] },
+    { "id": "chihuahua", "name_es": "Chihuahua",
+      "parts": { "shadow": "shared.shadow", "body": "body-slim", "belly": "belly-slim", "tail": "tail-thin", "ears": "ears-big", "head": "head-small", "snout": "snout-round", "feet": "feet-paws", "eyes": "eyes-dot", "mouth": "mouth-dog" },
+      "colors": { "fur1": "#C98A4B", "fur2": "#F2DDB6", "fur3": "#5A3A28", "eyes": "#2B2D42", "nose": "#2B2D42" },
+      "pattern": "none", "patterns": ["none", "mask", "chest", "spots"], "rig": { "headWidth": 68, "anchors": { "head": [0, 6] } } }
+  ]
+}
