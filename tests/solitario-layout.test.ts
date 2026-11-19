@@ -51,7 +51,7 @@ beforeAll(async () => {
   base = `http://127.0.0.1:${typeof addr === 'object' && addr ? addr.port : 5173}/`;
   browser = await chromium.launch({ executablePath: exe, headless: true });
 }, 60_000);
-afterAll(async () => { await browser?.close(); await server?.close(); });
+afterAll(async () => { await browser?.close(); await server?.close(); }, 30_000);
 
 async function open(width: number, data: unknown, size: string, theme: 'mesa' | 'night', height = 740): Promise<{ page: Page; errors: string[] }> {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });

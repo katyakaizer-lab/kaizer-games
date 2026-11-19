@@ -9,6 +9,8 @@ import { getSettings, saveSettings, type Settings } from './settings';
 import { currentMood, getPet, setPet } from './pet-state';
 import { navigate, registry } from './router';
 import { downloadProgress, pickProgressFile, store } from '../data/storage';
+import { getStars } from '../rewards/wallet';
+import '../rewards/rewards.css';
 
 const heading = (text: string, level: 1 | 2 = 1) => {
   const el = level === 1 ? h('h1', { tabindex: '-1', class: 'screen__title' }, text) : h('h2', null, text);
@@ -58,7 +60,8 @@ export function HomeScreen(root: HTMLElement): void {
     h('div', { class: 'home__scene' }, artEl('scene.house.room1', { decorative: true })),
     ...slots,
     h('div', { class: 'home__pet' }, PetFigure({ pet: pet.species, mood, label: `${pet.name}, ${t(`mood.${mood}`)}` })),
-    h('p', { class: 'home__caption' }, h('strong', { lang: 'es' }, pet.name), ' · ', h('span', { lang: mood === 'siesta' ? 'es' : undefined }, mood === 'siesta' ? 'Descansando' : t(`mood.${mood}`))));
+    h('p', { class: 'home__caption' }, h('strong', { lang: 'es' }, pet.name), ' · ', h('span', { lang: mood === 'siesta' ? 'es' : undefined }, mood === 'siesta' ? 'Descansando' : t(`mood.${mood}`)),
+      ' ', h('span', { class: 'k-star-total', 'data-stars': String(getStars()) }, h('span', { class: 'k-star-total__icon', 'aria-hidden': 'true' }, '★'), h('span', { 'aria-hidden': 'true' }, String(getStars())), h('span', { class: 'k-sr' }, t('home.stars', { n: getStars() })))));
   const lang = getLang();
   const games = registry.map((g) => {
     const playable = g.status === 'playable';
@@ -104,6 +107,7 @@ export function SettingsScreen(root: HTMLElement, rerender: () => void): void {
     choice('lang', t('settings.language'), LANGS.map((l) => ({ value: l.id as Lang, label: l.label }))),
     choice('sound', t('settings.sound'), [{ value: true, label: t('settings.soundOn') }, { value: false, label: t('settings.soundOff') }]),
     choice('reduceMotion', t('settings.motion'), [{ value: true, label: t('common.yes') }, { value: false, label: t('common.no') }]),
+    choice('vibration', t('settings.vibration'), [{ value: true, label: t('settings.vibrationOn') }, { value: false, label: t('settings.vibrationOff') }]),
     choice('textSize', t('settings.textSize'), [{ value: 'normal', label: t('settings.textNormal') }, { value: 'large', label: t('settings.textLarge') }, { value: 'xlarge', label: t('settings.textXlarge') }]),
     pet ? Panel({ title: t('settings.pet'), level: 2, children: [
       h('div', { class: 'set__pet' }, h('div', { class: 'set__pet-fig' }, PetFigure({ pet: pet.species, label: pet.name })), h('strong', { lang: 'es' }, pet.name)),

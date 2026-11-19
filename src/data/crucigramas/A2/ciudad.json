@@ -1,0 +1,28 @@
+{
+  "id": "ciudad", "level": "A2", "name_es": "La ciudad", "en": "The city", "ru": "Город", "reviewed": false,
+  "decor": { "style": "dots", "items": ["semaforo", "farola", "edificio", "banco"] },
+  "words": [
+    { "es": "calle", "clues": { "def": "Por ella pasan coches y personas", "gap": "Cruzo la ___ por el paso de cebra" } },
+    { "es": "plaza", "clues": { "def": "Espacio abierto en el centro del pueblo", "gap": "Quedamos en la ___ mayor" } },
+    { "es": "museo", "clues": { "def": "Edificio con cuadros y obras de arte", "gap": "Vemos cuadros en el ___" } },
+    { "es": "puente", "clues": { "def": "Sirve para cruzar un río", "gap": "Cruzamos el río por el ___" } },
+    { "es": "parque", "clues": { "def": "Lugar con árboles y bancos para pasear", "gap": "Jugamos en los columpios del ___" } },
+    { "es": "tienda", "clues": { "def": "Lugar donde compramos cosas", "gap": "Compro pan en la ___ de la esquina" } },
+    { "es": "hospital", "clues": { "def": "Allí curan a los enfermos", "gap": "Mi madre es médica en el ___" } },
+    { "es": "banco", "clues": { "def": "Allí guardas tu dinero", "gap": "Me siento en un ___ del parque" } },
+    { "es": "farmacia", "clues": { "def": "Allí compras medicinas", "gap": "Compro jarabe en la ___" } },
+    { "es": "semáforo", "clues": { "def": "Luz roja, amarilla y verde de la calle", "gap": "Cruza cuando el ___ esté en verde" } },
+    { "es": "estación", "clues": { "def": "Allí sale y llega el tren", "gap": "Esperamos el tren en la ___" } },
+    { "es": "iglesia", "clues": { "def": "Edificio con campanas", "gap": "Las campanas de la ___ suenan a las doce" } },
+    { "es": "mercado", "clues": { "def": "Lugar con puestos de fruta, carne y pescado", "gap": "Compramos fruta en el ___" } },
+    { "es": "biblioteca", "clues": { "def": "Lugar donde se leen y se prestan libros", "gap": "Saco un libro de la ___" } },
+    { "es": "cine", "clues": { "def": "Allí ves películas en una pantalla grande", "gap": "Vamos al ___ a ver una película" } },
+    { "es": "teatro", "clues": { "def": "Allí ves obras con actores en un escenario", "gap": "Esta noche vamos al ___" } },
+    { "es": "acera", "clues": { "def": "Parte de la calle para las personas", "gap": "Camina por la ___" } },
+    { "es": "barrio", "clues": { "def": "Parte de una ciudad", "gap": "Vivo en un ___ tranquilo" } },
+    { "es": "edificio", "clues": { "def": "Construcción con muchos pisos", "gap": "Vivo en el quinto piso de un ___" } },
+    { "es": "avenida", "clues": { "def": "Calle ancha y larga", "gap": "Hay árboles a los lados de la ___" } },
+    { "es": "fuente", "clues": { "def": "De ella sale agua en la plaza", "gap": "Los niños beben agua de la ___" } },
+    { "es": "ruido", "clues": { "def": "Sonido molesto del tráfico", "ant": "Lo contrario de «silencio»" } }
+  ]
+}

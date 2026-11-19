@@ -1,0 +1,28 @@
+{
+  "id": "familia", "level": "A1", "name_es": "La familia", "en": "Family", "ru": "Семья", "reviewed": false,
+  "decor": { "style": "stars", "items": ["casa", "corazon", "foto", "globo"] },
+  "words": [
+    { "es": "madre", "clues": { "def": "Mujer que tiene hijos", "syn": "Sinónimo de «mamá»" } },
+    { "es": "padre", "clues": { "def": "Hombre que tiene hijos", "syn": "Sinónimo de «papá»" } },
+    { "es": "hijo", "clues": { "def": "Niño, respecto a sus padres", "gap": "Ana tiene un ___ de cinco años" } },
+    { "es": "hija", "clues": { "def": "Niña, respecto a sus padres", "gap": "Mi ___ se llama Lucía" } },
+    { "es": "hermano", "clues": { "def": "Hijo de tus mismos padres", "gap": "Mi ___ mayor tiene quince años" } },
+    { "es": "hermana", "clues": { "def": "Hija de tus mismos padres", "gap": "Juego con mi ___ pequeña" } },
+    { "es": "abuelo", "clues": { "def": "Padre de tu padre o de tu madre", "gap": "Mi ___ tiene el pelo blanco" } },
+    { "es": "abuela", "clues": { "def": "Madre de tu padre o de tu madre", "gap": "La ___ hace unas galletas riquísimas" } },
+    { "es": "tío", "clues": { "def": "Hermano de tu padre o de tu madre", "gap": "Mi ___ vive en Sevilla" } },
+    { "es": "tía", "clues": { "def": "Hermana de tu padre o de tu madre", "gap": "Mi ___ Carmen me trae regalos" } },
+    { "es": "primo", "clues": { "def": "Hijo de tu tío o de tu tía", "gap": "Juego al fútbol con mi ___ Pablo" } },
+    { "es": "prima", "clues": { "def": "Hija de tu tío o de tu tía", "gap": "Mi ___ y yo tenemos la misma edad" } },
+    { "es": "nieto", "clues": { "def": "Hijo de tu hijo o de tu hija", "gap": "La abuela quiere mucho a su ___" } },
+    { "es": "bebé", "clues": { "def": "Niño muy pequeño que todavía no anda", "gap": "El ___ llora porque tiene hambre" } },
+    { "es": "marido", "clues": { "def": "Hombre casado, respecto a su mujer", "syn": "Sinónimo de «esposo»" } },
+    { "es": "esposa", "clues": { "def": "Mujer casada, respecto a su marido", "gap": "Juan y su ___ tienen dos hijos" } },
+    { "es": "gemelos", "clues": { "def": "Dos hermanos que nacen el mismo día y se parecen mucho", "gap": "Pablo y Pedro son ___" } },
+    { "es": "sobrino", "clues": { "def": "Hijo de tu hermano o de tu hermana", "gap": "Mi ___ me llama tía" } },
+    { "es": "novia", "clues": { "def": "Chica con la que sales y a la que quieres", "gap": "Mi hermano va al cine con su ___" } },
+    { "es": "boda", "clues": { "def": "Fiesta cuando dos personas se casan", "gap": "Los novios bailan en la ___" } },
+    { "es": "suegra", "clues": { "def": "Madre de tu marido o de tu mujer", "gap": "Mi madre come los domingos con su ___" } },
+    { "es": "familia", "clues": { "def": "Padres, hijos, abuelos, tíos y primos", "gap": "Toda la ___ se reúne en Navidad" } }
+  ]
+}

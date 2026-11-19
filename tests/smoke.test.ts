@@ -49,8 +49,9 @@ describe('smoke: every screen loads without console errors', () => {
     ['solitario play', '#game/solitario/play/A1', '.sol-col .sol-card'],
     ['solitario B2', '#game/solitario/play/B2/seed-3', '.sol-slots .sol-slot'],
     ['crucigramas levels', '#game/crucigramas', '.cw-level'],
-    ['crucigramas play', '#game/crucigramas/play/A1/seed-2', '.cw-grid .cw-cell'],
-    ['crucigramas B2', '#game/crucigramas/play/B2/seed-5', '.cw-keys .cw-key'],
+    ['crucigramas setup', '#game/crucigramas/new/A1', '.cw-setup .cw-choice'],
+    ['crucigramas play', '#game/crucigramas/play/A1/frutas/seed-2', '.cw-grid .cw-cell'],
+    ['crucigramas B2', '#game/crucigramas/play/B2/festividades/seed-5/none', '.cw-keys .cw-key'],
   ];
   for (const [name, hash, selector] of screens) {
     it(name, async () => {

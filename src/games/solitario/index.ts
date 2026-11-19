@@ -21,6 +21,8 @@ import {
 } from './engine';
 import { MAX_NAME_LINES, MAX_WORD_LINES, boardLayout, canvasMeasure, cardFont, cardSize, columnOffsets, readTokens, visibleTop, type BoardLayout, type CardFont } from './sizing';
 import { softHyphenate } from '../shared/syllabify.ts';
+import { earn } from '../../rewards/show';
+import { STARS } from '../../rewards/config';
 import './solitario.css';
 
 const files = import.meta.glob<SolitarioData>('../../data/solitario/*.json', { eager: true, import: 'default' });
@@ -145,6 +147,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
     let sel: Source | null = null;
     let hint: { src?: Source; dst?: Target } | null = null;
     let faceDownBefore = new Set<string>();
+    const starredCats = new Set<string>(); // a category gives its star once per deal, even after undo
     let dropFrom = new Map<string, DOMRect>(); // where moved cards were, for the drop animation
     let viewW = content.clientWidth || window.innerWidth;
 
@@ -168,7 +171,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
       if (move(s, src, tg)) {
         select(null);
         const first = s.cards[run[0]];
-        if (s.done.length > doneBefore) { playMelody(); burstSlot = tg.kind === 'slot' ? tg.index : null; announce(t('sol.complete', { cat: catName(s, s.done[s.done.length - 1]) }), true); }
+        if (s.done.length > doneBefore) { const doneCat = s.done[s.done.length - 1]; if (!starredCats.has(doneCat)) { starredCats.add(doneCat); earn('solitario', STARS.solitario.category, `category ${doneCat}`, el.querySelector('.sol-moves')); } playMelody(); burstSlot = tg.kind === 'slot' ? tg.index : null; announce(t('sol.complete', { cat: catName(s, s.done[s.done.length - 1]) }), true); }
         else {
           playNote(s.moves % 10);
           announce(tg.kind === 'slot' ? (first.kind === 'cat' ? t('sol.opened', { cat: first.item.es }) : t('sol.toSlot', { word: first.item.es, cat: catName(s, first.cat) }))
@@ -478,6 +481,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
 
     function finish() {
       const rec = addWin(level, s.moves);
+      earn('solitario', STARS.solitario.win, 'win');
       recordCelebration();
       playMelody();
       content.classList.remove('is-board');

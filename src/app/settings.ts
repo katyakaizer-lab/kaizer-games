@@ -2,8 +2,8 @@
 import { store } from '../data/storage';
 import { setLang, type Lang } from '../i18n';
 
-export interface Settings { lang: Lang; sound: boolean; soundOffered: boolean; reduceMotion: boolean; textSize: 'normal' | 'large' | 'xlarge' }
-export const DEFAULT_SETTINGS: Settings = { lang: 'en', sound: false, soundOffered: false, reduceMotion: false, textSize: 'normal' };
+export interface Settings { lang: Lang; sound: boolean; soundOffered: boolean; reduceMotion: boolean; textSize: 'normal' | 'large' | 'xlarge'; vibration: boolean }
+export const DEFAULT_SETTINGS: Settings = { lang: 'en', sound: false, soundOffered: false, reduceMotion: false, textSize: 'normal', vibration: true };
 const SCALE = { normal: '100%', large: '112.5%', xlarge: '125%' } as const;
 
 export function getSettings(): Settings { return { ...DEFAULT_SETTINGS, ...store.get<Partial<Settings>>('settings', {}) }; }

@@ -1,0 +1,29 @@
+{
+  "id": "emociones", "level": "B2", "name_es": "Emociones", "en": "Emotions", "ru": "Эмоции", "reviewed": false,
+  "decor": { "style": "stars", "items": ["corazon", "sonrisa", "lagrima", "nube"] },
+  "words": [
+    { "es": "feliz", "clues": { "syn": "Sinónimo de «contento»", "ant": "Lo contrario de «triste»", "gap": "Estoy muy ___ con mi nuevo perro" } },
+    { "es": "triste", "clues": { "ant": "Lo contrario de «alegre»", "gap": "Está ___ porque se ha ido su amiga" } },
+    { "es": "miedo", "clues": { "def": "Lo que sientes ante un peligro", "syn": "Sinónimo de «temor»", "gap": "Tengo ___ a las arañas" } },
+    { "es": "enfadado", "clues": { "syn": "Sinónimo de «furioso»", "gap": "Está ___ porque le han roto el juguete" } },
+    { "es": "nervioso", "clues": { "def": "Cómo estás antes de un examen", "ant": "Lo contrario de «tranquilo»" } },
+    { "es": "cansado", "clues": { "syn": "Sinónimo de «agotado»", "def": "Cómo estás después de correr mucho" } },
+    { "es": "tranquilo", "clues": { "syn": "Sinónimo de «sereno»", "ant": "Lo contrario de «nervioso»" } },
+    { "es": "orgullo", "clues": { "def": "Lo que sientes cuando algo te sale muy bien", "gap": "Siento ___ de mi hija" } },
+    { "es": "celos", "clues": { "def": "Miedo a perder el cariño de alguien", "gap": "Tiene ___ de su hermano pequeño" } },
+    { "es": "amor", "clues": { "ant": "Lo contrario de «odio»", "def": "Sentimiento fuerte por una persona" } },
+    { "es": "vergüenza", "clues": { "def": "Lo que sientes cuando te pones rojo", "gap": "Me da ___ hablar en público" } },
+    { "es": "alegría", "clues": { "ant": "Lo contrario de «tristeza»", "def": "Lo que sientes cuando algo te hace feliz" } },
+    { "es": "envidia", "clues": { "def": "Querer lo que tiene otra persona", "gap": "Siento ___ de su coche nuevo" } },
+    { "es": "sorpresa", "clues": { "def": "Lo que sientes ante algo que no esperabas", "gap": "¡Qué ___ verte aquí!" } },
+    { "es": "ilusión", "clues": { "def": "Alegría y esperanza por algo que va a pasar", "gap": "Tengo mucha ___ por el viaje" } },
+    { "es": "nostalgia", "clues": { "def": "Tristeza al recordar el pasado", "gap": "Siento ___ de mi infancia" } },
+    { "es": "ansiedad", "clues": { "def": "Nervios y preocupación muy fuertes", "gap": "Los exámenes me producen ___" } },
+    { "es": "asco", "clues": { "def": "Lo que sientes ante algo sucio o que huele mal", "gap": "Me da ___ la leche cortada" } },
+    { "es": "odio", "clues": { "ant": "Lo contrario de «amor»", "def": "Sentimiento muy fuerte contra alguien" } },
+    { "es": "calma", "clues": { "syn": "Sinónimo de «tranquilidad»", "gap": "Mantén la ___ y respira hondo" } },
+    { "es": "aburrido", "clues": { "def": "Cómo estás cuando no tienes nada que hacer", "ant": "Lo contrario de «entretenido»" } },
+    { "es": "preocupado", "clues": { "def": "Cómo estás cuando piensas mucho en un problema", "gap": "Mi madre está ___ porque llego tarde" } },
+    { "es": "emocionado", "clues": { "def": "Muy contento y nervioso por algo bueno", "gap": "Estoy ___ porque mañana me voy de viaje" } }
+  ]
+}

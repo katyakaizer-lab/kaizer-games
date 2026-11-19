@@ -50,15 +50,25 @@ function firstScreen() {
 function content() {
   const dir = join(ROOT, 'src/data');
   const out = [];
+  // One file per item (e.g. a crossword topic with its own "reviewed"): counted per folder.
+  const perFolder = new Map();
   for (const f of walk(dir).filter((x) => x.endsWith('.json'))) {
     const j = JSON.parse(readFileSync(f, 'utf8'));
+    if (j && typeof j === 'object' && !Array.isArray(j) && typeof j.reviewed === 'boolean') {
+      const folder = relative(ROOT, join(f, '..', '..')).replace(/\\/g, '/');
+      const c = perFolder.get(folder) ?? { file: folder, key: 'topics', total: 0, unreviewed: 0 };
+      c.total++;
+      if (!j.reviewed) c.unreviewed++;
+      perFolder.set(folder, c);
+      continue;
+    }
     for (const [key, arr] of Object.entries(j)) {
       if (!Array.isArray(arr)) continue;
       const items = arr.filter((x) => x && typeof x === 'object' && 'reviewed' in x);
       if (items.length) out.push({ file: relative(ROOT, f).replace(/\\/g, '/'), key, total: items.length, unreviewed: items.filter((x) => !x.reviewed).length });
     }
   }
-  return out;
+  return [...out, ...perFolder.values()];
 }
 
 function i18n() {

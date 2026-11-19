@@ -4,6 +4,8 @@ import { Button, FeedbackBanner } from '../../ui/components';
 import { getLang, t } from '../../i18n';
 import { playMelody } from '../../audio/synth';
 import { recordCelebration } from '../../app/pet-state';
+import { earn } from '../../rewards/show';
+import { STARS } from '../../rewards/config';
 import { prefersReducedMotion } from '../../app/settings';
 import { numberOf, showDev } from './data';
 import { targetSentence, type Constellation } from './sentence';
@@ -52,6 +54,7 @@ export function celebrate(board: Board): void {
   if (!prefersReducedMotion()) board.el.classList.add('is-glowing');
   playMelody();
   recordCelebration();
+  earn('constelaciones', STARS.constelaciones.lit, 'lit', board.el);
 }
 
 export function finishPanel(c: Constellation, o: { order?: number[]; extra?: HTMLElement | null; buttons: HTMLElement[] }): HTMLElement {

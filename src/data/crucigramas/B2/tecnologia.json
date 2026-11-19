@@ -1,0 +1,30 @@
+{
+  "id": "tecnologia", "level": "B2", "name_es": "Tecnología", "en": "Technology", "ru": "Технологии", "reviewed": false,
+  "decor": { "style": "dots", "items": ["movil", "bombilla", "enchufe", "antena"] },
+  "words": [
+    { "es": "móvil", "clues": { "def": "Teléfono que llevas en el bolsillo", "gap": "Te llamo al ___" } },
+    { "es": "ordenador", "clues": { "def": "Máquina con pantalla y teclado", "gap": "Trabajo con el ___ portátil" } },
+    { "es": "pantalla", "clues": { "def": "Parte del aparato donde ves las imágenes", "gap": "La ___ del móvil está rota" } },
+    { "es": "teclado", "clues": { "def": "Conjunto de botones con letras para escribir", "gap": "Escribo rápido con el ___" } },
+    { "es": "ratón", "clues": { "def": "Aparato que mueves con la mano para manejar el ordenador", "gap": "Haz clic con el ___" } },
+    { "es": "contraseña", "clues": { "def": "Palabra secreta para entrar en una cuenta", "gap": "No le digas a nadie tu ___" } },
+    { "es": "internet", "clues": { "def": "Red que conecta ordenadores de todo el mundo", "gap": "Busco la información en ___" } },
+    { "es": "aplicación", "clues": { "def": "Programa del móvil", "syn": "Sinónimo de «app»" } },
+    { "es": "cargador", "clues": { "def": "Cable para llenar la batería", "gap": "Se me ha olvidado el ___ del móvil" } },
+    { "es": "batería", "clues": { "def": "Parte que da energía al móvil", "gap": "Me queda poca ___" } },
+    { "es": "enchufe", "clues": { "def": "Lugar de la pared donde conectas los aparatos", "gap": "Conecta el cargador al ___" } },
+    { "es": "impresora", "clues": { "def": "Aparato que pasa al papel lo que hay en la pantalla", "gap": "La ___ se ha quedado sin tinta" } },
+    { "es": "correo", "clues": { "def": "Mensaje electrónico", "gap": "Te mando un ___ con las fotos" } },
+    { "es": "mensaje", "clues": { "def": "Texto corto que mandas por el móvil", "gap": "Te escribo un ___ cuando llegue" } },
+    { "es": "archivo", "clues": { "def": "Documento guardado en el ordenador", "gap": "Guarda el ___ antes de cerrar" } },
+    { "es": "descargar", "clues": { "def": "Pasar algo de internet a tu aparato", "gap": "Voy a ___ la película" } },
+    { "es": "tableta", "clues": { "def": "Ordenador plano que se maneja con los dedos", "gap": "Leo cuentos en la ___" } },
+    { "es": "auriculares", "clues": { "def": "Aparato para escuchar música sin molestar a nadie", "gap": "Me pongo los ___ en el autobús" } },
+    { "es": "robot", "clues": { "def": "Máquina que hace tareas sola", "gap": "El ___ limpia el suelo de la casa" } },
+    { "es": "pila", "clues": { "def": "Pequeña fuente de energía para el mando", "gap": "Al mando le hace falta una ___ nueva" } },
+    { "es": "wifi", "clues": { "def": "Conexión a internet sin cables", "gap": "¿Cuál es la contraseña del ___?" } },
+    { "es": "cable", "clues": { "def": "Hilo que lleva la electricidad", "gap": "El ___ del cargador está roto" } },
+    { "es": "bombilla", "clues": { "def": "Da luz en la lámpara", "gap": "Se ha fundido la ___" } },
+    { "es": "antena", "clues": { "def": "Recibe la señal de la tele o la radio", "gap": "La ___ está en el tejado" } }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "festividades", "level": "B2", "name_es": "Festividades", "en": "Festivals and celebrations", "ru": "Праздники", "reviewed": false,
+  "decor": { "style": "stars", "items": ["estrella", "vela", "regalo", "globo", "farolillo"] },
+  "words": [
+    { "es": "villancico", "clues": { "def": "Canción típica de Navidad", "gap": "Cantamos un ___ junto al belén" } },
+    { "es": "belén", "clues": { "def": "Figuras que representan el nacimiento de Jesús", "gap": "Ponemos el ___ en el salón" } },
+    { "es": "roscón", "clues": { "def": "Bollo redondo que se come el 6 de enero", "gap": "Me ha tocado el haba del ___" } },
+    { "es": "regalo", "clues": { "def": "Lo que das a alguien en su cumpleaños", "gap": "Envuelvo el ___ con papel brillante" } },
+    { "es": "carnaval", "clues": { "def": "Fiesta de disfraces antes de la Cuaresma", "gap": "En ___ me disfrazo de pirata" } },
+    { "es": "disfraz", "clues": { "def": "Ropa para parecer otra persona o un animal", "gap": "Mi ___ es de león" } },
+    { "es": "máscara", "clues": { "def": "Lo que te tapa la cara en una fiesta", "syn": "Sinónimo de «careta»" } },
+    { "es": "procesión", "clues": { "def": "Desfile religioso por las calles en Semana Santa", "gap": "La ___ pasa por la plaza" } },
+    { "es": "nazareno", "clues": { "def": "Persona con capirote que desfila en Semana Santa", "gap": "El ___ lleva una vela encendida" } },
+    { "es": "vela", "clues": { "def": "Cilindro de cera que da luz", "gap": "Sopla la ___ del pastel" } },
+    { "es": "calavera", "clues": { "def": "Cabeza de hueso; de azúcar en el Día de Muertos", "gap": "En México le regalan una ___ de azúcar" } },
+    { "es": "altar", "clues": { "def": "Mesa con fotos, flores y comida para los difuntos", "gap": "Ponemos un ___ con flores de cempasúchil" } },
+    { "es": "ofrenda", "clues": { "def": "Lo que se pone en el altar para los difuntos", "gap": "La ___ tiene pan de muerto y fruta" } },
+    { "es": "feria", "clues": { "def": "Fiesta con casetas, atracciones y sevillanas", "gap": "En abril vamos a la ___ de Sevilla" } },
+    { "es": "caseta", "clues": { "def": "Pequeña construcción de la feria donde se baila", "gap": "Bailamos sevillanas en la ___" } },
+    { "es": "noria", "clues": { "def": "Rueda gigante de la feria para ver todo desde arriba", "gap": "Desde la ___ se ve toda la ciudad" } },
+    { "es": "cumpleaños", "clues": { "def": "Día en que celebras los años que tienes", "gap": "Mañana es mi ___ y hago una fiesta" } },
+    { "es": "globo", "clues": { "def": "Bolsa de goma llena de aire para decorar fiestas", "gap": "Inflamos un ___ para la fiesta" } },
+    { "es": "petardo", "clues": { "def": "Explosivo pequeño que hace mucho ruido en las fiestas", "gap": "En las Fallas suena un ___ tras otro" } },
+    { "es": "falla", "clues": { "def": "Monumento de cartón que se quema en Valencia en marzo", "gap": "La ___ arde la noche de San José" } },
+    { "es": "confeti", "clues": { "def": "Papelitos de colores que se lanzan en las fiestas", "gap": "Lanzamos ___ a los novios" } },
+    { "es": "campanada", "clues": { "def": "Cada golpe del reloj a medianoche en Nochevieja", "gap": "Con cada ___ comemos una uva" } },
+    { "es": "brindis", "clues": { "def": "Lo que se hace al levantar las copas", "gap": "Hacemos un ___ por los novios" } },
+    { "es": "desfile", "clues": { "def": "Paso de personas o carrozas por la calle", "gap": "Vemos el ___ de carrozas de Reyes" } },
+    { "es": "carroza", "clues": { "def": "Coche adornado de un desfile", "gap": "Los Reyes Magos van en una ___" } }
+  ]
+}

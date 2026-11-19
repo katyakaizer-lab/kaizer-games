@@ -1,0 +1,29 @@
+{
+  "id": "deportes", "level": "B1", "name_es": "Deportes", "en": "Sports", "ru": "Спорт", "reviewed": false,
+  "decor": { "style": "stars", "items": ["balon", "raqueta", "medalla", "silbato"] },
+  "words": [
+    { "es": "fútbol", "clues": { "def": "Deporte de once jugadores con un balón y dos porterías", "gap": "Juego al ___ en el patio" } },
+    { "es": "baloncesto", "clues": { "def": "Deporte en el que se mete la pelota en una canasta", "gap": "Es muy alto: juega al ___" } },
+    { "es": "tenis", "clues": { "def": "Deporte con raqueta y una red en medio", "gap": "Juego al ___ con mi padre" } },
+    { "es": "natación", "clues": { "def": "Deporte en el agua", "gap": "Hago ___ en la piscina" } },
+    { "es": "ciclismo", "clues": { "def": "Deporte en bicicleta", "gap": "El ___ es muy popular en Francia" } },
+    { "es": "golf", "clues": { "def": "Deporte con palos y una bola pequeña que va a un hoyo", "gap": "Juegan al ___ en un campo muy verde" } },
+    { "es": "balón", "clues": { "def": "Pelota grande", "gap": "Pásame el ___" } },
+    { "es": "raqueta", "clues": { "def": "Sirve para golpear la pelota en el tenis", "gap": "He roto una cuerda de la ___" } },
+    { "es": "portero", "clues": { "def": "Jugador que defiende su meta y puede usar las manos", "gap": "El ___ para el penalti" } },
+    { "es": "gol", "clues": { "def": "Cuando el balón entra en la portería", "gap": "¡___! Ganamos uno a cero" } },
+    { "es": "árbitro", "clues": { "def": "Persona que hace cumplir las reglas del partido", "gap": "El ___ pita una falta" } },
+    { "es": "equipo", "clues": { "def": "Grupo de jugadores", "gap": "Mi ___ ha ganado la liga" } },
+    { "es": "partido", "clues": { "def": "Encuentro entre dos equipos", "gap": "Vemos el ___ en la tele" } },
+    { "es": "medalla", "clues": { "def": "Premio de oro, plata o bronce", "gap": "Gana una ___ de oro" } },
+    { "es": "carrera", "clues": { "def": "Competición de velocidad", "gap": "Llego el primero en la ___" } },
+    { "es": "entrenador", "clues": { "def": "Persona que dirige al equipo", "syn": "Sinónimo de «míster»" } },
+    { "es": "gimnasio", "clues": { "def": "Lugar para hacer ejercicio", "gap": "Voy al ___ tres veces por semana" } },
+    { "es": "esquí", "clues": { "def": "Deporte sobre la nieve", "gap": "En invierno practicamos ___ en la sierra" } },
+    { "es": "voleibol", "clues": { "def": "Deporte con red en el que el balón no puede caer", "gap": "En la playa jugamos al ___" } },
+    { "es": "ganar", "clues": { "ant": "Lo contrario de «perder»", "gap": "Queremos ___ el partido" } },
+    { "es": "empate", "clues": { "def": "Cuando los dos equipos tienen los mismos puntos", "gap": "El partido termina en ___" } },
+    { "es": "piscina", "clues": { "def": "Lugar con agua para nadar", "gap": "Me baño en la ___" } },
+    { "es": "estadio", "clues": { "def": "Lugar enorme donde se juega al fútbol", "gap": "El ___ está lleno de aficionados" } }
+  ]
+}

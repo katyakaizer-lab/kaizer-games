@@ -1,0 +1,27 @@
+{
+  "id": "frutas", "level": "A1", "name_es": "Frutas", "en": "Fruit", "ru": "Фрукты", "reviewed": false,
+  "decor": { "style": "leaves", "items": ["manzana", "pera", "cereza", "uva"] },
+  "words": [
+    { "es": "manzana", "clues": { "def": "Fruta redonda, roja o verde, que crece en un árbol", "gap": "Me como una ___ roja en el recreo" } },
+    { "es": "plátano", "clues": { "def": "Fruta amarilla y alargada", "gap": "El mono pela un ___" } },
+    { "es": "naranja", "clues": { "def": "Fruta redonda con la que se hace zumo", "gap": "Bebo zumo de ___ en el desayuno" } },
+    { "es": "pera", "clues": { "def": "Fruta verde o amarilla con forma de gota", "gap": "La ___ es más estrecha arriba que abajo" } },
+    { "es": "uva", "clues": { "def": "Fruta pequeña que crece en racimos", "gap": "Con la ___ se hace el vino" } },
+    { "es": "fresa", "clues": { "def": "Fruta roja y pequeña con semillas por fuera", "gap": "Me encanta la ___ con nata" } },
+    { "es": "cereza", "clues": { "def": "Fruta roja y pequeña con rabito y hueso", "gap": "Hay una ___ encima del pastel" } },
+    { "es": "limón", "clues": { "def": "Fruta amarilla muy ácida", "gap": "Pongo zumo de ___ en el pescado" } },
+    { "es": "sandía", "clues": { "def": "Fruta grande, verde por fuera y roja por dentro", "gap": "En verano comemos ___ muy fría" } },
+    { "es": "melón", "clues": { "def": "Fruta grande y dulce de verano, de piel verde o amarilla", "gap": "Comemos ___ con jamón en verano" } },
+    { "es": "piña", "clues": { "def": "Fruta tropical con una corona de hojas duras", "gap": "La ___ tiene la piel áspera" } },
+    { "es": "kiwi", "clues": { "def": "Fruta pequeña, marrón por fuera y verde por dentro", "gap": "El ___ tiene muchas semillas negras" } },
+    { "es": "mango", "clues": { "def": "Fruta tropical, naranja por dentro, con un hueso grande", "gap": "El batido de ___ es muy dulce" } },
+    { "es": "coco", "clues": { "def": "Fruta tropical dura con agua dentro", "gap": "Para abrir un ___ necesitas fuerza" } },
+    { "es": "melocotón", "clues": { "def": "Fruta de piel suave como el terciopelo", "gap": "El ___ en almíbar es un postre típico" } },
+    { "es": "ciruela", "clues": { "def": "Fruta pequeña, morada o amarilla, con hueso", "gap": "Hay mermelada de ___ morada" } },
+    { "es": "higo", "clues": { "def": "Fruta dulce y blanda de la higuera", "gap": "El ___ maduro es muy blando" } },
+    { "es": "frambuesa", "clues": { "def": "Fruta roja pequeña, parecida a la mora", "gap": "Hago un yogur con ___" } },
+    { "es": "mora", "clues": { "def": "Fruta pequeña y negra de una zarza", "gap": "La ___ mancha mucho los dedos" } },
+    { "es": "aguacate", "clues": { "def": "Fruta verde y cremosa; con ella se hace guacamole", "gap": "Pongo ___ en la ensalada" } },
+    { "es": "granada", "clues": { "def": "Fruta con muchos granos rojos dentro", "gap": "La ___ tiene cientos de semillas rojas" } }
+  ]
+}

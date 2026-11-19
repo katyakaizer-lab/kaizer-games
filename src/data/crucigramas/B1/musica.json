@@ -1,0 +1,29 @@
+{
+  "id": "musica", "level": "B1", "name_es": "Música", "en": "Music", "ru": "Музыка", "reviewed": false,
+  "decor": { "style": "waves", "items": ["nota", "guitarra", "tambor", "microfono"] },
+  "words": [
+    { "es": "guitarra", "clues": { "def": "Instrumento de seis cuerdas", "gap": "Toco la ___ en la playa" } },
+    { "es": "piano", "clues": { "def": "Instrumento con teclas blancas y negras", "gap": "Toco el ___ desde pequeño" } },
+    { "es": "violín", "clues": { "def": "Instrumento de cuerda que se toca con arco", "gap": "Toca el ___ en la orquesta" } },
+    { "es": "tambor", "clues": { "def": "Instrumento que se golpea con palillos", "gap": "El ___ marca el ritmo" } },
+    { "es": "flauta", "clues": { "def": "Instrumento de viento con agujeros", "gap": "En clase tocamos la ___" } },
+    { "es": "trompeta", "clues": { "def": "Instrumento de viento de metal", "gap": "La ___ suena muy fuerte" } },
+    { "es": "batería", "clues": { "def": "Conjunto de tambores y platillos", "gap": "Mi hermano toca la ___ en un grupo" } },
+    { "es": "canción", "clues": { "def": "Música con letra", "gap": "Esta ___ me encanta" } },
+    { "es": "coro", "clues": { "def": "Grupo de personas que cantan juntas", "gap": "Canto en el ___ del colegio" } },
+    { "es": "concierto", "clues": { "def": "Actuación de música en directo", "gap": "Vamos a un ___ en el estadio" } },
+    { "es": "orquesta", "clues": { "def": "Grupo grande de músicos con director", "gap": "La ___ toca una sinfonía" } },
+    { "es": "ritmo", "clues": { "def": "El compás de la música", "gap": "Baila al ___ de la música" } },
+    { "es": "melodía", "clues": { "def": "Sucesión de notas que forman una música", "syn": "Sinónimo de «tonada»" } },
+    { "es": "nota", "clues": { "def": "Do, re, mi... cada uno es una", "gap": "Do es la primera ___ de la escala" } },
+    { "es": "letra", "clues": { "def": "Las palabras de una canción", "gap": "Me sé la ___ de memoria" } },
+    { "es": "micrófono", "clues": { "def": "Aparato para que la voz se oiga más fuerte", "gap": "La cantante coge el ___" } },
+    { "es": "altavoz", "clues": { "def": "Aparato por donde sale el sonido", "gap": "La música sale por el ___" } },
+    { "es": "disco", "clues": { "def": "Álbum con varias canciones", "gap": "Mi grupo favorito ha sacado un ___ nuevo" } },
+    { "es": "baile", "clues": { "def": "Movimiento del cuerpo con la música", "gap": "La sevillana es un ___ andaluz" } },
+    { "es": "flamenco", "clues": { "def": "Música y baile típicos de Andalucía", "gap": "Ella baila ___ con un vestido de volantes" } },
+    { "es": "músico", "clues": { "def": "Persona que toca un instrumento", "gap": "El ___ ensaya cada día" } },
+    { "es": "ensayo", "clues": { "def": "Práctica antes de una actuación", "gap": "Mañana hay ___ con la orquesta" } },
+    { "es": "aplauso", "clues": { "def": "Lo que hace el público con las manos al final", "gap": "El público da un gran ___" } }
+  ]
+}

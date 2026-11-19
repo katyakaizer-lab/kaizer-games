@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (16 topics, 197 words in 4 levels). Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (28 topics, 643 words in 4 levels). Stars are earned in every game. Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -34,8 +34,12 @@ src/games/constelaciones/     the game: sentence logic, validator rules, seeded 
 src/games/solitario/          sorting engine (also meant for Dos buzones), validator rules, screens, card sizing
 src/games/shared/             code shared by games (syllabify.ts: Spanish syllable breaks for wrapping words)
 src/data/solitario/           Solitario categories by level (every JSON file in the folder is loaded)
-src/games/crucigramas/        crossword engine (seeded grid generator, numbering, checking), validator rules, screen and keyboard
-src/data/crucigramas/         Crucigramas topics by level, with Spanish clues (every JSON file in the folder is loaded)
+src/games/crucigramas/        crossword engine (seeded grid generator, no-repeat word choice, hint limits, checking), validator rules, screen and keyboard
+src/data/crucigramas/         levels.json (settings per level) and <level>/<topic>.json (words with Spanish clues, decorations)
+src/games/shared/accents.ts   accent and ñ check ("¡Casi!") shared by games that take typed Spanish
+src/rewards/                  stars: config.ts (all values), wallet.ts (earn, balance, spend for the later pet shop), show.ts ("+3 ★")
+src/app/haptics.ts            short vibration (Capacitor Haptics later, navigator.vibrate on Android, nothing on iOS Safari)
+public/assets/decor/          Crucigramas decorations (made by tools/make-decor.mjs)
 src/i18n/                     UI strings: en and es complete, ru partial (falls back to English per key)
 src/style-test/               the style-test page
 tools/                        build checks, validator, build report, re-skin test
@@ -50,10 +54,13 @@ docs/                         planning documents (kept locally, not in the repos
 - **Constellations and stories:** add them to `src/data/constelaciones/sample-sentences.json` (or a new file in that folder). The build fails if a rule is broken; unreviewed items are counted in the build report and marked "Sin revisar (dev)" when the app runs with `?dev`.
 - **A Constelaciones mode:** one new file in `src/games/constelaciones/modes/` that implements `Mode` and reuses the board, the light stage and the finish panel; then add it to `MODES` in `index.ts`.
 - **Solitario categories:** add them to `src/data/solitario/categories.json` with a `level`. Each has 3 to 8 cards (a game uses 4 to 6); a word may appear only once per level (the build fails otherwise). Use `avoid` for categories that must not be dealt together.
-- **Crossword topics:** add them to `src/data/crucigramas/topics.json` with a `level`. Each word is one word in small letters with its accents and ñ (3 to 9 letters at A1, longer at higher levels), with one or more Spanish clues: `def` (definition), `syn` (synonym) or `ant` (antonym), at most 70 characters, never containing the answer. A topic needs at least 2 more words than a puzzle uses. The build generates 30 puzzles per topic and fails if they do not come out full and within the level's grid size.
+- **Crossword topics:** one file per topic, `src/data/crucigramas/<level>/<topic>.json` (the file name is the id). At least 20 words, each one word in small letters with its accents and ñ, short enough for the level's grid, with 2 or 3 clues of different kinds: `def` (definition), `gap` (a sentence with `___` for the word), `syn` / `ant` (synonym / opposite) or `use` (what it is for or where it is); at most 70 characters, never containing the answer. `decor` names 4 to 6 objects and a border style (leaves, dots, stars, waves); run `node tools/make-decor.mjs` after adding objects (it draws them and updates the manifest). The build generates 30 puzzles per topic and fails if they do not come out full and within the level's grid size.
 - **Recordings:** drop `public/audio/<id>.mp3` (and optionally `<id>-slow.mp3`). They are used instead of the device voice automatically.
 
 ## Decisions worth knowing
+
+- **Stars** (changed 2026-11-19, approved by Katya; this replaces "no coins / no shop"): every game awards stars, earned only by playing. They can be spent on pet items (the pet shop is a later step; the wallet already has `spend`), can never be bought, never expire and are never lost or taken away. No penalties, no "you will lose your stars" messages. Nothing is sold, no real money, no ads. The total shows on the home screen next to the pet. Values are in `src/rewards/config.ts`: Crucigramas 1 per word solved, +3 for finishing, +3 with Sin ayuda or +1 with Poca ayuda (hints never subtract); Solitario 1 per category, +3 for clearing the table; Constelaciones 2 per constellation lit. The wallet is part of progress (save/load to a file, reset).
+- **Vibración** setting (on by default): a short vibration where the device supports it (Android browsers now, the store builds later through Capacitor); never with reduced motion.
 
 - **No UI framework.** Plain TypeScript with a tiny `h()` helper. First screen about 200 KB; Constelaciones loads only when opened (about 50 KB).
 - **`tokens.css` lives in `public/`**, not in the bundle, so font names and colours appear in exactly one file.
@@ -93,5 +100,6 @@ docs/                         planning documents (kept locally, not in the repos
 
 
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
+- The pet shop (spending stars on pet items) is the next step for rewards; the wallet is ready.
 - Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
-- All Constelaciones sentences and stories (66), all Solitario categories (34) and all Crucigramas topics (16, 197 words with clues) are `reviewed: false` until Katya checks them.
+- All Constelaciones sentences and stories (66), all Solitario categories (34) and all Crucigramas topics (28, 643 words with clues) are `reviewed: false` until Katya checks them.

@@ -1,0 +1,18 @@
+/* "+3 ★": calm, small, never covers the controls for long. Tokens only. */
+.k-stars-pop {
+  position: fixed; z-index: 80; transform: translate(-50%, -100%); pointer-events: none;
+  padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill);
+  background: var(--surface); color: var(--text); border: 2px solid var(--star-line);
+  box-shadow: var(--shadow); font-weight: 800; font-size: var(--fs-body); white-space: nowrap;
+  animation: k-stars-rise 1500ms var(--ease) forwards;
+}
+.k-stars-pop.is-centre { left: 50%; top: 40%; }
+.k-stars-pop.is-still { animation: k-stars-fade 1300ms linear forwards; }
+@keyframes k-stars-rise { 0% { opacity: 0; translate: 0 6px; } 15% { opacity: 1; translate: 0 0; } 75% { opacity: 1; } 100% { opacity: 0; translate: 0 -18px; } }
+@keyframes k-stars-fade { 0%, 85% { opacity: 1; } 100% { opacity: 0; } }
+:root[data-motion="reduce"] .k-stars-pop { animation: k-stars-fade 1300ms linear forwards; }
+@media (prefers-reduced-motion: reduce) { .k-stars-pop { animation: k-stars-fade 1300ms linear forwards; } }
+
+/* Star total (home screen, next to the pet) */
+.k-star-total { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-3); border-radius: var(--radius-pill); background: var(--surface); color: var(--text); border: 2px solid var(--star-line); font-weight: 800; }
+.k-star-total__icon { color: var(--text); }

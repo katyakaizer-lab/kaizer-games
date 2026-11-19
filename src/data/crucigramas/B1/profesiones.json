@@ -1,0 +1,28 @@
+{
+  "id": "profesiones", "level": "B1", "name_es": "Profesiones", "en": "Jobs", "ru": "Профессии", "reviewed": false,
+  "decor": { "style": "stars", "items": ["casco", "maletin", "tijeras", "pincel"] },
+  "words": [
+    { "es": "médico", "clues": { "def": "Trabaja en el hospital y cura a la gente", "gap": "Si estás enfermo, vas al ___" } },
+    { "es": "profesor", "clues": { "def": "Enseña en el colegio", "gap": "El ___ corrige los exámenes" } },
+    { "es": "cocinero", "clues": { "def": "Prepara la comida en un restaurante", "gap": "El ___ prepara una paella" } },
+    { "es": "bombero", "clues": { "def": "Apaga incendios", "gap": "El ___ sube por la escalera del camión" } },
+    { "es": "policía", "clues": { "def": "Cuida la seguridad de la ciudad", "gap": "La ___ dirige el tráfico" } },
+    { "es": "pintor", "clues": { "def": "Trabaja con brochas y colores", "gap": "El ___ deja la pared de color blanco" } },
+    { "es": "cartero", "clues": { "def": "Reparte el correo", "gap": "El ___ trae una carta" } },
+    { "es": "dentista", "clues": { "def": "Cuida tus dientes", "gap": "Voy al ___ porque me duele una muela" } },
+    { "es": "panadero", "clues": { "def": "Hace pan cada mañana", "gap": "El ___ se levanta a las cuatro" } },
+    { "es": "granjero", "clues": { "def": "Trabaja en el campo con animales", "gap": "El ___ ordeña las vacas" } },
+    { "es": "actor", "clues": { "def": "Trabaja en el cine o en el teatro", "gap": "El ___ sale en una película" } },
+    { "es": "abogado", "clues": { "def": "Defiende a las personas en un juicio", "gap": "El ___ habla con el juez" } },
+    { "es": "enfermero", "clues": { "def": "Cuida a los pacientes en el hospital", "gap": "El ___ me pone una vacuna" } },
+    { "es": "peluquero", "clues": { "def": "Corta y peina el pelo", "gap": "Voy al ___ a cortarme el flequillo" } },
+    { "es": "camarero", "clues": { "def": "Sirve comida y bebida en un bar", "gap": "El ___ nos trae la cuenta" } },
+    { "es": "mecánico", "clues": { "def": "Arregla coches", "gap": "Llevo el coche al ___" } },
+    { "es": "fontanero", "clues": { "def": "Arregla grifos y tuberías", "gap": "Llamamos al ___ porque gotea el grifo" } },
+    { "es": "arquitecto", "clues": { "def": "Diseña casas y edificios", "gap": "El ___ dibuja los planos de la casa" } },
+    { "es": "periodista", "clues": { "def": "Escribe noticias", "gap": "La ___ entrevista al alcalde" } },
+    { "es": "carpintero", "clues": { "def": "Trabaja la madera", "gap": "El ___ hace una mesa de roble" } },
+    { "es": "juez", "clues": { "def": "Decide en un juicio", "gap": "El ___ dicta sentencia" } },
+    { "es": "cantante", "clues": { "def": "Su trabajo es interpretar canciones", "gap": "La ___ da un concierto" } }
+  ]
+}

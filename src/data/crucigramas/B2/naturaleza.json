@@ -1,0 +1,31 @@
+{
+  "id": "naturaleza", "level": "B2", "name_es": "La naturaleza", "en": "Nature", "ru": "Природа", "reviewed": false,
+  "decor": { "style": "leaves", "items": ["arbol", "hoja", "montana", "flor"] },
+  "words": [
+    { "es": "bosque", "clues": { "def": "Lugar con muchos árboles", "gap": "Nos perdemos en el ___" } },
+    { "es": "río", "clues": { "def": "Agua que corre hacia el mar", "gap": "El ___ Ebro pasa por Zaragoza" } },
+    { "es": "lago", "clues": { "def": "Mucha agua quieta rodeada de tierra", "gap": "Remamos en el ___" } },
+    { "es": "desierto", "clues": { "def": "Lugar seco con mucha arena", "gap": "En el ___ casi nunca llueve" } },
+    { "es": "isla", "clues": { "def": "Tierra rodeada de agua", "gap": "Mallorca es una ___" } },
+    { "es": "volcán", "clues": { "def": "Montaña que puede echar fuego y lava", "gap": "El ___ de La Palma entró en erupción" } },
+    { "es": "cueva", "clues": { "def": "Agujero grande en una montaña", "syn": "Sinónimo de «gruta»" } },
+    { "es": "costa", "clues": { "syn": "Sinónimo de «litoral»", "gap": "Pasamos el verano en la ___" } },
+    { "es": "cima", "clues": { "def": "La parte más alta de una montaña", "gap": "Llegamos a la ___ del monte" } },
+    { "es": "valle", "clues": { "def": "Tierra baja entre montañas", "gap": "El pueblo está en un ___ verde" } },
+    { "es": "hoja", "clues": { "def": "Parte verde del árbol que cae en otoño", "gap": "En otoño cae cada ___ del árbol" } },
+    { "es": "selva", "clues": { "def": "Bosque tropical muy húmedo", "gap": "En la ___ amazónica viven muchos animales" } },
+    { "es": "piedra", "clues": { "syn": "Sinónimo de «roca»", "gap": "Tiro una ___ al río" } },
+    { "es": "cascada", "clues": { "def": "Agua que cae desde lo alto de una roca", "gap": "Nos bañamos bajo la ___" } },
+    { "es": "glaciar", "clues": { "def": "Masa enorme de hielo en las montañas", "gap": "El ___ se derrite por el calor" } },
+    { "es": "acantilado", "clues": { "def": "Costa alta y vertical sobre el mar", "gap": "Desde el ___ se ven romper las olas" } },
+    { "es": "llanura", "clues": { "def": "Terreno grande y plano", "gap": "La ___ de La Mancha parece no tener fin" } },
+    { "es": "pradera", "clues": { "def": "Terreno con mucha hierba", "gap": "Las vacas pastan en la ___" } },
+    { "es": "arroyo", "clues": { "def": "Río pequeño", "gap": "Cruzamos el ___ saltando por las piedras" } },
+    { "es": "musgo", "clues": { "def": "Planta verde y suave que crece en las piedras húmedas", "gap": "Ponemos ___ en el belén" } },
+    { "es": "raíz", "clues": { "def": "Parte de la planta que está bajo tierra", "gap": "El árbol tiene una ___ muy profunda" } },
+    { "es": "tronco", "clues": { "def": "Parte gruesa del árbol", "gap": "Me siento en un ___ caído" } },
+    { "es": "amanecer", "clues": { "def": "Cuando sale el sol", "ant": "Lo contrario de «atardecer»" } },
+    { "es": "horizonte", "clues": { "def": "Línea donde parecen juntarse el cielo y la tierra", "gap": "El sol se esconde en el ___" } },
+    { "es": "playa", "clues": { "def": "Orilla del mar con arena", "gap": "Hacemos castillos en la ___" } }
+  ]
+}

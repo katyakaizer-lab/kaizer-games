@@ -1,0 +1,28 @@
+{
+  "id": "viajes", "level": "B2", "name_es": "Viajes", "en": "Travel", "ru": "Путешествия", "reviewed": false,
+  "decor": { "style": "waves", "items": ["maleta", "avion", "brujula", "mapa"] },
+  "words": [
+    { "es": "maleta", "clues": { "def": "Llevas la ropa en ella cuando viajas", "gap": "Hago la ___ la noche antes" } },
+    { "es": "hotel", "clues": { "def": "Allí duermes cuando estás de viaje", "gap": "El ___ tiene piscina" } },
+    { "es": "pasaporte", "clues": { "def": "Documento para viajar a otro país", "gap": "Enseño el ___ en el control" } },
+    { "es": "turista", "clues": { "def": "Persona que visita otro lugar", "gap": "Cada ___ hace fotos de la catedral" } },
+    { "es": "foto", "clues": { "def": "Imagen que haces con la cámara", "gap": "Hazme una ___ delante de la torre" } },
+    { "es": "equipaje", "clues": { "def": "Maletas y bolsas de un viaje", "gap": "Facturamos el ___ en el aeropuerto" } },
+    { "es": "reserva", "clues": { "def": "Habitación o mesa apartada para ti", "gap": "Tengo una ___ para dos noches" } },
+    { "es": "alojamiento", "clues": { "def": "Lugar donde duermes en un viaje", "gap": "Buscamos ___ barato cerca de la playa" } },
+    { "es": "aduana", "clues": { "def": "Control de mercancías en la frontera", "gap": "En la ___ revisan las maletas" } },
+    { "es": "frontera", "clues": { "def": "Línea entre dos países", "gap": "Cruzamos la ___ con Portugal" } },
+    { "es": "excursión", "clues": { "def": "Viaje corto de un día", "gap": "Mañana vamos de ___ a la montaña" } },
+    { "es": "vuelo", "clues": { "def": "Viaje en avión", "gap": "Nuestro ___ sale con retraso" } },
+    { "es": "retraso", "clues": { "def": "Cuando algo llega más tarde de lo previsto", "gap": "El tren llega con una hora de ___" } },
+    { "es": "recuerdo", "clues": { "def": "Objeto que compras para acordarte de un viaje", "syn": "Sinónimo de «souvenir»" } },
+    { "es": "guía", "clues": { "def": "Persona que enseña una ciudad a los turistas", "gap": "La ___ nos explica la historia del castillo" } },
+    { "es": "crucero", "clues": { "def": "Viaje en un barco muy grande", "gap": "Hacemos un ___ por el Mediterráneo" } },
+    { "es": "albergue", "clues": { "def": "Alojamiento barato con habitaciones compartidas", "gap": "Dormimos en un ___ para jóvenes" } },
+    { "es": "destino", "clues": { "def": "Lugar al que vas", "gap": "¿Cuál es el ___ de este tren?" } },
+    { "es": "itinerario", "clues": { "def": "Plan con los lugares que vas a visitar", "syn": "Sinónimo de «ruta»" } },
+    { "es": "visado", "clues": { "def": "Permiso para entrar en algunos países", "gap": "Para ir a ese país necesito ___" } },
+    { "es": "mapa", "clues": { "def": "Dibujo que te enseña el camino", "gap": "Miramos el ___ para no perdernos" } },
+    { "es": "billete", "clues": { "def": "Te deja subir al tren o al avión", "gap": "He comprado el ___ por internet" } }
+  ]
+}

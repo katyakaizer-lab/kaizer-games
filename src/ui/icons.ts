@@ -31,11 +31,12 @@ import list from '@tabler/icons/outline/list.svg?raw';
 import chevronLeft from '@tabler/icons/outline/chevron-left.svg?raw';
 import chevronRight from '@tabler/icons/outline/chevron-right.svg?raw';
 import listCheck from '@tabler/icons/outline/list-check.svg?raw';
+import alert from '@tabler/icons/outline/alert-triangle.svg?raw';
 
 export const ICONS = {
   check, refresh, x, settings, volume, volumeOff, bulb, star, eye, home, play, pause,
   download, upload, clock, info, back, undo, sparkles, moon, sun, palette, book, ear, lock, slow, language,
-  backspace, list, chevronLeft, chevronRight, listCheck,
+  backspace, list, chevronLeft, chevronRight, listCheck, alert,
 } as const;
 export type IconName = keyof typeof ICONS;
 

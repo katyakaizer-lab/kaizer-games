@@ -1,0 +1,29 @@
+{
+  "id": "animales", "level": "A1", "name_es": "Animales", "en": "Animals", "ru": "Животные", "reviewed": false,
+  "decor": { "style": "leaves", "items": ["huella", "hueso", "pluma", "pez"] },
+  "words": [
+    { "es": "perro", "clues": { "def": "Animal de casa que ladra", "gap": "Saco a pasear al ___" } },
+    { "es": "gato", "clues": { "def": "Animal de casa que dice miau", "gap": "El ___ duerme en el sofá" } },
+    { "es": "vaca", "clues": { "def": "Animal de granja que da leche", "gap": "La ___ come hierba en el prado" } },
+    { "es": "caballo", "clues": { "def": "Animal grande que corre y lleva personas", "gap": "Monto a ___ los domingos" } },
+    { "es": "pájaro", "clues": { "def": "Animal con plumas y alas que canta", "gap": "El ___ hace su nido en el árbol" } },
+    { "es": "pez", "clues": { "def": "Animal que vive en el agua y nada", "gap": "En la pecera hay un ___ naranja" } },
+    { "es": "ratón", "clues": { "def": "Animal pequeño y gris que come queso", "gap": "El gato persigue al ___" } },
+    { "es": "oveja", "clues": { "def": "Animal de granja con lana", "gap": "La ___ dice bee" } },
+    { "es": "cerdo", "clues": { "def": "Animal rosa de la granja", "gap": "El ___ se baña en el barro" } },
+    { "es": "pato", "clues": { "def": "Ave que nada y dice cuac", "gap": "El ___ nada en el estanque" } },
+    { "es": "conejo", "clues": { "def": "Animal de orejas largas que salta", "gap": "El ___ come zanahorias" } },
+    { "es": "león", "clues": { "def": "Animal grande con melena, el rey de la selva", "gap": "El ___ ruge muy fuerte" } },
+    { "es": "tigre", "clues": { "def": "Felino grande de rayas negras", "gap": "El ___ vive en la selva de Asia" } },
+    { "es": "elefante", "clues": { "def": "Animal enorme con trompa", "gap": "El ___ tiene orejas muy grandes" } },
+    { "es": "jirafa", "clues": { "def": "Animal con el cuello muy largo", "gap": "La ___ come hojas de los árboles altos" } },
+    { "es": "mono", "clues": { "def": "Animal que trepa a los árboles y come plátanos", "gap": "El ___ salta de rama en rama" } },
+    { "es": "oso", "clues": { "def": "Animal grande y peludo al que le gusta la miel", "gap": "El ___ duerme todo el invierno" } },
+    { "es": "gallina", "clues": { "def": "Ave de granja que pone huevos", "gap": "La ___ cuida a sus pollitos" } },
+    { "es": "tortuga", "clues": { "def": "Animal lento que lleva su casa a cuestas", "gap": "La ___ esconde la cabeza en el caparazón" } },
+    { "es": "serpiente", "clues": { "def": "Animal largo sin patas que se arrastra", "gap": "La ___ hace sss" } },
+    { "es": "delfín", "clues": { "def": "Animal del mar muy listo que salta", "gap": "El ___ salta fuera del agua" } },
+    { "es": "cabra", "clues": { "def": "Animal de granja con cuernos que trepa por las rocas", "gap": "El queso de ___ es muy rico" } },
+    { "es": "lobo", "clues": { "def": "Animal salvaje parecido al perro que aúlla", "gap": "El ___ aúlla a la luna" } }
+  ]
+}

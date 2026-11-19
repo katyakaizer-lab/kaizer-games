@@ -1,0 +1,28 @@
+{
+  "id": "bebidas", "level": "A2", "name_es": "Bebidas", "en": "Drinks", "ru": "Напитки", "reviewed": false,
+  "decor": { "style": "waves", "items": ["vaso", "botella", "taza", "pajita"] },
+  "words": [
+    { "es": "agua", "clues": { "def": "Bebida sin color ni sabor", "gap": "Bebo un vaso de ___ fría" } },
+    { "es": "refresco", "clues": { "def": "Bebida dulce con burbujas", "gap": "Pido un ___ de naranja" } },
+    { "es": "limonada", "clues": { "def": "Bebida fresca de agua, azúcar y zumo de una fruta ácida", "gap": "En verano hago ___ casera" } },
+    { "es": "batido", "clues": { "def": "Bebida de leche con fruta o chocolate", "gap": "Me tomo un ___ de fresa" } },
+    { "es": "infusión", "clues": { "def": "Bebida caliente de hierbas", "gap": "Me tomo una ___ de manzanilla" } },
+    { "es": "chocolate", "clues": { "def": "Bebida caliente y espesa para los churros", "gap": "Tomamos ___ con churros" } },
+    { "es": "horchata", "clues": { "def": "Bebida blanca y dulce de chufa, típica de Valencia", "gap": "En Valencia bebemos ___ con fartons" } },
+    { "es": "gazpacho", "clues": { "def": "Sopa fría de tomate que se bebe en verano", "gap": "El ___ se toma muy frío" } },
+    { "es": "vino", "clues": { "def": "Bebida de uva para adultos", "gap": "Los adultos brindan con ___" } },
+    { "es": "cerveza", "clues": { "def": "Bebida de cebada con espuma, para adultos", "gap": "Mi tío pide una ___ en el bar" } },
+    { "es": "sidra", "clues": { "def": "Bebida de manzana típica de Asturias", "gap": "En Asturias se escancia la ___" } },
+    { "es": "cava", "clues": { "def": "Vino con burbujas para brindar", "gap": "Brindamos con ___ en Año Nuevo" } },
+    { "es": "granizado", "clues": { "def": "Bebida de hielo picado con sabor a fruta", "gap": "Me tomo un ___ de limón en verano" } },
+    { "es": "vaso", "clues": { "def": "Recipiente de cristal para beber", "gap": "Llena el ___ de agua" } },
+    { "es": "botella", "clues": { "def": "Recipiente de cristal o plástico con tapón", "gap": "Abre la ___ de agua" } },
+    { "es": "taza", "clues": { "def": "Recipiente con asa para el café", "gap": "Me sirvo una ___ de té" } },
+    { "es": "pajita", "clues": { "def": "Tubo fino para beber", "gap": "Bebo el zumo con una ___" } },
+    { "es": "hielo", "clues": { "def": "Agua congelada que enfría las bebidas", "gap": "Echo ___ en el refresco" } },
+    { "es": "burbuja", "clues": { "def": "Bolita de aire en una bebida con gas", "gap": "Cada ___ sube a la superficie" } },
+    { "es": "sed", "clues": { "def": "Ganas de beber", "gap": "Tengo ___: quiero agua" } },
+    { "es": "mosto", "clues": { "def": "Zumo de uva sin alcohol", "gap": "Los niños brindan con ___" } },
+    { "es": "caliente", "clues": { "ant": "Lo contrario de «frío»", "gap": "Cuidado, el té está ___" } }
+  ]
+}

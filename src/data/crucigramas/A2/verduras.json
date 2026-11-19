@@ -1,0 +1,29 @@
+{
+  "id": "verduras", "level": "A2", "name_es": "Verduras", "en": "Vegetables", "ru": "Овощи", "reviewed": false,
+  "decor": { "style": "leaves", "items": ["zanahoria", "tomate", "lechuga", "berenjena"] },
+  "words": [
+    { "es": "zanahoria", "clues": { "def": "Hortaliza naranja y alargada que les gusta a los conejos", "gap": "Rallo una ___ para la ensalada" } },
+    { "es": "tomate", "clues": { "def": "Hortaliza roja y redonda de la ensalada", "gap": "El gazpacho se hace con ___" } },
+    { "es": "lechuga", "clues": { "def": "Hortaliza de hojas verdes para la ensalada", "gap": "Lavo la ___ antes de cortarla" } },
+    { "es": "cebolla", "clues": { "def": "Hortaliza que hace llorar al cortarla", "gap": "La tortilla de patatas con ___ es más jugosa" } },
+    { "es": "patata", "clues": { "def": "Tubérculo que crece bajo tierra", "gap": "Pelo una ___ para la tortilla" } },
+    { "es": "pepino", "clues": { "def": "Hortaliza verde y larga, fresca en verano", "gap": "El gazpacho lleva ___" } },
+    { "es": "pimiento", "clues": { "def": "Hortaliza roja, verde o amarilla, hueca por dentro", "gap": "Asamos un ___ rojo en el horno" } },
+    { "es": "ajo", "clues": { "def": "Bulbo blanco de sabor muy fuerte", "gap": "La sopa de ___ es típica de Castilla" } },
+    { "es": "berenjena", "clues": { "def": "Hortaliza alargada de piel morada", "gap": "Rellenamos una ___ con carne" } },
+    { "es": "calabaza", "clues": { "def": "Hortaliza grande y naranja; en Halloween se le hacen caras", "gap": "Hago una crema de ___" } },
+    { "es": "brócoli", "clues": { "def": "Verdura verde con forma de arbolito", "gap": "Cocemos el ___ al vapor" } },
+    { "es": "coliflor", "clues": { "def": "Verdura blanca con forma de árbol pequeño", "gap": "La ___ huele fuerte al cocerla" } },
+    { "es": "espinaca", "clues": { "def": "Verdura de hojas verdes, muy sana", "gap": "La ___ tiene mucho hierro" } },
+    { "es": "guisante", "clues": { "def": "Semilla verde y redonda que viene en una vaina", "gap": "Cada vaina tiene más de un ___" } },
+    { "es": "judía", "clues": { "def": "Vaina verde y larga que se come cocida", "gap": "La ___ verde se come con patata" } },
+    { "es": "calabacín", "clues": { "def": "Hortaliza verde y alargada, parecida al pepino", "gap": "Hago una crema de ___ y puerro" } },
+    { "es": "apio", "clues": { "def": "Verdura de tallos largos y verdes que crujen", "gap": "El ___ cruje cuando lo muerdes" } },
+    { "es": "alcachofa", "clues": { "def": "Verdura verde con hojas duras como escamas", "gap": "Me como el corazón de la ___" } },
+    { "es": "puerro", "clues": { "def": "Verdura larga, blanca y verde, parecida a la cebolla", "gap": "La crema de ___ es muy suave" } },
+    { "es": "champiñón", "clues": { "def": "Hongo blanco que se come", "gap": "La pizza lleva ___ y jamón" } },
+    { "es": "maíz", "clues": { "def": "Granos amarillos de una mazorca", "gap": "Las palomitas se hacen con ___" } },
+    { "es": "rábano", "clues": { "def": "Raíz pequeña, roja por fuera y un poco picante", "gap": "El ___ pica un poco" } },
+    { "es": "remolacha", "clues": { "def": "Raíz de color rojo oscuro que mancha mucho", "gap": "La ___ tiñe de rojo la ensalada" } }
+  ]
+}

@@ -3,7 +3,7 @@
  * The single source of truth is public/assets/manifest.json.
  * art(id) returns the file, or a generated vector placeholder when the id or its file is missing.
  */
-export type ArtKind = 'pet' | 'pet-item' | 'object' | 'scene' | 'character' | 'ui' | 'icon' | 'background';
+export type ArtKind = 'pet' | 'pet-item' | 'object' | 'scene' | 'character' | 'ui' | 'icon' | 'background' | 'decor';
 
 export interface ArtEntry {
   id: string;

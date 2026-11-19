@@ -1,0 +1,29 @@
+{
+  "id": "aficiones", "level": "B1", "name_es": "Aficiones", "en": "Hobbies", "ru": "Увлечения", "reviewed": false,
+  "decor": { "style": "stars", "items": ["pincel", "camara", "dado", "ovillo"] },
+  "words": [
+    { "es": "leer", "clues": { "def": "Lo haces con un libro", "gap": "Me encanta ___ novelas de misterio" } },
+    { "es": "pintar", "clues": { "def": "Hacer cuadros con colores", "gap": "Los domingos me gusta ___ paisajes" } },
+    { "es": "dibujar", "clues": { "def": "Hacer imágenes con un lápiz", "gap": "Mi hija sabe ___ caballos" } },
+    { "es": "bailar", "clues": { "def": "Moverse con la música", "gap": "Los sábados salimos a ___" } },
+    { "es": "cantar", "clues": { "def": "Hacer música con la voz", "gap": "Me gusta ___ en la ducha" } },
+    { "es": "jardinería", "clues": { "def": "Cuidar plantas y flores", "gap": "Mi abuelo se dedica a la ___" } },
+    { "es": "fotografía", "clues": { "def": "Hacer fotos como afición", "gap": "Hago un curso de ___" } },
+    { "es": "pesca", "clues": { "def": "Afición de coger peces", "gap": "Vamos de ___ al río" } },
+    { "es": "senderismo", "clues": { "def": "Caminar por el monte", "gap": "Hacemos ___ por la sierra" } },
+    { "es": "ajedrez", "clues": { "def": "Juego de tablero con reyes, torres y peones", "gap": "Juego al ___ con mi abuela" } },
+    { "es": "puzle", "clues": { "def": "Juego de piezas que encajan", "gap": "Hago un ___ de mil piezas" } },
+    { "es": "colección", "clues": { "def": "Conjunto de cosas que guardas por afición, como sellos", "gap": "Tengo una ___ de sellos" } },
+    { "es": "punto", "clues": { "def": "Labor de tejer con dos agujas", "gap": "Mi abuela hace ___ por las tardes" } },
+    { "es": "videojuego", "clues": { "def": "Juego en una pantalla", "gap": "Juego a un ___ con mis amigos" } },
+    { "es": "viajar", "clues": { "def": "Ir a conocer otros lugares", "gap": "Me encanta ___ por Europa" } },
+    { "es": "acampar", "clues": { "def": "Dormir en una tienda de campaña", "gap": "En verano vamos a ___ al monte" } },
+    { "es": "pincel", "clues": { "def": "Herramienta con pelos para pintar", "gap": "Mojo el ___ en la pintura" } },
+    { "es": "cámara", "clues": { "def": "Aparato para hacer fotos", "gap": "Me llevo la ___ de viaje" } },
+    { "es": "dado", "clues": { "def": "Cubo con puntos para juegos de mesa", "gap": "Tira el ___: te toca" } },
+    { "es": "baraja", "clues": { "def": "Conjunto de cartas para jugar", "gap": "Saca una carta de la ___" } },
+    { "es": "afición", "clues": { "def": "Lo que te gusta hacer en tu tiempo libre", "syn": "Sinónimo de «hobby»" } },
+    { "es": "ganchillo", "clues": { "def": "Labor con una aguja de punta curva", "gap": "Hago una bufanda de ___" } },
+    { "es": "ocio", "clues": { "def": "Tiempo libre para divertirte", "gap": "Dedico mi tiempo de ___ a la música" } }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "accesorios", "level": "B1", "name_es": "Accesorios", "en": "Accessories", "ru": "Аксессуары", "reviewed": false,
+  "decor": { "style": "dots", "items": ["gafas", "reloj", "bolso", "anillo"] },
+  "words": [
+    { "es": "gafas", "clues": { "def": "Te ayudan a ver mejor", "gap": "Me pongo las ___ para leer" } },
+    { "es": "reloj", "clues": { "def": "Te dice la hora", "gap": "Miro el ___: llego tarde" } },
+    { "es": "bolso", "clues": { "def": "Lo llevas colgado del hombro con la cartera y las llaves", "gap": "Guardo la cartera en el ___" } },
+    { "es": "anillo", "clues": { "def": "Joya redonda para el dedo", "gap": "Le regala un ___ de compromiso" } },
+    { "es": "collar", "clues": { "def": "Joya que se lleva alrededor del cuello", "gap": "Lleva un ___ de perlas" } },
+    { "es": "pulsera", "clues": { "def": "Joya para la muñeca", "gap": "Me hice una ___ de hilo" } },
+    { "es": "pendiente", "clues": { "def": "Joya para la oreja", "gap": "Se le ha caído un ___" } },
+    { "es": "cartera", "clues": { "def": "Donde guardas el dinero y las tarjetas", "syn": "Sinónimo de «billetera»" } },
+    { "es": "gorra", "clues": { "def": "Prenda para la cabeza con visera", "gap": "Llevo ___ para el sol" } },
+    { "es": "abanico", "clues": { "def": "Objeto que abres y mueves para darte aire", "gap": "En agosto la abuela siempre lleva un ___" } },
+    { "es": "broche", "clues": { "def": "Joya con alfiler que se pone en la ropa", "gap": "Lleva un ___ en la solapa" } },
+    { "es": "diadema", "clues": { "def": "Aro que sujeta el pelo", "gap": "Se pone una ___ para que no le caiga el pelo en la cara" } },
+    { "es": "horquilla", "clues": { "def": "Pinza fina para el pelo", "gap": "Sujeto el flequillo con una ___" } },
+    { "es": "monedero", "clues": { "def": "Bolsita para guardar los euros sueltos", "gap": "Saco un euro del ___" } },
+    { "es": "llavero", "clues": { "def": "Aro para llevar juntas las de casa y las del coche", "gap": "Mi ___ tiene forma de estrella" } },
+    { "es": "pajarita", "clues": { "def": "Lazo que se pone al cuello con una camisa elegante", "gap": "El novio lleva ___ en la boda" } },
+    { "es": "bisutería", "clues": { "def": "Joyas que no son de oro ni de plata", "gap": "Este collar no es de oro: es ___" } },
+    { "es": "joya", "clues": { "def": "Objeto de valor para adornarse, como un anillo", "gap": "Guarda cada ___ en una caja" } },
+    { "es": "tirantes", "clues": { "def": "Cintas que sujetan el pantalón por los hombros", "gap": "El abuelo lleva ___ en vez de cinturón" } },
+    { "es": "lentillas", "clues": { "def": "Lentes pequeñas que se ponen en el ojo", "gap": "No llevo gafas: llevo ___" } },
+    { "es": "riñonera", "clues": { "def": "Bolsa pequeña que se lleva en la cintura", "gap": "Llevo el móvil en la ___" } }
+  ]
+}

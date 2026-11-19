@@ -1,0 +1,29 @@
+{
+  "id": "colores", "level": "A1", "name_es": "Colores y formas", "en": "Colours and shapes", "ru": "Цвета и формы", "reviewed": false,
+  "decor": { "style": "dots", "items": ["circulo", "cuadrado", "triangulo", "estrella"] },
+  "words": [
+    { "es": "rojo", "clues": { "def": "Color de la sangre y de las fresas", "gap": "El semáforo está en ___: hay que parar" } },
+    { "es": "azul", "clues": { "def": "Color del cielo sin nubes", "gap": "El mar es ___" } },
+    { "es": "verde", "clues": { "def": "Color de la hierba", "gap": "La rana es de color ___" } },
+    { "es": "amarillo", "clues": { "def": "Color del sol y de los limones", "gap": "El pollito es ___" } },
+    { "es": "negro", "clues": { "def": "Color de la noche", "ant": "Lo contrario de «blanco»" } },
+    { "es": "blanco", "clues": { "def": "Color de la nieve y de la leche", "ant": "Lo contrario de «negro»" } },
+    { "es": "rosa", "clues": { "def": "Color mezcla de rojo y blanco", "gap": "El cerdito es de color ___" } },
+    { "es": "morado", "clues": { "def": "Color de las berenjenas", "syn": "Sinónimo de «violeta»" } },
+    { "es": "marrón", "clues": { "def": "Color del chocolate y de la tierra", "gap": "El oso es ___" } },
+    { "es": "gris", "clues": { "def": "Color de las nubes de lluvia", "gap": "El elefante es ___" } },
+    { "es": "dorado", "clues": { "def": "Color brillante como el oro", "gap": "Tiene un anillo ___" } },
+    { "es": "plateado", "clues": { "def": "Color brillante como la plata", "gap": "La luna parece de color ___" } },
+    { "es": "círculo", "clues": { "def": "Forma redonda, como una rueda", "gap": "Dibuja un ___ para hacer el sol" } },
+    { "es": "cuadrado", "clues": { "def": "Forma con cuatro lados iguales", "gap": "El tablero de ajedrez es ___" } },
+    { "es": "triángulo", "clues": { "def": "Forma con tres lados", "gap": "Una porción de pizza parece un ___" } },
+    { "es": "óvalo", "clues": { "def": "Forma redonda pero alargada, como un huevo", "gap": "El espejo tiene forma de ___" } },
+    { "es": "estrella", "clues": { "def": "Forma con puntas que brilla de noche en el cielo", "gap": "Dibujo una ___ de cinco puntas" } },
+    { "es": "corazón", "clues": { "def": "Forma que significa amor", "gap": "Te mando un ___ en el mensaje" } },
+    { "es": "rombo", "clues": { "def": "Figura con forma de diamante", "gap": "El ___ parece un cuadrado inclinado" } },
+    { "es": "línea", "clues": { "def": "Trazo largo y fino", "gap": "Escribe en la ___ de abajo" } },
+    { "es": "punto", "clues": { "def": "Marca pequeña y redonda", "gap": "Al final de la frase va un ___" } },
+    { "es": "cubo", "clues": { "def": "Figura con seis caras cuadradas", "gap": "El dado tiene forma de ___" } },
+    { "es": "esfera", "clues": { "def": "Figura redonda como una pelota", "gap": "La Tierra tiene forma de ___" } }
+  ]
+}
