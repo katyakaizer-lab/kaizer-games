@@ -5,9 +5,9 @@
  * A puzzle takes one topic of a level and places some of its words on a grid, crossing each other. Every word
  * crosses at least one other, words never touch side by side, and the grid stays within the level's size.
  * Accents count: a cell needs exactly its letter (Ó is not O); ñ is its own letter. A letter that only lacks its
- * accent or tilde is a near miss (see ../shared/accents.ts), never a mistake.
+ * accent or tilde is a near miss (see ../../lang/es/accents.ts), never a mistake.
  */
-import { bare } from '../shared/accents.ts';
+import { bare } from '../../lang/es/accents.ts';
 
 export { bare };
 export const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -22,8 +22,8 @@ export interface Clue { kind: ClueKind; text: string }
 export interface Entry { es: string; clues: Partial<Record<ClueKind, string>> }
 export interface Topic {
   id: string; level: Level; name_es: string; en: string; ru: string; reviewed: boolean;
-  /** small objects shown around the grid (art ids decor.<topic>.<name>) and the ornament border style */
-  decor?: { style: BorderStyle; items: string[] };
+  /** small objects shown around the grid (art ids decor.<set>.<name>; set defaults to the topic id) and the border style */
+  decor?: { style: BorderStyle; items: string[]; set?: string };
   words: Entry[];
 }
 export interface LevelConfig {

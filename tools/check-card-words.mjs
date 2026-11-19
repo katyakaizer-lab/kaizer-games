@@ -8,6 +8,8 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, read, parseTokens } from './lib.mjs';
+import { loadWordFiles } from './words-lib.ts';
+import { resolveCategories } from '../src/games/solitario/bank-items.ts';
 import { cardWidthFor, fitSpanish, innerWidth, MAX_NAME_LINES, MAX_WORD_LINES } from '../src/games/solitario/sizing.ts';
 
 const CANDIDATES = [process.env.CHROME_PATH, 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', 'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
@@ -17,7 +19,9 @@ const PHONES = [360, 375, 390];
 
 const dir = join(ROOT, 'src/data/solitario');
 const parsed = readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')));
-const categories = parsed.flatMap((p) => p.categories ?? []);
+// Categories list word bank ids; the words come from the bank.
+const byId = new Map(loadWordFiles().entries.map((e) => [e.id, e]));
+const categories = resolveCategories(parsed.flatMap((p) => p.categories ?? []), (id) => byId.get(id));
 const levels = Object.assign({}, ...parsed.map((p) => p.levels ?? {}));
 const base = parseTokens(read('public/tokens.css')).base;
 const px = (name, fb) => { const v = base[name]; if (!v) return fb; return v.endsWith('px') ? parseFloat(v) : parseFloat(v) * 16; };

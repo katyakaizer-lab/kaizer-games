@@ -23,19 +23,23 @@ import { vibrate } from '../../app/haptics';
 import { earn } from '../../rewards/show';
 import { STARS } from '../../rewards/config';
 import type { GameContext, GameHandle } from '../../app/router';
-import { nearMiss, nearMissText } from '../shared/accents';
+import { nearMiss, nearMissText } from '../../lang/es/accents';
 import {
   DEFAULT_LEVEL, HELP_LEVELS, LEVELS, cellsOf, generate, hintCell, hintLimit, isSolved, mistakes, pushRecent, rng, solution,
   surpriseTopic, wordDone, wordId, wordsAt,
   type CrucigramaData, type Dir, type HelpLevel, type Level, type Letters, type LevelConfig, type Placed, type Puzzle, type Topic,
 } from './engine';
 import './crucigramas.css';
+import levelsFile from '../../data/crucigramas/levels.json';
+import decorFile from '../../data/crucigramas/decor.json';
+import { allWords, wordTopics } from '../../words/bank';
+import { crosswordTopics, type DecorConfig } from './bank-topics';
 
-const files = import.meta.glob<Record<string, unknown>>('../../data/crucigramas/**/*.json', { eager: true, import: 'default' });
+// Words and clues come from the shared word bank; levels.json has the settings per level, decor.json the decorations.
 const injected = (globalThis as { __cwTestData?: CrucigramaData }).__cwTestData;
 const DATA: CrucigramaData = injected ?? {
-  topics: Object.keys(files).sort().map((k) => files[k]).filter((f): f is Topic & Record<string, unknown> => Array.isArray(f.words)) as Topic[],
-  levels: Object.assign({}, ...Object.keys(files).map((k) => (files[k].levels as object) ?? {})),
+  levels: levelsFile.levels as CrucigramaData['levels'],
+  topics: crosswordTopics(allWords(), wordTopics(), levelsFile.levels as CrucigramaData['levels'], decorFile as DecorConfig),
 };
 const topicsFor = (l: Level) => DATA.topics.filter((x) => x.level === l);
 const topicById = (id: string) => DATA.topics.find((x) => x.id === id);
@@ -84,7 +88,7 @@ const absUrl = (src: string) => new URL(src, document.baseURI).href;
 function decorBand(topic: Topic, count: number): HTMLElement {
   const items = (topic.decor?.items ?? []).slice(0, count);
   const obj = (name: string, i: number) => {
-    const id = `decor.${topic.id}.${name}`;
+    const id = `decor.${topic.decor?.set ?? topic.id}.${name}`;
     const colour = `var(${DECOR_COLOURS[i % DECOR_COLOURS.length]})`;
     if (hasArt(id)) {
       const e = h('span', { class: 'cw-decor__obj', 'data-decor': id });

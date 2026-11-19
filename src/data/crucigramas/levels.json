@@ -1,5 +1,5 @@
 {
-  "_note": "Crucigramas settings per level: words per puzzle, largest grid, clue kinds used (def definition, gap sentence with ___, syn synonym, ant opposite, use what it is for / where it is). Topics live in <level>/<topic>.json.",
+  "_note": "Crucigramas settings per level: words per puzzle, largest grid, clue kinds used (def definition, gap sentence with ___, syn synonym, ant opposite, use what it is for / where it is). Words and clues come from the word bank (src/data/words): a bank topic is offered at a level when it has 20+ words of that level and the one below; decorations are in decor.json.",
   "levels": {
     "A1": { "words": 6, "maxCols": 10, "maxRows": 10, "clueKinds": ["def", "gap", "syn", "ant", "use"] },
     "A2": { "words": 7, "maxCols": 10, "maxRows": 10, "clueKinds": ["def", "gap", "syn", "ant", "use"] },

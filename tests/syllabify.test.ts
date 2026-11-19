@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hyphenated, softHyphenate } from '../src/games/shared/syllabify';
+import { hyphenated, softHyphenate } from '../src/lang/es/syllabify';
 
 describe('Spanish syllable splitter (soft hyphens for card words)', () => {
   const cases: [string, string][] = [

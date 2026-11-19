@@ -11,7 +11,7 @@
  *   lower (covering the lower part), always leaving the covered word visible; the step shrinks only if the
  *   column would pass the bottom bar, never below that point.
  */
-import { breakOptions } from '../shared/syllabify.ts';
+import { breakOptions } from '../../lang/es/syllabify.ts';
 
 export interface CardTokens {
   rootPx: number; boardPad: number; colGap: number; cardMax: number; ratio: number;

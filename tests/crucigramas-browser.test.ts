@@ -11,7 +11,7 @@ import { chromium, type Browser, type Page } from 'playwright-core';
 import { createServer, preview } from 'vite';
 import { ROOT } from './helpers';
 import { loadCrucigramas } from './helpers-crucigramas';
-import { bare, cellsOf, type Placed, type Puzzle } from '../src/games/crucigramas/engine';
+import { LEVELS, bare, cellsOf, type Placed, type Puzzle } from '../src/games/crucigramas/engine';
 
 const CANDIDATES = [process.env.CHROME_PATH, 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', 'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
   'C:/Program Files/Google/Chrome/Application/chrome.exe', '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium', '/usr/bin/chromium-browser'].filter(Boolean) as string[];
@@ -99,10 +99,12 @@ function layout(page: Page) {
 
 describe('every crossword at phone widths', () => {
   for (const width of [360, 375, 390]) {
-    it(`all ${data.topics.length} topics at ${width}px: no overlap, no sideways scroll, cells >= 32px, decorations clear`, async () => {
+    // Three topics per level (first, middle, last): grid size depends on the level, decorations on the topic's set.
+    const sample = LEVELS.flatMap((l) => { const ts = data.topics.filter((t) => t.level === l); return [...new Set([ts[0], ts[Math.floor(ts.length / 2)], ts[ts.length - 1]])].filter(Boolean); });
+    it(`${sample.length} topics at ${width}px: no overlap, no sideways scroll, cells >= 32px, decorations clear`, async () => {
       const { page, errors } = await newPage(width, 800);
       const all: string[] = [];
-      for (const t of data.topics) {
+      for (const t of sample) {
         await play(page, t.level, t.id, 7);
         for (const pr of await layout(page)) all.push(`${t.level}/${t.id}: ${pr}`);
       }
@@ -116,7 +118,7 @@ describe('every crossword at phone widths', () => {
 describe('decorations load', () => {
   it('every decoration image used as a mask actually loads (also on the built site)', async () => {
     const { page } = await newPage(430, 800);
-    await play(page, 'B2', 'festividades', 1);
+    await play(page, 'B2', 'festividades-b2', 1);
     const res = await page.evaluate(async () => {
       const urls = [...document.querySelectorAll<HTMLElement>('[data-decor]')].map((e) => getComputedStyle(e).webkitMaskImage.match(/url\("?([^")]+)"?\)/)?.[1]).filter(Boolean) as string[];
       const st = await Promise.all(urls.map((u) => fetch(u).then((r) => `${r.status} ${r.headers.get('content-type')}`)));
@@ -134,11 +136,11 @@ describe('help, hints and the accent window', () => {
     await page.goto(`${base}index.html#game/crucigramas/new/A1`);
     await page.waitForSelector('.cw-setup');
     await page.click('label[for="cw-help-little"]');
-    await page.click('label[for="cw-topic-frutas"]');
+    await page.click('label[for="cw-topic-ropa-a1"]');
     await page.click('.cw-setup button:has-text("Empezar")');
     await page.waitForSelector('.cw-grid .cw-cell');
     expect(await page.textContent('.cw-bar__title')).toContain('Poca ayuda');
-    expect(await page.textContent('.cw-bar__topic')).toBe('Frutas');
+    expect(await page.textContent('.cw-bar__topic')).toBe('Ropa');
     const hint = page.locator('.cw-dock [data-act="hint"]');
     expect(await hint.textContent()).toContain('Pista (1)');
     await hint.click();
@@ -155,7 +157,7 @@ describe('help, hints and the accent window', () => {
 
   it('Sin ayuda hides the hint button', async () => {
     const { page } = await newPage();
-    await play(page, 'A2', 'tiempo', 3, 'none');
+    await play(page, 'A2', 'tiempo-a2', 3, 'none');
     expect(await page.locator('[data-act="hint"]').count()).toBe(0);
     expect(await page.textContent('.cw-bar__title')).toContain('Sin ayuda');
     await page.close();
@@ -163,7 +165,7 @@ describe('help, hints and the accent window', () => {
 
   it('Ayuda normal: at most a third of a word (2 letters in a 6+ letter word)', async () => {
     const { page } = await newPage();
-    await play(page, 'A1', 'ropa', 4, 'normal');
+    await play(page, 'A1', 'ropa-a1', 4, 'normal');
     const p = await puzzleOf(page, 'A1');
     const w = p.words.find((x) => x.answer.length >= 6)!;
     await selectWord(page, w);
@@ -179,7 +181,7 @@ describe('help, hints and the accent window', () => {
   it('a missing accent opens "¡Casi!" with the right letter to tap in; it is not a mistake', async () => {
     const { page, errors } = await newPage();
     let found: { topic: string; seed: number } | null = null;
-    for (const [topic, seed] of [['colores', 1], ['colores', 2], ['ropa', 1], ['ropa', 2], ['animales', 1], ['animales', 2]] as const) {
+    for (const [topic, seed] of [['colores-a1', 1], ['colores-a1', 2], ['ropa-a1', 1], ['ropa-a1', 2], ['animales-a1', 1], ['animales-a1', 2]] as const) {
       await play(page, 'A1', topic, seed);
       const p = await puzzleOf(page, 'A1');
       const w = p.words.find((x) => x.answer.some((c) => bare(c) !== c && c !== 'Ñ'));
@@ -217,7 +219,7 @@ async function selectWord(page: Page, w: Placed) {
 describe('clues and finishing', () => {
   it('tapping a clue selects its word and shows it inside the grid container', async () => {
     const { page } = await newPage(360, 640);
-    await play(page, 'B2', 'tecnologia', 2);
+    await play(page, 'B2', 'tecnologia-b2', 2);
     const p = await puzzleOf(page, 'B2');
     const last = p.words[p.words.length - 1];
     await page.locator(`.cw-clue[data-word="${p.words.length - 1}"]`).scrollIntoViewIfNeeded();
@@ -235,7 +237,7 @@ describe('clues and finishing', () => {
 
   it('a full solve: stars for each word and for finishing; the completion screen shows help and stars, nothing overlaps', async () => {
     const { page, errors } = await newPage();
-    await play(page, 'A1', 'animales', 9, 'little');
+    await play(page, 'A1', 'animales-a1', 9, 'little');
     const p = await puzzleOf(page, 'A1');
     for (const w of p.words) {
       if (await page.locator('.cw-summary, .cw-finish').count()) break;

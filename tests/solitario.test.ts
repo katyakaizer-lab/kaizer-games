@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import catsFile from '../src/data/solitario/categories.json';
+import { loadSolitarioCategories } from './helpers-solitario';
 import {
   canPlace, dealOnce, drawCard, hintFor, isFaceDown, isWon, move, newGame, pickCategories, restart, runAt, solve, undo,
   type Category, type GameState, type SolitarioData,
 } from '../src/games/solitario/engine';
 import { validateSolitario } from '../src/games/solitario/validate';
 
-const data = catsFile as unknown as SolitarioData;
+const data: SolitarioData = { categories: loadSolitarioCategories(), levels: (catsFile as unknown as SolitarioData).levels };
 const pool = (l: string) => data.categories.filter((c) => c.level === l) as Category[];
 const clone = (): SolitarioData => structuredClone(data);
 

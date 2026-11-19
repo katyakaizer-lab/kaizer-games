@@ -1,0 +1,37 @@
+/* Word review page (dev only). Tokens only. Phone first. */
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); }
+.rv { max-width: 40rem; margin: 0 auto; padding: var(--space-4); display: grid; gap: var(--space-3); }
+.rv-title { margin: 0; font-family: var(--font-head); font-size: var(--fs-h2); }
+.rv-muted { margin: 0; color: var(--text-soft); font-size: var(--fs-small); }
+.rv-warn { margin: 0; color: var(--text); font-weight: 700; }
+.rv-filters { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); align-items: end; }
+.rv-field { display: grid; gap: var(--space-1); font-size: var(--fs-small); font-weight: 700; }
+.rv-select, .rv-input { min-height: var(--tap-min); padding: 0 var(--space-2); font: inherit; font-weight: 400; color: var(--text); background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-tile); box-sizing: border-box; width: 100%; }
+.rv-note { padding: var(--space-2); min-height: 6rem; }
+.rv-count { margin: 0; font-size: var(--fs-small); color: var(--text-soft); }
+.rv-card { margin: 0; padding: var(--space-3); background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-card); box-shadow: var(--shadow); display: grid; gap: var(--space-2); }
+.rv-card.is-ok { border-color: var(--primary); }
+.rv-card.is-doubt { border-color: var(--accent); }
+.rv-head { display: grid; gap: var(--space-1); }
+.rv-word { margin: 0; font-family: var(--font-head); font-size: var(--fs-h1); line-height: 1.1; overflow-wrap: anywhere; }
+.rv-meta, .rv-status { margin: 0; font-size: var(--fs-small); color: var(--text-soft); }
+.rv-status { font-weight: 800; color: var(--text); }
+.rv-stress { margin: 0; font-size: 1.125rem; }
+.rv-syl.is-stressed { font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.rv-sep { color: var(--text-soft); padding: 0 1px; }
+.rv-list { margin: 0; display: grid; gap: var(--space-1); }
+.rv-row { display: grid; grid-template-columns: 7rem 1fr; gap: var(--space-2); }
+.rv-row dt { font-weight: 700; color: var(--text-soft); }
+.rv-row dd { margin: 0; overflow-wrap: anywhere; }
+.rv-clues { margin: 0; padding-left: var(--space-4); display: grid; gap: var(--space-1); }
+.rv-clue-type { display: inline-block; margin-right: var(--space-2); font-size: var(--fs-small); font-weight: 800; color: var(--text-soft); }
+.rv-clue-edit { display: grid; gap: var(--space-2); }
+.rv-clue-row { display: grid; grid-template-columns: minmax(7rem, 30%) 1fr; gap: var(--space-2); }
+.rv-actions, .rv-nav { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.rv-nav { justify-content: space-between; }
+.rv-btn { min-height: var(--tap-min); padding: 0 var(--space-3); font: inherit; font-weight: 800; color: var(--text); background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-pill); cursor: pointer; }
+.rv-btn:disabled { opacity: .5; cursor: default; }
+.rv-btn--ok { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.rv-btn--doubt { border-color: var(--accent); }
+.rv-btn--export { grid-column: 1 / -1; }
+.rv-btn:focus-visible, .rv-select:focus-visible, .rv-input:focus-visible { outline: var(--focus-w) solid var(--focus); outline-offset: 2px; }

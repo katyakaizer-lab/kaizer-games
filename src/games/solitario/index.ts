@@ -20,16 +20,19 @@ import {
   type Category, type GameState, type Level, type LevelConfig, type SolitarioData, type Source, type Target,
 } from './engine';
 import { MAX_NAME_LINES, MAX_WORD_LINES, boardLayout, canvasMeasure, cardFont, cardSize, columnOffsets, readTokens, visibleTop, type BoardLayout, type CardFont } from './sizing';
-import { softHyphenate } from '../shared/syllabify.ts';
+import { softHyphenate } from '../../lang/es/syllabify.ts';
 import { earn } from '../../rewards/show';
 import { STARS } from '../../rewards/config';
 import './solitario.css';
+import { wordById } from '../../words/bank';
+import { resolveCategories, type RawCategory } from './bank-items';
 
-const files = import.meta.glob<SolitarioData>('../../data/solitario/*.json', { eager: true, import: 'default' });
+const files = import.meta.glob<SolitarioData & { categories?: RawCategory[] }>('../../data/solitario/*.json', { eager: true, import: 'default' });
 // Tests may inject their own data (window.__solTestData) to check extreme word lengths and layouts.
 const injected = (globalThis as { __solTestData?: SolitarioData }).__solTestData;
 const DATA: SolitarioData = injected ?? {
-  categories: Object.keys(files).sort().flatMap((k) => files[k].categories ?? []),
+  // Categories list word bank ids; words and translations come from the bank.
+  categories: resolveCategories(Object.keys(files).sort().flatMap((k) => (files[k].categories ?? []) as unknown as RawCategory[]), wordById),
   levels: Object.assign({}, ...Object.keys(files).map((k) => files[k].levels ?? {})),
 };
 export const CATEGORIES: Category[] = DATA.categories;

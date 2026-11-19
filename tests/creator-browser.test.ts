@@ -158,7 +158,8 @@ describe('Mascotas gallery (style-test page)', () => {
       const { page, errors } = await newPage();
       await page.goto(`${base}style-test/index.html?theme=${theme}`);
       await page.waitForSelector('.st-mascotas .st-pet svg[data-art-kind="pet"]');
-      await page.waitForTimeout(500);
+      // Parts load asynchronously: wait until every figure is drawn (not a fixed time).
+      await page.waitForFunction(() => [...document.querySelectorAll(".st-mascotas .st-pet")].every((f) => f.querySelector("svg [data-slot=\"body\"]")), null, { timeout: 20_000 });
       // Wait until every beret image has loaded (they load with the pet, not lazily).
       await page.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.st-mascotas img.k-pet__item')].every((i) => i.complete), null, { timeout: 15_000 });
       const r = await page.evaluate(() => {

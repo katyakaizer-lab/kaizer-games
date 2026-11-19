@@ -1,0 +1,381 @@
+{
+ "_note": "Crucigramas decorations. sets: the drawn decoration sets (art ids decor.<set>.<object>, border decor.border.<style>); topicSet: which set each word-bank topic uses.",
+ "sets": {
+  "animales": {
+   "style": "leaves",
+   "items": [
+    "huella",
+    "hueso",
+    "pluma",
+    "pez"
+   ]
+  },
+  "calendario": {
+   "style": "stars",
+   "items": [
+    "sol",
+    "nube",
+    "estrella",
+    "reloj"
+   ]
+  },
+  "casa": {
+   "style": "dots",
+   "items": [
+    "llave",
+    "lampara",
+    "ventana",
+    "maceta"
+   ]
+  },
+  "colores": {
+   "style": "dots",
+   "items": [
+    "circulo",
+    "cuadrado",
+    "triangulo",
+    "estrella"
+   ]
+  },
+  "cuerpo": {
+   "style": "waves",
+   "items": [
+    "mano",
+    "ojo",
+    "oreja",
+    "diente"
+   ]
+  },
+  "familia": {
+   "style": "stars",
+   "items": [
+    "casa",
+    "corazon",
+    "foto",
+    "globo"
+   ]
+  },
+  "frutas": {
+   "style": "leaves",
+   "items": [
+    "manzana",
+    "pera",
+    "cereza",
+    "uva"
+   ]
+  },
+  "numeros": {
+   "style": "dots",
+   "items": [
+    "dado",
+    "circulo",
+    "cuadrado",
+    "estrella"
+   ]
+  },
+  "ropa": {
+   "style": "dots",
+   "items": [
+    "bufanda",
+    "guante",
+    "gorro",
+    "calcetin"
+   ]
+  },
+  "bebidas": {
+   "style": "waves",
+   "items": [
+    "vaso",
+    "botella",
+    "taza",
+    "pajita"
+   ]
+  },
+  "ciudad": {
+   "style": "dots",
+   "items": [
+    "semaforo",
+    "farola",
+    "edificio",
+    "banco"
+   ]
+  },
+  "compras": {
+   "style": "dots",
+   "items": [
+    "bolso",
+    "billete",
+    "regalo",
+    "reloj"
+   ]
+  },
+  "desayuno": {
+   "style": "dots",
+   "items": [
+    "taza",
+    "huevo",
+    "tostada",
+    "cafetera"
+   ]
+  },
+  "escuela": {
+   "style": "stars",
+   "items": [
+    "lapiz",
+    "libro",
+    "regla",
+    "mochila"
+   ]
+  },
+  "rutina": {
+   "style": "waves",
+   "items": [
+    "reloj",
+    "sol",
+    "taza",
+    "nube"
+   ]
+  },
+  "tiempo": {
+   "style": "waves",
+   "items": [
+    "sol",
+    "nube",
+    "gota",
+    "rayo"
+   ]
+  },
+  "transporte": {
+   "style": "waves",
+   "items": [
+    "rueda",
+    "ancla",
+    "volante",
+    "billete"
+   ]
+  },
+  "verduras": {
+   "style": "leaves",
+   "items": [
+    "zanahoria",
+    "tomate",
+    "lechuga",
+    "berenjena"
+   ]
+  },
+  "accesorios": {
+   "style": "dots",
+   "items": [
+    "gafas",
+    "reloj",
+    "bolso",
+    "anillo"
+   ]
+  },
+  "aficiones": {
+   "style": "stars",
+   "items": [
+    "pincel",
+    "camara",
+    "dado",
+    "ovillo"
+   ]
+  },
+  "cocina": {
+   "style": "dots",
+   "items": [
+    "sarten",
+    "olla",
+    "cuchara",
+    "tenedor"
+   ]
+  },
+  "deportes": {
+   "style": "stars",
+   "items": [
+    "balon",
+    "raqueta",
+    "medalla",
+    "silbato"
+   ]
+  },
+  "mercado": {
+   "style": "leaves",
+   "items": [
+    "berenjena",
+    "uva",
+    "cereza",
+    "zanahoria"
+   ]
+  },
+  "musica": {
+   "style": "waves",
+   "items": [
+    "nota",
+    "guitarra",
+    "tambor",
+    "microfono"
+   ]
+  },
+  "postres": {
+   "style": "dots",
+   "items": [
+    "tarta",
+    "helado",
+    "caramelo",
+    "galleta"
+   ]
+  },
+  "profesiones": {
+   "style": "stars",
+   "items": [
+    "casco",
+    "maletin",
+    "tijeras",
+    "pincel"
+   ]
+  },
+  "trabajo": {
+   "style": "stars",
+   "items": [
+    "maletin",
+    "reloj",
+    "movil",
+    "lapiz"
+   ]
+  },
+  "ambiente": {
+   "style": "leaves",
+   "items": [
+    "hoja",
+    "gota",
+    "sol",
+    "arbol"
+   ]
+  },
+  "caracter": {
+   "style": "stars",
+   "items": [
+    "sonrisa",
+    "corazon",
+    "estrella",
+    "mano"
+   ]
+  },
+  "emociones": {
+   "style": "stars",
+   "items": [
+    "corazon",
+    "sonrisa",
+    "lagrima",
+    "nube"
+   ]
+  },
+  "festividades": {
+   "style": "stars",
+   "items": [
+    "estrella",
+    "vela",
+    "regalo",
+    "globo",
+    "farolillo"
+   ]
+  },
+  "naturaleza": {
+   "style": "leaves",
+   "items": [
+    "arbol",
+    "hoja",
+    "montana",
+    "flor"
+   ]
+  },
+  "salud": {
+   "style": "waves",
+   "items": [
+    "tirita",
+    "termometro",
+    "corazon",
+    "pastilla"
+   ]
+  },
+  "sociedad": {
+   "style": "stars",
+   "items": [
+    "edificio",
+    "libro",
+    "mano",
+    "estrella"
+   ]
+  },
+  "tapas": {
+   "style": "dots",
+   "items": [
+    "aceituna",
+    "gamba",
+    "cazuela",
+    "barra"
+   ]
+  },
+  "tecnologia": {
+   "style": "dots",
+   "items": [
+    "movil",
+    "bombilla",
+    "enchufe",
+    "antena"
+   ]
+  },
+  "viajes": {
+   "style": "waves",
+   "items": [
+    "maleta",
+    "avion",
+    "brujula",
+    "mapa"
+   ]
+  }
+ },
+ "topicSet": {
+  "festividades": "festividades",
+  "frutas": "frutas",
+  "verduras": "verduras",
+  "postres": "postres",
+  "desayuno": "desayuno",
+  "tapas": "tapas",
+  "bebidas": "bebidas",
+  "ropa": "ropa",
+  "accesorios": "accesorios",
+  "casa": "casa",
+  "muebles": "casa",
+  "cocina": "cocina",
+  "animales": "animales",
+  "mascotas": "animales",
+  "profesiones": "profesiones",
+  "transporte": "transporte",
+  "ciudad": "ciudad",
+  "tiendas": "compras",
+  "naturaleza": "naturaleza",
+  "tiempo": "tiempo",
+  "cuerpo": "cuerpo",
+  "salud": "salud",
+  "deportes": "deportes",
+  "musica": "musica",
+  "escuela": "escuela",
+  "tecnologia": "tecnologia",
+  "viajes": "viajes",
+  "emociones": "emociones",
+  "caracter": "caracter",
+  "familia": "familia",
+  "colores": "colores",
+  "aficiones": "aficiones",
+  "numeros": "numeros",
+  "calendario": "calendario",
+  "dinero": "compras",
+  "ambiente": "ambiente",
+  "trabajo": "trabajo",
+  "verbos": "rutina",
+  "adjetivos": "colores",
+  "sociedad": "sociedad"
+ }
+}

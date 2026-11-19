@@ -1,25 +1,20 @@
 // Fails the build if the Crucigramas data breaks a rule (see src/games/crucigramas/validate.ts).
-// Data: src/data/crucigramas/levels.json (per-level settings) and src/data/crucigramas/<level>/<topic>.json.
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { basename, dirname, join } from 'node:path';
+// Words and clues come from the word bank (src/data/words), turned into topics per level by
+// src/games/crucigramas/bank-topics.ts; levels.json has the settings per level and decor.json the decorations.
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { validateCrucigramas } from '../src/games/crucigramas/validate.ts';
-import type { Topic } from '../src/games/crucigramas/engine.ts';
+import { crosswordTopics, type DecorConfig } from '../src/games/crucigramas/bank-topics.ts';
+import { loadWordFiles, ROOT } from './words-lib.ts';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const dir = process.argv[2] ?? join(ROOT, 'src/data/crucigramas');
-const levelsFile = join(dir, 'levels.json');
-const levels = existsSync(levelsFile) ? JSON.parse(readFileSync(levelsFile, 'utf8')).levels ?? {} : {};
-const topics: Topic[] = [];
+const dir = join(ROOT, 'src/data/crucigramas');
+const levels = JSON.parse(readFileSync(join(dir, 'levels.json'), 'utf8')).levels ?? {};
+const decor = JSON.parse(readFileSync(join(dir, 'decor.json'), 'utf8')) as DecorConfig;
+const { entries, topics: bankTopics } = loadWordFiles();
+const topics = crosswordTopics(entries, bankTopics, levels, decor);
 const errors: string[] = [];
-for (const lv of readdirSync(dir).filter((d) => statSync(join(dir, d)).isDirectory()).sort()) {
-  for (const f of readdirSync(join(dir, lv)).filter((x) => x.endsWith('.json')).sort()) {
-    const t = JSON.parse(readFileSync(join(dir, lv, f), 'utf8')) as Topic;
-    if (t.level !== lv) errors.push(`${lv}/${f}: level is ${t.level} but the file is in ${lv}/`);
-    if (t.id !== basename(f, '.json')) errors.push(`${lv}/${f}: id is ${t.id}; the file must be named ${t.id}.json`);
-    topics.push(t);
-  }
-}
+for (const t of bankTopics) if (!decor.topicSet[t.id]) errors.push(`decor.json: topic ${t.id} has no decoration set`);
+for (const [t, set] of Object.entries(decor.topicSet)) if (!decor.sets[set]) errors.push(`decor.json: topic ${t} uses unknown set ${set}`);
 const res = validateCrucigramas({ topics, levels });
 errors.push(...res.errors);
 if (errors.length) {
@@ -27,4 +22,5 @@ if (errors.length) {
   console.error(`validate-crucigramas: ${errors.length} error(s)`);
   process.exit(1);
 }
-console.log(`validate-crucigramas: ${res.total} topics, ${res.words} words valid, ${res.unreviewed.length} topics not reviewed yet`);
+const per = Object.keys(levels).map((l) => `${l} ${topics.filter((t) => t.level === l).length}`).join(', ');
+console.log(`validate-crucigramas: ${res.total} topics from the word bank (${per}), ${res.words} words valid, ${res.unreviewed.length} topics not reviewed yet`);

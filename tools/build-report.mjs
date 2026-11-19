@@ -7,6 +7,8 @@ import { checkContrast } from './check-contrast.mjs';
 import { checkFonts } from './check-fonts.mjs';
 import { checkArt } from './check-art.mjs';
 import { checkHardcoded } from './check-hardcoded.mjs';
+import { loadWordFiles } from './words-lib.ts';
+import { reviewCounts, validateWords } from '../src/words/rules.ts';
 
 const DIST = join(ROOT, 'dist');
 const FIRST_SCREEN_BUDGET = 1024 * 1024;
@@ -52,7 +54,8 @@ function content() {
   const out = [];
   // One file per item (e.g. a crossword topic with its own "reviewed"): counted per folder.
   const perFolder = new Map();
-  for (const f of walk(dir).filter((x) => x.endsWith('.json'))) {
+  // The word bank has its own section (counts by level and topic).
+  for (const f of walk(dir).filter((x) => x.endsWith('.json') && !x.replace(/\\/g, '/').includes('/data/words/'))) {
     const j = JSON.parse(readFileSync(f, 'utf8'));
     if (j && typeof j === 'object' && !Array.isArray(j) && typeof j.reviewed === 'boolean') {
       const folder = relative(ROOT, join(f, '..', '..')).replace(/\\/g, '/');
@@ -69,6 +72,11 @@ function content() {
     }
   }
   return [...out, ...perFolder.values()];
+}
+
+function wordBank() {
+  const { entries, topics } = loadWordFiles();
+  return { total: entries.length, reviewed: entries.filter((e) => e.reviewed).length, counts: reviewCounts(entries), overrides: validateWords(entries, topics).overrides };
 }
 
 function i18n() {
@@ -101,6 +109,8 @@ export function buildReport() {
   const cwTotal = (c) => Object.values(c.byPhone).reduce((n, lv) => n + Object.values(lv).reduce((k, l) => k + l.tooLong.length, 0), 0);
   L.push(`- Solitario words too long for their cards: ${cwS?.checked ? cwTotal(cwS) : 'not checked'}`);
   L.push(`- Un-reviewed content: ${cont.reduce((n, c) => n + c.unreviewed, 0)} item(s)`);
+  const wb = wordBank();
+  L.push(`- Word bank: ${wb.total} entries, ${wb.reviewed} reviewed, ${wb.total - wb.reviewed} not reviewed, ${wb.overrides.length} engine overrides`);
   L.push(`- Bundle: ${kb(files.reduce((n, [, s]) => n + s, 0))} total, JS ${kb(sum(/\.js$/))}, CSS ${kb(sum(/\.css$/))}, fonts ${kb(sum(/\.woff2$/))}`);
   L.push(`- First screen: ${kb(fs1.total)} (budget ${kb(FIRST_SCREEN_BUDGET)}) ${fs1.total <= FIRST_SCREEN_BUDGET ? 'ok' : 'OVER BUDGET'}`, '');
 
@@ -110,6 +120,13 @@ export function buildReport() {
   L.push('', '## Un-reviewed content', '');
   if (!cont.length) L.push('- none');
   cont.forEach((c) => L.push(`- \`${c.file}\` ${c.key}: ${c.unreviewed} of ${c.total} not reviewed`));
+  L.push('', '## Word bank: review', '', 'Entries reviewed by Katya (dev page /revision/, applied with tools/apply-review.ts). Columns: reviewed / not reviewed.', '', '| level | reviewed | not reviewed |', '|---|---|---|');
+  for (const [lv, [rv, un]] of Object.entries(wb.counts.byLevel).sort()) L.push(`| ${lv} | ${rv} | ${un} |`);
+  L.push('', '| topic | reviewed | not reviewed |', '|---|---|---|');
+  for (const [t, [rv, un]] of Object.entries(wb.counts.byTopic).sort()) L.push(`| ${t} | ${rv} | ${un} |`);
+  L.push('', 'Engine overrides (syllables or stress set by hand because the engines were wrong):', '');
+  if (!wb.overrides.length) L.push('- none');
+  wb.overrides.forEach((o) => L.push(`- ${o}`));
   L.push('', '## Solitario: words that do not fit their cards', '');
   const cw = existsSync(join(DIST, 'card-words.json')) ? JSON.parse(readFileSync(join(DIST, 'card-words.json'), 'utf8')) : { checked: false, reason: 'check-card-words did not run' };
   if (!cw.checked) L.push(`- not checked: ${cw.reason}`);

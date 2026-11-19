@@ -6,6 +6,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { createServer, preview } from 'vite';
 import { ROOT } from './helpers';
+import { loadSolitarioCategories } from './helpers-solitario';
 import { newGame, solve, type Category, type Source, type Target } from '../src/games/solitario/engine';
 
 const CANDIDATES = [process.env.CHROME_PATH, 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', 'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
@@ -37,7 +38,7 @@ beforeAll(async () => {
 }, 60_000);
 afterAll(async () => { await browser?.close(); await server?.close(); }, 90_000);
 
-const cats = (JSON.parse(readFileSync(`${ROOT}/src/data/solitario/categories.json`, 'utf8')).categories as Category[]);
+const cats: Category[] = loadSolitarioCategories();
 
 /** Click the visible top strip of a card (cards overlap in columns). */
 async function clickSource(page: Page, src: Source) {

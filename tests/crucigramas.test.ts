@@ -93,7 +93,7 @@ describe('generator', () => {
   });
   it('picks one of each word\'s clues at random (different kinds appear)', () => {
     const kinds = new Set<string>();
-    const t = data.topics.find((x) => x.id === 'frutas')!;
+    const t = data.topics.find((x) => x.id === 'ropa-a1')!;
     for (let s = 1; s < 30; s++) for (const w of generate(t, data.levels.A1, s)!.words) kinds.add(w.clue.kind);
     expect(kinds.has('def') && kinds.has('gap')).toBe(true);
   });
@@ -101,7 +101,7 @@ describe('generator', () => {
 
 describe('no repeats', () => {
   it('over 10 puzzles of a topic, consecutive puzzles never share a word and words are used evenly', () => {
-    const t = data.topics.find((x) => x.id === 'frutas')!; // 21 words, 6 per puzzle
+    const t = data.topics.find((x) => x.id === 'ropa-a1')!; // 21 words, 6 per puzzle
     let recent: string[][] = [];
     const count = new Map<string, number>();
     let prev: string[] = [];
@@ -163,7 +163,7 @@ describe('help and hints', () => {
 
 describe('checking', () => {
   it('a missing accent or tilde is a near miss, not a mistake; a word is done only when exact', () => {
-    const t = data.topics.find((x) => x.id === 'ropa')!;
+    const t = data.topics.find((x) => x.id === 'ropa-a1')!;
     let p: Puzzle | null = null;
     for (let s = 1; s < 50 && !p; s++) { const q = generate(t, data.levels.A1, s)!; if (q.words.some((w) => w.answer.some((c) => bare(c) !== c))) p = q; }
     const sol = solution(p!);

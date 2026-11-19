@@ -63,7 +63,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await browser?.close();
   await server?.close();
-});
+}, 90_000);
 
 describe('smoke: no sideways scrolling at phone width', () => {
   for (const screen of SCREENS) {

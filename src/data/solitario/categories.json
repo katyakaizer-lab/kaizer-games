@@ -1,5 +1,5 @@
 {
- "_note": "Solitario de categorías, written by Claude. Concrete topics only, by level. A game deals some categories of one level; each category is also a card. Words and names without articles (Katya, 2026-11-18). Spanish from Spain (plátano, patata, nevera). Every word appears in only one category of its level. \"avoid\" (optional) lists categories never dealt together because a word could fit both. All reviewed:false until Katya checks them.",
+ "_note": "Solitario de categorías, written by Claude. Concrete topics only, by level. A game deals some categories of one level; each category is also a card. Words and names without articles (Katya, 2026-11-18). Spanish from Spain (plátano, patata, nevera). Words come from the word bank (src/data/words): \"words\" lists bank ids; the Spanish word, translations and art come from there. Every word appears in only one category of its level. \"avoid\" (optional) lists categories never dealt together because a word could fit both. All reviewed:false until Katya checks them.",
  "categories": [
   {
    "id": "flores",
@@ -7,37 +7,13 @@
    "name_es": "Flores",
    "en": "Flowers",
    "ru": "Цветы",
-   "items": [
-    {
-     "es": "rosa",
-     "en": "rose",
-     "ru": "роза"
-    },
-    {
-     "es": "tulipán",
-     "en": "tulip",
-     "ru": "тюльпан"
-    },
-    {
-     "es": "dalia",
-     "en": "dahlia",
-     "ru": "георгин"
-    },
-    {
-     "es": "girasol",
-     "en": "sunflower",
-     "ru": "подсолнух"
-    },
-    {
-     "es": "clavel",
-     "en": "carnation",
-     "ru": "гвоздика"
-    },
-    {
-     "es": "lirio",
-     "en": "lily",
-     "ru": "лилия"
-    }
+   "words": [
+    "rosa",
+    "tulipan",
+    "dalia",
+    "girasol",
+    "clavel",
+    "lirio"
    ],
    "reviewed": false
   },
@@ -47,37 +23,13 @@
    "name_es": "Cocina",
    "en": "The kitchen",
    "ru": "Кухня",
-   "items": [
-    {
-     "es": "olla",
-     "en": "pot",
-     "ru": "кастрюля"
-    },
-    {
-     "es": "sartén",
-     "en": "frying pan",
-     "ru": "сковорода"
-    },
-    {
-     "es": "horno",
-     "en": "oven",
-     "ru": "духовка"
-    },
-    {
-     "es": "nevera",
-     "en": "fridge",
-     "ru": "холодильник"
-    },
-    {
-     "es": "cuchara",
-     "en": "spoon",
-     "ru": "ложка"
-    },
-    {
-     "es": "tenedor",
-     "en": "fork",
-     "ru": "вилка"
-    }
+   "words": [
+    "olla",
+    "sarten",
+    "horno",
+    "nevera",
+    "cuchara",
+    "tenedor"
    ],
    "reviewed": false
   },
@@ -87,37 +39,13 @@
    "name_es": "Juguetes",
    "en": "Toys",
    "ru": "Игрушки",
-   "items": [
-    {
-     "es": "pelota",
-     "en": "ball",
-     "ru": "мяч"
-    },
-    {
-     "es": "muñeca",
-     "en": "doll",
-     "ru": "кукла"
-    },
-    {
-     "es": "peluche",
-     "en": "soft toy",
-     "ru": "мягкая игрушка"
-    },
-    {
-     "es": "yoyó",
-     "en": "yo-yo",
-     "ru": "йо-йо"
-    },
-    {
-     "es": "cometa",
-     "en": "kite",
-     "ru": "воздушный змей"
-    },
-    {
-     "es": "puzle",
-     "en": "jigsaw",
-     "ru": "пазл"
-    }
+   "words": [
+    "pelota",
+    "muñeca",
+    "peluche",
+    "yoyo",
+    "cometa",
+    "puzle"
    ],
    "reviewed": false
   },
@@ -127,37 +55,13 @@
    "name_es": "Vehículos",
    "en": "Vehicles",
    "ru": "Транспорт",
-   "items": [
-    {
-     "es": "coche",
-     "en": "car",
-     "ru": "машина"
-    },
-    {
-     "es": "metro",
-     "en": "underground",
-     "ru": "метро"
-    },
-    {
-     "es": "moto",
-     "en": "motorbike",
-     "ru": "мотоцикл"
-    },
-    {
-     "es": "tren",
-     "en": "train",
-     "ru": "поезд"
-    },
-    {
-     "es": "avión",
-     "en": "plane",
-     "ru": "самолёт"
-    },
-    {
-     "es": "barco",
-     "en": "boat",
-     "ru": "корабль"
-    }
+   "words": [
+    "coche",
+    "metro",
+    "moto",
+    "tren",
+    "avion",
+    "barco"
    ],
    "reviewed": false
   },
@@ -167,37 +71,13 @@
    "name_es": "Frutas",
    "en": "Fruit",
    "ru": "Фрукты",
-   "items": [
-    {
-     "es": "melón",
-     "en": "melon",
-     "ru": "дыня"
-    },
-    {
-     "es": "plátano",
-     "en": "banana",
-     "ru": "банан"
-    },
-    {
-     "es": "fresa",
-     "en": "strawberry",
-     "ru": "клубника"
-    },
-    {
-     "es": "uva",
-     "en": "grape",
-     "ru": "виноград"
-    },
-    {
-     "es": "pera",
-     "en": "pear",
-     "ru": "груша"
-    },
-    {
-     "es": "naranja",
-     "en": "orange",
-     "ru": "апельсин"
-    }
+   "words": [
+    "melon",
+    "platano",
+    "fresa",
+    "uva",
+    "pera",
+    "naranja"
    ],
    "reviewed": false
   },
@@ -207,37 +87,13 @@
    "name_es": "Ropa",
    "en": "Clothes",
    "ru": "Одежда",
-   "items": [
-    {
-     "es": "camisa",
-     "en": "shirt",
-     "ru": "рубашка"
-    },
-    {
-     "es": "gorra",
-     "en": "cap",
-     "ru": "кепка"
-    },
-    {
-     "es": "falda",
-     "en": "skirt",
-     "ru": "юбка"
-    },
-    {
-     "es": "vestido",
-     "en": "dress",
-     "ru": "платье"
-    },
-    {
-     "es": "abrigo",
-     "en": "coat",
-     "ru": "пальто"
-    },
-    {
-     "es": "botas",
-     "en": "boots",
-     "ru": "сапоги"
-    }
+   "words": [
+    "camisa",
+    "gorra",
+    "falda",
+    "vestido",
+    "abrigo",
+    "botas"
    ],
    "reviewed": false
   },
@@ -247,37 +103,13 @@
    "name_es": "Granja",
    "en": "The farm",
    "ru": "Ферма",
-   "items": [
-    {
-     "es": "vaca",
-     "en": "cow",
-     "ru": "корова"
-    },
-    {
-     "es": "cerdo",
-     "en": "pig",
-     "ru": "свинья"
-    },
-    {
-     "es": "oveja",
-     "en": "sheep",
-     "ru": "овца"
-    },
-    {
-     "es": "gallina",
-     "en": "hen",
-     "ru": "курица"
-    },
-    {
-     "es": "caballo",
-     "en": "horse",
-     "ru": "лошадь"
-    },
-    {
-     "es": "pato",
-     "en": "duck",
-     "ru": "утка"
-    }
+   "words": [
+    "vaca",
+    "cerdo",
+    "oveja",
+    "gallina",
+    "caballo",
+    "pato"
    ],
    "reviewed": false
   },
@@ -287,37 +119,13 @@
    "name_es": "Cuerpo",
    "en": "The body",
    "ru": "Тело",
-   "items": [
-    {
-     "es": "mano",
-     "en": "hand",
-     "ru": "рука (кисть)"
-    },
-    {
-     "es": "pie",
-     "en": "foot",
-     "ru": "ступня"
-    },
-    {
-     "es": "cabeza",
-     "en": "head",
-     "ru": "голова"
-    },
-    {
-     "es": "brazo",
-     "en": "arm",
-     "ru": "рука"
-    },
-    {
-     "es": "pierna",
-     "en": "leg",
-     "ru": "нога"
-    },
-    {
-     "es": "boca",
-     "en": "mouth",
-     "ru": "рот"
-    }
+   "words": [
+    "mano",
+    "pie",
+    "cabeza",
+    "brazo",
+    "pierna",
+    "boca"
    ],
    "reviewed": false
   },
@@ -327,37 +135,13 @@
    "name_es": "Familia",
    "en": "The family",
    "ru": "Семья",
-   "items": [
-    {
-     "es": "madre",
-     "en": "mother",
-     "ru": "мама"
-    },
-    {
-     "es": "padre",
-     "en": "father",
-     "ru": "папа"
-    },
-    {
-     "es": "hijo",
-     "en": "son",
-     "ru": "сын"
-    },
-    {
-     "es": "abuela",
-     "en": "grandmother",
-     "ru": "бабушка"
-    },
-    {
-     "es": "tío",
-     "en": "uncle",
-     "ru": "дядя"
-    },
-    {
-     "es": "prima",
-     "en": "cousin (female)",
-     "ru": "двоюродная сестра"
-    }
+   "words": [
+    "madre",
+    "padre",
+    "hijo",
+    "abuela",
+    "tio",
+    "prima"
    ],
    "reviewed": false
   },
@@ -367,37 +151,13 @@
    "name_es": "Colegio",
    "en": "School",
    "ru": "Школа",
-   "items": [
-    {
-     "es": "lápiz",
-     "en": "pencil",
-     "ru": "карандаш"
-    },
-    {
-     "es": "goma",
-     "en": "rubber",
-     "ru": "ластик"
-    },
-    {
-     "es": "mochila",
-     "en": "school bag",
-     "ru": "рюкзак"
-    },
-    {
-     "es": "libro",
-     "en": "book",
-     "ru": "книга"
-    },
-    {
-     "es": "regla",
-     "en": "ruler",
-     "ru": "линейка"
-    },
-    {
-     "es": "pizarra",
-     "en": "board",
-     "ru": "доска"
-    }
+   "words": [
+    "lapiz",
+    "goma",
+    "mochila",
+    "libro",
+    "regla",
+    "pizarra"
    ],
    "reviewed": false
   },
@@ -407,37 +167,13 @@
    "name_es": "Baño",
    "en": "The bathroom",
    "ru": "Ванная",
-   "items": [
-    {
-     "es": "ducha",
-     "en": "shower",
-     "ru": "душ"
-    },
-    {
-     "es": "bañera",
-     "en": "bathtub",
-     "ru": "ванна"
-    },
-    {
-     "es": "jabón",
-     "en": "soap",
-     "ru": "мыло"
-    },
-    {
-     "es": "toalla",
-     "en": "towel",
-     "ru": "полотенце"
-    },
-    {
-     "es": "champú",
-     "en": "shampoo",
-     "ru": "шампунь"
-    },
-    {
-     "es": "espejo",
-     "en": "mirror",
-     "ru": "зеркало"
-    }
+   "words": [
+    "ducha",
+    "bañera",
+    "jabon",
+    "toalla",
+    "champu",
+    "espejo"
    ],
    "reviewed": false
   },
@@ -447,37 +183,13 @@
    "name_es": "Profesiones",
    "en": "Jobs",
    "ru": "Профессии",
-   "items": [
-    {
-     "es": "médico",
-     "en": "doctor",
-     "ru": "врач"
-    },
-    {
-     "es": "profesora",
-     "en": "teacher",
-     "ru": "учительница"
-    },
-    {
-     "es": "bombero",
-     "en": "firefighter",
-     "ru": "пожарный"
-    },
-    {
-     "es": "cocinera",
-     "en": "cook",
-     "ru": "повар"
-    },
-    {
-     "es": "cartero",
-     "en": "postman",
-     "ru": "почтальон"
-    },
-    {
-     "es": "policía",
-     "en": "police officer",
-     "ru": "полицейская"
-    }
+   "words": [
+    "medico",
+    "profesor",
+    "bombero",
+    "cocinero",
+    "cartero",
+    "policia"
    ],
    "reviewed": false
   },
@@ -487,37 +199,13 @@
    "name_es": "Deportes",
    "en": "Sports",
    "ru": "Виды спорта",
-   "items": [
-    {
-     "es": "fútbol",
-     "en": "football",
-     "ru": "футбол"
-    },
-    {
-     "es": "tenis",
-     "en": "tennis",
-     "ru": "теннис"
-    },
-    {
-     "es": "natación",
-     "en": "swimming",
-     "ru": "плавание"
-    },
-    {
-     "es": "golf",
-     "en": "golf",
-     "ru": "гольф"
-    },
-    {
-     "es": "ciclismo",
-     "en": "cycling",
-     "ru": "велоспорт"
-    },
-    {
-     "es": "esquí",
-     "en": "skiing",
-     "ru": "лыжи"
-    }
+   "words": [
+    "futbol",
+    "tenis",
+    "natacion",
+    "golf",
+    "ciclismo",
+    "esqui"
    ],
    "reviewed": false
   },
@@ -527,37 +215,13 @@
    "name_es": "Música",
    "en": "Music",
    "ru": "Музыка",
-   "items": [
-    {
-     "es": "guitarra",
-     "en": "guitar",
-     "ru": "гитара"
-    },
-    {
-     "es": "piano",
-     "en": "piano",
-     "ru": "пианино"
-    },
-    {
-     "es": "flauta",
-     "en": "flute",
-     "ru": "флейта"
-    },
-    {
-     "es": "violín",
-     "en": "violin",
-     "ru": "скрипка"
-    },
-    {
-     "es": "trompeta",
-     "en": "trumpet",
-     "ru": "труба"
-    },
-    {
-     "es": "tambor",
-     "en": "drum",
-     "ru": "барабан"
-    }
+   "words": [
+    "guitarra",
+    "piano",
+    "flauta",
+    "violin",
+    "trompeta",
+    "tambor"
    ],
    "reviewed": false
   },
@@ -567,37 +231,13 @@
    "name_es": "Verduras",
    "en": "Vegetables",
    "ru": "Овощи",
-   "items": [
-    {
-     "es": "zanahoria",
-     "en": "carrot",
-     "ru": "морковь"
-    },
-    {
-     "es": "lechuga",
-     "en": "lettuce",
-     "ru": "салат-латук"
-    },
-    {
-     "es": "cebolla",
-     "en": "onion",
-     "ru": "лук"
-    },
-    {
-     "es": "pepino",
-     "en": "cucumber",
-     "ru": "огурец"
-    },
-    {
-     "es": "pimiento",
-     "en": "pepper",
-     "ru": "перец"
-    },
-    {
-     "es": "patata",
-     "en": "potato",
-     "ru": "картофель"
-    }
+   "words": [
+    "zanahoria",
+    "lechuga",
+    "cebolla",
+    "pepino",
+    "pimiento",
+    "patata"
    ],
    "reviewed": false
   },
@@ -607,37 +247,13 @@
    "name_es": "Animales salvajes",
    "en": "Wild animals",
    "ru": "Дикие животные",
-   "items": [
-    {
-     "es": "león",
-     "en": "lion",
-     "ru": "лев"
-    },
-    {
-     "es": "tigre",
-     "en": "tiger",
-     "ru": "тигр"
-    },
-    {
-     "es": "jirafa",
-     "en": "giraffe",
-     "ru": "жираф"
-    },
-    {
-     "es": "elefante",
-     "en": "elephant",
-     "ru": "слон"
-    },
-    {
-     "es": "mono",
-     "en": "monkey",
-     "ru": "обезьяна"
-    },
-    {
-     "es": "cebra",
-     "en": "zebra",
-     "ru": "зебра"
-    }
+   "words": [
+    "leon",
+    "tigre",
+    "jirafa",
+    "elefante",
+    "mono",
+    "cebra"
    ],
    "reviewed": false
   },
@@ -647,37 +263,13 @@
    "name_es": "Tiempo",
    "en": "The weather",
    "ru": "Погода",
-   "items": [
-    {
-     "es": "lluvia",
-     "en": "rain",
-     "ru": "дождь"
-    },
-    {
-     "es": "nieve",
-     "en": "snow",
-     "ru": "снег"
-    },
-    {
-     "es": "viento",
-     "en": "wind",
-     "ru": "ветер"
-    },
-    {
-     "es": "niebla",
-     "en": "fog",
-     "ru": "туман"
-    },
-    {
-     "es": "sol",
-     "en": "sun",
-     "ru": "солнце"
-    },
-    {
-     "es": "tormenta",
-     "en": "storm",
-     "ru": "гроза"
-    }
+   "words": [
+    "lluvia",
+    "nieve",
+    "viento",
+    "niebla",
+    "sol",
+    "tormenta"
    ],
    "reviewed": false
   },
@@ -687,37 +279,13 @@
    "name_es": "Tiendas",
    "en": "Shops",
    "ru": "Магазины",
-   "items": [
-    {
-     "es": "panadería",
-     "en": "bakery",
-     "ru": "булочная"
-    },
-    {
-     "es": "farmacia",
-     "en": "pharmacy",
-     "ru": "аптека"
-    },
-    {
-     "es": "librería",
-     "en": "bookshop",
-     "ru": "книжный магазин"
-    },
-    {
-     "es": "carnicería",
-     "en": "butcher's",
-     "ru": "мясная лавка"
-    },
-    {
-     "es": "frutería",
-     "en": "greengrocer's",
-     "ru": "фруктовая лавка"
-    },
-    {
-     "es": "floristería",
-     "en": "florist's",
-     "ru": "цветочный магазин"
-    }
+   "words": [
+    "panaderia",
+    "farmacia",
+    "libreria",
+    "carniceria",
+    "fruteria",
+    "floristeria"
    ],
    "reviewed": false
   },
@@ -727,37 +295,13 @@
    "name_es": "Herramientas",
    "en": "Tools",
    "ru": "Инструменты",
-   "items": [
-    {
-     "es": "martillo",
-     "en": "hammer",
-     "ru": "молоток"
-    },
-    {
-     "es": "lima",
-     "en": "file (tool)",
-     "ru": "напильник"
-    },
-    {
-     "es": "sierra",
-     "en": "saw",
-     "ru": "пила"
-    },
-    {
-     "es": "taladro",
-     "en": "drill",
-     "ru": "дрель"
-    },
-    {
-     "es": "alicates",
-     "en": "pliers",
-     "ru": "плоскогубцы"
-    },
-    {
-     "es": "llave inglesa",
-     "en": "spanner",
-     "ru": "разводной ключ"
-    }
+   "words": [
+    "martillo",
+    "destornillador",
+    "sierra",
+    "taladro",
+    "alicates",
+    "llave-inglesa"
    ],
    "reviewed": false
   },
@@ -767,37 +311,13 @@
    "name_es": "Muebles",
    "en": "Furniture",
    "ru": "Мебель",
-   "items": [
-    {
-     "es": "sofá",
-     "en": "sofa",
-     "ru": "диван"
-    },
-    {
-     "es": "estantería",
-     "en": "bookcase",
-     "ru": "стеллаж"
-    },
-    {
-     "es": "armario",
-     "en": "wardrobe",
-     "ru": "шкаф"
-    },
-    {
-     "es": "cómoda",
-     "en": "chest of drawers",
-     "ru": "комод"
-    },
-    {
-     "es": "escritorio",
-     "en": "desk",
-     "ru": "письменный стол"
-    },
-    {
-     "es": "mesilla",
-     "en": "bedside table",
-     "ru": "тумбочка"
-    }
+   "words": [
+    "sofa",
+    "estanteria",
+    "armario",
+    "comoda",
+    "escritorio",
+    "mesilla"
    ],
    "reviewed": false
   },
@@ -807,37 +327,13 @@
    "name_es": "En el hospital",
    "en": "At the hospital",
    "ru": "В больнице",
-   "items": [
-    {
-     "es": "camilla",
-     "en": "stretcher",
-     "ru": "носилки"
-    },
-    {
-     "es": "jeringa",
-     "en": "syringe",
-     "ru": "шприц"
-    },
-    {
-     "es": "venda",
-     "en": "bandage",
-     "ru": "бинт"
-    },
-    {
-     "es": "termómetro",
-     "en": "thermometer",
-     "ru": "градусник"
-    },
-    {
-     "es": "receta",
-     "en": "prescription",
-     "ru": "рецепт"
-    },
-    {
-     "es": "ambulancia",
-     "en": "ambulance",
-     "ru": "скорая помощь"
-    }
+   "words": [
+    "camilla",
+    "jeringa",
+    "venda",
+    "termometro",
+    "receta",
+    "ambulancia"
    ],
    "reviewed": false
   },
@@ -847,37 +343,13 @@
    "name_es": "Joyas",
    "en": "Jewellery",
    "ru": "Украшения",
-   "items": [
-    {
-     "es": "anillo",
-     "en": "ring",
-     "ru": "кольцо"
-    },
-    {
-     "es": "collar",
-     "en": "necklace",
-     "ru": "ожерелье"
-    },
-    {
-     "es": "pulsera",
-     "en": "bracelet",
-     "ru": "браслет"
-    },
-    {
-     "es": "pendientes",
-     "en": "earrings",
-     "ru": "серьги"
-    },
-    {
-     "es": "broche",
-     "en": "brooch",
-     "ru": "брошь"
-    },
-    {
-     "es": "cadena",
-     "en": "chain",
-     "ru": "цепочка"
-    }
+   "words": [
+    "anillo",
+    "collar",
+    "pulsera",
+    "pendiente",
+    "broche",
+    "cadena"
    ],
    "reviewed": false
   },
@@ -887,37 +359,13 @@
    "name_es": "Aeropuerto",
    "en": "The airport",
    "ru": "Аэропорт",
-   "items": [
-    {
-     "es": "pasaporte",
-     "en": "passport",
-     "ru": "паспорт"
-    },
-    {
-     "es": "maleta",
-     "en": "suitcase",
-     "ru": "чемодан"
-    },
-    {
-     "es": "aduana",
-     "en": "customs",
-     "ru": "таможня"
-    },
-    {
-     "es": "terminal",
-     "en": "terminal",
-     "ru": "терминал"
-    },
-    {
-     "es": "equipaje",
-     "en": "luggage",
-     "ru": "багаж"
-    },
-    {
-     "es": "azafata",
-     "en": "flight attendant",
-     "ru": "стюардесса"
-    }
+   "words": [
+    "pasaporte",
+    "maleta",
+    "aduana",
+    "terminal",
+    "equipaje",
+    "azafata"
    ],
    "reviewed": false
   },
@@ -927,37 +375,13 @@
    "name_es": "Insectos",
    "en": "Insects",
    "ru": "Насекомые",
-   "items": [
-    {
-     "es": "abeja",
-     "en": "bee",
-     "ru": "пчела"
-    },
-    {
-     "es": "hormiga",
-     "en": "ant",
-     "ru": "муравей"
-    },
-    {
-     "es": "mariposa",
-     "en": "butterfly",
-     "ru": "бабочка"
-    },
-    {
-     "es": "mosquito",
-     "en": "mosquito",
-     "ru": "комар"
-    },
-    {
-     "es": "mariquita",
-     "en": "ladybird",
-     "ru": "божья коровка"
-    },
-    {
-     "es": "saltamontes",
-     "en": "grasshopper",
-     "ru": "кузнечик"
-    }
+   "words": [
+    "abeja",
+    "hormiga",
+    "mariposa",
+    "mosquito",
+    "mariquita",
+    "saltamontes"
    ],
    "reviewed": false
   },
@@ -967,37 +391,13 @@
    "name_es": "Playa",
    "en": "The beach",
    "ru": "Пляж",
-   "items": [
-    {
-     "es": "arena",
-     "en": "sand",
-     "ru": "песок"
-    },
-    {
-     "es": "sombrilla",
-     "en": "beach umbrella",
-     "ru": "пляжный зонт"
-    },
-    {
-     "es": "bañador",
-     "en": "swimsuit",
-     "ru": "купальник"
-    },
-    {
-     "es": "ola",
-     "en": "wave",
-     "ru": "волна"
-    },
-    {
-     "es": "concha",
-     "en": "shell",
-     "ru": "ракушка"
-    },
-    {
-     "es": "crema solar",
-     "en": "sun cream",
-     "ru": "солнцезащитный крем"
-    }
+   "words": [
+    "arena",
+    "sombrilla",
+    "bañador",
+    "ola",
+    "concha",
+    "crema-solar"
    ],
    "reviewed": false
   },
@@ -1007,37 +407,13 @@
    "name_es": "Postres",
    "en": "Desserts",
    "ru": "Десерты",
-   "items": [
-    {
-     "es": "flan",
-     "en": "crème caramel",
-     "ru": "флан (крем-карамель)"
-    },
-    {
-     "es": "helado",
-     "en": "ice cream",
-     "ru": "мороженое"
-    },
-    {
-     "es": "tarta",
-     "en": "cake",
-     "ru": "торт"
-    },
-    {
-     "es": "natillas",
-     "en": "custard",
-     "ru": "заварной крем"
-    },
-    {
-     "es": "churro",
-     "en": "churro",
-     "ru": "чуррос"
-    },
-    {
-     "es": "bizcocho",
-     "en": "sponge cake",
-     "ru": "бисквит"
-    }
+   "words": [
+    "flan",
+    "helado",
+    "tarta",
+    "natillas",
+    "churro",
+    "bizcocho"
    ],
    "reviewed": false
   },
@@ -1047,37 +423,13 @@
    "name_es": "Partes del coche",
    "en": "Parts of a car",
    "ru": "Части автомобиля",
-   "items": [
-    {
-     "es": "volante",
-     "en": "steering wheel",
-     "ru": "руль"
-    },
-    {
-     "es": "freno",
-     "en": "brake",
-     "ru": "тормоз"
-    },
-    {
-     "es": "maletero",
-     "en": "boot",
-     "ru": "багажник"
-    },
-    {
-     "es": "capó",
-     "en": "bonnet",
-     "ru": "капот"
-    },
-    {
-     "es": "retrovisor",
-     "en": "rear-view mirror",
-     "ru": "зеркало заднего вида"
-    },
-    {
-     "es": "parabrisas",
-     "en": "windscreen",
-     "ru": "лобовое стекло"
-    }
+   "words": [
+    "volante",
+    "freno",
+    "maletero",
+    "capo",
+    "retrovisor",
+    "parabrisas"
    ],
    "reviewed": false
   },
@@ -1087,37 +439,13 @@
    "name_es": "Oficina",
    "en": "The office",
    "ru": "Офис",
-   "items": [
-    {
-     "es": "grapadora",
-     "en": "stapler",
-     "ru": "степлер"
-    },
-    {
-     "es": "archivador",
-     "en": "filing cabinet",
-     "ru": "картотека"
-    },
-    {
-     "es": "escáner",
-     "en": "scanner",
-     "ru": "сканер"
-    },
-    {
-     "es": "clip",
-     "en": "paper clip",
-     "ru": "скрепка"
-    },
-    {
-     "es": "impresora",
-     "en": "printer",
-     "ru": "принтер"
-    },
-    {
-     "es": "agenda",
-     "en": "diary",
-     "ru": "ежедневник"
-    }
+   "words": [
+    "grapadora",
+    "archivador",
+    "escaner",
+    "clip",
+    "impresora",
+    "agenda"
    ],
    "reviewed": false
   },
@@ -1127,37 +455,13 @@
    "name_es": "Jardín",
    "en": "The garden",
    "ru": "Сад",
-   "items": [
-    {
-     "es": "césped",
-     "en": "lawn",
-     "ru": "газон"
-    },
-    {
-     "es": "manguera",
-     "en": "hose",
-     "ru": "шланг"
-    },
-    {
-     "es": "rastrillo",
-     "en": "rake",
-     "ru": "грабли"
-    },
-    {
-     "es": "regadera",
-     "en": "watering can",
-     "ru": "лейка"
-    },
-    {
-     "es": "seto",
-     "en": "hedge",
-     "ru": "живая изгородь"
-    },
-    {
-     "es": "maceta",
-     "en": "flowerpot",
-     "ru": "цветочный горшок"
-    }
+   "words": [
+    "cesped",
+    "manguera",
+    "rastrillo",
+    "regadera",
+    "seto",
+    "maceta"
    ],
    "reviewed": false
   },
@@ -1167,37 +471,13 @@
    "name_es": "Desastres naturales",
    "en": "Natural disasters",
    "ru": "Стихийные бедствия",
-   "items": [
-    {
-     "es": "terremoto",
-     "en": "earthquake",
-     "ru": "землетрясение"
-    },
-    {
-     "es": "huracán",
-     "en": "hurricane",
-     "ru": "ураган"
-    },
-    {
-     "es": "inundación",
-     "en": "flood",
-     "ru": "наводнение"
-    },
-    {
-     "es": "sequía",
-     "en": "drought",
-     "ru": "засуха"
-    },
-    {
-     "es": "avalancha",
-     "en": "avalanche",
-     "ru": "лавина"
-    },
-    {
-     "es": "erupción",
-     "en": "eruption",
-     "ru": "извержение"
-    }
+   "words": [
+    "terremoto",
+    "huracan",
+    "inundacion",
+    "sequia",
+    "avalancha",
+    "erupcion"
    ],
    "reviewed": false
   },
@@ -1207,37 +487,13 @@
    "name_es": "Justicia",
    "en": "Justice",
    "ru": "Правосудие",
-   "items": [
-    {
-     "es": "juez",
-     "en": "judge",
-     "ru": "судья"
-    },
-    {
-     "es": "abogado",
-     "en": "lawyer",
-     "ru": "адвокат"
-    },
-    {
-     "es": "juicio",
-     "en": "trial",
-     "ru": "суд (процесс)"
-    },
-    {
-     "es": "sentencia",
-     "en": "sentence",
-     "ru": "приговор"
-    },
-    {
-     "es": "testigo",
-     "en": "witness",
-     "ru": "свидетель"
-    },
-    {
-     "es": "multa",
-     "en": "fine",
-     "ru": "штраф"
-    }
+   "words": [
+    "juez",
+    "abogado",
+    "juicio",
+    "sentencia",
+    "testigo",
+    "multa"
    ],
    "reviewed": false
   },
@@ -1247,37 +503,13 @@
    "name_es": "Aves",
    "en": "Birds",
    "ru": "Птицы",
-   "items": [
-    {
-     "es": "águila",
-     "en": "eagle",
-     "ru": "орёл"
-    },
-    {
-     "es": "búho",
-     "en": "owl",
-     "ru": "сова"
-    },
-    {
-     "es": "cigüeña",
-     "en": "stork",
-     "ru": "аист"
-    },
-    {
-     "es": "gorrión",
-     "en": "sparrow",
-     "ru": "воробей"
-    },
-    {
-     "es": "golondrina",
-     "en": "swallow",
-     "ru": "ласточка"
-    },
-    {
-     "es": "halcón",
-     "en": "falcon",
-     "ru": "сокол"
-    }
+   "words": [
+    "aguila",
+    "buho",
+    "cigueña",
+    "gorrion",
+    "golondrina",
+    "halcon"
    ],
    "reviewed": false
   },
@@ -1287,37 +519,13 @@
    "name_es": "Especias",
    "en": "Spices",
    "ru": "Специи",
-   "items": [
-    {
-     "es": "azafrán",
-     "en": "saffron",
-     "ru": "шафран"
-    },
-    {
-     "es": "canela",
-     "en": "cinnamon",
-     "ru": "корица"
-    },
-    {
-     "es": "pimentón",
-     "en": "paprika",
-     "ru": "паприка"
-    },
-    {
-     "es": "comino",
-     "en": "cumin",
-     "ru": "кумин"
-    },
-    {
-     "es": "pimienta",
-     "en": "pepper (spice)",
-     "ru": "перец (специя)"
-    },
-    {
-     "es": "orégano",
-     "en": "oregano",
-     "ru": "орегано"
-    }
+   "words": [
+    "azafran",
+    "canela",
+    "pimenton",
+    "comino",
+    "pimienta",
+    "oregano"
    ],
    "reviewed": false
   },
@@ -1327,37 +535,13 @@
    "name_es": "Teatro",
    "en": "The theatre",
    "ru": "Театр",
-   "items": [
-    {
-     "es": "escenario",
-     "en": "stage",
-     "ru": "сцена"
-    },
-    {
-     "es": "telón",
-     "en": "curtain",
-     "ru": "занавес"
-    },
-    {
-     "es": "decorado",
-     "en": "scenery",
-     "ru": "декорации"
-    },
-    {
-     "es": "ensayo",
-     "en": "rehearsal",
-     "ru": "репетиция"
-    },
-    {
-     "es": "camerino",
-     "en": "dressing room",
-     "ru": "гримёрка"
-    },
-    {
-     "es": "público",
-     "en": "audience",
-     "ru": "зрители"
-    }
+   "words": [
+    "escenario",
+    "telon",
+    "decorado",
+    "ensayo",
+    "camerino",
+    "publico"
    ],
    "reviewed": false
   }

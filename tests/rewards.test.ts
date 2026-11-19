@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { _setBackend, exportProgress, importProgress, store } from '../src/data/storage';
 import { awardStars, canSpend, getStars, getWallet, onWallet, spend } from '../src/rewards/wallet';
 import { STARS } from '../src/rewards/config';
-import { nearMiss, nearMissText, bare } from '../src/games/shared/accents';
+import { nearMiss, nearMissText, bare } from '../src/lang/es/accents';
 import { vibrate } from '../src/app/haptics';
 
 beforeEach(() => { _setBackend(null); });
