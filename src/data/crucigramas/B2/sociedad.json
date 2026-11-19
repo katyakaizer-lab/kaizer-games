@@ -1,0 +1,30 @@
+{
+  "id": "sociedad", "level": "B2", "name_es": "Sociedad y política", "en": "Society and politics", "ru": "Общество и политика", "reviewed": false,
+  "decor": {"style": "stars", "items": ["edificio", "libro", "mano", "estrella"]},
+  "words": [
+    { "es": "gobierno", "clues": { "def": "Conjunto de personas que dirigen un país", "gap": "El ___ aprueba una nueva ley" } },
+    { "es": "elecciones", "clues": { "def": "Día en que los ciudadanos eligen a sus representantes", "gap": "Las ___ son en mayo" } },
+    { "es": "votar", "clues": { "def": "Elegir a alguien con una papeleta", "gap": "Con dieciocho años ya puedes ___" } },
+    { "es": "ley", "clues": { "def": "Norma que todos deben cumplir", "gap": "La ___ prohíbe fumar en los bares" } },
+    { "es": "derecho", "clues": { "def": "Lo que todas las personas pueden exigir", "gap": "La educación es un ___ de todos" } },
+    { "es": "ciudadano", "clues": { "def": "Persona que vive en un país y tiene sus derechos", "gap": "Cada ___ puede votar" } },
+    { "es": "alcalde", "clues": { "def": "Persona que dirige un ayuntamiento", "gap": "El ___ inaugura el nuevo parque" } },
+    { "es": "democracia", "clues": { "def": "Sistema en el que el pueblo elige a sus gobernantes", "gap": "En una ___ hay libertad de prensa" } },
+    { "es": "presidente", "clues": { "def": "Persona que dirige el gobierno de un país", "gap": "El ___ da un discurso" } },
+    { "es": "impuesto", "clues": { "def": "Dinero que pagas al Estado", "gap": "Subir un ___ nunca es popular" } },
+    { "es": "huelga", "clues": { "def": "Cuando los trabajadores dejan de trabajar para protestar", "gap": "Hoy hay ___ de metro" } },
+    { "es": "desempleo", "clues": { "syn": "Sinónimo de «paro»", "gap": "El ___ ha bajado este año" } },
+    { "es": "igualdad", "clues": { "def": "Mismos derechos para todas las personas", "gap": "Luchamos por la ___ entre hombres y mujeres" } },
+    { "es": "libertad", "clues": { "def": "Poder decidir y actuar sin que nadie te lo impida", "gap": "La ___ de expresión es fundamental" } },
+    { "es": "justicia", "clues": { "def": "Lo que es justo; también, el trabajo de los jueces", "gap": "Las víctimas piden ___" } },
+    { "es": "pobreza", "clues": { "ant": "Lo contrario de «riqueza»", "gap": "Muchas familias viven en la ___" } },
+    { "es": "voluntario", "clues": { "def": "Persona que ayuda sin cobrar", "gap": "Trabajo de ___ en un comedor social" } },
+    { "es": "solidaridad", "clues": { "def": "Ayuda a quienes lo necesitan", "gap": "La ___ de los vecinos fue admirable" } },
+    { "es": "encuesta", "clues": { "def": "Preguntas a mucha gente para conocer su opinión", "gap": "Según la ___, la mayoría está de acuerdo" } },
+    { "es": "debate", "clues": { "def": "Discusión ordenada sobre un tema", "gap": "Esta noche hay un ___ en la tele" } },
+    { "es": "opinión", "clues": { "def": "Lo que piensas sobre algo", "gap": "En mi ___, tiene razón" } },
+    { "es": "protesta", "clues": { "def": "Acción para mostrar que no estás de acuerdo", "gap": "Miles de personas salen a la calle en ___" } },
+    { "es": "estado", "clues": { "def": "País con su gobierno y sus leyes", "gap": "El ___ paga la sanidad pública" } },
+    { "es": "campaña", "clues": { "def": "Actos para pedir el voto antes de las elecciones", "gap": "Los partidos empiezan la ___ electoral" } }
+  ]
+}

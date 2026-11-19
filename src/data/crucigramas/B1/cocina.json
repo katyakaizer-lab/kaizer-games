@@ -1,23 +1,17 @@
 {
   "id": "cocina", "level": "B1", "name_es": "La cocina y sus utensilios", "en": "The kitchen and its tools", "ru": "Кухня и утварь", "reviewed": false,
-  "decor": { "style": "dots", "items": ["sarten", "olla", "cuchara", "tenedor"] },
+  "decor": {"style": "dots", "items": ["sarten", "olla", "cuchara", "tenedor"]},
   "words": [
     { "es": "sartén", "clues": { "def": "Recipiente plano con mango para freír", "gap": "Frío el huevo en la ___" } },
     { "es": "olla", "clues": { "def": "Recipiente alto para cocer o hacer sopa", "gap": "Pongo agua a hervir en la ___" } },
     { "es": "cuchillo", "clues": { "def": "Cubierto que corta", "use": "Lo usas para cortar el pan" } },
     { "es": "tenedor", "clues": { "def": "Cubierto con dientes para pinchar", "gap": "Pincho la carne con el ___" } },
-    { "es": "cucharón", "clues": { "def": "Cubierto grande y hondo para servir la sopa", "gap": "Sirvo la sopa con el ___" } },
     { "es": "horno", "clues": { "def": "Aparato caliente para asar o hacer pasteles", "gap": "Meto el pollo en el ___" } },
     { "es": "nevera", "clues": { "def": "Aparato frío para guardar la comida", "syn": "Sinónimo de «frigorífico»" } },
     { "es": "microondas", "clues": { "def": "Aparato que calienta la comida en un momento", "gap": "Caliento la leche en el ___" } },
     { "es": "batidora", "clues": { "def": "Aparato que tritura y mezcla", "use": "La usas para hacer un puré" } },
-    { "es": "rallador", "clues": { "use": "Lo usas para hacer el queso en trocitos", "gap": "Paso la zanahoria por el ___" } },
-    { "es": "colador", "clues": { "def": "Utensilio con agujeros que deja pasar el agua", "use": "Lo usas para escurrir la pasta" } },
-    { "es": "cazo", "clues": { "def": "Recipiente pequeño con mango para calentar leche", "gap": "Caliento la leche en un ___" } },
     { "es": "tabla", "clues": { "def": "Superficie de madera para cortar", "use": "Encima de ella cortas la verdura" } },
-    { "es": "delantal", "clues": { "def": "Prenda que te pones para no mancharte al cocinar", "gap": "Me pongo el ___ antes de cocinar" } },
     { "es": "grifo", "clues": { "def": "Por él sale el agua del fregadero", "gap": "Cierra el ___, que se gasta el agua" } },
-    { "es": "fregadero", "clues": { "def": "Pila donde se lavan los platos", "gap": "Dejo los platos sucios en el ___" } },
     { "es": "plato", "clues": { "def": "Pieza redonda donde se sirve la comida", "gap": "Pon un ___ para cada uno" } },
     { "es": "servilleta", "clues": { "def": "Trozo de papel o tela para limpiarte la boca", "gap": "Límpiate con la ___" } },
     { "es": "mantel", "clues": { "def": "Tela que cubre la mesa", "gap": "Pongo el ___ antes de comer" } },
@@ -25,6 +19,11 @@
     { "es": "cocinar", "clues": { "def": "Preparar la comida", "syn": "Sinónimo de «guisar»" } },
     { "es": "hervir", "clues": { "def": "Calentar un líquido hasta que salen burbujas", "gap": "El agua tiene que ___ antes de echar la pasta" } },
     { "es": "freír", "clues": { "def": "Cocinar en aceite muy caliente", "gap": "Voy a ___ unas patatas" } },
-    { "es": "abrelatas", "clues": { "def": "Utensilio para abrir una conserva", "use": "Lo necesitas para el atún en conserva" } }
+    { "es": "cuchara", "clues": { "def": "Cubierto para tomar la sopa", "gap": "Remuevo el café con una ___" } },
+    { "es": "congelador", "clues": { "def": "Parte de la nevera que está muy fría", "gap": "Guardo el helado en el ___" } },
+    { "es": "asar", "clues": { "def": "Cocinar en el horno o en la parrilla", "gap": "Vamos a ___ pollo para cenar" } },
+    { "es": "cortar", "clues": { "def": "Dividir algo con un cuchillo", "gap": "Ayúdame a ___ las patatas" } },
+    { "es": "lavar", "clues": { "def": "Limpiar con agua", "gap": "Hay que ___ la fruta antes de comerla" } },
+    { "es": "mezclar", "clues": { "def": "Juntar varias cosas y remover", "gap": "Ahora hay que ___ la harina con los huevos" } }
   ]
 }

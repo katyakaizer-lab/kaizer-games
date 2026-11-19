@@ -1,6 +1,6 @@
 {
   "id": "naturaleza", "level": "B2", "name_es": "La naturaleza", "en": "Nature", "ru": "Природа", "reviewed": false,
-  "decor": { "style": "leaves", "items": ["arbol", "hoja", "montana", "flor"] },
+  "decor": {"style": "leaves", "items": ["arbol", "hoja", "montana", "flor"]},
   "words": [
     { "es": "bosque", "clues": { "def": "Lugar con muchos árboles", "gap": "Nos perdemos en el ___" } },
     { "es": "río", "clues": { "def": "Agua que corre hacia el mar", "gap": "El ___ Ebro pasa por Zaragoza" } },
@@ -17,15 +17,16 @@
     { "es": "piedra", "clues": { "syn": "Sinónimo de «roca»", "gap": "Tiro una ___ al río" } },
     { "es": "cascada", "clues": { "def": "Agua que cae desde lo alto de una roca", "gap": "Nos bañamos bajo la ___" } },
     { "es": "glaciar", "clues": { "def": "Masa enorme de hielo en las montañas", "gap": "El ___ se derrite por el calor" } },
-    { "es": "acantilado", "clues": { "def": "Costa alta y vertical sobre el mar", "gap": "Desde el ___ se ven romper las olas" } },
     { "es": "llanura", "clues": { "def": "Terreno grande y plano", "gap": "La ___ de La Mancha parece no tener fin" } },
     { "es": "pradera", "clues": { "def": "Terreno con mucha hierba", "gap": "Las vacas pastan en la ___" } },
     { "es": "arroyo", "clues": { "def": "Río pequeño", "gap": "Cruzamos el ___ saltando por las piedras" } },
-    { "es": "musgo", "clues": { "def": "Planta verde y suave que crece en las piedras húmedas", "gap": "Ponemos ___ en el belén" } },
     { "es": "raíz", "clues": { "def": "Parte de la planta que está bajo tierra", "gap": "El árbol tiene una ___ muy profunda" } },
     { "es": "tronco", "clues": { "def": "Parte gruesa del árbol", "gap": "Me siento en un ___ caído" } },
     { "es": "amanecer", "clues": { "def": "Cuando sale el sol", "ant": "Lo contrario de «atardecer»" } },
     { "es": "horizonte", "clues": { "def": "Línea donde parecen juntarse el cielo y la tierra", "gap": "El sol se esconde en el ___" } },
-    { "es": "playa", "clues": { "def": "Orilla del mar con arena", "gap": "Hacemos castillos en la ___" } }
+    { "es": "playa", "clues": { "def": "Orilla del mar con arena", "gap": "Hacemos castillos en la ___" } },
+    { "es": "paisaje", "clues": { "def": "Lo que ves cuando miras el campo desde lejos", "gap": "Desde la montaña hay un ___ precioso" } },
+    { "es": "colina", "clues": { "def": "Montaña pequeña y suave", "gap": "La casa está en lo alto de una ___" } },
+    { "es": "océano", "clues": { "def": "Mar enorme, como el Atlántico", "gap": "El ___ Pacífico es el más grande" } }
   ]
 }

@@ -70,7 +70,7 @@ function newGame(level: Level, topic: Topic, help: HelpLevel, seed: number): Sav
   if (!puzzle) return null;
   store.set(`cw.seen.${topic.id}`, pushRecent(recent, puzzle));
   const rt = store.get<string[]>(`cw.recentTopics.${level}`, []);
-  store.set(`cw.recentTopics.${level}`, [topic.id, ...rt.filter((x) => x !== topic.id)].slice(0, 6));
+  store.set(`cw.recentTopics.${level}`, [topic.id, ...rt.filter((x) => x !== topic.id)].slice(0, Math.max(1, topicsFor(level).length - 1)));
   store.set('cw.help', help);
   const g: Saved = { topicId: topic.id, help, puzzle, letters: {}, hints: {}, hintsUsed: 0, starred: [], stars: 0 };
   store.set(savedKey(level), g);

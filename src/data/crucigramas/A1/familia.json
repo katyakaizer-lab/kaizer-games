@@ -1,6 +1,6 @@
 {
   "id": "familia", "level": "A1", "name_es": "La familia", "en": "Family", "ru": "Семья", "reviewed": false,
-  "decor": { "style": "stars", "items": ["casa", "corazon", "foto", "globo"] },
+  "decor": {"style": "stars", "items": ["casa", "corazon", "foto", "globo"]},
   "words": [
     { "es": "madre", "clues": { "def": "Mujer que tiene hijos", "syn": "Sinónimo de «mamá»" } },
     { "es": "padre", "clues": { "def": "Hombre que tiene hijos", "syn": "Sinónimo de «papá»" } },
@@ -18,11 +18,12 @@
     { "es": "bebé", "clues": { "def": "Niño muy pequeño que todavía no anda", "gap": "El ___ llora porque tiene hambre" } },
     { "es": "marido", "clues": { "def": "Hombre casado, respecto a su mujer", "syn": "Sinónimo de «esposo»" } },
     { "es": "esposa", "clues": { "def": "Mujer casada, respecto a su marido", "gap": "Juan y su ___ tienen dos hijos" } },
-    { "es": "gemelos", "clues": { "def": "Dos hermanos que nacen el mismo día y se parecen mucho", "gap": "Pablo y Pedro son ___" } },
     { "es": "sobrino", "clues": { "def": "Hijo de tu hermano o de tu hermana", "gap": "Mi ___ me llama tía" } },
     { "es": "novia", "clues": { "def": "Chica con la que sales y a la que quieres", "gap": "Mi hermano va al cine con su ___" } },
-    { "es": "boda", "clues": { "def": "Fiesta cuando dos personas se casan", "gap": "Los novios bailan en la ___" } },
-    { "es": "suegra", "clues": { "def": "Madre de tu marido o de tu mujer", "gap": "Mi madre come los domingos con su ___" } },
-    { "es": "familia", "clues": { "def": "Padres, hijos, abuelos, tíos y primos", "gap": "Toda la ___ se reúne en Navidad" } }
+    { "es": "familia", "clues": { "def": "Padres, hijos, abuelos, tíos y primos", "gap": "Toda la ___ se reúne en Navidad" } },
+    { "es": "niño", "clues": { "def": "Persona pequeña que todavía no es adulta", "gap": "El ___ juega en el parque con su pelota" } },
+    { "es": "niña", "clues": { "def": "Chica pequeña", "gap": "La ___ tiene seis años" } },
+    { "es": "novio", "clues": { "def": "Chico con el que sales y al que quieres", "gap": "Mi hermana va al cine con su ___" } },
+    { "es": "padres", "clues": { "def": "Mamá y papá, juntos", "gap": "Mis ___ trabajan en un hospital" } }
   ]
 }

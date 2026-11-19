@@ -785,6 +785,86 @@
    ]
   },
   {
+   "id": "decor.calendario.sol",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/sol.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: sol"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.calendario.nube",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/nube.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: nube"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.calendario.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.calendario.reloj",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/reloj.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: reloj"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
    "id": "decor.casa.llave",
    "kind": "decor",
    "files": {
@@ -1185,6 +1265,86 @@
    ]
   },
   {
+   "id": "decor.numeros.dado",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/dado.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: dado"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.numeros.circulo",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/circulo.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: circulo"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.numeros.cuadrado",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/cuadrado.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: cuadrado"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.numeros.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
    "id": "decor.ropa.bufanda",
    "kind": "decor",
    "files": {
@@ -1425,6 +1585,86 @@
    ]
   },
   {
+   "id": "decor.compras.bolso",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/bolso.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: bolso"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.compras.billete",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/billete.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: billete"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.compras.regalo",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/regalo.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: regalo"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.compras.reloj",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/reloj.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: reloj"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
    "id": "decor.desayuno.taza",
    "kind": "decor",
    "files": {
@@ -1578,6 +1818,86 @@
     "date": "2026-11-19",
     "terms": "own",
     "prompt": "simple one-colour silhouette: mochila"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.rutina.reloj",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/reloj.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: reloj"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.rutina.sol",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/sol.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: sol"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.rutina.taza",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/taza.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: taza"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.rutina.nube",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/nube.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: nube"
    },
    "licence": "own",
    "games": [
@@ -2145,6 +2465,86 @@
    ]
   },
   {
+   "id": "decor.mercado.berenjena",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/berenjena.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: berenjena"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.mercado.uva",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/uva.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: uva"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.mercado.cereza",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/cereza.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: cereza"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.mercado.zanahoria",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/zanahoria.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: zanahoria"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
    "id": "decor.musica.nota",
    "kind": "decor",
    "files": {
@@ -2378,6 +2778,246 @@
     "date": "2026-11-19",
     "terms": "own",
     "prompt": "simple one-colour silhouette: pincel"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.trabajo.maletin",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/maletin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: maletin"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.trabajo.reloj",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/reloj.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: reloj"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.trabajo.movil",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/movil.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: movil"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.trabajo.lapiz",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/lapiz.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: lapiz"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.ambiente.hoja",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/hoja.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: hoja"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.ambiente.gota",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/gota.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: gota"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.ambiente.sol",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/sol.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: sol"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.ambiente.arbol",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/arbol.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: arbol"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.caracter.sonrisa",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/sonrisa.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: sonrisa"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.caracter.corazon",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/corazon.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: corazon"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.caracter.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.caracter.mano",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/mano.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: mano"
    },
    "licence": "own",
    "games": [
@@ -2718,6 +3358,86 @@
     "date": "2026-11-19",
     "terms": "own",
     "prompt": "simple one-colour silhouette: pastilla"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.sociedad.edificio",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/edificio.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: edificio"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.sociedad.libro",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/libro.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: libro"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.sociedad.mano",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/mano.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: mano"
+   },
+   "licence": "own",
+   "games": [
+    "crucigramas"
+   ]
+  },
+  {
+   "id": "decor.sociedad.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
    },
    "licence": "own",
    "games": [

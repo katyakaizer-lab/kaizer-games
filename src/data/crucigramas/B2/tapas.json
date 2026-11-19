@@ -1,10 +1,9 @@
 {
   "id": "tapas", "level": "B2", "name_es": "Tapas y platos típicos", "en": "Tapas and traditional dishes", "ru": "Тапас и традиционные блюда", "reviewed": false,
-  "decor": { "style": "dots", "items": ["aceituna", "gamba", "cazuela", "barra"] },
+  "decor": {"style": "dots", "items": ["aceituna", "gamba", "cazuela", "barra"]},
   "words": [
     { "es": "paella", "clues": { "def": "Plato de arroz valenciano en una sartén ancha", "gap": "Los domingos comemos ___ de marisco" } },
     { "es": "tortilla", "clues": { "def": "Plato de huevo y patata", "gap": "La ___ de patatas con cebolla es más jugosa" } },
-    { "es": "salmorejo", "clues": { "def": "Crema fría de tomate y pan, típica de Córdoba", "gap": "El ___ lleva huevo picado y jamón por encima" } },
     { "es": "croqueta", "clues": { "def": "Bola de bechamel rebozada y frita", "gap": "La ___ de jamón es la tapa favorita de muchos" } },
     { "es": "bravas", "clues": { "def": "Patatas fritas con salsa picante", "gap": "Una ración de patatas ___, por favor" } },
     { "es": "calamar", "clues": { "def": "Molusco que se come rebozado en anillas", "gap": "El ___ tiene tinta negra" } },
@@ -14,18 +13,18 @@
     { "es": "morcilla", "clues": { "def": "Embutido negro hecho con sangre, típico de Burgos", "gap": "La ___ de Burgos lleva arroz" } },
     { "es": "aceituna", "clues": { "def": "Fruto pequeño del olivo", "gap": "Con el aperitivo nos ponen una ___ rellena" } },
     { "es": "cocido", "clues": { "def": "Guiso madrileño de garbanzos, carne y verduras", "gap": "El ___ madrileño se sirve en tres vuelcos" } },
-    { "es": "fabada", "clues": { "def": "Guiso asturiano de alubias con chorizo y morcilla", "gap": "La ___ asturiana es perfecta en invierno" } },
-    { "es": "pisto", "clues": { "def": "Fritada de pimiento, calabacín y tomate", "gap": "El ___ manchego se come con huevo frito" } },
     { "es": "pincho", "clues": { "def": "Tapa pequeña con un palillo, típica del norte", "gap": "En San Sebastián tomamos un ___ en cada bar" } },
-    { "es": "boquerón", "clues": { "def": "Pescado pequeño que se come frito o en vinagre", "gap": "El ___ en vinagre es una tapa clásica" } },
     { "es": "ensaladilla", "clues": { "def": "Tapa fría de patata, atún y mayonesa", "gap": "La ___ rusa es una tapa muy común" } },
     { "es": "empanada", "clues": { "def": "Masa rellena de atún o carne, típica de Galicia", "gap": "Llevamos una ___ gallega al campo" } },
-    { "es": "migas", "clues": { "def": "Pan troceado y frito con ajo, plato de pastores", "gap": "En el campo desayunamos ___ con chorizo" } },
     { "es": "ración", "clues": { "def": "Plato grande para compartir en un bar", "gap": "Pedimos una ___ de calamares" } },
     { "es": "aperitivo", "clues": { "def": "Algo de picar antes de comer", "gap": "Tomamos el ___ en una terraza" } },
     { "es": "marisco", "clues": { "def": "Gambas, mejillones y langostinos", "gap": "Me encanta la paella de ___" } },
     { "es": "mejillón", "clues": { "def": "Molusco negro con concha, de las rías gallegas", "gap": "El ___ al vapor se sirve con limón" } },
     { "es": "pimentón", "clues": { "def": "Polvo rojo de pimiento seco", "gap": "El pulpo lleva ___ y aceite" } },
-    { "es": "banderilla", "clues": { "def": "Pincho de aceituna, pepinillo y guindilla", "gap": "La ___ pica un poco por la guindilla" } }
+    { "es": "guiso", "clues": { "def": "Comida cocinada despacio en una olla", "gap": "El ___ de la abuela lleva carne y patatas" } },
+    { "es": "sabroso", "clues": { "def": "Que tiene muy buen sabor", "gap": "Este cocido está muy ___" } },
+    { "es": "picante", "clues": { "def": "Que quema un poco en la boca", "gap": "La salsa de las bravas es ___" } },
+    { "es": "embutido", "clues": { "def": "Chorizo, salchichón o jamón, por ejemplo", "gap": "Pedimos una tabla de ___ ibérico" } },
+    { "es": "gazpacho", "clues": { "def": "Sopa fría de tomate, típica del verano", "gap": "En agosto tomamos ___ todos los días" } }
   ]
 }

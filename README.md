@@ -2,7 +2,7 @@
 
 Spanish language games for children and adults together. A static, phone-first web app (PWA): no accounts, no backend, no ads, no tracking, nothing leaves the device.
 
-**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (28 topics, 643 words in 4 levels). Stars are earned in every game. Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
+**Status: stage 2 plus Solitario de categorías and Crucigramas.** Games: Constelaciones (four modes, four stories), Solitario de categorías (34 concrete categories in 4 levels), Crucigramas (37 topics, 835 words in 4 levels). Stars are earned in every game. Live preview: https://katyakaizer-lab.github.io/kaizer-games/ (every push to `main` runs the tests, builds and deploys).
 
 ## Commands
 
@@ -92,7 +92,7 @@ docs/                         planning documents (kept locally, not in the repos
 ### Crucigramas
 
 - Choices Katya made (2026-11-18): our own on-screen Spanish keyboard (no phone keyboard), accents required (Ó is not O; the keyboard has Ñ and a row of Á É Í Ó Ú Ü), puzzles generated from topics, clues in Spanish only: definitions, synonyms and antonyms (no translations, no pictures for now).
-- Each puzzle takes one topic of the chosen level and places some of its words (A1 6, A2 7, B1 8, B2 9) on a grid of at most 9x9 (A1) to 11x12 (B2). Every word crosses another, no letters touch by accident, and the same seed gives the same puzzle. Clue kinds per level: A1 and A2 definitions; B1 and B2 a mix of definitions, synonyms and antonyms.
+- Each puzzle takes one topic of the chosen level and places some of its words (A1 6, A2 7, B1 8, B2 9) on a grid of at most 10x10 (A1) to 11x12 (B2). Every word crosses another, no letters touch by accident, and the same seed gives the same puzzle. Every level uses all clue kinds; easier levels simply have easier words and clues.
 - Phone screen: top bar (back, level and topic, clue list), the grid with cells as big as fit (up to 44px), the current clue with previous and next, Pista and Comprobar, then the keyboard. On short phones (under 760px tall) Pista and Comprobar become icon buttons in the top bar so the grid keeps its size. Wide screens show the clue list beside the grid. A physical keyboard works too (letters, Backspace, arrows, Tab).
 - Tap a square to choose it; tap it again (or the clue) to switch between across and down. A finished word turns green and the next unfinished word is chosen.
 - Pista writes the right letter in the current square. Comprobar marks wrong letters; a letter that only lacks or has an extra accent is marked with a dashed border and the message says so. Nothing is ever lost or timed; a game in progress is kept per level and comes back when you return.
@@ -102,4 +102,4 @@ docs/                         planning documents (kept locally, not in the repos
 - **Russian headings.** The Russian interface comes later. Caveat Brush has no Cyrillic, so until a Cyrillic heading font is chosen, Russian headings fall back to the next font in `--font-head`. Body text (Nunito) already includes Cyrillic.
 - The pet shop (spending stars on pet items) is the next step for rewards; the wallet is ready.
 - Still open from the brief: pacing of unlocks (the four item slots in the room are ready and empty), who draws the final art, hosting choice for the store versions, a licensed Spanish word list.
-- All Constelaciones sentences and stories (66), all Solitario categories (34) and all Crucigramas topics (28, 643 words with clues) are `reviewed: false` until Katya checks them.
+- All Constelaciones sentences and stories (66), all Solitario categories (34) and all Crucigramas topics (37, 835 words with clues) are `reviewed: false` until Katya checks them.

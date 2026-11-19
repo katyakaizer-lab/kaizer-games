@@ -1,6 +1,6 @@
 {
-  "id": "verduras", "level": "A2", "name_es": "Verduras", "en": "Vegetables", "ru": "Овощи", "reviewed": false,
-  "decor": { "style": "leaves", "items": ["zanahoria", "tomate", "lechuga", "berenjena"] },
+  "id": "verduras", "level": "A2", "name_es": "Verduras y comida", "en": "Vegetables and food", "ru": "Овощи и еда", "reviewed": false,
+  "decor": {"style": "leaves", "items": ["zanahoria", "tomate", "lechuga", "berenjena"]},
   "words": [
     { "es": "zanahoria", "clues": { "def": "Hortaliza naranja y alargada que les gusta a los conejos", "gap": "Rallo una ___ para la ensalada" } },
     { "es": "tomate", "clues": { "def": "Hortaliza roja y redonda de la ensalada", "gap": "El gazpacho se hace con ___" } },
@@ -10,20 +10,19 @@
     { "es": "pepino", "clues": { "def": "Hortaliza verde y larga, fresca en verano", "gap": "El gazpacho lleva ___" } },
     { "es": "pimiento", "clues": { "def": "Hortaliza roja, verde o amarilla, hueca por dentro", "gap": "Asamos un ___ rojo en el horno" } },
     { "es": "ajo", "clues": { "def": "Bulbo blanco de sabor muy fuerte", "gap": "La sopa de ___ es típica de Castilla" } },
-    { "es": "berenjena", "clues": { "def": "Hortaliza alargada de piel morada", "gap": "Rellenamos una ___ con carne" } },
     { "es": "calabaza", "clues": { "def": "Hortaliza grande y naranja; en Halloween se le hacen caras", "gap": "Hago una crema de ___" } },
     { "es": "brócoli", "clues": { "def": "Verdura verde con forma de arbolito", "gap": "Cocemos el ___ al vapor" } },
-    { "es": "coliflor", "clues": { "def": "Verdura blanca con forma de árbol pequeño", "gap": "La ___ huele fuerte al cocerla" } },
-    { "es": "espinaca", "clues": { "def": "Verdura de hojas verdes, muy sana", "gap": "La ___ tiene mucho hierro" } },
-    { "es": "guisante", "clues": { "def": "Semilla verde y redonda que viene en una vaina", "gap": "Cada vaina tiene más de un ___" } },
-    { "es": "judía", "clues": { "def": "Vaina verde y larga que se come cocida", "gap": "La ___ verde se come con patata" } },
-    { "es": "calabacín", "clues": { "def": "Hortaliza verde y alargada, parecida al pepino", "gap": "Hago una crema de ___ y puerro" } },
-    { "es": "apio", "clues": { "def": "Verdura de tallos largos y verdes que crujen", "gap": "El ___ cruje cuando lo muerdes" } },
-    { "es": "alcachofa", "clues": { "def": "Verdura verde con hojas duras como escamas", "gap": "Me como el corazón de la ___" } },
-    { "es": "puerro", "clues": { "def": "Verdura larga, blanca y verde, parecida a la cebolla", "gap": "La crema de ___ es muy suave" } },
     { "es": "champiñón", "clues": { "def": "Hongo blanco que se come", "gap": "La pizza lleva ___ y jamón" } },
     { "es": "maíz", "clues": { "def": "Granos amarillos de una mazorca", "gap": "Las palomitas se hacen con ___" } },
-    { "es": "rábano", "clues": { "def": "Raíz pequeña, roja por fuera y un poco picante", "gap": "El ___ pica un poco" } },
-    { "es": "remolacha", "clues": { "def": "Raíz de color rojo oscuro que mancha mucho", "gap": "La ___ tiñe de rojo la ensalada" } }
+    { "es": "ensalada", "clues": { "def": "Plato frío de lechuga, tomate y otras verduras", "gap": "Pido una ___ mixta" } },
+    { "es": "verdura", "clues": { "def": "Lechuga, zanahoria o pepino, por ejemplo", "gap": "Hay que comer ___ todos los días" } },
+    { "es": "arroz", "clues": { "def": "Grano blanco de la paella", "gap": "Hago ___ con pollo" } },
+    { "es": "pasta", "clues": { "def": "Macarrones o espaguetis", "gap": "Me encanta la ___ con tomate" } },
+    { "es": "carne", "clues": { "def": "Comida que viene de la vaca, el cerdo o el pollo", "gap": "Comemos ___ a la plancha" } },
+    { "es": "pescado", "clues": { "def": "Comida que viene del mar o del río", "gap": "Los viernes comemos ___" } },
+    { "es": "pollo", "clues": { "def": "Carne de gallina o de gallo", "gap": "Asamos un ___ en el horno" } },
+    { "es": "sopa", "clues": { "def": "Plato caliente y líquido que se toma con cuchara", "gap": "En invierno tomo ___ caliente" } },
+    { "es": "sal", "clues": { "def": "Se echa a la comida para dar sabor; hay mucha en el mar", "gap": "Esta sopa necesita más ___" } },
+    { "es": "filete", "clues": { "def": "Trozo fino de carne", "gap": "Me hago un ___ con patatas" } }
   ]
 }

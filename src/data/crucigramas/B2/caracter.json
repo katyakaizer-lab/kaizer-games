@@ -1,0 +1,26 @@
+{
+  "id": "caracter", "level": "B2", "name_es": "El carácter", "en": "Personality", "ru": "Характер", "reviewed": false,
+  "decor": {"style": "stars", "items": ["sonrisa", "corazon", "estrella", "mano"]},
+  "words": [
+    { "es": "generoso", "clues": { "ant": "Lo contrario de «tacaño»", "gap": "Es muy ___: siempre invita" } },
+    { "es": "tacaño", "clues": { "syn": "Sinónimo de «avaro»", "gap": "Es tan ___ que nunca invita a nadie" } },
+    { "es": "terco", "clues": { "syn": "Sinónimo de «testarudo»", "gap": "Es muy ___: nunca cambia de opinión" } },
+    { "es": "sincero", "clues": { "syn": "Sinónimo de «franco»", "gap": "Te voy a ser ___: no me gusta" } },
+    { "es": "humilde", "clues": { "ant": "Lo contrario de «orgulloso»", "gap": "Aunque es famoso, es muy ___" } },
+    { "es": "valiente", "clues": { "ant": "Lo contrario de «cobarde»", "gap": "El bombero fue muy ___" } },
+    { "es": "tímido", "clues": { "ant": "Lo contrario de «extrovertido»", "gap": "Es tan ___ que no habla en clase" } },
+    { "es": "perezoso", "clues": { "syn": "Sinónimo de «vago»", "gap": "Mi gato es muy ___: duerme todo el día" } },
+    { "es": "amable", "clues": { "syn": "Sinónimo de «atento»", "gap": "La recepcionista fue muy ___ con nosotros" } },
+    { "es": "egoísta", "clues": { "def": "Que solo piensa en sí mismo", "gap": "No seas ___ y comparte" } },
+    { "es": "paciente", "clues": { "def": "Que sabe esperar sin enfadarse", "gap": "Hay que ser ___ con los niños" } },
+    { "es": "celoso", "clues": { "def": "Que tiene miedo de perder el cariño de alguien", "gap": "Su novio es muy ___" } },
+    { "es": "ingenuo", "clues": { "syn": "Sinónimo de «inocente»", "gap": "Es tan ___ que se cree todo" } },
+    { "es": "responsable", "clues": { "def": "Que hace bien sus obligaciones", "gap": "Es muy ___ con su trabajo" } },
+    { "es": "optimista", "clues": { "def": "Que siempre ve el lado bueno de las cosas", "ant": "Lo contrario de «pesimista»" } },
+    { "es": "pesimista", "clues": { "def": "Que siempre espera lo peor", "ant": "Lo contrario de «optimista»" } },
+    { "es": "simpático", "clues": { "def": "Agradable y fácil de tratar", "gap": "Tu hermano es muy ___: me cae genial" } },
+    { "es": "educado", "clues": { "def": "Que tiene buenos modales", "gap": "Siempre da las gracias: es muy ___" } },
+    { "es": "honrado", "clues": { "def": "Que no miente ni roba", "gap": "Es un hombre ___: devolvió la cartera" } },
+    { "es": "creativo", "clues": { "def": "Que tiene muchas ideas nuevas", "gap": "Es muy ___: inventa juegos nuevos" } }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "id": "cuerpo", "level": "A1", "name_es": "El cuerpo", "en": "The body", "ru": "Тело", "reviewed": false,
-  "decor": { "style": "waves", "items": ["mano", "ojo", "oreja", "diente"] },
+  "decor": {"style": "waves", "items": ["mano", "ojo", "oreja", "diente"]},
   "words": [
     { "es": "cabeza", "clues": { "def": "Parte de arriba del cuerpo, con la cara", "gap": "Me duele la ___" } },
     { "es": "mano", "clues": { "def": "Parte del brazo con cinco dedos", "gap": "Levanta la ___ para hablar" } },
@@ -15,14 +15,14 @@
     { "es": "pelo", "clues": { "def": "Crece en la cabeza; puede ser rubio o moreno", "gap": "Tengo el ___ largo" } },
     { "es": "dedo", "clues": { "def": "Tienes cinco en cada mano", "gap": "Me he cortado un ___" } },
     { "es": "rodilla", "clues": { "def": "Parte del medio de la pierna que se dobla", "gap": "Me caigo y me hago una herida en la ___" } },
-    { "es": "codo", "clues": { "def": "Parte del medio del brazo que se dobla", "gap": "Me he dado un golpe en el ___" } },
     { "es": "hombro", "clues": { "def": "Parte entre el cuello y el brazo", "gap": "Lleva la mochila en un ___" } },
     { "es": "cuello", "clues": { "def": "Une la cabeza con el cuerpo", "gap": "Me pongo la bufanda en el ___" } },
     { "es": "espalda", "clues": { "def": "Parte de atrás del cuerpo", "gap": "Me duele la ___ de llevar la mochila" } },
-    { "es": "barriga", "clues": { "def": "Parte delantera del cuerpo donde está el estómago", "syn": "Sinónimo de «tripa»" } },
     { "es": "lengua", "clues": { "def": "Está dentro de la boca y sirve para saborear", "gap": "El perro saca la ___" } },
     { "es": "cara", "clues": { "def": "Parte delantera de la cabeza, con ojos, nariz y boca", "gap": "Me lavo la ___ con agua fría" } },
-    { "es": "uña", "clues": { "def": "Parte dura en la punta de cada dedo", "gap": "Me corto una ___" } },
-    { "es": "labio", "clues": { "def": "Borde de la boca", "gap": "Tengo el ___ seco por el frío" } }
+    { "es": "cuerpo", "clues": { "def": "Cabeza, brazos, piernas y todo lo demás", "gap": "Me duele todo el ___" } },
+    { "es": "estómago", "clues": { "def": "Allí va la comida que tragas", "gap": "Me duele el ___ de comer tanto" } },
+    { "es": "corazón", "clues": { "def": "Late en el pecho", "gap": "El ___ late muy rápido cuando corro" } },
+    { "es": "piel", "clues": { "def": "Cubre todo el cuerpo", "gap": "Me pongo crema en la ___" } }
   ]
 }

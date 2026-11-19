@@ -1,6 +1,6 @@
 {
   "id": "casa", "level": "A1", "name_es": "La casa", "en": "The home", "ru": "Дом", "reviewed": false,
-  "decor": { "style": "dots", "items": ["llave", "lampara", "ventana", "maceta"] },
+  "decor": {"style": "dots", "items": ["llave", "lampara", "ventana", "maceta"]},
   "words": [
     { "es": "mesa", "clues": { "def": "Mueble con patas donde comemos", "gap": "Pongo los platos en la ___" } },
     { "es": "silla", "clues": { "def": "Mueble para sentarse", "gap": "Siéntate en la ___" } },
@@ -22,9 +22,9 @@
     { "es": "jardín", "clues": { "def": "Lugar con plantas y flores junto a la casa", "gap": "Juego con el perro en el ___" } },
     { "es": "balcón", "clues": { "def": "Lugar pequeño fuera de la ventana, con barandilla", "gap": "Tomo el sol en el ___" } },
     { "es": "ducha", "clues": { "def": "Agua que cae desde arriba para lavarte", "gap": "Me doy una ___ por la mañana" } },
-    { "es": "alfombra", "clues": { "def": "Tela gruesa en el suelo", "gap": "El gato duerme en la ___" } },
-    { "es": "cortina", "clues": { "def": "Tela que tapa la ventana", "gap": "Cierro la ___ para dormir" } },
     { "es": "garaje", "clues": { "def": "Lugar donde se guarda el coche", "gap": "El coche está en el ___" } },
-    { "es": "tejado", "clues": { "def": "Parte de arriba de la casa, por fuera", "gap": "Hay un gato en el ___" } }
+    { "es": "piso", "clues": { "def": "Vivienda en un edificio", "gap": "Vivo en un ___ del centro" } },
+    { "es": "terraza", "clues": { "def": "Lugar al aire libre en una casa o un piso", "gap": "Comemos en la ___ en verano" } },
+    { "es": "tele", "clues": { "def": "Aparato para ver programas y películas", "gap": "Vemos la ___ en el salón" } }
   ]
 }

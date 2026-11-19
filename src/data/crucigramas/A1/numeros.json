@@ -1,0 +1,26 @@
+{
+  "id": "numeros", "level": "A1", "name_es": "Los números", "en": "Numbers", "ru": "Числа", "reviewed": false,
+  "decor": {"style": "dots", "items": ["dado", "circulo", "cuadrado", "estrella"]},
+  "words": [
+    { "es": "cero", "clues": { "def": "El número de la nada", "gap": "Perdimos tres a ___" } },
+    { "es": "uno", "clues": { "def": "El primer número", "gap": "El número ___ va antes del dos" } },
+    { "es": "dos", "clues": { "def": "Uno más uno", "gap": "Tengo ___ ojos" } },
+    { "es": "tres", "clues": { "def": "Dos más uno", "gap": "Un triángulo tiene ___ lados" } },
+    { "es": "cuatro", "clues": { "def": "Dos más dos", "gap": "La mesa tiene ___ patas" } },
+    { "es": "cinco", "clues": { "def": "Cuatro más uno", "gap": "Tengo ___ dedos en cada mano" } },
+    { "es": "seis", "clues": { "def": "Tres más tres", "gap": "Un dado tiene ___ caras" } },
+    { "es": "siete", "clues": { "def": "Seis más uno", "gap": "La semana tiene ___ días" } },
+    { "es": "ocho", "clues": { "def": "Cuatro más cuatro", "gap": "La araña tiene ___ patas" } },
+    { "es": "nueve", "clues": { "def": "Ocho más uno", "gap": "Me acuesto a las ___ de la noche" } },
+    { "es": "diez", "clues": { "def": "Cinco más cinco", "gap": "Tengo ___ dedos en los pies" } },
+    { "es": "once", "clues": { "def": "Diez más uno", "gap": "Un equipo de fútbol tiene ___ jugadores" } },
+    { "es": "doce", "clues": { "def": "Diez más dos", "gap": "El año tiene ___ meses" } },
+    { "es": "trece", "clues": { "def": "Diez más tres", "gap": "Mi hermano tiene ___ años" } },
+    { "es": "catorce", "clues": { "def": "Siete más siete", "gap": "El ___ de febrero es San Valentín" } },
+    { "es": "quince", "clues": { "def": "Diez más cinco", "gap": "Un cuarto de hora son ___ minutos" } },
+    { "es": "veinte", "clues": { "def": "Diez más diez", "gap": "Tengo ___ euros en la cartera" } },
+    { "es": "treinta", "clues": { "def": "Tres veces diez", "gap": "Abril tiene ___ días" } },
+    { "es": "cien", "clues": { "def": "Diez veces diez", "gap": "Un metro tiene ___ centímetros" } },
+    { "es": "mil", "clues": { "def": "Diez veces cien", "gap": "Un kilo tiene ___ gramos" } }
+  ]
+}

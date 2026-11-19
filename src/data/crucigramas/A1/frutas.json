@@ -1,6 +1,6 @@
 {
   "id": "frutas", "level": "A1", "name_es": "Frutas", "en": "Fruit", "ru": "Фрукты", "reviewed": false,
-  "decor": { "style": "leaves", "items": ["manzana", "pera", "cereza", "uva"] },
+  "decor": {"style": "leaves", "items": ["manzana", "pera", "cereza", "uva"]},
   "words": [
     { "es": "manzana", "clues": { "def": "Fruta redonda, roja o verde, que crece en un árbol", "gap": "Me como una ___ roja en el recreo" } },
     { "es": "plátano", "clues": { "def": "Fruta amarilla y alargada", "gap": "El mono pela un ___" } },
@@ -17,11 +17,10 @@
     { "es": "mango", "clues": { "def": "Fruta tropical, naranja por dentro, con un hueso grande", "gap": "El batido de ___ es muy dulce" } },
     { "es": "coco", "clues": { "def": "Fruta tropical dura con agua dentro", "gap": "Para abrir un ___ necesitas fuerza" } },
     { "es": "melocotón", "clues": { "def": "Fruta de piel suave como el terciopelo", "gap": "El ___ en almíbar es un postre típico" } },
-    { "es": "ciruela", "clues": { "def": "Fruta pequeña, morada o amarilla, con hueso", "gap": "Hay mermelada de ___ morada" } },
-    { "es": "higo", "clues": { "def": "Fruta dulce y blanda de la higuera", "gap": "El ___ maduro es muy blando" } },
-    { "es": "frambuesa", "clues": { "def": "Fruta roja pequeña, parecida a la mora", "gap": "Hago un yogur con ___" } },
-    { "es": "mora", "clues": { "def": "Fruta pequeña y negra de una zarza", "gap": "La ___ mancha mucho los dedos" } },
-    { "es": "aguacate", "clues": { "def": "Fruta verde y cremosa; con ella se hace guacamole", "gap": "Pongo ___ en la ensalada" } },
-    { "es": "granada", "clues": { "def": "Fruta con muchos granos rojos dentro", "gap": "La ___ tiene cientos de semillas rojas" } }
+    { "es": "fruta", "clues": { "def": "Manzana, pera o plátano, por ejemplo", "gap": "Como ___ todos los días" } },
+    { "es": "zumo", "clues": { "def": "Bebida que sale al exprimir una fruta", "gap": "Bebo un ___ de naranja" } },
+    { "es": "piel", "clues": { "def": "Parte de fuera de la fruta", "gap": "Quito la ___ del plátano" } },
+    { "es": "dulce", "clues": { "ant": "Lo contrario de «salado»", "gap": "La sandía es muy ___" } },
+    { "es": "postre", "clues": { "def": "Lo que comes al final de la comida", "gap": "De ___ hay fruta" } }
   ]
 }

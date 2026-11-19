@@ -1,0 +1,27 @@
+{
+  "id": "rutina", "level": "A2", "name_es": "La rutina diaria", "en": "Daily routine", "ru": "Распорядок дня", "reviewed": false,
+  "decor": {"style": "waves", "items": ["reloj", "sol", "taza", "nube"]},
+  "words": [
+    { "es": "levantarse", "clues": { "def": "Salir de la cama por la mañana", "gap": "Tengo que ___ a las siete" } },
+    { "es": "ducharse", "clues": { "def": "Lavarse con el agua que cae desde arriba", "gap": "Prefiero ___ por la noche" } },
+    { "es": "vestirse", "clues": { "def": "Ponerse la ropa", "gap": "Tarda mucho en ___ por la mañana" } },
+    { "es": "desayunar", "clues": { "def": "Tomar la primera comida del día", "gap": "Me gusta ___ tostadas" } },
+    { "es": "comer", "clues": { "def": "Tomar alimentos, sobre todo a mediodía", "gap": "En España se suele ___ a las dos" } },
+    { "es": "cenar", "clues": { "def": "Comer por la noche", "gap": "Vamos a ___ pizza esta noche" } },
+    { "es": "dormir", "clues": { "def": "Descansar con los ojos cerrados por la noche", "gap": "Necesito ___ ocho horas" } },
+    { "es": "trabajar", "clues": { "def": "Hacer tu profesión", "gap": "Mi madre empieza a ___ a las nueve" } },
+    { "es": "lavarse", "clues": { "def": "Limpiarse con agua y jabón", "gap": "Hay que ___ las manos antes de comer" } },
+    { "es": "peinarse", "clues": { "def": "Arreglarse el pelo", "gap": "Me miro al espejo para ___" } },
+    { "es": "acostarse", "clues": { "def": "Irse a la cama", "gap": "Los niños deben ___ pronto" } },
+    { "es": "salir", "clues": { "ant": "Lo contrario de «entrar»", "gap": "Hoy voy a ___ con mis amigos" } },
+    { "es": "volver", "clues": { "def": "Regresar a un lugar", "gap": "Mi padre suele ___ a casa a las seis" } },
+    { "es": "tarde", "clues": { "def": "Parte del día después de comer", "gap": "Por la ___ hago los deberes" } },
+    { "es": "noche", "clues": { "def": "Cuando está oscuro y dormimos", "gap": "Por la ___ veo la luna" } },
+    { "es": "siempre", "clues": { "ant": "Lo contrario de «nunca»", "gap": "___ desayuno café con leche" } },
+    { "es": "nunca", "clues": { "ant": "Lo contrario de «siempre»", "gap": "No como ___ carne" } },
+    { "es": "temprano", "clues": { "ant": "Lo contrario de «tarde»", "gap": "Me levanto ___ para ir al trabajo" } },
+    { "es": "reloj", "clues": { "def": "Aparato que te dice la hora", "gap": "Mi ___ marca las siete" } },
+    { "es": "hora", "clues": { "def": "Sesenta minutos", "gap": "¿Qué ___ es?" } },
+    { "es": "minuto", "clues": { "def": "Sesenta segundos", "gap": "Espera un ___, por favor" } }
+  ]
+}

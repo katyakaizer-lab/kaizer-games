@@ -1,0 +1,31 @@
+{
+  "id": "calendario", "level": "A1", "name_es": "Los días y los meses", "en": "Days and months", "ru": "Дни и месяцы", "reviewed": false,
+  "decor": {"style": "stars", "items": ["sol", "nube", "estrella", "reloj"]},
+  "words": [
+    { "es": "lunes", "clues": { "def": "Primer día de la semana", "gap": "El ___ volvemos al colegio" } },
+    { "es": "martes", "clues": { "def": "Segundo día de la semana", "gap": "El ___ tengo clase de música" } },
+    { "es": "miércoles", "clues": { "def": "Tercer día de la semana, en el medio", "gap": "El ___ comemos en casa de la abuela" } },
+    { "es": "jueves", "clues": { "def": "Día entre el miércoles y el viernes", "gap": "Los ___ voy a natación" } },
+    { "es": "viernes", "clues": { "def": "Último día de colegio de la semana", "gap": "El ___ por la tarde vemos una película" } },
+    { "es": "sábado", "clues": { "def": "Primer día del fin de semana", "gap": "El ___ no hay colegio" } },
+    { "es": "domingo", "clues": { "def": "Último día de la semana", "gap": "El ___ comemos paella en familia" } },
+    { "es": "enero", "clues": { "def": "Primer mes del año", "gap": "El uno de ___ es Año Nuevo" } },
+    { "es": "febrero", "clues": { "def": "Segundo mes del año, el más corto", "gap": "En ___ hace mucho frío" } },
+    { "es": "marzo", "clues": { "def": "Tercer mes del año", "gap": "La primavera empieza en ___" } },
+    { "es": "abril", "clues": { "def": "Cuarto mes del año", "gap": "En ___ llueve mucho" } },
+    { "es": "mayo", "clues": { "def": "Quinto mes del año", "gap": "En ___ hay muchas flores" } },
+    { "es": "junio", "clues": { "def": "Sexto mes del año; empieza el verano", "gap": "El colegio termina en ___" } },
+    { "es": "julio", "clues": { "def": "Séptimo mes del año", "gap": "En ___ vamos a la playa" } },
+    { "es": "agosto", "clues": { "def": "Octavo mes del año, muy caluroso", "gap": "En ___ mucha gente está de vacaciones" } },
+    { "es": "septiembre", "clues": { "def": "Noveno mes del año", "gap": "El colegio empieza en ___" } },
+    { "es": "octubre", "clues": { "def": "Décimo mes del año", "gap": "En ___ caen las hojas" } },
+    { "es": "noviembre", "clues": { "def": "Mes número once del año", "gap": "En ___ hace frío y llueve" } },
+    { "es": "diciembre", "clues": { "def": "Último mes del año", "gap": "La Navidad es en ___" } },
+    { "es": "semana", "clues": { "def": "Siete días", "gap": "Voy al gimnasio tres veces por ___" } },
+    { "es": "mes", "clues": { "def": "Treinta días, más o menos", "gap": "Enero es el primer ___ del año" } },
+    { "es": "año", "clues": { "def": "Doce meses", "gap": "Cada ___ celebro mi cumpleaños" } },
+    { "es": "día", "clues": { "def": "Tiene veinticuatro horas", "gap": "Hoy es un ___ precioso" } },
+    { "es": "hoy", "clues": { "def": "Este día", "gap": "___ es lunes" } },
+    { "es": "ayer", "clues": { "def": "El día antes de hoy", "gap": "___ fui al cine" } }
+  ]
+}

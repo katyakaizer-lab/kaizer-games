@@ -1,6 +1,6 @@
 {
   "id": "ropa", "level": "A1", "name_es": "La ropa", "en": "Clothes", "ru": "Одежда", "reviewed": false,
-  "decor": { "style": "dots", "items": ["bufanda", "guante", "gorro", "calcetin"] },
+  "decor": {"style": "dots", "items": ["bufanda", "guante", "gorro", "calcetin"]},
   "words": [
     { "es": "camisa", "clues": { "def": "Prenda con botones para la parte de arriba", "gap": "La ___ tiene botones blancos" } },
     { "es": "falda", "clues": { "def": "Prenda que cuelga de la cintura", "gap": "Ana lleva una ___ larga" } },
@@ -22,8 +22,8 @@
     { "es": "corbata", "clues": { "def": "Tira de tela que se lleva al cuello con la camisa", "gap": "Mi padre lleva ___ en el trabajo" } },
     { "es": "bañador", "clues": { "def": "Prenda para nadar", "gap": "Me pongo el ___ para ir a la piscina" } },
     { "es": "sombrero", "clues": { "def": "Prenda para la cabeza con ala, contra el sol", "gap": "Llevo un ___ de paja en la playa" } },
-    { "es": "pañuelo", "clues": { "def": "Trozo de tela para la nariz o el cuello", "gap": "Me sueno la nariz con un ___" } },
     { "es": "vaqueros", "clues": { "def": "Pantalones de tela azul y resistente", "syn": "Sinónimo de «tejanos»" } },
-    { "es": "zapatilla", "clues": { "def": "Calzado cómodo para correr o estar en casa", "gap": "Busco mi ___ izquierda" } }
+    { "es": "zapatilla", "clues": { "def": "Calzado cómodo para correr o estar en casa", "gap": "Busco mi ___ izquierda" } },
+    { "es": "ropa", "clues": { "def": "Camisas, pantalones y faldas", "gap": "Guardo la ___ en el armario" } }
   ]
 }

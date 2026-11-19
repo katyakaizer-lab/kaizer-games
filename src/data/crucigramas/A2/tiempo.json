@@ -1,6 +1,6 @@
 {
   "id": "tiempo", "level": "A2", "name_es": "El tiempo", "en": "The weather", "ru": "Погода", "reviewed": false,
-  "decor": { "style": "waves", "items": ["sol", "nube", "gota", "rayo"] },
+  "decor": {"style": "waves", "items": ["sol", "nube", "gota", "rayo"]},
   "words": [
     { "es": "lluvia", "clues": { "def": "Agua que cae de las nubes", "gap": "Con esta ___ me mojo entero" } },
     { "es": "nieve", "clues": { "def": "Cae blanca y fría en invierno", "gap": "Hacemos un muñeco de ___" } },
@@ -11,18 +11,18 @@
     { "es": "frío", "clues": { "def": "Lo que sentimos en invierno", "gap": "Ponte el abrigo, que hace ___" } },
     { "es": "tormenta", "clues": { "def": "Lluvia fuerte con rayos y truenos", "gap": "Hay ___: no salgas de casa" } },
     { "es": "niebla", "clues": { "def": "Nube baja que no deja ver", "gap": "Con tanta ___ no veo la carretera" } },
-    { "es": "arcoíris", "clues": { "def": "Aparece con muchos colores después de llover", "gap": "Después de la lluvia sale el ___" } },
     { "es": "hielo", "clues": { "def": "Agua que se vuelve sólida con el frío", "gap": "Cuidado, hay ___ en la acera" } },
-    { "es": "rayo", "clues": { "def": "Luz fuerte que cae del cielo en una tormenta", "gap": "Cae un ___ cerca del árbol" } },
-    { "es": "trueno", "clues": { "def": "Ruido fuerte después del relámpago", "gap": "Me asusta el ruido del ___" } },
     { "es": "paraguas", "clues": { "def": "Lo abres cuando llueve", "gap": "Coge el ___, que va a llover" } },
-    { "es": "granizo", "clues": { "def": "Bolitas de hielo que caen del cielo", "gap": "Cae ___ y rompe las plantas" } },
     { "es": "verano", "clues": { "def": "Estación del año con más calor", "ant": "Lo contrario de «invierno»" } },
     { "es": "invierno", "clues": { "def": "Estación más fría del año", "ant": "Lo contrario de «verano»" } },
     { "es": "otoño", "clues": { "def": "Estación en la que caen las hojas", "gap": "En ___ los árboles se quedan sin hojas" } },
     { "es": "primavera", "clues": { "def": "Estación de las flores", "gap": "En ___ salen las flores" } },
     { "es": "grado", "clues": { "def": "Unidad para medir la temperatura", "gap": "Hoy hace un ___ más que ayer" } },
     { "es": "nublado", "clues": { "def": "Cuando el cielo tiene muchas nubes", "ant": "Lo contrario de «despejado»" } },
-    { "es": "húmedo", "clues": { "def": "Con mucha agua en el aire", "ant": "Lo contrario de «seco»" } }
+    { "es": "llover", "clues": { "def": "Caer agua de las nubes", "gap": "Coge el paraguas, que va a ___" } },
+    { "es": "nevar", "clues": { "def": "Caer nieve", "gap": "En la montaña empieza a ___" } },
+    { "es": "cielo", "clues": { "def": "Lo que ves arriba, donde están las nubes", "gap": "Hoy el ___ está muy azul" } },
+    { "es": "estación", "clues": { "def": "Primavera, verano, otoño o invierno", "gap": "Mi ___ favorita es el verano" } },
+    { "es": "seco", "clues": { "ant": "Lo contrario de «mojado»", "gap": "En verano el campo está muy ___" } }
   ]
 }

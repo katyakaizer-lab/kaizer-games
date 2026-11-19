@@ -1,6 +1,6 @@
 {
   "id": "ciudad", "level": "A2", "name_es": "La ciudad", "en": "The city", "ru": "Город", "reviewed": false,
-  "decor": { "style": "dots", "items": ["semaforo", "farola", "edificio", "banco"] },
+  "decor": {"style": "dots", "items": ["semaforo", "farola", "edificio", "banco"]},
   "words": [
     { "es": "calle", "clues": { "def": "Por ella pasan coches y personas", "gap": "Cruzo la ___ por el paso de cebra" } },
     { "es": "plaza", "clues": { "def": "Espacio abierto en el centro del pueblo", "gap": "Quedamos en la ___ mayor" } },
@@ -18,11 +18,11 @@
     { "es": "biblioteca", "clues": { "def": "Lugar donde se leen y se prestan libros", "gap": "Saco un libro de la ___" } },
     { "es": "cine", "clues": { "def": "Allí ves películas en una pantalla grande", "gap": "Vamos al ___ a ver una película" } },
     { "es": "teatro", "clues": { "def": "Allí ves obras con actores en un escenario", "gap": "Esta noche vamos al ___" } },
-    { "es": "acera", "clues": { "def": "Parte de la calle para las personas", "gap": "Camina por la ___" } },
     { "es": "barrio", "clues": { "def": "Parte de una ciudad", "gap": "Vivo en un ___ tranquilo" } },
     { "es": "edificio", "clues": { "def": "Construcción con muchos pisos", "gap": "Vivo en el quinto piso de un ___" } },
-    { "es": "avenida", "clues": { "def": "Calle ancha y larga", "gap": "Hay árboles a los lados de la ___" } },
-    { "es": "fuente", "clues": { "def": "De ella sale agua en la plaza", "gap": "Los niños beben agua de la ___" } },
-    { "es": "ruido", "clues": { "def": "Sonido molesto del tráfico", "ant": "Lo contrario de «silencio»" } }
+    { "es": "ruido", "clues": { "def": "Sonido molesto del tráfico", "ant": "Lo contrario de «silencio»" } },
+    { "es": "ciudad", "clues": { "def": "Lugar grande donde vive mucha gente", "gap": "Madrid es una ___ muy grande" } },
+    { "es": "pueblo", "clues": { "def": "Lugar más pequeño que una ciudad", "gap": "Mis abuelos viven en un ___" } },
+    { "es": "piscina", "clues": { "def": "Lugar con agua para nadar", "gap": "En verano vamos a la ___ municipal" } }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "_note": "Crucigramas settings per level: words per puzzle, largest grid, clue kinds used (def definition, gap sentence with ___, syn synonym, ant opposite, use what it is for / where it is). Topics live in <level>/<topic>.json.",
   "levels": {
-    "A1": { "words": 6, "maxCols": 9, "maxRows": 9, "clueKinds": ["def", "gap", "syn", "ant", "use"] },
+    "A1": { "words": 6, "maxCols": 10, "maxRows": 10, "clueKinds": ["def", "gap", "syn", "ant", "use"] },
     "A2": { "words": 7, "maxCols": 10, "maxRows": 10, "clueKinds": ["def", "gap", "syn", "ant", "use"] },
     "B1": { "words": 8, "maxCols": 10, "maxRows": 11, "clueKinds": ["def", "gap", "syn", "ant", "use"] },
     "B2": { "words": 9, "maxCols": 11, "maxRows": 12, "clueKinds": ["def", "gap", "syn", "ant", "use"] }

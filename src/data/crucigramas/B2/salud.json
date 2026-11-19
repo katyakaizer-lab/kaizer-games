@@ -1,6 +1,6 @@
 {
   "id": "salud", "level": "B2", "name_es": "La salud", "en": "Health", "ru": "Здоровье", "reviewed": false,
-  "decor": { "style": "waves", "items": ["tirita", "termometro", "corazon", "pastilla"] },
+  "decor": {"style": "waves", "items": ["tirita", "termometro", "corazon", "pastilla"]},
   "words": [
     { "es": "fiebre", "clues": { "def": "Temperatura del cuerpo más alta de lo normal", "gap": "Tengo ___: estoy a treinta y nueve" } },
     { "es": "jarabe", "clues": { "def": "Medicina líquida y dulce para la tos", "gap": "Tómate el ___ para la tos" } },
@@ -25,6 +25,10 @@
     { "es": "urgencias", "clues": { "def": "Parte del hospital para los casos graves", "gap": "Vamos a ___ porque se ha roto la pierna" } },
     { "es": "mareo", "clues": { "def": "Sensación de que todo da vueltas", "gap": "En el barco siento ___" } },
     { "es": "insomnio", "clues": { "def": "Cuando no puedes dormir", "gap": "El café me da ___" } },
-    { "es": "fractura", "clues": { "def": "Rotura de un hueso", "gap": "Tiene una ___ en la muñeca" } }
+    { "es": "fractura", "clues": { "def": "Rotura de un hueso", "gap": "Tiene una ___ en la muñeca" } },
+    { "es": "cirugía", "clues": { "def": "Operación que hace un médico con instrumentos", "gap": "Necesita ___ de rodilla" } },
+    { "es": "embarazo", "clues": { "def": "Estado de la mujer que espera un bebé", "gap": "Está en el sexto mes de ___" } },
+    { "es": "contagio", "clues": { "def": "Paso de una enfermedad de una persona a otra", "gap": "Lávate las manos para evitar el ___" } },
+    { "es": "prevenir", "clues": { "def": "Evitar que algo malo ocurra", "gap": "Es mejor ___ que curar" } }
   ]
 }

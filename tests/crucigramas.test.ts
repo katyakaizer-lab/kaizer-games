@@ -33,9 +33,9 @@ function gridProblems(p: Puzzle, maxCols: number, maxRows: number): string[] {
 }
 
 describe('content', () => {
-  it('28 topics, 7 per level, each with at least 20 words with 2-3 clues of different kinds', () => {
-    expect(data.topics.length).toBe(28);
-    for (const l of LEVELS) expect(data.topics.filter((t) => t.level === l).length).toBe(7);
+  it('at least 9 topics per level, each with at least 20 words with 2-3 clues of different kinds', () => {
+    expect(data.topics.length).toBeGreaterThanOrEqual(37);
+    for (const l of LEVELS) expect(data.topics.filter((t) => t.level === l).length).toBeGreaterThanOrEqual(9);
     for (const t of data.topics) {
       expect(t.words.length, t.id).toBeGreaterThanOrEqual(20);
       for (const e of t.words) expect(cluesOf(e).length).toBeGreaterThanOrEqual(2);
@@ -45,7 +45,7 @@ describe('content', () => {
   it('validator passes, and counts every topic as unreviewed', () => {
     const r = validateCrucigramas(clone(), 8);
     expect(r.errors).toEqual([]);
-    expect(r.unreviewed.length).toBe(28);
+    expect(r.unreviewed.length).toBe(data.topics.length);
   });
   const broken = (f: (d: CrucigramaData) => void) => { const d = clone(); f(d); return validateCrucigramas(d, 3).errors.join('\n'); };
   it('fails a clue that gives the answer away', () => expect(broken((d) => { d.topics[0].words[0].clues.def = `Una ${d.topics[0].words[0].es} grande`; })).toMatch(/gives the answer away/));
@@ -62,9 +62,15 @@ describe('content', () => {
   });
   it('ñ is not n when checking clues (uña vs una)', () => {
     const d = clone();
-    const t = d.topics.find((x) => x.id === 'cuerpo')!;
-    expect(t.words.find((w) => w.es === 'uña')!.clues.gap).toContain('una ___');
+    d.topics[0].words[0] = { es: 'uña', clues: { def: 'Parte dura en la punta de cada dedo', gap: 'Me corto una ___' } };
     expect(validateCrucigramas(d, 2).errors.filter((e) => e.includes('"uña"'))).toEqual([]);
+  });
+  it('words removed in the level review stay out of their levels', () => {
+    const at = (l: string) => new Set(data.topics.filter((t) => t.level === l).flatMap((t) => t.words.map((w) => w.es)));
+    for (const w of ['mosto', 'horchata', 'sidra', 'cava', 'granizado', 'infusión', 'alcachofa', 'remolacha', 'rábano', 'puerro', 'tiza', 'pupitre']) expect(at('A2').has(w), w).toBe(false);
+    for (const w of ['frambuesa', 'higo', 'granada', 'esfera', 'rombo', 'suegra', 'gemelos', 'barriga', 'tejado']) expect(at('A1').has(w), w).toBe(false);
+    for (const w of ['hojaldre', 'gominola', 'horquilla', 'bisutería', 'riñonera', 'ganchillo', 'abrelatas', 'fregadero']) expect(at('B1').has(w), w).toBe(false);
+    for (const w of ['nazareno', 'ofrenda', 'petardo', 'carroza', 'banderilla', 'salmorejo', 'fabada', 'pisto', 'migas', 'acantilado', 'musgo']) expect(at('B2').has(w), w).toBe(false);
   });
 });
 
@@ -120,13 +126,13 @@ describe('no repeats', () => {
   });
   it('"Sorpréndeme" picks a topic not played recently', () => {
     const a1 = data.topics.filter((x) => x.level === 'A1');
-    const recentIds = a1.slice(0, 6).map((x) => x.id);
-    expect(surpriseTopic(a1, recentIds, rng(3)).id).toBe(a1[6].id);
+    const recentIds = a1.slice(0, -1).map((x) => x.id);
+    expect(surpriseTopic(a1, recentIds, rng(3)).id).toBe(a1[a1.length - 1].id);
     // Pressing it again and again goes round all topics before repeating one.
     let ids: string[] = [];
     const seen = new Set<string>();
-    for (let i = 0; i < 7; i++) { const tp = surpriseTopic(a1, ids, rng(i)); seen.add(tp.id); ids = [tp.id, ...ids].slice(0, 6); }
-    expect(seen.size).toBe(7);
+    for (let i = 0; i < a1.length; i++) { const tp = surpriseTopic(a1, ids, rng(i)); seen.add(tp.id); ids = [tp.id, ...ids].slice(0, a1.length - 1); }
+    expect(seen.size).toBe(a1.length);
   });
 });
 

@@ -1,6 +1,6 @@
 {
   "id": "desayuno", "level": "A2", "name_es": "El desayuno", "en": "Breakfast", "ru": "Завтрак", "reviewed": false,
-  "decor": { "style": "dots", "items": ["taza", "huevo", "tostada", "cafetera"] },
+  "decor": {"style": "dots", "items": ["taza", "huevo", "tostada", "cafetera"]},
   "words": [
     { "es": "mermelada", "clues": { "def": "Fruta cocida con azúcar que se unta en el pan", "gap": "Pongo ___ de fresa en la tostada" } },
     { "es": "cereales", "clues": { "def": "Copos que se toman con leche en un tazón", "gap": "Echo leche a los ___" } },
@@ -13,10 +13,6 @@
     { "es": "miel", "clues": { "def": "La hacen las abejas", "gap": "Pongo ___ en el té" } },
     { "es": "azúcar", "clues": { "def": "Se echa al café para que esté dulce", "gap": "¿Quieres ___ en el café?" } },
     { "es": "pan", "clues": { "def": "Se hace con harina, agua y levadura", "gap": "Compro una barra de ___" } },
-    { "es": "cacao", "clues": { "def": "Polvo de chocolate para la leche", "gap": "Echo ___ en la leche" } },
-    { "es": "magdalena", "clues": { "def": "Bizcocho pequeño en un molde de papel", "gap": "Me como una ___ con el café" } },
-    { "es": "bizcocho", "clues": { "def": "Pastel esponjoso hecho en casa", "gap": "La abuela hace un ___ de limón" } },
-    { "es": "tazón", "clues": { "def": "Taza grande y sin asa para los cereales", "gap": "Echo los cereales en un ___" } },
     { "es": "cuchara", "clues": { "def": "Cubierto para tomar los cereales o la sopa", "gap": "Remuevo el café con una ___" } },
     { "es": "cruasán", "clues": { "def": "Bollo de hojaldre con forma de media luna", "gap": "Me como un ___ con mantequilla" } },
     { "es": "aceite", "clues": { "def": "Líquido dorado que se saca del fruto del olivo", "gap": "Tomo pan con ___ y tomate" } },
@@ -24,6 +20,10 @@
     { "es": "queso", "clues": { "def": "Se hace con leche cuajada", "gap": "Tomo una tostada con ___ fresco" } },
     { "es": "fruta", "clues": { "def": "Manzana, pera o plátano, por ejemplo", "gap": "Desayuno ___ y cereales" } },
     { "es": "leche", "clues": { "def": "Bebida blanca que da la vaca", "gap": "Caliento la ___ en el microondas" } },
-    { "es": "café", "clues": { "def": "Bebida negra y caliente que despierta", "gap": "Mis padres toman ___ por la mañana" } }
+    { "es": "café", "clues": { "def": "Bebida negra y caliente que despierta", "gap": "Mis padres toman ___ por la mañana" } },
+    { "es": "desayuno", "clues": { "def": "La primera comida del día", "gap": "Tomo el ___ a las ocho" } },
+    { "es": "bocadillo", "clues": { "def": "Pan con jamón o queso dentro", "gap": "Me llevo un ___ al colegio" } },
+    { "es": "taza", "clues": { "def": "Recipiente con asa para el café o el té", "gap": "Me sirvo una ___ de café" } },
+    { "es": "mañana", "clues": { "def": "Parte del día antes de comer", "gap": "Desayuno a las siete de la ___" } }
   ]
 }

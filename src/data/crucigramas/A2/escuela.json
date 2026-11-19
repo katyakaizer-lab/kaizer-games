@@ -1,6 +1,6 @@
 {
   "id": "escuela", "level": "A2", "name_es": "La escuela", "en": "School", "ru": "Школа", "reviewed": false,
-  "decor": { "style": "stars", "items": ["lapiz", "libro", "regla", "mochila"] },
+  "decor": {"style": "stars", "items": ["lapiz", "libro", "regla", "mochila"]},
   "words": [
     { "es": "lápiz", "clues": { "def": "Sirve para escribir y se puede borrar", "gap": "Escribo con un ___" } },
     { "es": "goma", "clues": { "def": "Sirve para borrar", "gap": "Borro el error con la ___" } },
@@ -9,7 +9,6 @@
     { "es": "mochila", "clues": { "def": "Bolsa que llevas a la espalda", "gap": "Guardo los libros en la ___" } },
     { "es": "regla", "clues": { "def": "Sirve para medir y hacer líneas rectas", "gap": "Mido la línea con la ___" } },
     { "es": "pizarra", "clues": { "def": "Superficie grande donde escribe el profesor", "gap": "La profesora escribe en la ___" } },
-    { "es": "tiza", "clues": { "def": "Barrita blanca para escribir en la pizarra", "gap": "Escribo en la pizarra con ___" } },
     { "es": "profesor", "clues": { "def": "Persona que enseña en el colegio", "gap": "El ___ explica la lección" } },
     { "es": "alumno", "clues": { "def": "Persona que aprende en el colegio", "syn": "Sinónimo de «estudiante»" } },
     { "es": "clase", "clues": { "def": "Sala donde se aprende", "gap": "Llego tarde a ___" } },
@@ -17,13 +16,15 @@
     { "es": "patio", "clues": { "def": "Lugar al aire libre del colegio", "gap": "Salimos al ___ a jugar" } },
     { "es": "examen", "clues": { "def": "Prueba para ver lo que sabes", "gap": "Mañana tengo un ___ de mates" } },
     { "es": "deberes", "clues": { "def": "Tareas para hacer en casa", "gap": "Hago los ___ después de comer" } },
-    { "es": "estuche", "clues": { "def": "Bolsa pequeña para los lápices", "gap": "Guardo los lápices en el ___" } },
     { "es": "tijeras", "clues": { "def": "Sirven para cortar papel", "gap": "Recorto el dibujo con las ___" } },
-    { "es": "pegamento", "clues": { "def": "Sirve para unir dos papeles", "gap": "Pego la foto con ___" } },
     { "es": "mapa", "clues": { "def": "Dibujo de un país o del mundo", "gap": "Busca España en el ___" } },
     { "es": "nota", "clues": { "def": "Número que te ponen en un examen", "gap": "He sacado buena ___ en lengua" } },
-    { "es": "pupitre", "clues": { "def": "Mesa del alumno en clase", "gap": "Siéntate en tu ___" } },
     { "es": "bolígrafo", "clues": { "def": "Sirve para escribir con tinta", "gap": "Firma con ___ azul" } },
-    { "es": "colegio", "clues": { "def": "Lugar donde van los niños a aprender", "syn": "Sinónimo de «escuela»" } }
+    { "es": "colegio", "clues": { "def": "Lugar donde van los niños a aprender", "syn": "Sinónimo de «escuela»" } },
+    { "es": "lección", "clues": { "def": "Parte de un libro que estudias", "gap": "Hoy aprendemos la ___ cinco" } },
+    { "es": "pregunta", "clues": { "def": "Lo que haces cuando no sabes algo", "gap": "Levanto la mano para hacer una ___" } },
+    { "es": "respuesta", "clues": { "def": "Lo que das a una pregunta", "gap": "Escribe la ___ en el cuaderno" } },
+    { "es": "asignatura", "clues": { "def": "Matemáticas, Lengua o Historia, por ejemplo", "gap": "Mi ___ favorita es Música" } },
+    { "es": "estudiar", "clues": { "def": "Aprender con los libros", "gap": "Tengo que ___ para el examen" } }
   ]
 }
