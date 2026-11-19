@@ -7,7 +7,7 @@ import { _setBackend, exportProgress, importProgress, store } from '../src/data/
 import { getStars } from '../src/rewards/wallet';
 import {
   agree, allSpecies, breedOf, colorName, describePet, editableSlots, loadPetFiles, makeProfile, normalizeProfile, patterns, profileProblems, rigOf,
-  slotChoices, speciesBreed, speciesById, surprise, type PetProfile,
+  defaultName, isDefaultName, slotChoices, speciesBreed, speciesById, surprise, type PetProfile,
 } from '../src/pets/species';
 import { colorVars, composeMarkup, placeItem, partIdsFor } from '../src/pets/compose';
 import { validatePets } from '../src/pets/validate';
@@ -29,8 +29,8 @@ describe('breed data', () => {
       Perro: ['Salchicha', 'Pastor', 'Caniche', 'Labrador', 'Chihuahua'],
       Gato: ['Atigrado', 'Siamés', 'Persa', 'Negro', 'Carey'],
       Zorro: ['Rojo', 'Ártico', 'Fénec'],
-      Cuervo: ['Cuervo', 'Urraca', 'Búho'],
-      Dragón: ['Del bosque', 'De fuego', 'De agua'],
+      Pájaro: ['Cuervo', 'Urraca', 'Búho', 'Loro', 'Canario', 'Petirrojo', 'Pingüino'],
+      Dragón: ['Del bosque', 'De fuego', 'De agua', 'De aire', 'Eléctrico'],
     });
   });
   it('a breed is only data: adding one needs no code', () => {
@@ -51,7 +51,7 @@ describe('validator', () => {
   it('passes the data and parts', () => {
     const r = validatePets(allSpecies(), files.find((f) => f.patterns).patterns, { partText, backgrounds: BG, ink: '#2B2D42' });
     expect(r.errors).toEqual([]);
-    expect(r.breeds).toBe(19);
+    expect(r.breeds).toBe(25);
   });
   const broken = (f: (sp: ReturnType<typeof allSpecies>) => void) => {
     const sp = structuredClone(allSpecies()); f(sp);
@@ -98,7 +98,7 @@ describe('profiles, migration and save files', () => {
     expect(migratePets()).toBe(false); // runs once
   });
   it('an old pet with no name gets the breed name; every old species maps to a default breed', () => {
-    for (const [species, breed] of [['dog', 'labrador'], ['cat', 'atigrado'], ['fox', 'rojo'], ['raven', 'cuervo'], ['dragon', 'bosque']]) {
+    for (const [species, breed] of [['dog', 'labrador'], ['cat', 'atigrado'], ['fox', 'rojo'], ['bird', 'canario'], ['dragon', 'bosque']]) {
       store.clear();
       store.set('pet', { species });
       migratePets();
@@ -117,6 +117,15 @@ describe('profiles, migration and save files', () => {
     expect(getActivePet()).toMatchObject({ species: 'fox', name: 'Rayo' });
     store.clear(); // reset clears pets too
     expect(getActivePet()).toBe(null);
+  });
+  it('old saves with the species "raven" become a Pájaro cuervo (single-pet saves and profiles)', () => {
+    store.set('pet', { species: 'raven', name: 'Pico' });
+    migratePets();
+    expect(getActivePet()).toMatchObject({ species: 'bird', breed: 'cuervo', name: 'Pico', gender: 'm' });
+    store.clear();
+    store.set('pets', [{ ...makeProfile('bird', 'buho', 'pet-1'), species: 'raven' }]);
+    store.set('activePetId', 'pet-1');
+    expect(getActivePet()).toMatchObject({ species: 'bird', breed: 'buho' });
   });
   it('editing keeps the id (and so all progress); only the look changes', () => {
     const p = savePet(makeProfile('dog', 'pastor', 'pet-1'));
@@ -141,7 +150,7 @@ describe('Sorpréndeme and descriptions', () => {
     expect(describePet(makeProfile('dragon', 'fuego'))).toBe('Dragón de fuego, rojo');
     expect(describePet(makeProfile('dragon', 'bosque'))).toBe('Dragón del bosque, verde');
     // Breed equal to species: once. Colour already in the breed name: not repeated.
-    expect(describePet(makeProfile('raven', 'cuervo'))).toBe('Cuervo, negro');
+    expect(describePet(makeProfile('bird', 'cuervo'))).toBe('Cuervo, negro');
     expect(describePet(makeProfile('cat', 'negro'))).toBe('Gato negro');
     expect(describePet({ ...makeProfile('cat', 'negro'), pattern: 'chest' })).toBe('Gato negro con pecho blanco');
     expect(describePet(makeProfile('cat', 'siames'))).toBe('Gato siamés, crema con puntas chocolate');
@@ -162,6 +171,47 @@ describe('Sorpréndeme and descriptions', () => {
         // The pattern's art is drawn in that same slot.
         if (pd?.art) expect(partText(`pet-part.pattern.${pat}`)).toMatch(new RegExp(`class="[fs]${(pd.color ?? 'fur3').slice(3)}`));
       }
+    }
+  });
+});
+
+describe('gender (wording only)', () => {
+  const f = (species: string, breed: string, extra: Partial<PetProfile> = {}) => describePet({ ...makeProfile(species, breed), gender: 'f', ...extra });
+  it('Spanish nouns and adjectives agree for a hembra', () => {
+    expect(f('dog', 'salchicha')).toBe('Perra salchicha, rojiza');
+    expect(f('dog', 'labrador')).toBe('Perra labradora, dorada');
+    expect(f('cat', 'atigrado')).toBe('Gata atigrada, parda con rayas marrones');
+    expect(f('cat', 'negro')).toBe('Gata negra');
+    expect(f('cat', 'negro', { pattern: 'chest' })).toBe('Gata negra con pecho blanco');
+    expect(f('cat', 'siames')).toBe('Gata siamesa, crema con puntas chocolate');
+    expect(f('fox', 'rojo')).toBe('Zorra roja, naranja');
+    expect(f('dragon', 'electrico')).toBe('Dragona eléctrica, amarillo limón');
+    expect(f('dragon', 'aire')).toBe('Dragona de aire, azul claro');
+  });
+  it('birds are epicene: "hembra", adjectives masculine; the drawing never changes', () => {
+    expect(f('bird', 'buho')).toBe('Búho hembra, pardo');
+    expect(f('bird', 'pinguino')).toBe('Pingüino hembra, negro');
+    expect(describePet(makeProfile('bird', 'loro'))).toBe('Loro, verde');
+    const p = makeProfile('cat', 'persa');
+    expect(composeMarkup({ ...p, gender: 'f' } as PetProfile, 'calma', partText, (id) => !!partText(id))).toBe(composeMarkup(p, 'calma', partText, (id) => !!partText(id)));
+  });
+  it('default names follow the gender; Sorpréndeme keeps the gender; a missing gender is macho', () => {
+    expect(defaultName({ species: 'cat', breed: 'atigrado', gender: 'f' })).toBe('Atigrada');
+    expect(defaultName({ species: 'bird', breed: 'buho', gender: 'f' })).toBe('Búho');
+    for (let s = 1; s < 20; s++) expect(surprise('dog', { ...makeProfile('dog'), gender: 'f' }, rng(s)).gender).toBe('f');
+    const { gender: _, ...noGender } = makeProfile('dog');
+    expect(normalizeProfile(noGender as PetProfile).gender).toBe('m');
+    expect(isDefaultName({ species: 'cat', breed: 'atigrado', name: 'Atigrada' })).toBe(true);
+  });
+});
+
+describe('more eye colours', () => {
+  it('every species offers at least 7 natural eye colours and 2 fantasy ones, all different', () => {
+    for (const sp of allSpecies()) {
+      expect(sp.swatches.eyes.length, sp.species).toBeGreaterThanOrEqual(7);
+      expect(sp.swatches.eyesFantasy.length, sp.species).toBeGreaterThanOrEqual(2);
+      const all = [...sp.swatches.eyes, ...sp.swatches.eyesFantasy].map((s) => s.c.toLowerCase());
+      expect(new Set(all).size, sp.species).toBe(all.length);
     }
   });
 });
@@ -197,7 +247,7 @@ describe('colour-defined breeds', () => {
     const fur1 = (s: string, b: string) => slotChoices(speciesById(s)!, breedOf(speciesById(s)!, b)!, 'fur1').natural.map((x) => x.es);
     expect(fur1('dragon', 'agua').every((n) => n.startsWith('azul'))).toBe(true);
     expect(fur1('dragon', 'bosque').every((n) => n.startsWith('verde'))).toBe(true);
-    expect(fur1('raven', 'urraca')).toEqual([]);
+    expect(fur1('bird', 'urraca')).toEqual([]);
     expect(slotChoices(speciesById('fox')!, breedOf(speciesById('fox')!, 'rojo')!, 'fur1').fantasy).toEqual([]);
   });
 });
@@ -233,7 +283,7 @@ describe('composition', () => {
     expect(at('data-on="head"')).toBeLessThan(at('data-slot="eyes"'));
     expect(m).toContain('class="k-oo"');
     // Ears and wings are never patterned unless the breed lists them.
-    const owl = composeMarkup({ ...makeProfile('raven', 'buho'), pattern: 'spots' }, 'calma', partText, (id) => !!partText(id));
+    const owl = composeMarkup({ ...makeProfile('bird', 'buho'), pattern: 'spots' }, 'calma', partText, (id) => !!partText(id));
     expect(owl).not.toMatch(/data-on="(ears|wings)"/);
   });
   it('spots have no outline', () => {

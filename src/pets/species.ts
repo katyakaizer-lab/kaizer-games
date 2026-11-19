@@ -15,8 +15,10 @@ export type AnchorName = (typeof ANCHORS)[number];
 
 export interface Swatch { c: string; es: string; inv?: boolean }
 export interface PetRig { headWidth: number; anchors: Record<AnchorName, [number, number]> }
+export type Gender = 'm' | 'f';
 export interface Breed {
-  id: string; name_es: string;
+  /** name_f: the feminine form when it differs ("Atigrada", "Eléctrica"); invariable names have none. */
+  id: string; name_es: string; name_f?: string;
   parts: Record<string, string>;
   colors: PetColors;
   pattern: string; patterns: string[];
@@ -29,7 +31,11 @@ export interface Breed {
   patternOn?: string[];
 }
 export interface Species {
-  species: string; name_es: string; default: string; noseLabel?: string;
+  /**
+   * name_f: the feminine noun (Perra, Gata, Zorra, Dragona); without it the noun is epicene ("Búho hembra").
+   * breedIsNoun: the breed is said on its own ("Cuervo", not "Pájaro cuervo").
+   */
+  species: string; name_es: string; name_f?: string; breedIsNoun?: boolean; default: string; noseLabel?: string;
   layers: string[]; slots: ColorSlot[];
   rig: PetRig;
   swatches: { fur: Swatch[]; furFantasy: Swatch[]; eyes: Swatch[]; eyesFantasy: Swatch[]; nose: Swatch[]; noseFantasy: Swatch[] };
@@ -43,10 +49,14 @@ export interface PetProfile {
   /** part overrides by slot (empty: the breed's parts) */
   parts: Record<string, string>;
   colors: PetColors; pattern: string; name: string; createdAt: number;
+  /** macho or hembra: only the Spanish wording changes (Gata negra, Dragona de fuego); missing = macho. */
+  gender?: Gender;
 }
 
 /** Loaded species, in a fixed order (the order of the creator). */
-export const SPECIES_ORDER = ['dog', 'cat', 'fox', 'raven', 'dragon'];
+export const SPECIES_ORDER = ['dog', 'cat', 'fox', 'bird', 'dragon'];
+/** Species ids of older saves: "raven" became the general bird ("Pájaro"); its breeds kept their ids. */
+export const OLD_SPECIES: Record<string, { species: string; breed: string }> = { raven: { species: 'bird', breed: 'cuervo' } };
 let SPECIES: Species[] = [];
 let PATTERNS: Record<string, PatternDef> = {};
 export function setPetData(species: Species[], patterns: Record<string, PatternDef>): void {
@@ -84,7 +94,7 @@ export function rigOf(p: Pick<PetProfile, 'species' | 'breed'>): PetRig | null {
 export function makeProfile(species: string, breed?: string, id = `pet-${Date.now().toString(36)}`): PetProfile {
   const sp = speciesById(species)!;
   const br = (breed && breedOf(sp, breed)) || defaultBreed(sp);
-  return { id, species: sp.species, breed: br.id, parts: {}, colors: { ...br.colors, ...br.lockedColors }, pattern: br.pattern, name: br.name_es, createdAt: Date.now() };
+  return { id, species: sp.species, breed: br.id, parts: {}, colors: { ...br.colors, ...br.lockedColors }, pattern: br.pattern, name: br.name_es, createdAt: Date.now(), gender: 'm' };
 }
 
 export const furSwatches = (sp: Species): Swatch[] => [...sp.swatches.fur, ...sp.swatches.furFantasy];
@@ -106,6 +116,9 @@ export function slotChoices(sp: Species, br: Breed, slot: ColorSlot): { natural:
 export const editableSlots = (sp: Species, br: Breed): ColorSlot[] => sp.slots.filter((s) => !br.lockedColors?.[s]);
 /** A profile made valid for the current data: locked colours applied, colours and pattern the breed allows. */
 export function normalizeProfile(p: PetProfile): PetProfile {
+  const old = OLD_SPECIES[p.species];
+  if (old) p = { ...p, species: old.species };
+  p = { ...p, gender: p.gender === 'f' ? 'f' : 'm' };
   const sp = speciesById(p.species);
   const br = sp && breedOf(sp, p.breed);
   if (!sp || !br) return p;
@@ -119,12 +132,32 @@ export function normalizeProfile(p: PetProfile): PetProfile {
 
 /* ---------------- Names ---------------- */
 const fold = (w: string) => w.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('es');
+/** The breed name for a gender, with its capital (cards, the default pet name): "Atigrada", "Salchicha". */
+export const breedLabel = (br: Breed, g: Gender = 'm'): string => (g === 'f' && br.name_f) || br.name_es;
+/** Does the noun agree in gender (Perra, Gata), or is it epicene (Búho hembra), so adjectives stay masculine? */
+const gendered = (sp: Species) => !sp.breedIsNoun && !!sp.name_f;
 /**
- * Species and breed in running text: "Perro salchicha", "Dragón del bosque"; once when they are the same ("Cuervo").
- * Cards and titles show the breed alone with its capital (breed.name_es).
+ * Species and breed in running text: "Perro salchicha", "Gata atigrada", "Dragona de fuego"; once when they are the
+ * same; birds by their own name ("Cuervo", "Búho hembra"). Cards and titles show the breed alone (breedLabel).
  */
-export function speciesBreed(sp: Species, br: Breed): string {
-  return fold(br.name_es) === fold(sp.name_es) ? sp.name_es : `${sp.name_es} ${br.name_es.toLocaleLowerCase('es')}`;
+export function speciesBreed(sp: Species, br: Breed, g: Gender = 'm'): string {
+  const hembra = g === 'f' && !gendered(sp) ? ' hembra' : '';
+  if (sp.breedIsNoun) return `${br.name_es}${hembra}`;
+  const noun = gendered(sp) && g === 'f' ? sp.name_f! : sp.name_es;
+  if (fold(br.name_es) === fold(sp.name_es)) return `${noun}${hembra}`;
+  return `${noun} ${breedLabel(br, gendered(sp) ? g : 'm').toLocaleLowerCase('es')}${hembra}`;
+}
+/** The pet's default name: the breed name in its gender (empty name field). */
+export function defaultName(p: Pick<PetProfile, 'species' | 'breed' | 'gender'>): string {
+  const sp = speciesById(p.species);
+  const br = sp && breedOf(sp, p.breed);
+  return br ? breedLabel(br, gendered(sp) ? p.gender ?? 'm' : 'm') : '';
+}
+/** Is this name one of the breed's default names (either gender), i.e. not one the learner typed? */
+export function isDefaultName(p: Pick<PetProfile, 'species' | 'breed' | 'name'>): boolean {
+  const sp = speciesById(p.species);
+  const br = sp && breedOf(sp, p.breed);
+  return !!br && (p.name === br.name_es || p.name === br.name_f);
 }
 
 /* ---------------- Description for screen readers ---------------- */
@@ -153,12 +186,14 @@ export function describePet(p: PetProfile): string {
   const sp = speciesById(p.species);
   const br = sp && breedOf(sp, p.breed);
   if (!sp || !br) return p.name;
-  const main = colorName(sp, p.colors.fur1).es;
+  const g: Gender = p.gender === 'f' ? 'f' : 'm';
+  const ag = gendered(sp) ? g : 'm';
+  const main = agree(colorName(sp, p.colors.fur1), ag);
   const pat = PATTERNS[p.pattern];
   const slot = pat?.color ?? 'fur3';
   const extra = pat?.es && pat.g ? ` con ${pat.es} ${agree(colorName(sp, p.colors[slot], slot), pat.g)}` : '';
-  const inName = fold(br.name_es).split(/\s+/).includes(fold(main));
-  return `${speciesBreed(sp, br)}${inName ? '' : `, ${main}`}${extra}`;
+  const inName = fold(breedLabel(br, ag)).split(/\s+/).includes(fold(main));
+  return `${speciesBreed(sp, br, g)}${inName ? '' : `, ${main}`}${extra}`;
 }
 
 /* ---------------- "Sorpréndeme" ---------------- */
@@ -176,9 +211,10 @@ export function surprise(species: string, base: PetProfile | null = null, r: () 
   for (let i = 0; i < 8 && editable.includes('fur3') && (colors.fur3 === colors.fur1 || colors.fur3 === colors.fur2); i++) colors.fur3 = one('fur3', 0.2);
   Object.assign(colors, br.lockedColors);
   const p = base ? { ...base } : makeProfile(sp.species, br.id);
-  return { ...p, species: sp.species, breed: br.id, parts: {}, colors, pattern: pick(br.patterns, r), name: base && base.name !== breedName(base) ? base.name : br.name_es };
+  // The gender is the learner's choice, never random; a typed name stays.
+  const next = { ...p, species: sp.species, breed: br.id, parts: {}, colors, pattern: pick(br.patterns, r), gender: base?.gender ?? 'm' };
+  return { ...next, name: base && !isDefaultName(base) ? base.name : defaultName(next) };
 }
-const breedName = (p: PetProfile) => { const sp = speciesById(p.species); return (sp && breedOf(sp, p.breed)?.name_es) ?? ''; };
 
 /** Is this a valid profile for the loaded data (known species and breed, colours from the swatches, allowed pattern)? */
 export function profileProblems(p: PetProfile): string[] {

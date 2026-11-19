@@ -124,6 +124,9 @@
   "creator.slot.eyes": "Глаза",
   "creator.slot.nose": "Нос",
   "creator.slot.beak": "Клюв и лапы",
+  "creator.gender": "Мальчик или девочка?",
+  "creator.male": "Мальчик",
+  "creator.female": "Девочка",
   "creator.nameLabel": "Имя (необязательно)",
   "creator.nameHint": "Если оставить пустым, питомца будут звать {name}.",
   "settings.editPet": "Изменить питомца"

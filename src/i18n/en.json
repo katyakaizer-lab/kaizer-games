@@ -235,6 +235,9 @@
   "creator.slot.eyes": "Eyes",
   "creator.slot.nose": "Nose",
   "creator.slot.beak": "Beak and feet",
+  "creator.gender": "Male or female?",
+  "creator.male": "Male",
+  "creator.female": "Female",
   "creator.nameLabel": "Name (optional)",
   "creator.nameHint": "If you leave it empty, your pet is called {name}.",
   "settings.editPet": "Edit pet"

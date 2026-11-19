@@ -235,6 +235,9 @@
   "creator.slot.eyes": "Ojos",
   "creator.slot.nose": "Nariz",
   "creator.slot.beak": "Pico y patas",
+  "creator.gender": "¿Macho o hembra?",
+  "creator.male": "Macho",
+  "creator.female": "Hembra",
   "creator.nameLabel": "Nombre (opcional)",
   "creator.nameHint": "Si lo dejas vacío, tu mascota se llamará {name}.",
   "settings.editPet": "Editar mascota"

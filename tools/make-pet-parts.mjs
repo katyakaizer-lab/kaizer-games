@@ -145,7 +145,7 @@ const FOX = {
   'mouth-fox-siesta': LINE('M100 116 L100 118 M96 120 Q100 122 104 120', 1.5),
 };
 
-/* ---------------- Raven (birds) ---------------- */
+/* ---------------- Birds (Pájaro: cuervo, urraca, búho, loro, canario, petirrojo, pingüino) ---------------- */
 const birdEyes = (r, cy) => ({
   calma: E(80, cy, r, r + 0.5, '', 'fill="#FFF4E0" stroke-width="1.6"') + E(120, cy, r, r + 0.5, '', 'fill="#FFF4E0" stroke-width="1.6"')
     + C(81, cy + 1, r * 0.55, 'fe', NOS) + C(119, cy + 1, r * 0.55, 'fe', NOS) + C(81, cy + 1, r * 0.28, '', `fill="${INK}" ${NOS}`) + C(119, cy + 1, r * 0.28, '', `fill="${INK}" ${NOS}`)
@@ -153,7 +153,7 @@ const birdEyes = (r, cy) => ({
   alegria: LINE(`M${80 - r} ${cy + 1} Q80 ${cy - r} ${80 + r} ${cy + 1}`, 3, 'class="se"') + LINE(`M${120 - r} ${cy + 1} Q120 ${cy - r} ${120 + r} ${cy + 1}`, 3, 'class="se"'),
   siesta: LINE(`M${80 - r} ${cy} Q80 ${cy + r * 0.7} ${80 + r} ${cy}`, 3, 'class="se"') + LINE(`M${120 - r} ${cy} Q120 ${cy + r * 0.7} ${120 + r} ${cy}`, 3, 'class="se"'),
 });
-const RAVEN = {
+const BIRD = {
   'body-round': E(100, 158, 54, 52, 'f1'),
   'belly-round': E(100, 176, 30, 28, 'fc', 'stroke-width="1.8"') + LINE('M86 172 q4 4 8 0 M100 172 q4 4 8 0 M92 184 q4 4 8 0', 1.2),
   'wings-wing': E(50, 164, 16, 34, 'f3', 'transform="rotate(12 50 164)"') + E(150, 164, 16, 34, 'f3', 'transform="rotate(-12 150 164)"'),
@@ -169,7 +169,7 @@ const RAVEN = {
   'mouth-bird-alegria': LINE('M95 107 Q100 111 105 107', 1.5),
   'mouth-bird-siesta': LINE('M96 108 L104 108', 1.3),
 };
-for (const [name, r, cy] of [['bird', 7, 88], ['owl', 10, 92]]) for (const [m, s] of Object.entries(birdEyes(r, cy))) RAVEN[`eyes-${name}-${m}`] = s;
+for (const [name, r, cy] of [['bird', 7, 88], ['owl', 10, 92]]) for (const [m, s] of Object.entries(birdEyes(r, cy))) BIRD[`eyes-${name}-${m}`] = s;
 
 /* ---------------- Dragon ---------------- */
 const DRAGON = {
@@ -195,7 +195,33 @@ const DRAGON = {
   'mouth-dragon-siesta': LINE('M90 123 Q100 126 110 123', 2),
 };
 
-const LIBRARY = { dog: DOG, cat: CAT, fox: FOX, raven: RAVEN, dragon: DRAGON };
+// New birds: a smaller body (canario, petirrojo), a parrot's hooked beak and long tail, a penguin's egg body, white
+// front, flippers and webbed feet (beak and feet share the nose colour, "Pico y patas").
+Object.assign(BIRD, {
+  'body-small': E(100, 166, 44, 42, 'f1'),
+  'belly-small': E(100, 180, 24, 22, 'fc', 'stroke-width="1.8"'),
+  'head-small': E(100, 100, 32, 28, 'f1') + E(72, 106, 6, 4, '', `fill="#F08A73" ${NOS}`) + E(128, 106, 6, 4, '', `fill="#F08A73" ${NOS}`),
+  'snout-small': P('M94 100 Q100 95 106 100 L100 111 Z', 'fn', 'stroke-width="1.8"'),
+  'snout-parrot': P('M88 98 C92 88 110 88 114 98 C116 108 110 118 101 123 C103 114 99 108 88 104 Z', 'fn', 'stroke-width="2"') + LINE('M90 104 Q98 108 104 116', 1.4),
+  'tail-long': E(88, 214, 7, 24, 'f3', 'transform="rotate(14 88 214)"') + E(112, 214, 7, 24, 'f3', 'transform="rotate(-14 112 214)"') + E(100, 220, 7, 26, 'f1'),
+  'body-penguin': P('M100 100 C136 100 150 150 146 186 C142 210 124 216 100 216 C76 216 58 210 54 186 C50 150 64 100 100 100 Z', 'f1'),
+  'belly-penguin': P('M100 120 C122 120 132 152 130 182 C128 204 116 210 100 210 C84 210 72 204 70 182 C68 152 78 120 100 120 Z', 'fc', 'stroke-width="1.8"'),
+  'head-penguin': E(100, 92, 36, 32, 'f1') + P('M100 82 C112 72 126 78 126 92 C126 106 114 116 100 116 C86 116 74 106 74 92 C74 78 88 72 100 82 Z', 'f2', NOS),
+  'wings-flipper': pair('M60 128 C44 144 38 170 44 190 C52 184 58 162 64 140 Z', 'f1'),
+  'feet-webbed': P('M76 212 L72 222 L80 219 L86 223 L92 219 L96 222 L92 212 Z', 'fn', 'stroke-width="1.8"') + P('M104 212 L108 222 L114 219 L120 223 L126 219 L130 222 L124 212 Z', 'fn', 'stroke-width="1.8"'),
+});
+// New dragons: De aire (cloud wings, a wisp tail with a puff, curled horns) and Eléctrico (zigzag wings, bolt horns,
+// a lightning-bolt tail tip).
+Object.assign(DRAGON, {
+  'wings-cloud': P(scallop(48, 130, 22, 24, 6, -90), 'f3') + P(mirror(scallop(48, 130, 22, 24, 6, -90)), 'f3'),
+  'tail-wisp': TAIL('M138 204 C170 214 190 196 184 172', 13) + P(scallop(180, 162, 12, 11, 5), 'f3'),
+  'horns-wisp': pair('M86 68 C80 56 70 50 62 54 C70 56 76 62 80 70 Z', 'f3') + C(62, 54, 3.5, 'f3'),
+  'wings-bolt': pair('M66 150 C38 148 20 132 14 104 L30 112 L28 94 L44 108 L46 90 L58 116 Q62 128 68 138 Z', 'f3'),
+  'horns-bolt': pair('M88 68 L80 56 L86 56 L80 42 L94 58 L88 58 L93 68 Z', 'f3'),
+  'tail-bolt': TAIL('M138 204 C170 216 192 202 190 176 C189 166 186 160 182 156', 15) + P('M178 160 L188 132 L184 146 L196 140 L182 170 L186 154 Z', 'f3'),
+});
+
+const LIBRARY = { dog: DOG, cat: CAT, fox: FOX, bird: BIRD, dragon: DRAGON };
 const svg = (slot, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240"><g data-slot="${slot}" stroke="${INK}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">${body}</g></svg>\n`;
 const slotOf = (name) => name.split('-')[0];
 const base = join(ROOT, 'public/assets/pet-parts');

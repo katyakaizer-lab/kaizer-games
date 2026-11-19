@@ -12,7 +12,7 @@ import { getActivePet, savePet } from './pet-state';
 import { navigate } from './router';
 import { PetPortrait, type PetPortraitEl } from '../pets/compose';
 import {
-  allSpecies, breedOf, describePet, editableSlots, makeProfile, normalizeProfile, patterns, slotChoices, speciesBreed, speciesById, surprise,
+  allSpecies, breedLabel, breedOf, defaultName, describePet, isDefaultName, editableSlots, makeProfile, normalizeProfile, patterns, slotChoices, speciesBreed, speciesById, surprise,
   type Breed, type ColorSlot, type PetProfile, type Species,
 } from '../pets/species';
 import './creator.css';
@@ -25,14 +25,13 @@ export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
   const editing = o.edit && !!existing;
   let draft: PetProfile = existing && editing ? normalizeProfile(structuredClone(existing)) : makeProfile(allSpecies()[0].species);
   /** The name the learner typed (empty: the breed name is used). */
-  let customName = editing && existing && existing.name !== breedName(existing) ? existing.name : '';
+  let customName = editing && existing && !isDefaultName(existing) ? existing.name : '';
   let step: Step = 'species';
   let cycleTimer = 0;
 
   const sp = (): Species => speciesById(draft.species)!;
   const br = (): Breed => breedOf(sp(), draft.breed)!;
-  function breedName(p: PetProfile) { const s = speciesById(p.species); return (s && breedOf(s, p.breed)?.name_es) ?? ''; }
-  const finalName = () => customName.trim() || br().name_es;
+  const finalName = () => customName.trim() || defaultName(draft);
 
   const previewBox = h('div', { class: 'creator__preview-fig' });
   const previewName = h('p', { class: 'creator__preview-name', lang: 'es' });
@@ -67,13 +66,13 @@ export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
     return h('fieldset', { class: 'creator__fieldset' }, h('legend', null, t('creator.step.species')),
       h('div', { class: 'creator__cards' }, allSpecies().map((s) => radio('species', s.species, s.species === draft.species,
         [PetPortrait({ pet: makeProfile(s.species, undefined, `pv-${s.species}`), decorative: true, class: 'creator__card-pet' }), h('span', { class: 'creator__card-name', lang: 'es' }, s.name_es)],
-        s.name_es, () => { draft = { ...makeProfile(s.species, undefined, draft.id), createdAt: draft.createdAt }; changed(); }, 'is-card'))));
+        s.name_es, () => { draft = { ...makeProfile(s.species, undefined, draft.id), createdAt: draft.createdAt, gender: draft.gender }; changed(); }, 'is-card'))));
   }
   function breedStep(): HTMLElement {
     return h('fieldset', { class: 'creator__fieldset' }, h('legend', null, t('creator.step.breed')),
       h('div', { class: 'creator__cards' }, sp().breeds.map((b) => radio('breed', b.id, b.id === draft.breed,
-        [PetPortrait({ pet: makeProfile(sp().species, b.id, `pv-${b.id}`), decorative: true, class: 'creator__card-pet' }), h('span', { class: 'creator__card-name', lang: 'es' }, b.name_es)],
-        speciesBreed(sp(), b), () => { draft = { ...draft, breed: b.id, parts: {}, colors: { ...b.colors, ...b.lockedColors }, pattern: b.pattern }; changed(); }, 'is-card'))));
+        [PetPortrait({ pet: makeProfile(sp().species, b.id, `pv-${b.id}`), decorative: true, class: 'creator__card-pet' }), h('span', { class: 'creator__card-name', lang: 'es' }, breedLabel(b, draft.gender))],
+        speciesBreed(sp(), b, draft.gender), () => { draft = { ...draft, breed: b.id, parts: {}, colors: { ...b.colors, ...b.lockedColors }, pattern: b.pattern }; changed(); }, 'is-card'))));
   }
   /** The slot the current pattern is drawn in (none: no pattern). */
   const patternSlot = (): ColorSlot | null => { const pd = patterns()[draft.pattern]; return pd?.es ? pd.color ?? 'fur3' : null; };
@@ -114,11 +113,15 @@ export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
       ...slots.filter((s) => s === 'eyes' || s === 'nose').map(slotField));
   }
   function nameStep(): HTMLElement {
-    const input = h('input', { id: 'cr-name', type: 'text', maxlength: '24', autocomplete: 'off', class: 'field__input', lang: 'es', placeholder: br().name_es, value: customName }) as HTMLInputElement;
+    const input = h('input', { id: 'cr-name', type: 'text', maxlength: '24', autocomplete: 'off', class: 'field__input', lang: 'es', placeholder: defaultName(draft), value: customName }) as HTMLInputElement;
     input.addEventListener('input', () => { customName = input.value; previewName.textContent = finalName(); });
-    return h('div', { class: 'creator__name' },
+    const gender = h('fieldset', { class: 'creator__fieldset' }, h('legend', null, t('creator.gender')),
+      h('div', { class: 'creator__chips' }, (['m', 'f'] as const).map((g) => radio('gender', g, (draft.gender ?? 'm') === g,
+        [h('span', null, t(g === 'm' ? 'creator.male' : 'creator.female'))], t(g === 'm' ? 'creator.male' : 'creator.female'),
+        () => { draft = { ...draft, gender: g }; changed(false); }, 'is-chip'))));
+    return h('div', { class: 'creator__name' }, gender,
       h('label', { class: 'field', for: 'cr-name' }, h('span', { class: 'field__label' }, t('creator.nameLabel')), input),
-      h('p', { class: 'creator__hint' }, t('creator.nameHint', { name: br().name_es })));
+      h('p', { class: 'creator__hint' }, t('creator.nameHint', { name: defaultName(draft) })));
   }
 
   function changed(cycle = true) {

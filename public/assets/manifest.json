@@ -4885,10 +4885,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.body-round",
+   "id": "pet-part.bird.body-round",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/body-round.svg"
+    "1x": "pet-parts/bird/body-round.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4897,7 +4897,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): body-round"
+    "prompt": "pet part (bird): body-round"
    },
    "licence": "own",
    "games": [
@@ -4905,10 +4905,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.belly-round",
+   "id": "pet-part.bird.belly-round",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/belly-round.svg"
+    "1x": "pet-parts/bird/belly-round.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4917,7 +4917,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): belly-round"
+    "prompt": "pet part (bird): belly-round"
    },
    "licence": "own",
    "games": [
@@ -4925,10 +4925,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.wings-wing",
+   "id": "pet-part.bird.wings-wing",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/wings-wing.svg"
+    "1x": "pet-parts/bird/wings-wing.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4937,7 +4937,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): wings-wing"
+    "prompt": "pet part (bird): wings-wing"
    },
    "licence": "own",
    "games": [
@@ -4945,10 +4945,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.tail-fan",
+   "id": "pet-part.bird.tail-fan",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/tail-fan.svg"
+    "1x": "pet-parts/bird/tail-fan.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4957,7 +4957,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): tail-fan"
+    "prompt": "pet part (bird): tail-fan"
    },
    "licence": "own",
    "games": [
@@ -4965,10 +4965,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.feet-talons",
+   "id": "pet-part.bird.feet-talons",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/feet-talons.svg"
+    "1x": "pet-parts/bird/feet-talons.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4977,7 +4977,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): feet-talons"
+    "prompt": "pet part (bird): feet-talons"
    },
    "licence": "own",
    "games": [
@@ -4985,10 +4985,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.ears-crest",
+   "id": "pet-part.bird.ears-crest",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/ears-crest.svg"
+    "1x": "pet-parts/bird/ears-crest.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -4997,7 +4997,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): ears-crest"
+    "prompt": "pet part (bird): ears-crest"
    },
    "licence": "own",
    "games": [
@@ -5005,10 +5005,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.ears-tufts",
+   "id": "pet-part.bird.ears-tufts",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/ears-tufts.svg"
+    "1x": "pet-parts/bird/ears-tufts.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5017,7 +5017,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): ears-tufts"
+    "prompt": "pet part (bird): ears-tufts"
    },
    "licence": "own",
    "games": [
@@ -5025,10 +5025,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.head-round",
+   "id": "pet-part.bird.head-round",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/head-round.svg"
+    "1x": "pet-parts/bird/head-round.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5037,7 +5037,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): head-round"
+    "prompt": "pet part (bird): head-round"
    },
    "licence": "own",
    "games": [
@@ -5045,10 +5045,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.head-owl",
+   "id": "pet-part.bird.head-owl",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/head-owl.svg"
+    "1x": "pet-parts/bird/head-owl.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5057,7 +5057,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): head-owl"
+    "prompt": "pet part (bird): head-owl"
    },
    "licence": "own",
    "games": [
@@ -5065,10 +5065,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.snout-beak",
+   "id": "pet-part.bird.snout-beak",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/snout-beak.svg"
+    "1x": "pet-parts/bird/snout-beak.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5077,7 +5077,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): snout-beak"
+    "prompt": "pet part (bird): snout-beak"
    },
    "licence": "own",
    "games": [
@@ -5085,10 +5085,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.snout-hook",
+   "id": "pet-part.bird.snout-hook",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/snout-hook.svg"
+    "1x": "pet-parts/bird/snout-hook.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5097,7 +5097,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): snout-hook"
+    "prompt": "pet part (bird): snout-hook"
    },
    "licence": "own",
    "games": [
@@ -5105,10 +5105,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.mouth-bird.calma",
+   "id": "pet-part.bird.mouth-bird.calma",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/mouth-bird-calma.svg"
+    "1x": "pet-parts/bird/mouth-bird-calma.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5117,7 +5117,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): mouth-bird-calma"
+    "prompt": "pet part (bird): mouth-bird-calma"
    },
    "licence": "own",
    "games": [
@@ -5125,10 +5125,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.mouth-bird.alegria",
+   "id": "pet-part.bird.mouth-bird.alegria",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/mouth-bird-alegria.svg"
+    "1x": "pet-parts/bird/mouth-bird-alegria.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5137,7 +5137,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): mouth-bird-alegria"
+    "prompt": "pet part (bird): mouth-bird-alegria"
    },
    "licence": "own",
    "games": [
@@ -5145,10 +5145,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.mouth-bird.siesta",
+   "id": "pet-part.bird.mouth-bird.siesta",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/mouth-bird-siesta.svg"
+    "1x": "pet-parts/bird/mouth-bird-siesta.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5157,7 +5157,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): mouth-bird-siesta"
+    "prompt": "pet part (bird): mouth-bird-siesta"
    },
    "licence": "own",
    "games": [
@@ -5165,10 +5165,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-bird.calma",
+   "id": "pet-part.bird.eyes-bird.calma",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-bird-calma.svg"
+    "1x": "pet-parts/bird/eyes-bird-calma.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5177,7 +5177,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-bird-calma"
+    "prompt": "pet part (bird): eyes-bird-calma"
    },
    "licence": "own",
    "games": [
@@ -5185,10 +5185,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-bird.alegria",
+   "id": "pet-part.bird.eyes-bird.alegria",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-bird-alegria.svg"
+    "1x": "pet-parts/bird/eyes-bird-alegria.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5197,7 +5197,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-bird-alegria"
+    "prompt": "pet part (bird): eyes-bird-alegria"
    },
    "licence": "own",
    "games": [
@@ -5205,10 +5205,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-bird.siesta",
+   "id": "pet-part.bird.eyes-bird.siesta",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-bird-siesta.svg"
+    "1x": "pet-parts/bird/eyes-bird-siesta.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5217,7 +5217,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-bird-siesta"
+    "prompt": "pet part (bird): eyes-bird-siesta"
    },
    "licence": "own",
    "games": [
@@ -5225,10 +5225,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-owl.calma",
+   "id": "pet-part.bird.eyes-owl.calma",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-owl-calma.svg"
+    "1x": "pet-parts/bird/eyes-owl-calma.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5237,7 +5237,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-owl-calma"
+    "prompt": "pet part (bird): eyes-owl-calma"
    },
    "licence": "own",
    "games": [
@@ -5245,10 +5245,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-owl.alegria",
+   "id": "pet-part.bird.eyes-owl.alegria",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-owl-alegria.svg"
+    "1x": "pet-parts/bird/eyes-owl-alegria.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5257,7 +5257,7 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-owl-alegria"
+    "prompt": "pet part (bird): eyes-owl-alegria"
    },
    "licence": "own",
    "games": [
@@ -5265,10 +5265,10 @@
    ]
   },
   {
-   "id": "pet-part.raven.eyes-owl.siesta",
+   "id": "pet-part.bird.eyes-owl.siesta",
    "kind": "pet-part",
    "files": {
-    "1x": "pet-parts/raven/eyes-owl-siesta.svg"
+    "1x": "pet-parts/bird/eyes-owl-siesta.svg"
    },
    "alt": "",
    "status": "placeholder",
@@ -5277,7 +5277,227 @@
     "tool": "Claude",
     "date": "2026-11-19",
     "terms": "own",
-    "prompt": "pet part (raven): eyes-owl-siesta"
+    "prompt": "pet part (bird): eyes-owl-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.body-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/body-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): body-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.belly-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/belly-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): belly-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.head-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/head-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): head-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.snout-small",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/snout-small.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): snout-small"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.snout-parrot",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/snout-parrot.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): snout-parrot"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.tail-long",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/tail-long.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): tail-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.body-penguin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/body-penguin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): body-penguin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.belly-penguin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/belly-penguin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): belly-penguin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.head-penguin",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/head-penguin.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): head-penguin"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.wings-flipper",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/wings-flipper.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): wings-flipper"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.bird.feet-webbed",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/bird/feet-webbed.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (bird): feet-webbed"
    },
    "licence": "own",
    "games": [
@@ -5678,6 +5898,126 @@
     "date": "2026-11-19",
     "terms": "own",
     "prompt": "pet part (dragon): mouth-dragon-siesta"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.wings-cloud",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/wings-cloud.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): wings-cloud"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.tail-wisp",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/tail-wisp.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): tail-wisp"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.horns-wisp",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/horns-wisp.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): horns-wisp"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.wings-bolt",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/wings-bolt.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): wings-bolt"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.horns-bolt",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/horns-bolt.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): horns-bolt"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.dragon.tail-bolt",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/dragon/tail-bolt.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (dragon): tail-bolt"
    },
    "licence": "own",
    "games": [

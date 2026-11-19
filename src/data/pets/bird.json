@@ -1,0 +1,66 @@
+{
+  "species": "bird", "name_es": "Pájaro", "default": "canario", "noseLabel": "beak",
+  "_note": "Birds are named by their own noun (\"Cuervo\", \"Búho\"), not \"Pájaro cuervo\" (breedIsNoun). Bird names are epicene: a female is \"Búho hembra\" and colours agree with the masculine noun. Saves from before 2026-11-19 used the species id \"raven\" (pet-state.ts maps it to bird / cuervo).",
+  "breedIsNoun": true,
+  "layers": ["shadow", "wings", "tail", "body", "belly", "ears", "head", "pattern", "snout", "feet", "arms", "horns", "eyes", "mouth"],
+  "slots": ["fur1", "fur2", "fur3", "eyes", "nose"],
+  "rig": { "headWidth": 76, "anchors": { "head": [100, 61], "face": [100, 95], "neck": [100, 124], "body": [100, 165], "feet": [100, 216], "back": [100, 150] } },
+  "swatches": {
+    "fur": [
+      { "c": "#FFFFFF", "es": "blanco" }, { "c": "#EAD7B5", "es": "crema", "inv": true }, { "c": "#C9A97A", "es": "arena", "inv": true },
+      { "c": "#F4CF45", "es": "amarillo" }, { "c": "#E0703A", "es": "naranja", "inv": true }, { "c": "#D9533A", "es": "rojo" },
+      { "c": "#5DAE5B", "es": "verde" }, { "c": "#9A6E48", "es": "pardo" }, { "c": "#6B4A30", "es": "marrón" }, { "c": "#8E909C", "es": "gris" },
+      { "c": "#5B6384", "es": "gris azulado", "inv": true }, { "c": "#2F4E8C", "es": "azul" }, { "c": "#3F4559", "es": "negro" }, { "c": "#2E3142", "es": "negro" }
+    ],
+    "furFantasy": [
+      { "c": "#8EC9EE", "es": "azul cielo", "inv": true }, { "c": "#F2A7C3", "es": "rosa", "inv": true }, { "c": "#B9A3E3", "es": "lila", "inv": true },
+      { "c": "#4FB3B3", "es": "turquesa", "inv": true }
+    ],
+    "eyes": [
+      { "c": "#5A3E2B", "es": "marrón" }, { "c": "#2B2D42", "es": "negro" }, { "c": "#E8A33D", "es": "ámbar", "inv": true }, { "c": "#E8833A", "es": "naranja", "inv": true },
+      { "c": "#E8C33D", "es": "amarillo" }, { "c": "#D9533A", "es": "rojo" }, { "c": "#5AA9E6", "es": "azul" }, { "c": "#8E9AAF", "es": "gris" }
+    ],
+    "eyesFantasy": [ { "c": "#8E6BD1", "es": "violeta", "inv": true }, { "c": "#4FB3B3", "es": "turquesa", "inv": true }, { "c": "#E86FA3", "es": "rosa", "inv": true } ],
+    "nose": [ { "c": "#E8A33D", "es": "amarillo" }, { "c": "#D9A441", "es": "dorado" }, { "c": "#E0703A", "es": "naranja", "inv": true }, { "c": "#3A3D4F", "es": "negro" } ],
+    "noseFantasy": [ { "c": "#E86FA3", "es": "rosa", "inv": true } ]
+  },
+  "breeds": [
+    { "id": "cuervo", "name_es": "Cuervo",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-fan", "body": "body-round", "belly": "belly-round", "ears": "ears-crest", "head": "head-round", "snout": "snout-beak", "feet": "feet-talons", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#3F4559", "fur2": "#5B6384", "fur3": "#2E3142", "eyes": "#5A3E2B", "nose": "#E8A33D" },
+      "colorChoices": { "fur1": ["#3F4559", "#2E3142", "#5B6384"] },
+      "pattern": "none", "patterns": ["none", "spots"] },
+    { "id": "urraca", "name_es": "Urraca",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-fan", "body": "body-round", "belly": "belly-round", "ears": "ears-crest", "head": "head-round", "snout": "snout-beak", "feet": "feet-talons", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#2E3142", "fur2": "#FFFFFF", "fur3": "#2F4E8C", "eyes": "#2B2D42", "nose": "#3A3D4F" },
+      "lockedColors": { "fur1": "#2E3142", "fur2": "#FFFFFF" },
+      "pattern": "none", "patterns": ["none"] },
+    { "id": "buho", "name_es": "Búho",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-fan", "body": "body-round", "belly": "belly-round", "ears": "ears-tufts", "head": "head-owl", "snout": "snout-hook", "feet": "feet-talons", "eyes": "eyes-owl", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#9A6E48", "fur2": "#EAD7B5", "fur3": "#6B4A30", "eyes": "#E8A33D", "nose": "#D9A441" },
+      "pattern": "none", "patterns": ["none", "spots"], "rig": { "headWidth": 84, "anchors": { "head": [0, -1] } } },
+    { "id": "loro", "name_es": "Loro",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-long", "body": "body-round", "belly": "belly-round", "ears": "ears-crest", "head": "head-round", "snout": "snout-parrot", "feet": "feet-talons", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#5DAE5B", "fur2": "#F4CF45", "fur3": "#D9533A", "eyes": "#E8C33D", "nose": "#3A3D4F" },
+      "pattern": "none", "patterns": ["none", "spots"] },
+    { "id": "canario", "name_es": "Canario",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-fan", "body": "body-small", "belly": "belly-small", "head": "head-small", "snout": "snout-small", "feet": "feet-talons", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#F4CF45", "fur2": "#FFFFFF", "fur3": "#E0703A", "eyes": "#2B2D42", "nose": "#E0703A" },
+      "colorChoices": { "fur1": ["#F4CF45", "#E0703A", "#FFFFFF", "#EAD7B5"] },
+      "pattern": "none", "patterns": ["none"], "rig": { "headWidth": 66, "anchors": { "head": [0, 11] } } },
+    { "id": "petirrojo", "name_es": "Petirrojo",
+      "_note": "The name means red breast: the breast colour is locked.",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-wing", "tail": "tail-fan", "body": "body-small", "belly": "belly-small", "head": "head-small", "snout": "snout-small", "feet": "feet-talons", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#9A6E48", "fur2": "#E0703A", "fur3": "#6B4A30", "eyes": "#2B2D42", "nose": "#3A3D4F" },
+      "lockedColors": { "fur2": "#E0703A" },
+      "colorChoices": { "fur1": ["#9A6E48", "#6B4A30", "#C9A97A", "#8E909C"] },
+      "pattern": "none", "patterns": ["none"], "rig": { "headWidth": 66, "anchors": { "head": [0, 11] } } },
+    { "id": "pinguino", "name_es": "Pingüino",
+      "_note": "Black (or dark blue) back and a white front: the front is locked white.",
+      "parts": { "shadow": "shared.shadow", "wings": "wings-flipper", "body": "body-penguin", "belly": "belly-penguin", "head": "head-penguin", "snout": "snout-small", "feet": "feet-webbed", "eyes": "eyes-bird", "mouth": "mouth-bird" },
+      "colors": { "fur1": "#2E3142", "fur2": "#FFFFFF", "fur3": "#3F4559", "eyes": "#2B2D42", "nose": "#E0703A" },
+      "lockedColors": { "fur2": "#FFFFFF" },
+      "colorChoices": { "fur1": ["#2E3142", "#3F4559", "#5B6384", "#2F4E8C"] },
+      "pattern": "none", "patterns": ["none"] }
+  ]
+}

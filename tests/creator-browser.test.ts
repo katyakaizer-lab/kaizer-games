@@ -98,11 +98,16 @@ describe('pet creator', () => {
     await next(page);
     // Name: optional; the default is the breed name.
     expect(await page.getAttribute('#cr-name', 'placeholder')).toBe('Salchicha');
+    // Gender: wording only (Perra salchicha, rojiza); the drawing stays the same.
+    const before = await page.innerHTML('.creator__preview .k-pet__body');
+    await page.click('label[for="cr-gender-f"]');
+    expect(await page.textContent('.creator__preview-desc')).toBe('Perra salchicha, marrón con pecho negro');
+    expect((await page.innerHTML('.creator__preview .k-pet__body')).replace(/d+__/g, '')).toBe(before.replace(/d+__/g, ''));
     await page.click('.creator__nav button:has-text("Empezar")');
     await page.waitForSelector('.home__pet svg');
     const saved = await page.evaluate(() => ({ pets: JSON.parse(localStorage.getItem('kz.pets')!), active: JSON.parse(localStorage.getItem('kz.activePetId')!) }));
     expect(saved.pets).toHaveLength(1);
-    expect(saved.pets[0]).toMatchObject({ species: 'dog', breed: 'salchicha', name: 'Salchicha', pattern: 'chest' });
+    expect(saved.pets[0]).toMatchObject({ species: 'dog', breed: 'salchicha', name: 'Salchicha', pattern: 'chest', gender: 'f' });
     expect(saved.active).toBe(saved.pets[0].id);
     await page.close();
     expect(errors).toEqual([]);
@@ -169,7 +174,7 @@ describe('Mascotas gallery (style-test page)', () => {
         return { figs: figs.length, drawn: figs.filter((f) => f.querySelector('svg [data-slot="body"]')).length, itemLayers: items.filter(Boolean).length, shown };
       });
       await page.close();
-      expect(r).toEqual({ figs: 38, drawn: 38, itemLayers: 38, shown: 38 });
+      expect(r).toEqual({ figs: 50, drawn: 50, itemLayers: 50, shown: 50 });
       expect(errors).toEqual([]);
     }, 60_000);
   }

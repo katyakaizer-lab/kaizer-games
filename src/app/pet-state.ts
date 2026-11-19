@@ -11,7 +11,7 @@
  */
 import { onImport, store } from '../data/storage';
 import '../pets/data';
-import { makeProfile, normalizeProfile, profileProblems, speciesById, type PetProfile } from '../pets/species';
+import { OLD_SPECIES, makeProfile, normalizeProfile, profileProblems, speciesById, type PetProfile } from '../pets/species';
 import type { Mood } from '../pets/pets';
 
 export interface Activity { lastPracticeAt?: number; lastCelebrationAt?: number }
@@ -24,8 +24,10 @@ export function migratePets(now = Date.now()): boolean {
   const old = store.get<{ species?: string; name?: string } | null>('pet', null);
   if (!old) return false;
   const pets = store.get<PetProfile[]>('pets', []);
-  if (!pets.length && old.species && speciesById(old.species)) {
-    const p = makeProfile(old.species, undefined, 'pet-1');
+  const was = old.species && OLD_SPECIES[old.species];
+  const species = was ? was.species : old.species;
+  if (!pets.length && species && speciesById(species)) {
+    const p = makeProfile(species, was ? was.breed : undefined, 'pet-1');
     const named = old.name?.trim();
     const profile: PetProfile = { ...p, name: named || p.name, createdAt: now };
     store.set('pets', [profile]);
@@ -40,8 +42,9 @@ onImport(() => { migratePets(); });
 /** The learner's pets (an old single-pet save is migrated first, wherever it is read). */
 export function getPets(): PetProfile[] {
   if (store.get('pet', null)) migratePets();
-  // Profiles follow the current breed data (a breed that now locks a colour, or a pattern it no longer offers).
-  return store.get<PetProfile[]>('pets', []).filter((p) => speciesById(p.species)).map(normalizeProfile);
+  // Profiles follow the current data (old species ids such as raven, a breed that now locks a colour, a pattern it
+  // no longer offers, a missing gender).
+  return store.get<PetProfile[]>('pets', []).map(normalizeProfile).filter((p) => speciesById(p.species));
 }
 export function getActivePet(): PetProfile | null {
   const pets = getPets();

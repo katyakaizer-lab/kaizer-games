@@ -58,6 +58,8 @@ export function validatePets(
       else if (names.has(n)) errors.push(`${b}: name "${br.name_es}" repeats in ${sp.species}`);
       names.add(n ?? '');
       if (/^(el|la|los|las|un|una)\s/i.test(br.name_es ?? '')) errors.push(`${b}: name without an article`);
+      if (br.name_f !== undefined && (!br.name_f.trim() || /^(el|la|los|las|un|una)\s/i.test(br.name_f))) errors.push(`${b}: name_f must be a name without an article`);
+      if (br.name_f && (sp.breedIsNoun || !sp.name_f)) errors.push(`${b}: name_f needs a species with a feminine noun (birds are epicene: "hembra")`);
       for (const l of REQUIRED_LAYERS) if (!br.parts[l]) errors.push(`${b}: missing required layer ${l}`);
       for (const [slot, part] of Object.entries(br.parts)) {
         if (!sp.layers.includes(slot)) errors.push(`${b}: slot ${slot} is not in the species layers`);
