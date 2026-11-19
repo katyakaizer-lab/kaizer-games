@@ -217,5 +217,6 @@
   "settings.vibration": "Vibración",
   "settings.vibrationOn": "Sí",
   "settings.vibrationOff": "No",
-  "home.stars": "{n} estrellas"
+  "home.stars": "{n} estrellas",
+  "cw.helpSummaryOne": "{help} · 1 pista"
 }

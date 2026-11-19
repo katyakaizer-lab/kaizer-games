@@ -77,6 +77,9 @@ function newGame(level: Level, topic: Topic, help: HelpLevel, seed: number): Sav
   return g;
 }
 
+/** CSS url() in a custom property resolves against the stylesheet (assets/), so pass an absolute URL. */
+const absUrl = (src: string) => new URL(src, document.baseURI).href;
+
 /** Decorations of a topic: a band of small objects with an ornament border between them (aria-hidden). */
 function decorBand(topic: Topic, count: number): HTMLElement {
   const items = (topic.decor?.items ?? []).slice(0, count);
@@ -85,7 +88,7 @@ function decorBand(topic: Topic, count: number): HTMLElement {
     const colour = `var(${DECOR_COLOURS[i % DECOR_COLOURS.length]})`;
     if (hasArt(id)) {
       const e = h('span', { class: 'cw-decor__obj', 'data-decor': id });
-      e.style.setProperty('--src', `url("${art(id).src}")`);
+      e.style.setProperty('--src', `url("${absUrl(art(id).src!)}")`);
       e.style.setProperty('--c', colour);
       return e;
     }
@@ -102,7 +105,7 @@ function decorBand(topic: Topic, count: number): HTMLElement {
 function border(topic: Topic, cls: string): HTMLElement {
   const id = `decor.border.${topic.decor?.style ?? 'dots'}`;
   const e = h('span', { class: cls, 'data-decor': id, 'aria-hidden': 'true' });
-  if (hasArt(id)) e.style.setProperty('--src', `url("${art(id).src}")`);
+  if (hasArt(id)) e.style.setProperty('--src', `url("${absUrl(art(id).src!)}")`);
   else e.classList.add('is-plain');
   return e;
 }
@@ -549,7 +552,7 @@ export function mount(root: HTMLElement, ctx: GameContext): GameHandle {
           FeedbackBanner({ kind: 'correct', title: t('cw.finished'), hint: `${topic.name_es} · ${lang === 'ru' ? topic.ru : topic.en}` }),
           h('p', { class: 'cw-finish__meta' },
             h('span', { class: 'k-star-total' }, h('span', { 'aria-hidden': 'true' }, '★'), ` ${t('cw.starsEarned', { n: g.stars })}`),
-            h('span', null, t('cw.helpSummary', { help: helpName(g.help), n: g.hintsUsed })))),
+            h('span', null, t(g.hintsUsed === 1 ? 'cw.helpSummaryOne' : 'cw.helpSummary', { help: helpName(g.help), n: g.hintsUsed })))),
         gridEl(false),
         clueList(false),
         h('div', { class: 'cw-actions is-end' },

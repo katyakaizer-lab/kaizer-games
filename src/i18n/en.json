@@ -211,11 +211,12 @@
   "cw.nearUse": "Put {ch}",
   "cw.finished": "Crossword complete!",
   "cw.starsEarned": "+{n} stars",
-  "cw.helpSummary": "{help} · {n} hint(s)",
+  "cw.helpSummary": "{help} · {n} hints",
   "cw.newGame": "Otro crucigrama",
   "cw.levelsBack": "Levels",
   "settings.vibration": "Vibration",
   "settings.vibrationOn": "On",
   "settings.vibrationOff": "Off",
-  "home.stars": "{n} stars"
+  "home.stars": "{n} stars",
+  "cw.helpSummaryOne": "{help} · 1 hint"
 }

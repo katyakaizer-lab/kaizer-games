@@ -113,6 +113,21 @@ describe('every crossword at phone widths', () => {
   }
 });
 
+describe('decorations load', () => {
+  it('every decoration image used as a mask actually loads (also on the built site)', async () => {
+    const { page } = await newPage(430, 800);
+    await play(page, 'B2', 'festividades', 1);
+    const res = await page.evaluate(async () => {
+      const urls = [...document.querySelectorAll<HTMLElement>('[data-decor]')].map((e) => getComputedStyle(e).webkitMaskImage.match(/url\("?([^")]+)"?\)/)?.[1]).filter(Boolean) as string[];
+      const st = await Promise.all(urls.map((u) => fetch(u).then((r) => `${r.status} ${r.headers.get('content-type')}`)));
+      return { n: urls.length, bad: st.filter((s) => !s.startsWith('200') || !s.includes('svg')) };
+    });
+    await page.close();
+    expect(res.n).toBeGreaterThanOrEqual(5);
+    expect(res.bad).toEqual([]);
+  }, 60_000);
+});
+
 describe('help, hints and the accent window', () => {
   it('the help choice comes before each crossword and is remembered; Poca ayuda gives 1 letter per word', async () => {
     const { page, errors } = await newPage();
@@ -230,7 +245,7 @@ describe('clues and finishing', () => {
     await page.waitForSelector('.cw-finish');
     const text = await page.textContent('.cw-finish');
     expect(text).toContain('Crucigrama completo');
-    expect(text).toContain('Poca ayuda · 0 pistas');
+    expect(text).toContain('Poca ayuda · 0 pistas'); // (1 hint reads "1 pista")
     // 1 per word + 3 for finishing + 1 for Poca ayuda.
     const expected = p.words.length + 3 + 1;
     expect(text).toContain(`+${expected} estrellas`);

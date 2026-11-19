@@ -105,5 +105,6 @@
   "settings.vibration": "Вибрация",
   "settings.vibrationOn": "Вкл.",
   "settings.vibrationOff": "Выкл.",
-  "home.stars": "Звёзды: {n}"
+  "home.stars": "Звёзды: {n}",
+  "cw.helpSummaryOne": "{help} · 1 подсказка"
 }
