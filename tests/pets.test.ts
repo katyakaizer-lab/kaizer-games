@@ -6,9 +6,10 @@ import { setManifest, type ArtEntry } from '../src/ui/art';
 import { _setBackend, exportProgress, importProgress, store } from '../src/data/storage';
 import { getStars } from '../src/rewards/wallet';
 import {
-  agree, allSpecies, breedOf, describePet, loadPetFiles, makeProfile, profileProblems, rigOf, speciesById, surprise, type PetProfile,
+  agree, allSpecies, breedOf, colorName, describePet, editableSlots, loadPetFiles, makeProfile, normalizeProfile, patterns, profileProblems, rigOf,
+  slotChoices, speciesBreed, speciesById, surprise, type PetProfile,
 } from '../src/pets/species';
-import { composeMarkup, placeItem, partIdsFor } from '../src/pets/compose';
+import { colorVars, composeMarkup, placeItem, partIdsFor } from '../src/pets/compose';
 import { validatePets } from '../src/pets/validate';
 import { getActivePet, migratePets, savePet } from '../src/app/pet-state';
 
@@ -59,6 +60,22 @@ describe('validator', () => {
   it('catches a missing required layer', () => expect(broken((s) => { delete s[0].breeds[0].parts.mouth; })).toMatch(/missing required layer mouth/));
   it('catches a part that does not resolve', () => expect(broken((s) => { s[0].breeds[0].parts.ears = 'ears-nope'; })).toMatch(/does not resolve/));
   it('catches a repeated breed name', () => expect(broken((s) => { s[0].breeds[1].name_es = s[0].breeds[0].name_es; })).toMatch(/repeats/));
+  it('catches a floating head (Salchicha before the fix: head 24px above the body)', () => {
+    const old = (id: string) => id === 'pet-part.dog.body-long'
+      ? '<svg><g data-slot="body" stroke="#2B2D42"><path d="M46 206 C38 170 58 142 100 142 C142 142 162 170 154 206 C136 216 64 216 46 206 Z" class="f1"/></g></svg>' : partText(id);
+    const r = validatePets(allSpecies(), files.find((f) => f.patterns).patterns, { partText: old, backgrounds: BG, ink: '#2B2D42' });
+    expect(r.errors.join('\n')).toMatch(/salchicha: head floats/);
+  });
+  it('catches a pattern shape outside a part group (it would not be clipped)', () => {
+    const loose = (id: string) => id === 'pet-part.pattern.spots' ? partText(id)!.replace('<g data-on="body">', '<circle cx="1" cy="1" r="1" class="f3"/><g data-on="body">') : partText(id);
+    const r = validatePets(allSpecies(), files.find((f) => f.patterns).patterns, { partText: loose, backgrounds: BG, ink: '#2B2D42' });
+    expect(r.errors.join('\n')).toMatch(/pattern spots: every shape must be inside/);
+  });
+  it('catches a locked colour that is not the default', () => expect(broken((s) => { s[1].breeds.find((b) => b.id === 'negro')!.colors.fur1 = '#E5A25A'; })).toMatch(/must equal its locked colour/));
+  it('every breed: head, ears and tail touch the body (or head)', () => {
+    const r = validatePets(allSpecies(), files.find((f) => f.patterns).patterns, { partText, backgrounds: BG, ink: '#2B2D42' });
+    expect(r.errors.filter((e) => /floats/.test(e))).toEqual([]);
+  });
   it('catches outlines that would vanish on a dark background without the halo', () => {
     const r = validatePets(allSpecies(), files.find((f) => f.patterns).patterns, { partText, backgrounds: { night: '#1E2440' }, ink: '#2B2D42' });
     expect(r.errors.join()).toMatch(/outline ink/);
@@ -117,14 +134,71 @@ describe('Sorpréndeme and descriptions', () => {
       expect(profileProblems(p), `${sp.species} ${s}`).toEqual([]);
     }
   });
-  it('describes the pet for screen readers, with Spanish agreement', () => {
+  it('describes the pet for screen readers, with Spanish agreement and the agreed labels', () => {
     const p = makeProfile('dog', 'labrador');
-    expect(describePet({ ...p, colors: { ...p.colors, fur1: '#7A4E2E', fur3: '#FAF6EF' }, pattern: 'spots' })).toBe('Perro Labrador, marrón con manchas blancas');
-    expect(describePet(makeProfile('cat', 'atigrado'))).toBe('Gato Atigrado, pardo con rayas marrones');
-    expect(describePet(makeProfile('dragon', 'fuego'))).toBe('Dragón De fuego, rojo');
+    expect(describePet({ ...p, colors: { ...p.colors, fur1: '#7A4E2E', fur3: '#FAF6EF' }, pattern: 'spots' })).toBe('Perro labrador, marrón con manchas blancas');
+    expect(describePet(makeProfile('cat', 'atigrado'))).toBe('Gato atigrado, pardo con rayas marrones');
+    expect(describePet(makeProfile('dragon', 'fuego'))).toBe('Dragón de fuego, rojo');
+    expect(describePet(makeProfile('dragon', 'bosque'))).toBe('Dragón del bosque, verde');
+    // Breed equal to species: once. Colour already in the breed name: not repeated.
+    expect(describePet(makeProfile('raven', 'cuervo'))).toBe('Cuervo, negro');
+    expect(describePet(makeProfile('cat', 'negro'))).toBe('Gato negro');
+    expect(describePet({ ...makeProfile('cat', 'negro'), pattern: 'chest' })).toBe('Gato negro con pecho blanco');
+    expect(describePet(makeProfile('cat', 'siames'))).toBe('Gato siamés, crema con puntas chocolate');
+    expect(speciesBreed(speciesById('dog')!, breedOf(speciesById('dog')!, 'salchicha')!)).toBe('Perro salchicha');
     const sp = speciesById('cat')!;
     expect(agree(sp.swatches.fur.find((s) => s.es === 'gris')!, 'fp')).toBe('grises');
     expect(agree(sp.swatches.fur.find((s) => s.es === 'crema')!, 'fp')).toBe('crema');
+  });
+  it('the colours described are the colours drawn: main colour and the slot the pattern uses', () => {
+    for (const sp of allSpecies()) for (const br of sp.breeds) for (const pat of br.patterns) {
+      const pd = patterns()[pat];
+      for (const slot of editableSlots(sp, br)) for (const sw of slotChoices(sp, br, slot).natural) {
+        const p = normalizeProfile({ ...makeProfile(sp.species, br.id), pattern: pat, colors: { ...makeProfile(sp.species, br.id).colors, [slot]: sw.c } });
+        const d = describePet(p);
+        const main = colorName(sp, p.colors.fur1).es;
+        if (!br.name_es.toLocaleLowerCase('es').split(' ').includes(main)) expect(d, `${br.id} ${pat}`).toContain(`, ${main}`);
+        if (pd?.es && pd.g) expect(d, `${br.id} ${pat}`).toContain(` con ${pd.es} ${agree(colorName(sp, p.colors[pd.color ?? 'fur3'], pd.color ?? 'fur3'), pd.g)}`);
+        // The pattern's art is drawn in that same slot.
+        if (pd?.art) expect(partText(`pet-part.pattern.${pat}`)).toMatch(new RegExp(`class="[fs]${(pd.color ?? 'fur3').slice(3)}`));
+      }
+    }
+  });
+});
+
+describe('colour-defined breeds', () => {
+  it('Gato Negro is always black: main colour locked, eyes and the white chest still free', () => {
+    const sp = speciesById('cat')!, br = breedOf(sp, 'negro')!;
+    expect(editableSlots(sp, br)).toEqual(['eyes', 'nose']);
+    expect(br.patterns).toEqual(['none', 'chest']);
+    for (let s = 1; s <= 40; s++) { const p = surprise('cat', null, rng(s)); if (p.breed === 'negro') expect(p.colors.fur1).toBe('#34384A'); }
+    // An older profile with another colour is put right.
+    const old = { ...makeProfile('cat', 'negro'), colors: { ...makeProfile('cat', 'negro').colors, fur1: '#E5A25A' } };
+    expect(profileProblems(old).join()).toMatch(/locked/);
+    expect(normalizeProfile(old).colors.fur1).toBe('#34384A');
+  });
+  it('Siamés is colour points: light body, darker muzzle oval, ears, paws and tail tip, blue eyes', () => {
+    const sp = speciesById('cat')!, br = breedOf(sp, 'siames')!;
+    expect(editableSlots(sp, br)).toEqual(['fur1', 'fur2']);
+    expect(br.patterns).toEqual(['points']);
+    const p = makeProfile('cat', 'siames');
+    expect(p.colors.eyes).toBe('#5AA9E6');
+    expect(colorVars(p)).toMatchObject({ '--points': 'var(--fur-2)', '--feet': 'var(--fur-2)' });
+    const m = composeMarkup(p, 'calma', partText, (id) => !!partText(id));
+    expect(m).toContain('<g class="k-pat" data-on="head"');
+    expect(m).not.toContain('data-on="body"');
+    expect(m).toMatch(/class="fk"/); // ears
+    expect(m).toMatch(/class="sk"/); // tail tip
+    // Body shade light, points dark.
+    const lum = (hex: string) => [1, 3, 5].reduce((a, i) => a + parseInt(hex.slice(i, i + 2), 16), 0);
+    for (const s of slotChoices(sp, br, 'fur1').natural) for (const d of slotChoices(sp, br, 'fur2').natural) expect(lum(s.c)).toBeGreaterThan(lum(d.c) + 150);
+  });
+  it('breeds named after a colour only offer that colour family', () => {
+    const fur1 = (s: string, b: string) => slotChoices(speciesById(s)!, breedOf(speciesById(s)!, b)!, 'fur1').natural.map((x) => x.es);
+    expect(fur1('dragon', 'agua').every((n) => n.startsWith('azul'))).toBe(true);
+    expect(fur1('dragon', 'bosque').every((n) => n.startsWith('verde'))).toBe(true);
+    expect(fur1('raven', 'urraca')).toEqual([]);
+    expect(slotChoices(speciesById('fox')!, breedOf(speciesById('fox')!, 'rojo')!, 'fur1').fantasy).toEqual([]);
   });
 });
 
@@ -145,11 +219,26 @@ describe('composition', () => {
     const noSiesta = (id: string) => !!partText(id) && !id.endsWith('.siesta');
     expect(composeMarkup(p, 'siesta', partText, noSiesta)).toBe(composeMarkup(p, 'calma', partText, noSiesta));
   });
-  it('a pattern is clipped to body and head, and their outlines are drawn again on top', () => {
+  it('a pattern is drawn per part, clipped to that part, under its outline, details and the later layers', () => {
     const m = composeMarkup(makeProfile('cat', 'atigrado'), 'calma', partText, (id) => !!partText(id));
-    expect(m).toContain('<clipPath id="kpc__UID__">');
-    expect(m).toContain('clip-path="url(#kpc__UID__)"');
+    for (const on of ['body', 'head']) {
+      expect(m).toContain(`<clipPath id="kpc-${on}__UID__">`);
+      expect(m).toContain(`<g class="k-pat" data-on="${on}" clip-path="url(#kpc-${on}__UID__)"`);
+    }
+    // Order: body, its pattern, its outline; the belly comes after (so stripes never cross it); eyes are on top.
+    const at = (s: string) => m.indexOf(s);
+    expect(at('data-slot="body"')).toBeLessThan(at('data-on="body"'));
+    expect(at('data-on="body"')).toBeLessThan(at('data-slot="belly"'));
+    expect(at('data-on="head"')).toBeLessThan(at('class="k-detail"')); // the muzzle covers the pattern
+    expect(at('data-on="head"')).toBeLessThan(at('data-slot="eyes"'));
     expect(m).toContain('class="k-oo"');
+    // Ears and wings are never patterned unless the breed lists them.
+    const owl = composeMarkup({ ...makeProfile('raven', 'buho'), pattern: 'spots' }, 'calma', partText, (id) => !!partText(id));
+    expect(owl).not.toMatch(/data-on="(ears|wings)"/);
+  });
+  it('spots have no outline', () => {
+    expect(partText('pet-part.pattern.spots')).not.toMatch(/stroke="#/);
+    expect(partText('pet-part.pattern.spots')).toContain('data-slot="pattern" stroke="none"');
   });
   it('colours are classes for CSS variables; outlines stay ink', () => {
     const m = composeMarkup(makeProfile('dog', 'pastor'), 'calma', partText, (id) => !!partText(id));

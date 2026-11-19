@@ -1,5 +1,6 @@
 /* Pet creator. Tokens only. The preview stays visible at the top while the steps scroll under it. */
-.creator { padding-bottom: calc(var(--space-6) + 4.5rem); }
+/* .screen sets padding too (app.css loads later), hence two classes. */
+.screen.creator { padding-bottom: calc(var(--creator-nav-h, 5.5rem) + var(--space-4)); }
 .creator__progress { display: grid; gap: var(--space-1); }
 .creator__step-label { margin: 0; color: var(--text-soft); }
 .creator__step-label strong { color: var(--text); }

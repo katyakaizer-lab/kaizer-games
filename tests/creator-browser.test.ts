@@ -78,10 +78,23 @@ describe('pet creator', () => {
     // Colours: a swatch changes the preview's variable; a pattern changes the description.
     await page.click('label[for="cr-fur1-7A4E2E"]');
     expect(await page.evaluate(() => document.querySelector<HTMLElement>('.creator__preview figure')!.style.getPropertyValue('--fur-1'))).toBe('#7A4E2E');
+    // The pattern's colour is offered once a pattern is chosen; the description follows every swatch.
+    expect(await page.$('fieldset[data-slot="fur3"]')).toBe(null);
     await page.click('label[for="cr-pattern-chest"]');
-    expect(await page.textContent('.creator__preview-desc')).toMatch(/^Perro Salchicha, marrón con pecho/);
+    await page.click('label[for="cr-fur3-FAF6EF"]');
+    expect(await page.textContent('.creator__preview-desc')).toBe('Perro salchicha, marrón con pecho blanco');
+    await page.click('label[for="cr-fur3-3A2A22"]');
+    expect(await page.textContent('.creator__preview-desc')).toBe('Perro salchicha, marrón con pecho negro');
     expect(await page.textContent('.creator')).toContain('Fantasía');
     expect(await stepProblems(page)).toEqual([]);
+    // Scrolled to the bottom, the last row of swatches is above the Atrás / Siguiente bar.
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    const gapPx = await page.evaluate(() => {
+      const rows = [...document.querySelectorAll('.creator__colors .creator__swatches, .creator__colors .creator__chips')];
+      const last = rows[rows.length - 1].getBoundingClientRect();
+      return document.querySelector('.creator__nav')!.getBoundingClientRect().top - last.bottom;
+    });
+    expect(gapPx).toBeGreaterThanOrEqual(8);
     await next(page);
     // Name: optional; the default is the breed name.
     expect(await page.getAttribute('#cr-name', 'placeholder')).toBe('Salchicha');
@@ -101,7 +114,21 @@ describe('pet creator', () => {
     await page.waitForSelector('.creator__preview svg');
     expect(await page.textContent('h1')).toContain('Edita tu mascota');
     expect(await page.textContent('.creator__preview-name')).toBe('Michi');
-    await next(page); await next(page);
+    await next(page);
+    // Breed cards keep the capital; the species card for Cuervo is just "Cuervo".
+    expect(await page.textContent('label[for="cr-breed-negro"] .creator__card-name')).toBe('Negro');
+    expect(await page.getAttribute('#cr-breed-negro', 'aria-label')).toBe('Gato negro');
+    // Gato Negro: main colour locked (not offered), eyes still free; Siamés: body shade and points only.
+    await page.click('label[for="cr-breed-negro"]');
+    await next(page);
+    expect(await page.$('fieldset[data-slot="fur1"]')).toBe(null);
+    expect(await page.$('fieldset[data-slot="eyes"]')).not.toBe(null);
+    expect(await page.textContent('.creator__preview-desc')).toBe('Gato negro');
+    await page.click('.creator__nav button:has-text("Atrás")');
+    await page.click('label[for="cr-breed-siames"]');
+    await next(page);
+    expect(await page.$$eval('.creator__colors fieldset[data-slot]', (f) => f.map((x) => x.getAttribute('data-slot')))).toEqual(['fur1', 'fur2']);
+    expect(await page.textContent('fieldset[data-slot="fur2"] legend')).toBe('Color de las puntas');
     for (let i = 0; i < 6; i++) {
       await page.click('.creator button:has-text("Sorpréndeme")');
       const ok = await page.evaluate(() => !!document.querySelector('.creator__preview svg[data-art-kind="pet"] [data-slot="head"]'));
@@ -127,12 +154,22 @@ describe('Mascotas gallery (style-test page)', () => {
       await page.goto(`${base}style-test/index.html?theme=${theme}`);
       await page.waitForSelector('.st-mascotas .st-pet svg[data-art-kind="pet"]');
       await page.waitForTimeout(500);
+      // Wait until every beret image has loaded (they load with the pet, not lazily).
+      await page.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.st-mascotas img.k-pet__item')].every((i) => i.complete), null, { timeout: 15_000 });
       const r = await page.evaluate(() => {
         const figs = [...document.querySelectorAll('.st-mascotas .st-pet')];
-        return { figs: figs.length, drawn: figs.filter((f) => f.querySelector('svg [data-slot="body"]')).length, hats: figs.filter((f) => f.querySelector('.k-pet__item')).length };
+        const items = figs.map((f) => f.querySelector<HTMLElement>('.k-pet__item'));
+        const shown = items.filter((el) => {
+          if (!el) return false;
+          const b = el.getBoundingClientRect();
+          const loaded = el instanceof HTMLImageElement ? el.complete && el.naturalWidth > 0 : true;
+          const st = getComputedStyle(el);
+          return loaded && b.width > 10 && b.height > 10 && st.visibility !== 'hidden' && st.display !== 'none' && +st.opacity > 0.5;
+        }).length;
+        return { figs: figs.length, drawn: figs.filter((f) => f.querySelector('svg [data-slot="body"]')).length, itemLayers: items.filter(Boolean).length, shown };
       });
       await page.close();
-      expect(r).toEqual({ figs: 38, drawn: 38, hats: 38 });
+      expect(r).toEqual({ figs: 38, drawn: 38, itemLayers: 38, shown: 38 });
       expect(errors).toEqual([]);
     }, 60_000);
   }

@@ -3585,6 +3585,26 @@
    ]
   },
   {
+   "id": "pet-part.pattern.points",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/pattern/points.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet pattern overlay: points"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
    "id": "pet-part.dog.body-round",
    "kind": "pet-part",
    "files": {
@@ -4278,6 +4298,26 @@
     "date": "2026-11-19",
     "terms": "own",
     "prompt": "pet part (cat): tail-long"
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "pet-part.cat.belly-patch",
+   "kind": "pet-part",
+   "files": {
+    "1x": "pet-parts/cat/belly-patch.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-19",
+    "terms": "own",
+    "prompt": "pet part (cat): belly-patch"
    },
    "licence": "own",
    "games": [

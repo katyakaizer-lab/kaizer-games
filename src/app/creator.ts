@@ -12,7 +12,7 @@ import { getActivePet, savePet } from './pet-state';
 import { navigate } from './router';
 import { PetPortrait, type PetPortraitEl } from '../pets/compose';
 import {
-  allSpecies, breedOf, describePet, makeProfile, patterns, speciesById, surprise, swatchesFor,
+  allSpecies, breedOf, describePet, editableSlots, makeProfile, normalizeProfile, patterns, slotChoices, speciesBreed, speciesById, surprise,
   type Breed, type ColorSlot, type PetProfile, type Species,
 } from '../pets/species';
 import './creator.css';
@@ -23,7 +23,7 @@ type Step = (typeof STEPS)[number];
 export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
   const existing = getActivePet();
   const editing = o.edit && !!existing;
-  let draft: PetProfile = existing && editing ? structuredClone(existing) : makeProfile(allSpecies()[0].species);
+  let draft: PetProfile = existing && editing ? normalizeProfile(structuredClone(existing)) : makeProfile(allSpecies()[0].species);
   /** The name the learner typed (empty: the breed name is used). */
   let customName = editing && existing && existing.name !== breedName(existing) ? existing.name : '';
   let step: Step = 'species';
@@ -73,28 +73,45 @@ export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
     return h('fieldset', { class: 'creator__fieldset' }, h('legend', null, t('creator.step.breed')),
       h('div', { class: 'creator__cards' }, sp().breeds.map((b) => radio('breed', b.id, b.id === draft.breed,
         [PetPortrait({ pet: makeProfile(sp().species, b.id, `pv-${b.id}`), decorative: true, class: 'creator__card-pet' }), h('span', { class: 'creator__card-name', lang: 'es' }, b.name_es)],
-        `${sp().name_es} ${b.name_es}`, () => { draft = { ...draft, breed: b.id, parts: {}, colors: { ...b.colors }, pattern: b.pattern }; changed(); }, 'is-card'))));
+        speciesBreed(sp(), b), () => { draft = { ...draft, breed: b.id, parts: {}, colors: { ...b.colors, ...b.lockedColors }, pattern: b.pattern }; changed(); }, 'is-card'))));
   }
-  const slotLabel = (slot: ColorSlot) => (slot === 'nose' && sp().noseLabel === 'beak' ? t('creator.slot.beak') : t(`creator.slot.${slot}` as 'creator.slot.fur1'));
+  /** The slot the current pattern is drawn in (none: no pattern). */
+  const patternSlot = (): ColorSlot | null => { const pd = patterns()[draft.pattern]; return pd?.es ? pd.color ?? 'fur3' : null; };
+  const slotLabel = (slot: ColorSlot) => {
+    if (slot === 'nose' && sp().noseLabel === 'beak') return t('creator.slot.beak');
+    if (draft.pattern === 'points') { if (slot === 'fur2') return t('creator.slot.points'); if (slot === 'fur1') return t('creator.slot.body'); }
+    return t(`creator.slot.${slot}` as 'creator.slot.fur1');
+  };
   function swatchRow(slot: ColorSlot, list: { c: string; es: string }[]): HTMLElement {
     return h('div', { class: 'creator__swatches' }, list.map((s) => radio(slot, s.c.slice(1), draft.colors[slot].toLowerCase() === s.c.toLowerCase(),
       [h('span', { class: 'creator__swatch', style: { '--sw': s.c }, 'aria-hidden': 'true' })],
       s.es, () => { draft = { ...draft, colors: { ...draft.colors, [slot]: s.c } }; changed(false); }, 'is-swatch')));
   }
+  function slotField(slot: ColorSlot): HTMLElement | null {
+    const { natural, fantasy } = slotChoices(sp(), br(), slot);
+    if (!natural.length && !fantasy.length) return null;
+    return h('fieldset', { class: 'creator__fieldset', 'data-slot': slot }, h('legend', null, slotLabel(slot)),
+      swatchRow(slot, natural),
+      fantasy.length ? h('p', { class: 'creator__row-label' }, t('creator.fantasy')) : null,
+      fantasy.length ? swatchRow(slot, fantasy) : null);
+  }
+  /**
+   * Main colours, then the pattern and its colour (shown only when a pattern is chosen, so every colour picked is
+   * one that is drawn and described), then eyes and nose. Locked colours (Gato Negro's black) are not offered.
+   */
   function colorsStep(): HTMLElement {
     const pats = patterns();
+    const slots = editableSlots(sp(), br());
+    const ps = patternSlot();
+    const fur3Shown = ps === 'fur3';
     return h('div', { class: 'creator__colors' },
       Button({ label: t('creator.surprise'), icon: 'sparkles', variant: 'secondary', onClick: () => { draft = { ...surprise(draft.species, draft), id: draft.id, createdAt: draft.createdAt }; changed(); } }),
-      ...sp().slots.map((slot) => {
-        const { natural, fantasy } = swatchesFor(sp(), slot);
-        return h('fieldset', { class: 'creator__fieldset' }, h('legend', null, slotLabel(slot)),
-          swatchRow(slot, natural),
-          fantasy.length ? h('p', { class: 'creator__row-label' }, t('creator.fantasy')) : null,
-          fantasy.length ? swatchRow(slot, fantasy) : null);
-      }),
+      ...slots.filter((s) => s === 'fur1' || s === 'fur2').map(slotField),
       br().patterns.length > 1 ? h('fieldset', { class: 'creator__fieldset' }, h('legend', null, t('creator.pattern')),
         h('div', { class: 'creator__chips' }, br().patterns.map((id) => radio('pattern', id, draft.pattern === id,
-          [h('span', { lang: 'es' }, pats[id]?.name_es ?? id)], pats[id]?.name_es ?? id, () => { draft = { ...draft, pattern: id }; changed(false); }, 'is-chip')))) : null);
+          [h('span', { lang: 'es' }, pats[id]?.name_es ?? id)], pats[id]?.name_es ?? id, () => { draft = { ...draft, pattern: id }; changed(false); }, 'is-chip')))) : null,
+      fur3Shown && slots.includes('fur3') ? slotField('fur3') : null,
+      ...slots.filter((s) => s === 'eyes' || s === 'nose').map(slotField));
   }
   function nameStep(): HTMLElement {
     const input = h('input', { id: 'cr-name', type: 'text', maxlength: '24', autocomplete: 'off', class: 'field__input', lang: 'es', placeholder: br().name_es, value: customName }) as HTMLInputElement;
@@ -135,9 +152,14 @@ export function CreatorScreen(root: HTMLElement, o: { edit: boolean }): void {
     navigate(editing ? '#settings' : '#home');
   }
 
-  mount(root, h('div', { class: 'screen creator' },
+  const screen = h('div', { class: 'screen creator' },
     h('h1', { tabindex: '-1', class: 'screen__title' }, editing ? t('creator.editTitle') : t('creator.title')),
-    progress, preview, stepBox, nav));
+    progress, preview, stepBox, nav);
+  mount(root, screen);
+  // The steps end above the fixed Atrás / Siguiente bar, whatever its height (text size, safe area).
+  const fitNav = () => screen.style.setProperty('--creator-nav-h', `${Math.ceil(nav.getBoundingClientRect().height)}px`);
+  fitNav();
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitNav).observe(nav);
   renderStep();
   updatePreview(false);
   void icon;

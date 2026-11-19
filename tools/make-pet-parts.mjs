@@ -3,7 +3,8 @@
 //
 // Colours: fillable shapes carry classes, coloured by CSS variables set on each pet (see .k-pet rules in
 // src/ui/ui.css): f1/f2/f3 = --fur-1/2/3, fe = --eyes, fn = --nose, ff = feet (--feet, default --fur-2),
-// fc = chest (--chest, default --fur-2); s1/s3/se/sn = the same as stroke colours. Outlines stay ink (#2B2D42).
+// fc = chest (--chest, default --fur-2), fcx = a chest patch shown only when --chest is set, fk = points (ears; --points, default
+// --fur-1); s1/s3/se/sn/sk = the same as stroke colours. Outlines stay ink (#2B2D42).
 // Body and head parts contain only plain shapes (no groups): the composer reuses them to clip pattern overlays.
 // Moods: eyes and mouth parts come in calma, alegria and siesta.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -26,22 +27,39 @@ const BLUSH = E(68, 94, 7, 4.5, '', `fill="#F08A73" ${NOS}`) + E(132, 94, 7, 4.5
 const SHARED = {
   shadow: E(100, 226, 54, 6, '', `fill="#F0DDB8" ${NOS}`),
 };
-/** Pattern overlays, coloured --fur-3, clipped by the composer to the pet's body and head. */
+/**
+ * Pattern overlays, one group per part they belong to (<g data-on="body">, <g data-on="head">). The composer draws
+ * each group right after its part, clipped to that part's fur shapes, then redraws the part's outline and its
+ * details (muzzle, blush) on top, so a pattern never crosses an outline or covers eyes, nose or beak, and never
+ * reaches ears or wings (a breed can list more parts in "patternOn" if a pattern draws a group for them).
+ * No outlines: markings are fill only; spots get a soft edge.
+ */
+const ON = (part, body) => `<g data-on="${part}">${body}</g>`;
+const SPOT = (cx, cy, r) => C(cx, cy, r, 'f3 s3', 'stroke-width="2.6" stroke-opacity=".4"');
+const STRIPE = (d, w) => LINE(d, w, 'class="s3"');
 const PATTERNS = () => ({
-  spots: [C(78, 150, 9), C(122, 172, 11), C(92, 192, 7), C(120, 142, 6), C(70, 180, 6), C(130, 196, 6), C(78, 74, 9), C(124, 92, 7), C(110, 62, 5)].join('').replace(/\/>/g, ' class="f3"/>'),
-  stripes: [
-    LINE('M48 150 Q62 146 74 156', 5, 'class="s3"'), LINE('M152 150 Q138 146 126 156', 5, 'class="s3"'),
-    LINE('M46 172 Q60 168 72 178', 5, 'class="s3"'), LINE('M154 172 Q140 168 128 178', 5, 'class="s3"'),
-    LINE('M50 194 Q62 190 72 198', 5, 'class="s3"'), LINE('M150 194 Q138 190 128 198', 5, 'class="s3"'),
-    LINE('M90 50 L94 66', 4, 'class="s3"'), LINE('M100 46 L100 66', 4, 'class="s3"'), LINE('M110 50 L106 66', 4, 'class="s3"'),
-    LINE('M60 80 L70 82', 4, 'class="s3"'), LINE('M140 80 L130 82', 4, 'class="s3"'),
-  ].join(''),
+  spots: ON('body', [SPOT(78, 150, 9), SPOT(122, 172, 11), SPOT(92, 192, 7), SPOT(120, 142, 6), SPOT(70, 180, 6), SPOT(130, 196, 6)].join(''))
+    + ON('head', [SPOT(90, 58, 6), SPOT(114, 62, 5), SPOT(100, 71, 4), SPOT(137, 84, 5), SPOT(63, 82, 4)].join('')),
+  stripes: ON('body', [
+    STRIPE('M48 150 Q62 146 74 156', 5), STRIPE('M152 150 Q138 146 126 156', 5),
+    STRIPE('M46 172 Q60 168 72 178', 5), STRIPE('M154 172 Q140 168 128 178', 5),
+    STRIPE('M50 194 Q62 190 72 198', 5), STRIPE('M150 194 Q138 190 128 198', 5)].join(''))
+    + ON('head', [STRIPE('M90 48 L93 62', 4), STRIPE('M100 44 L100 62', 4), STRIPE('M110 48 L107 62', 4), STRIPE('M58 82 L68 83', 4), STRIPE('M142 82 L132 83', 4)].join('')),
   // From the front, a saddle (back colour) shows on the sides of the body and as a cap on the head.
-  saddle: pair('M38 132 C50 122 66 122 74 130 C70 160 70 186 74 210 L38 210 Z', 'f3') + P('M54 40 L146 40 L146 66 C124 56 76 56 54 66 Z', 'f3'),
-  mask: P('M54 66 C74 56 126 56 146 66 L146 92 C126 102 74 102 54 92 Z', 'f3'),
-  patches: P('M44 140 C56 128 76 134 78 150 C80 168 60 176 48 168 Z', 'f3') + P('M116 168 C126 156 150 160 152 176 C154 196 132 204 120 194 Z', 'f3')
-    + P('M58 64 C66 50 88 52 90 66 C92 80 74 86 64 80 Z', 'f3') + P('M118 96 C124 88 138 90 140 100 C140 110 126 114 120 108 Z', 'f2'),
+  saddle: ON('body', pair('M38 132 C50 122 66 122 74 130 C70 160 70 186 74 210 L38 210 Z', 'f3')) + ON('head', P('M54 40 L146 40 L146 64 C124 56 76 56 54 64 Z', 'f3')),
+  mask: ON('head', P('M54 66 C74 56 126 56 146 66 L146 92 C126 102 74 102 54 92 Z', 'f3')),
+  patches: ON('body', P('M44 140 C56 128 76 134 78 150 C80 168 60 176 48 168 Z', 'f3') + P('M116 168 C126 156 150 160 152 176 C154 196 132 204 120 194 Z', 'f3'))
+    + ON('head', P('M58 60 C64 48 86 48 90 58 C92 68 76 72 64 70 Z', 'f3') + P('M124 90 C130 84 142 86 144 96 C144 106 132 110 126 104 Z', 'f3')),
+  // Colour points (Siamese): a darker oval centred on the muzzle; ears, paws and tail tip use --points (= --fur-2).
+  points: ON('head', E(100, 100, 27, 20, 'f2')),
 });
+/** One clean curly outline (n bumps) around an ellipse: for the poodle's tuft, ears and pom-pom. */
+function scallop(cx, cy, rx, ry, n, start = -90) {
+  const pt = (a, k = 1) => { const t = (a * Math.PI) / 180; return `${+(cx + rx * k * Math.cos(t)).toFixed(1)} ${+(cy + ry * k * Math.sin(t)).toFixed(1)}`; };
+  let d = `M${pt(start)}`;
+  for (let i = 0; i < n; i++) { const a = start + (i * 360) / n, b = start + ((i + 1) * 360) / n; d += ` Q${pt((a + b) / 2, 1.32)} ${pt(b)}`; }
+  return d + ' Z';
+}
 
 /* ---------------- Dog ---------------- */
 const dogEyes = {
@@ -55,25 +73,25 @@ const dogMouth = {
   siesta: LINE('M100 101 L100 105 M95 108 Q100 111 105 108', 1.8),
 };
 const DOG = {
-  'body-round': P('M62 204 C50 156 68 124 100 124 C132 124 150 156 138 204 C124 214 76 214 62 204 Z', 'f1'),
-  'body-long': P('M46 206 C38 170 58 142 100 142 C142 142 162 170 154 206 C136 216 64 216 46 206 Z', 'f1'),
-  'body-fluffy': P('M64 204 C48 198 50 176 60 170 C50 156 62 136 78 140 C82 124 118 124 122 140 C138 136 150 156 140 170 C150 176 152 198 136 204 C124 214 76 214 64 204 Z', 'f1'),
-  'body-slim': P('M70 204 C62 162 76 132 100 132 C124 132 138 162 130 204 C120 212 80 212 70 204 Z', 'f1'),
+  'body-round': P('M62 204 C50 156 68 108 100 108 C132 108 150 156 138 204 C124 214 76 214 62 204 Z', 'f1'),
+  'body-long': P('M46 206 C34 166 60 106 100 106 C140 106 166 166 154 206 C136 216 64 216 46 206 Z', 'f1'),
+  'body-fluffy': P('M64 204 C48 198 50 176 60 170 C50 156 62 136 78 140 C80 98 120 98 122 140 C138 136 150 156 140 170 C150 176 152 198 136 204 C124 214 76 214 64 204 Z', 'f1'),
+  'body-slim': P('M70 204 C62 158 76 108 100 108 C124 108 138 158 130 204 C120 212 80 212 70 204 Z', 'f1'),
   'belly-round': P('M84 142 C90 134 110 134 116 142 C122 162 116 190 100 204 C84 190 78 162 84 142 Z', 'fc', 'stroke-width="1.6"'),
   'belly-long': P('M80 158 C88 152 112 152 120 158 C126 174 118 196 100 206 C82 196 74 174 80 158 Z', 'fc', 'stroke-width="1.6"'),
   'belly-slim': P('M88 148 C92 142 108 142 112 148 C116 166 112 190 100 202 C88 190 84 166 88 148 Z', 'fc', 'stroke-width="1.6"'),
   'tail-wag': TAIL('M136 204 C170 206 180 178 164 160', 15),
   'tail-bushy': E(162, 178, 16, 40, 'f1', 'transform="rotate(28 162 178)"') + E(176, 150, 9, 12, 'f2', `${NOS} transform="rotate(28 176 150)"`),
-  'tail-pom': TAIL('M134 200 C158 200 166 184 160 168', 10) + C(160, 162, 13, 'f1'),
+  'tail-pom': TAIL('M134 200 C158 200 166 184 160 168', 10) + P(scallop(160, 160, 12, 12, 6), 'f1'),
   'tail-thin': TAIL('M134 204 C166 204 174 182 166 162', 9),
   'ears-floppy': pair('M66 60 C48 60 42 92 52 110 C64 112 72 98 74 80 Z', 'f1'),
   'ears-long': pair('M66 62 C46 62 38 104 46 132 C60 134 70 112 74 82 Z', 'f1'),
   'ears-pointy': pair('M68 66 L58 24 L92 50 Z', 'f1') + pair('M70 58 L64 34 L84 50 Z', 'f2', NOS),
-  'ears-curly': E(60, 96, 14, 24, 'f1') + E(140, 96, 14, 24, 'f1') + LINE('M54 86 q6 4 0 8 q-6 4 0 8 M146 86 q-6 4 0 8 q6 4 0 8', 1.4),
+  'ears-curly': P(scallop(60, 100, 13, 22, 6), 'f1') + P(scallop(140, 100, 13, 22, 6), 'f1'),
   'ears-big': pair('M72 70 L44 26 L94 56 Z', 'f1') + pair('M74 62 L54 36 L86 56 Z', 'f2', NOS),
   'head-round': E(100, 84, 38, 34, 'f1') + BLUSH,
   'head-long': P('M64 80 C64 58 80 48 100 48 C120 48 136 58 136 80 C136 98 124 116 100 120 C76 116 64 98 64 80 Z', 'f1') + BLUSH,
-  'head-fluffy': C(100, 56, 18, 'f1') + C(80, 62, 13, 'f1') + C(120, 62, 13, 'f1') + E(100, 88, 34, 30, 'f1') + BLUSH,
+  'head-fluffy': P(scallop(100, 58, 22, 13, 5), 'f1') + E(100, 88, 34, 30, 'f1') + BLUSH,
   'head-small': E(100, 86, 34, 31, 'f1') + BLUSH,
   'snout-round': E(100, 100, 21, 14, 'f2', NOS) + E(100, 95, 7, 5, 'fn', NOS) + E(98, 93.5, 2, 1.2, '', `fill="#FFFFFF" ${NOS}`),
   'snout-long': E(100, 101, 17, 15, 'f2') + E(100, 94, 7, 5, 'fn', NOS) + E(98, 92.5, 2, 1.2, '', `fill="#FFFFFF" ${NOS}`),
@@ -88,10 +106,11 @@ const CAT = {
   'body-fluffy': P('M58 206 C40 196 44 170 56 162 C48 144 64 124 82 128 C90 116 110 116 118 128 C136 124 152 144 144 162 C156 170 160 196 142 206 C128 216 72 216 58 206 Z', 'f1'),
   'belly-sit': P('M82 140 C88 132 112 132 118 140 C124 160 118 190 100 204 C82 190 76 160 82 140 Z', 'fc', 'stroke-width="1.6"') + LINE('M84 198 l-4 8 M92 202 l-2 8 M108 202 l2 8 M116 198 l4 8', 1.5),
   'belly-fluffy': P('M78 144 C86 132 114 132 122 144 C130 166 122 194 100 206 C78 194 70 166 78 144 Z', 'fc', 'stroke-width="1.6"'),
-  'tail-long': TAIL('M136 208 C176 216 192 178 170 152', 14),
+  'tail-long': TAIL('M136 208 C176 216 192 178 170 152', 14) + `<path d="M136 208 C176 216 192 178 170 152" fill="none" class="sk" stroke="none" stroke-width="10" pathLength="100" stroke-dasharray="0 78 22"/>`,
+  'belly-patch': P('M88 140 C92 134 108 134 112 140 C114 150 108 160 100 164 C92 160 86 150 88 140 Z', 'fcx', NOS),
   'tail-fluffy': E(164, 176, 17, 40, 'f1', 'transform="rotate(25 164 176)"'),
-  'ears-pointed': pair('M64 70 L60 34 L88 52 Z', 'f1') + pair('M67 62 L65 44 L80 53 Z', '', `fill="#E8A78F" ${NOS}`),
-  'ears-small': pair('M70 64 L68 46 L88 56 Z', 'f1') + pair('M72 59 L71 50 L82 56 Z', '', `fill="#E8A78F" ${NOS}`),
+  'ears-pointed': pair('M64 70 L60 34 L88 52 Z', 'fk') + pair('M67 62 L65 44 L80 53 Z', '', `fill="#E8A78F" ${NOS}`),
+  'ears-small': pair('M70 64 L68 46 L88 56 Z', 'fk') + pair('M72 59 L71 50 L82 56 Z', '', `fill="#E8A78F" ${NOS}`),
   'head-round': P('M62 84 C62 58 80 46 100 46 C120 46 138 58 138 84 C138 106 120 118 100 118 C80 118 62 106 62 84 Z', 'f1') + E(100, 102, 23, 15, 'f2', NOS),
   'head-flat': P('M56 88 C56 62 78 50 100 50 C122 50 144 62 144 88 C144 110 124 122 100 122 C76 122 56 110 56 88 Z', 'f1') + E(100, 104, 26, 15, 'f2', NOS),
   'snout-cat': P('M96 96 L104 96 L100 101 Z', 'fn', 'stroke-width="1.6"') + LINE('M72 98 L40 92 M72 102 L40 104 M128 98 L160 92 M128 102 L160 104', 1),
@@ -188,7 +207,7 @@ const entry = (id, file, prompt) => ({ id, kind: 'pet-part', files: { '1x': file
 mkdirSync(join(base, 'shared'), { recursive: true });
 for (const [name, body] of Object.entries(SHARED)) { writeFileSync(join(base, 'shared', `${name}.svg`), svg(name, body)); entries.push(entry(`pet-part.shared.${name}`, `pet-parts/shared/${name}.svg`, `pet part: ${name}`)); }
 mkdirSync(join(base, 'pattern'), { recursive: true });
-for (const [name, body] of Object.entries(PATTERNS())) { writeFileSync(join(base, 'pattern', `${name}.svg`), svg('pattern', body)); entries.push(entry(`pet-part.pattern.${name}`, `pet-parts/pattern/${name}.svg`, `pet pattern overlay: ${name}`)); }
+for (const [name, body] of Object.entries(PATTERNS())) { writeFileSync(join(base, 'pattern', `${name}.svg`), svg('pattern', body).replace(`stroke="${INK}"`, 'stroke="none"')); entries.push(entry(`pet-part.pattern.${name}`, `pet-parts/pattern/${name}.svg`, `pet pattern overlay: ${name}`)); }
 for (const [species, parts] of Object.entries(LIBRARY)) {
   mkdirSync(join(base, species), { recursive: true });
   for (const [name, body] of Object.entries(parts)) {

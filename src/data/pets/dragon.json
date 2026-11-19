@@ -23,14 +23,17 @@
     { "id": "bosque", "name_es": "Del bosque",
       "parts": { "shadow": "shared.shadow", "wings": "wings-leaf", "tail": "tail-spike", "body": "body-round", "belly": "belly-round", "head": "head-dragon", "snout": "snout-dragon", "feet": "feet-claws", "arms": "arms-claws", "horns": "horns-nubs", "eyes": "eyes-dragon", "mouth": "mouth-dragon" },
       "colors": { "fur1": "#3F9A73", "fur2": "#F2D08A", "fur3": "#2F7A5A", "eyes": "#F2D08A", "nose": "#2B2D42" },
+      "colorChoices": { "fur1": ["#3F9A73", "#2F7A5A"] },
       "pattern": "none", "patterns": ["none", "spots", "stripes"] },
     { "id": "fuego", "name_es": "De fuego",
       "parts": { "shadow": "shared.shadow", "wings": "wings-bat", "tail": "tail-spike", "body": "body-round", "belly": "belly-round", "ears": "ears-frill", "head": "head-dragon", "snout": "snout-dragon", "feet": "feet-claws", "arms": "arms-claws", "horns": "horns-curved", "eyes": "eyes-dragon", "mouth": "mouth-dragon" },
       "colors": { "fur1": "#D9533A", "fur2": "#F2C46A", "fur3": "#8E2F25", "eyes": "#F2D08A", "nose": "#2B2D42" },
+      "colorChoices": { "fur1": ["#D9533A", "#8E2F25"] },
       "pattern": "none", "patterns": ["none", "spots", "stripes"] },
     { "id": "agua", "name_es": "De agua",
       "parts": { "shadow": "shared.shadow", "wings": "wings-fin", "tail": "tail-fin", "body": "body-round", "belly": "belly-round", "ears": "ears-frill", "head": "head-dragon", "snout": "snout-dragon", "feet": "feet-claws", "arms": "arms-claws", "eyes": "eyes-dragon", "mouth": "mouth-dragon" },
       "colors": { "fur1": "#3E86C4", "fur2": "#CFE8F5", "fur3": "#2A5F93", "eyes": "#F2D08A", "nose": "#2B2D42" },
+      "colorChoices": { "fur1": ["#3E86C4", "#2A5F93", "#CFE8F5"] },
       "pattern": "none", "patterns": ["none", "spots", "stripes"] }
   ]
 }

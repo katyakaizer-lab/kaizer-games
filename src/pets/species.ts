@@ -21,6 +21,12 @@ export interface Breed {
   colors: PetColors;
   pattern: string; patterns: string[];
   rig?: { headWidth?: number; anchors?: Partial<Record<AnchorName, [number, number]>> };
+  /** Colour slots fixed by the breed (Gato Negro is always black): not shown in the colours step, kept by Sorpréndeme. */
+  lockedColors?: Partial<PetColors>;
+  /** Slots limited to some swatches (Siamés: light body, dark points); no Fantasía row for them. */
+  colorChoices?: Partial<Record<ColorSlot, string[]>>;
+  /** Parts a pattern is drawn on (default body and head; ears or wings only if listed and the pattern draws them). */
+  patternOn?: string[];
 }
 export interface Species {
   species: string; name_es: string; default: string; noseLabel?: string;
@@ -29,7 +35,8 @@ export interface Species {
   swatches: { fur: Swatch[]; furFantasy: Swatch[]; eyes: Swatch[]; eyesFantasy: Swatch[]; nose: Swatch[]; noseFantasy: Swatch[] };
   breeds: Breed[];
 }
-export interface PatternDef { name_es: string; es?: string; g?: 'm' | 'f' | 'mp' | 'fp'; art?: boolean; vars?: Record<string, string> }
+/** color: the slot the pattern is drawn in (default fur3); the description names that colour. */
+export interface PatternDef { name_es: string; es?: string; g?: 'm' | 'f' | 'mp' | 'fp'; art?: boolean; vars?: Record<string, string>; color?: ColorSlot }
 
 export interface PetProfile {
   id: string; species: string; breed: string;
@@ -77,7 +84,7 @@ export function rigOf(p: Pick<PetProfile, 'species' | 'breed'>): PetRig | null {
 export function makeProfile(species: string, breed?: string, id = `pet-${Date.now().toString(36)}`): PetProfile {
   const sp = speciesById(species)!;
   const br = (breed && breedOf(sp, breed)) || defaultBreed(sp);
-  return { id, species: sp.species, breed: br.id, parts: {}, colors: { ...br.colors }, pattern: br.pattern, name: br.name_es, createdAt: Date.now() };
+  return { id, species: sp.species, breed: br.id, parts: {}, colors: { ...br.colors, ...br.lockedColors }, pattern: br.pattern, name: br.name_es, createdAt: Date.now() };
 }
 
 export const furSwatches = (sp: Species): Swatch[] => [...sp.swatches.fur, ...sp.swatches.furFantasy];
@@ -85,6 +92,39 @@ export function swatchesFor(sp: Species, slot: ColorSlot): { natural: Swatch[]; 
   if (slot === 'eyes') return { natural: sp.swatches.eyes, fantasy: sp.swatches.eyesFantasy };
   if (slot === 'nose') return { natural: sp.swatches.nose, fantasy: sp.swatches.noseFantasy };
   return { natural: sp.swatches.fur, fantasy: sp.swatches.furFantasy };
+}
+
+/** The swatches the creator offers for a slot of this breed (none when the breed locks it). */
+export function slotChoices(sp: Species, br: Breed, slot: ColorSlot): { natural: Swatch[]; fantasy: Swatch[] } {
+  if (br.lockedColors?.[slot]) return { natural: [], fantasy: [] };
+  const base = swatchesFor(sp, slot);
+  const only = br.colorChoices?.[slot]?.map((c) => c.toLowerCase());
+  if (!only) return base;
+  return { natural: [...base.natural, ...base.fantasy].filter((s) => only.includes(s.c.toLowerCase())), fantasy: [] };
+}
+/** The colour slots the learner can change for this breed. */
+export const editableSlots = (sp: Species, br: Breed): ColorSlot[] => sp.slots.filter((s) => !br.lockedColors?.[s]);
+/** A profile made valid for the current data: locked colours applied, colours and pattern the breed allows. */
+export function normalizeProfile(p: PetProfile): PetProfile {
+  const sp = speciesById(p.species);
+  const br = sp && breedOf(sp, p.breed);
+  if (!sp || !br) return p;
+  const colors: PetColors = { ...br.colors, ...p.colors, ...br.lockedColors };
+  for (const slot of editableSlots(sp, br)) {
+    const { natural, fantasy } = slotChoices(sp, br, slot);
+    if (![...natural, ...fantasy].some((s) => s.c.toLowerCase() === colors[slot]?.toLowerCase())) colors[slot] = br.colors[slot];
+  }
+  return { ...p, colors, pattern: br.patterns.includes(p.pattern) ? p.pattern : br.pattern };
+}
+
+/* ---------------- Names ---------------- */
+const fold = (w: string) => w.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('es');
+/**
+ * Species and breed in running text: "Perro salchicha", "Dragón del bosque"; once when they are the same ("Cuervo").
+ * Cards and titles show the breed alone with its capital (breed.name_es).
+ */
+export function speciesBreed(sp: Species, br: Breed): string {
+  return fold(br.name_es) === fold(sp.name_es) ? sp.name_es : `${sp.name_es} ${br.name_es.toLocaleLowerCase('es')}`;
 }
 
 /* ---------------- Description for screen readers ---------------- */
@@ -105,15 +145,20 @@ export function agree(s: Swatch, g: 'm' | 'f' | 'mp' | 'fp'): string {
   const fem = g === 'f' || g === 'fp' ? s.es.replace(/o$/, 'a') : s.es;
   return g === 'mp' || g === 'fp' ? plural(fem) : fem;
 }
-/** "Perro Salchicha, marrón con manchas blancas" */
+/**
+ * "Perro salchicha, marrón con manchas blancas"; the colours named are the ones drawn (the main colour, and the
+ * pattern's own slot). A colour already in the breed name is not repeated: "Gato negro con pecho blanco".
+ */
 export function describePet(p: PetProfile): string {
   const sp = speciesById(p.species);
   const br = sp && breedOf(sp, p.breed);
   if (!sp || !br) return p.name;
   const main = colorName(sp, p.colors.fur1).es;
   const pat = PATTERNS[p.pattern];
-  const extra = pat?.es && pat.g ? ` con ${pat.es} ${agree(colorName(sp, p.colors.fur3), pat.g)}` : '';
-  return `${sp.name_es} ${br.name_es}, ${main}${extra}`;
+  const slot = pat?.color ?? 'fur3';
+  const extra = pat?.es && pat.g ? ` con ${pat.es} ${agree(colorName(sp, p.colors[slot], slot), pat.g)}` : '';
+  const inName = fold(br.name_es).split(/\s+/).includes(fold(main));
+  return `${speciesBreed(sp, br)}${inName ? '' : `, ${main}`}${extra}`;
 }
 
 /* ---------------- "Sorpréndeme" ---------------- */
@@ -122,16 +167,14 @@ const pick = <T>(a: T[], r: () => number): T => a[Math.floor(r() * a.length)];
 export function surprise(species: string, base: PetProfile | null = null, r: () => number = Math.random): PetProfile {
   const sp = speciesById(species)!;
   const br = pick(sp.breeds, r);
-  const fur = () => (r() < 0.2 && sp.swatches.furFantasy.length ? pick(sp.swatches.furFantasy, r) : pick(sp.swatches.fur, r)).c;
-  const fur1 = fur();
-  let fur2 = fur(), fur3 = fur();
-  for (let i = 0; i < 8 && fur2 === fur1; i++) fur2 = fur();
-  for (let i = 0; i < 8 && (fur3 === fur1 || fur3 === fur2); i++) fur3 = fur();
-  const colors: PetColors = {
-    fur1, fur2, fur3,
-    eyes: (r() < 0.15 && sp.swatches.eyesFantasy.length ? pick(sp.swatches.eyesFantasy, r) : pick(sp.swatches.eyes, r)).c,
-    nose: pick(sp.swatches.nose, r).c,
-  };
+  const colors: PetColors = { ...br.colors };
+  const one = (slot: ColorSlot, odds: number) => { const { natural, fantasy } = slotChoices(sp, br, slot); return (r() < odds && fantasy.length ? pick(fantasy, r) : pick(natural, r)).c; };
+  const editable = editableSlots(sp, br);
+  for (const slot of editable) colors[slot] = one(slot, slot === 'nose' ? 0 : slot === 'eyes' ? 0.15 : 0.2);
+  // Fur colours differ from each other where the learner can choose them.
+  for (let i = 0; i < 8 && editable.includes('fur2') && colors.fur2 === colors.fur1; i++) colors.fur2 = one('fur2', 0.2);
+  for (let i = 0; i < 8 && editable.includes('fur3') && (colors.fur3 === colors.fur1 || colors.fur3 === colors.fur2); i++) colors.fur3 = one('fur3', 0.2);
+  Object.assign(colors, br.lockedColors);
   const p = base ? { ...base } : makeProfile(sp.species, br.id);
   return { ...p, species: sp.species, breed: br.id, parts: {}, colors, pattern: pick(br.patterns, r), name: base && base.name !== breedName(base) ? base.name : br.name_es };
 }
@@ -146,9 +189,11 @@ export function profileProblems(p: PetProfile): string[] {
   if (!br) return [`unknown breed ${p.breed}`];
   if (!br.patterns.includes(p.pattern)) out.push(`pattern ${p.pattern} not allowed for ${br.id}`);
   for (const slot of COLOR_SLOTS) {
-    const { natural, fantasy } = swatchesFor(sp, slot);
+    const locked = br.lockedColors?.[slot];
+    const { natural, fantasy } = slotChoices(sp, br, slot);
     if (!/^#[0-9a-fA-F]{6}$/.test(p.colors[slot] ?? '')) out.push(`${slot} is not a colour`);
-    else if (sp.slots.includes(slot) && ![...natural, ...fantasy].some((s) => s.c.toLowerCase() === p.colors[slot].toLowerCase())) out.push(`${slot} ${p.colors[slot]} is not a swatch`);
+    else if (locked) { if (locked.toLowerCase() !== p.colors[slot].toLowerCase()) out.push(`${slot} is locked to ${locked} for ${br.id}`); }
+    else if (sp.slots.includes(slot) && ![...natural, ...fantasy].some((s) => s.c.toLowerCase() === p.colors[slot].toLowerCase())) out.push(`${slot} ${p.colors[slot]} is not a choice for ${br.id}`);
   }
   return out;
 }

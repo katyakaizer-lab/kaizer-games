@@ -201,5 +201,6 @@ a.k-btn { text-decoration: none; }
 .k-pet .f1 { fill: var(--fur-1); } .k-pet .f2 { fill: var(--fur-2); } .k-pet .f3 { fill: var(--fur-3); }
 .k-pet .fe { fill: var(--eyes); } .k-pet .fn { fill: var(--nose); }
 .k-pet .ff { fill: var(--feet, var(--fur-2)); } .k-pet .fc { fill: var(--chest, var(--fur-2)); }
-.k-pet .s1 { stroke: var(--fur-1); } .k-pet .s3 { stroke: var(--fur-3); } .k-pet .se { stroke: var(--eyes); } .k-pet .sn { stroke: var(--nose); }
+.k-pet .fk { fill: var(--points, var(--fur-1)); } .k-pet .fcx { fill: var(--chest, transparent); }
+.k-pet .sk { stroke: var(--points, var(--fur-1)); } .k-pet .s1 { stroke: var(--fur-1); } .k-pet .s3 { stroke: var(--fur-3); } .k-pet .se { stroke: var(--eyes); } .k-pet .sn { stroke: var(--nose); }
 .k-pet .k-oo * { fill: none !important; }

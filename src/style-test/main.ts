@@ -13,7 +13,7 @@ import {
 import { allArt, artEl } from '../ui/art';
 import { PetFigure, petArtId, type Mood } from '../pets/pets';
 import { PetPortrait } from '../pets/compose';
-import { allSpecies, describePet, makeProfile, type PetProfile } from '../pets/species';
+import { allSpecies, describePet, makeProfile, normalizeProfile, slotChoices, type ColorSlot, type PetProfile } from '../pets/species';
 import { contrast, MIN } from '../ui/contrast';
 import { ACCENT_LINE, CYRILLIC_LINE, fontTest } from '../ui/fonttest';
 import pairsFile from '../../tools/contrast-pairs.json';
@@ -150,12 +150,14 @@ const petsSection = Panel({ title: 'Pets', children: [
 ] });
 
 /* ---------- Mascotas: every breed, built from parts ---------- */
-/** A second colour set per breed: other swatches and the breed's second pattern (deterministic). */
+/** A second colour set per breed: other swatches it allows and the breed's second pattern (deterministic). */
 function altSet(p: PetProfile): PetProfile {
   const sp = allSpecies().find((x) => x.species === p.species)!;
-  const fur = sp.swatches.fur, i = Math.max(0, fur.findIndex((s) => s.c === p.colors.fur1));
   const br = sp.breeds.find((b) => b.id === p.breed)!;
-  return { ...p, id: `${p.id}-b`, colors: { ...p.colors, fur1: fur[(i + 3) % fur.length].c, fur3: fur[(i + 6) % fur.length].c, eyes: sp.swatches.eyes[1 % sp.swatches.eyes.length].c }, pattern: br.patterns[1] ?? br.pattern };
+  const colors = { ...p.colors };
+  const shift = (slot: ColorSlot, by: number) => { const list = slotChoices(sp, br, slot).natural; if (!list.length) return; const i = Math.max(0, list.findIndex((s) => s.c === colors[slot])); colors[slot] = list[(i + by) % list.length].c; };
+  shift('fur1', 3); shift('fur2', 1); shift('fur3', 6); shift('eyes', 1);
+  return normalizeProfile({ ...p, id: `${p.id}-b`, colors, pattern: br.patterns[1] ?? br.pattern });
 }
 const mascotasSection = Panel({ title: 'Mascotas', children: [
   h('p', null, 'Every breed, composed at runtime from parts (src/data/pets/<species>.json), in its default colours and a second set, each with pet-item.boina scaled by the breed’s headWidth. Use the theme switch at the top for both themes.'),

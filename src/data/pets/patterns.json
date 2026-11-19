@@ -1,13 +1,14 @@
 {
-  "_note": "Pattern overlays for every species. art: drawn by pet-part.pattern.<id> in --fur-3 and clipped to body and head; vars: CSS variables the pattern sets instead (socks colour the feet, chest colours the chest). es / g: noun and its gender-number for the screen-reader description (m, f, mp, fp), e.g. 'con manchas blancas'.",
+  "_note": "Pattern overlays for every species. art: drawn by pet-part.pattern.<id>, one group per part (data-on body / head), each clipped to that part; vars: CSS variables the pattern sets (socks colour the feet, chest colours the chest, points colour ears, paws and tail tip); color: the slot the pattern is drawn in, which the description names. es / g: noun and its gender-number for the screen-reader description (m, f, mp, fp), e.g. 'con manchas blancas'.",
   "patterns": {
     "none": { "name_es": "Sin dibujo" },
-    "spots": { "name_es": "Manchas", "es": "manchas", "g": "fp", "art": true },
-    "stripes": { "name_es": "Rayas", "es": "rayas", "g": "fp", "art": true },
-    "saddle": { "name_es": "Manto", "es": "manto", "g": "m", "art": true },
-    "mask": { "name_es": "Antifaz", "es": "antifaz", "g": "m", "art": true },
-    "patches": { "name_es": "Parches", "es": "parches", "g": "mp", "art": true },
-    "socks": { "name_es": "Calcetines", "es": "calcetines", "g": "mp", "vars": { "--feet": "var(--fur-3)" } },
-    "chest": { "name_es": "Pecho", "es": "pecho", "g": "m", "vars": { "--chest": "var(--fur-3)" } }
+    "spots": { "name_es": "Manchas", "es": "manchas", "g": "fp", "art": true, "color": "fur3" },
+    "stripes": { "name_es": "Rayas", "es": "rayas", "g": "fp", "art": true, "color": "fur3" },
+    "saddle": { "name_es": "Manto", "es": "manto", "g": "m", "art": true, "color": "fur3" },
+    "mask": { "name_es": "Antifaz", "es": "antifaz", "g": "m", "art": true, "color": "fur3" },
+    "patches": { "name_es": "Parches", "es": "parches", "g": "mp", "art": true, "color": "fur3" },
+    "socks": { "name_es": "Calcetines", "es": "calcetines", "g": "mp", "color": "fur3", "vars": { "--feet": "var(--fur-3)" } },
+    "chest": { "name_es": "Pecho", "es": "pecho", "g": "m", "color": "fur3", "vars": { "--chest": "var(--fur-3)" } },
+    "points": { "name_es": "Puntas", "es": "puntas", "g": "fp", "art": true, "color": "fur2", "vars": { "--points": "var(--fur-2)", "--feet": "var(--fur-2)", "--chest": "var(--fur-1)" } }
   }
 }

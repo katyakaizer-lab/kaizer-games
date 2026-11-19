@@ -11,7 +11,7 @@
  */
 import { onImport, store } from '../data/storage';
 import '../pets/data';
-import { makeProfile, profileProblems, speciesById, type PetProfile } from '../pets/species';
+import { makeProfile, normalizeProfile, profileProblems, speciesById, type PetProfile } from '../pets/species';
 import type { Mood } from '../pets/pets';
 
 export interface Activity { lastPracticeAt?: number; lastCelebrationAt?: number }
@@ -40,7 +40,8 @@ onImport(() => { migratePets(); });
 /** The learner's pets (an old single-pet save is migrated first, wherever it is read). */
 export function getPets(): PetProfile[] {
   if (store.get('pet', null)) migratePets();
-  return store.get<PetProfile[]>('pets', []).filter((p) => speciesById(p.species));
+  // Profiles follow the current breed data (a breed that now locks a colour, or a pattern it no longer offers).
+  return store.get<PetProfile[]>('pets', []).filter((p) => speciesById(p.species)).map(normalizeProfile);
 }
 export function getActivePet(): PetProfile | null {
   const pets = getPets();
