@@ -7,12 +7,20 @@ import { resolve } from 'node:path';
 const tokens = readFileSync(resolve(__dirname, 'public/tokens.css'), 'utf8');
 const token = (name: string, fallback: string) => tokens.match(new RegExp(`${name}:\s*(#[0-9A-Fa-f]{3,6})`))?.[1] ?? fallback;
 
-export default defineConfig({
+// The word review page (revision/) is published on the web preview at a hidden address so Katya can review on her
+// phone, and left out of the store build: npm run build:store (vite build --mode store).
+export const inputsFor = (mode: string): Record<string, string> => ({
+  main: resolve(__dirname, 'index.html'),
+  styleTest: resolve(__dirname, 'style-test/index.html'),
+  ...(mode === 'store' ? {} : { revision: resolve(__dirname, 'revision/index.html') }),
+});
+
+export default defineConfig(({ mode }) => ({
   base: './',
   build: {
     target: 'es2022',
     rollupOptions: {
-      input: { main: resolve(__dirname, 'index.html'), styleTest: resolve(__dirname, 'style-test/index.html') },
+      input: inputsFor(mode),
     },
   },
   plugins: [
@@ -39,6 +47,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{html,js,css,svg,png,webp,woff2,json,mp3}'],
+        // The review page is not part of the app: not cached for offline use.
+        globIgnores: ['revision/**', 'assets/revision-*'],
         navigateFallback: null,
         cleanupOutdatedCaches: true,
       },
@@ -51,4 +61,4 @@ export default defineConfig({
     // Several test files start a browser and a dev server each; running all of them at once overloads a laptop.
     maxWorkers: 4,
   },
-});
+}));

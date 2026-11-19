@@ -119,7 +119,7 @@ export function guessModel(inf: string): string {
   if (/zar$/.test(v)) t.push('z-c');
   if (/g(er|ir)$/.test(v)) t.push('g-j');
   if (/guir$/.test(v)) t.push('gu-g');
-  if (/[^aeiou]c(er|ir)$/.test(v)) t.push('c-z');
+  if (/[^aeiou]c(er|ir)$/.test(v) || /^(re|es)?cocer$|^mecer$/.test(v)) t.push('c-z'); // vencer -> venzo; cocer -> cuezo, mecer -> mezo
   if (/uir$/.test(v) && !/(gu|qu)ir$/.test(v)) t.push('i-y');
   if (/[aeo](er|ír|ir)$/.test(v)) t.push('i-y');
   return t.length ? t.join('+') : 'regular';

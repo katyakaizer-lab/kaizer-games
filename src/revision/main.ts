@@ -1,5 +1,6 @@
 /**
- * Word review page (dev only: /revision/ on the dev server; not part of the production build).
+ * Word review page: /revision/ on the web preview (hidden: noindex, no link from the app) and on the dev server; left
+ * out of the store build (npm run build:store).
  * One entry at a time, phone-friendly: the word, gender, plural, level, translations, clues and example, plus the
  * engines' syllables and stress. ✓ Correcto, ✎ Editar (inline fields), ⚑ Dudoso (with a note). Filters by topic, level
  * and status. Decisions are kept on this device and exported as revision-YYYY-MM-DD.json; tools/apply-review.ts applies
@@ -54,13 +55,36 @@ function decide(e: WordEntry, d: Omit<ReviewDecision, 'id' | 'at'>) {
   render();
 }
 
-function exportPatch() {
-  const patch = makePatch(decisions);
-  const blob = new Blob([`${JSON.stringify(patch, null, 1)}\n`], { type: 'application/json' });
+/*
+ * Export, three ways, so it works on every phone:
+ * - Descargar: a .json download (iPhone Safari 13+ asks "¿Descargar…?" and saves it in Archivos > Descargas);
+ * - Compartir: the system share sheet with the file (iPhone: AirDrop, Mail, WhatsApp, "Guardar en Archivos"), shown only
+ *   where the browser can share files;
+ * - Copiar: the JSON as text on the clipboard; if the clipboard is blocked, a box with the text selected to copy by hand.
+ */
+const patchText = () => `${JSON.stringify(makePatch(decisions), null, 1)}\n`;
+let exportMsg = '';
+function downloadPatch() {
+  const blob = new Blob([patchText()], { type: 'application/json' });
   const a = h('a', { href: URL.createObjectURL(blob), download: patchName(new Date()) });
   document.body.append(a);
   a.click();
-  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  exportMsg = `Descargado ${patchName(new Date())}. En iPhone está en Archivos > Descargas.`;
+  render();
+}
+const patchFile = () => new File([patchText()], patchName(new Date()), { type: 'application/json' });
+const canShareFile = (): boolean => { try { return typeof navigator.canShare === 'function' && navigator.canShare({ files: [patchFile()] }); } catch { return false; } };
+async function sharePatch() {
+  try { await navigator.share({ files: [patchFile()], title: patchName(new Date()) }); exportMsg = 'Compartido.'; }
+  catch (err) { if ((err as Error).name !== 'AbortError') exportMsg = 'No se pudo compartir; usa Descargar o Copiar.'; }
+  render();
+}
+let showText = false;
+async function copyPatch() {
+  try { await navigator.clipboard.writeText(patchText()); exportMsg = 'Copiado. Pégalo en un mensaje o en un archivo revision.json.'; showText = false; }
+  catch { exportMsg = 'El navegador no deja copiar solo: selecciona el texto de abajo y cópialo.'; showText = true; }
+  render();
 }
 
 const select = (label: string, value: string, options: [string, string][], onChange: (v: string) => void) => {
@@ -77,7 +101,14 @@ function filters(count: number) {
     select('Nivel', filter.level, [['', 'Todos'], ...WORD_LEVELS.map((l): [string, string] => [l, l])], (v) => set({ level: v })),
     select('Estado', filter.status, [['todo', 'Sin revisar'], ['all', 'Todas'], ['ok', '✓ Correcto'], ['edited', '✎ Editado'], ['doubt', '⚑ Dudoso'], ['reviewed', 'Ya revisado (en el código)']], (v) => set({ status: v as Status })),
     h('p', { class: 'rv-count' }, `${count} en la lista · ${done} decididas en este dispositivo`),
-    h('button', { class: 'rv-btn rv-btn--export', onClick: exportPatch, disabled: !done }, `Exportar ${patchName(new Date())}`));
+    h('div', { class: 'rv-export' },
+      h('p', { class: 'rv-export-title' }, `Exportar ${patchName(new Date())}`),
+      h('div', { class: 'rv-actions' },
+        h('button', { class: 'rv-btn', 'data-export': 'download', onClick: downloadPatch, disabled: !done }, 'Descargar'),
+        canShareFile() ? h('button', { class: 'rv-btn', 'data-export': 'share', onClick: () => void sharePatch(), disabled: !done }, 'Compartir') : null,
+        h('button', { class: 'rv-btn', 'data-export': 'copy', onClick: () => void copyPatch(), disabled: !done }, 'Copiar')),
+      exportMsg ? h('p', { class: 'rv-muted', role: 'status' }, exportMsg) : null,
+      showText ? (() => { const ta = h('textarea', { class: 'rv-input rv-note rv-export-text', readonly: true, rows: '6', 'aria-label': 'Texto para copiar' }, patchText()) as HTMLTextAreaElement; setTimeout(() => { ta.focus(); ta.select(); }, 0); return ta; })() : null));
 }
 
 function stressLine(e: WordEntry) {
@@ -181,7 +212,7 @@ function render() {
     h('button', { class: 'rv-btn', disabled: filter.index >= list.length - 1, onClick: () => { filter.index++; mode = 'view'; render(); } }, 'Siguiente →'));
   mount(document.getElementById('app')!,
     h('h1', { class: 'rv-title' }, 'Revisión del banco de palabras'),
-    h('p', { class: 'rv-muted' }, 'Solo en desarrollo. Las decisiones se guardan en este dispositivo; exporta el archivo y aplícalo con tools/apply-review.'),
+    h('p', { class: 'rv-muted' }, 'Página oculta para revisar. Las decisiones se guardan en este dispositivo: exporta a menudo (Safari puede borrar los datos de una página que no se abre en una semana).'),
     filters(list.length),
     e ? (mode === 'edit' ? editForm(e) : mode === 'doubt' ? doubtForm(e) : view(e)) : h('p', { class: 'rv-card' }, 'No hay palabras con estos filtros.'),
     nav);

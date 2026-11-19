@@ -1,4 +1,4 @@
-// Applies a word review patch exported from the dev page /revision/ (revision-YYYY-MM-DD.json) to src/data/words:
+// Applies a word review patch exported from the review page /revision/ (revision-YYYY-MM-DD.json) to src/data/words:
 //   node tools/apply-review.ts path/to/revision-2026-11-20.json [--dry-run]
 // "Correcto" and "Editar" set reviewed:true (edited fields are written first); "Dudoso" keeps reviewed:false and stores
 // the note as reviewNote. The bank is validated before anything is written; with errors nothing changes.

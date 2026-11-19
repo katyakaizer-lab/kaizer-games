@@ -1,5 +1,5 @@
 /**
- * Review decisions for the word bank, kept on the device while reviewing (dev page /revision/), exported as a patch
+ * Review decisions for the word bank, kept on the device while reviewing (page /revision/), exported as a patch
  * file (revision-YYYY-MM-DD.json) and applied by tools/apply-review.ts, which sets reviewed:true.
  * Pure code (no DOM): shared by the page, the tool and tests.
  */
