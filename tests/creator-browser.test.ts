@@ -136,7 +136,8 @@ describe('pet creator', () => {
     expect(await page.textContent('fieldset[data-slot="fur2"] legend')).toBe('Color de las puntas');
     for (let i = 0; i < 6; i++) {
       await page.click('.creator button:has-text("Sorpréndeme")');
-      const ok = await page.evaluate(() => !!document.querySelector('.creator__preview svg[data-art-kind="pet"] [data-slot="head"]'));
+      // The preview is redrawn after the parts load: wait for it (slower machines catch it mid-redraw).
+      const ok = await page.waitForSelector('.creator__preview svg[data-art-kind="pet"] [data-slot="head"]', { timeout: 5000 }).then(() => true, () => false);
       expect(ok).toBe(true);
     }
     await next(page);
