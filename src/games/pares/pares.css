@@ -1,0 +1,13 @@
+/* ¿Pero o perro?. Tokens only. */
+.par-options { display: grid; gap: var(--space-3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.par-option {
+  display: grid; justify-items: center; gap: var(--space-1); min-height: 5rem; padding: var(--space-3); font: inherit; cursor: pointer;
+  color: var(--text); background: var(--bg); border: 3px solid var(--border); border-radius: var(--radius-card); min-width: 0;
+}
+.par-option:hover:not(:disabled) { border-color: var(--primary); }
+.par-option:disabled { cursor: default; color: var(--text); }
+.par-option__word { font-family: var(--font-head); font-size: var(--fs-h2); line-height: 1.1; overflow-wrap: anywhere; }
+.par-option.is-right { border-color: var(--correct-line); background: var(--correct-bg); }
+.par-option.is-wrong { border-color: var(--retry-line); background: var(--retry-bg); }
+.par-pic { width: 4rem; height: 4rem; display: block; }
+.par-pic > * { width: 100%; height: 100%; }

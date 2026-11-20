@@ -10,7 +10,7 @@
 import { bare } from '../../lang/es/accents.ts';
 
 export { bare };
-export const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
+export const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const;
 export type Level = (typeof LEVELS)[number];
 /** def: definition; gap: a sentence with ___ for the word; syn / ant: synonym / opposite; use: what it is for or where it is. */
 export type ClueKind = 'def' | 'gap' | 'syn' | 'ant' | 'use';

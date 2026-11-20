@@ -1,0 +1,20 @@
+/* Golpe de voz. Tokens only. */
+.gv-syls { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); }
+.gv-syl, .gv-choice {
+  min-width: var(--tap-min); min-height: var(--tap-min); padding: 0 var(--space-3); font: inherit; font-size: var(--fs-h3); font-weight: 700;
+  color: var(--text); background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius-tile); cursor: pointer;
+}
+.gv-syl:hover:not(:disabled), .gv-choice:hover:not(:disabled) { border-color: var(--primary); }
+.gv-syl.is-picked { border-color: var(--retry-line); background: var(--retry-bg); }
+.gv-syl.is-stressed { border-color: var(--correct-line); background: var(--correct-bg); }
+.gv-syl:disabled, .gv-choice:disabled { cursor: default; color: var(--text); }
+.gv-word { text-align: center; }
+.gv-word__stress { color: var(--primary); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.gv-ask { display: grid; gap: var(--space-2); }
+.gv-reveal { display: grid; gap: var(--space-2); }
+.gv-sentence { font-size: var(--fs-h3); line-height: 2.4; margin: 0; overflow-wrap: anywhere; }
+.gv-choice { font-size: var(--fs-h3); padding: 0 var(--space-2); min-width: 2.75rem; margin: 0 2px; }
+.gv-choice[aria-pressed="true"] { border-color: var(--primary); background: var(--highlight); color: var(--on-highlight); }
+.gv-choice.is-right { border-color: var(--correct-line); background: var(--correct-bg); }
+.gv-choice.is-wrong { border-color: var(--retry-line); background: var(--retry-bg); }
+.gv-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }

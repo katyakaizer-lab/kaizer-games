@@ -320,6 +320,91 @@
    ]
   },
   {
+   "id": "ui.game.pociones",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.golpe",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.libros",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.cartas",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
+   "id": "ui.game.pares",
+   "kind": "ui",
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": false,
+   "source": {
+    "tool": "generated placeholder",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": ""
+   },
+   "licence": "own",
+   "games": [
+    "hub"
+   ]
+  },
+  {
    "id": "ui.game.misterio",
    "kind": "ui",
    "alt": "",
@@ -6022,6 +6107,466 @@
    "licence": "own",
    "games": [
     "hub"
+   ]
+  },
+  {
+   "id": "decor.pociones.caldero",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/caldero.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: caldero"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.gota",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/gota.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: gota"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.vela",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/vela.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: vela"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.globo",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/globo.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: globo"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.corazon",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/corazon.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: corazon"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.pociones.huevo",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/huevo.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: huevo"
+   },
+   "licence": "own",
+   "games": [
+    "pociones"
+   ]
+  },
+  {
+   "id": "decor.golpe.microfono",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/microfono.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: microfono"
+   },
+   "licence": "own",
+   "games": [
+    "golpe"
+   ]
+  },
+  {
+   "id": "decor.golpe.nota",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/nota.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: nota"
+   },
+   "licence": "own",
+   "games": [
+    "golpe"
+   ]
+  },
+  {
+   "id": "decor.golpe.tambor",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/tambor.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: tambor"
+   },
+   "licence": "own",
+   "games": [
+    "golpe"
+   ]
+  },
+  {
+   "id": "decor.golpe.rayo",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/rayo.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: rayo"
+   },
+   "licence": "own",
+   "games": [
+    "golpe"
+   ]
+  },
+  {
+   "id": "decor.libros.libro",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/libro.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: libro"
+   },
+   "licence": "own",
+   "games": [
+    "libros"
+   ]
+  },
+  {
+   "id": "decor.libros.pluma",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/pluma.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: pluma"
+   },
+   "licence": "own",
+   "games": [
+    "libros"
+   ]
+  },
+  {
+   "id": "decor.libros.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "libros"
+   ]
+  },
+  {
+   "id": "decor.libros.llave",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/llave.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: llave"
+   },
+   "licence": "own",
+   "games": [
+    "libros"
+   ]
+  },
+  {
+   "id": "decor.cartas.carta",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/carta.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: carta"
+   },
+   "licence": "own",
+   "games": [
+    "cartas"
+   ]
+  },
+  {
+   "id": "decor.cartas.estrella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/estrella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: estrella"
+   },
+   "licence": "own",
+   "games": [
+    "cartas"
+   ]
+  },
+  {
+   "id": "decor.cartas.sol",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/sol.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: sol"
+   },
+   "licence": "own",
+   "games": [
+    "cartas"
+   ]
+  },
+  {
+   "id": "decor.cartas.nube",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/nube.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: nube"
+   },
+   "licence": "own",
+   "games": [
+    "cartas"
+   ]
+  },
+  {
+   "id": "decor.pares.oreja",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/oreja.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: oreja"
+   },
+   "licence": "own",
+   "games": [
+    "pares"
+   ]
+  },
+  {
+   "id": "decor.pares.huella",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/huella.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: huella"
+   },
+   "licence": "own",
+   "games": [
+    "pares"
+   ]
+  },
+  {
+   "id": "decor.pares.hueso",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/hueso.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: hueso"
+   },
+   "licence": "own",
+   "games": [
+    "pares"
+   ]
+  },
+  {
+   "id": "decor.pares.nota",
+   "kind": "decor",
+   "files": {
+    "1x": "decor/nota.svg"
+   },
+   "alt": "",
+   "status": "placeholder",
+   "aiGenerated": true,
+   "source": {
+    "tool": "Claude",
+    "date": "2026-11-20",
+    "terms": "own",
+    "prompt": "simple one-colour silhouette: nota"
+   },
+   "licence": "own",
+   "games": [
+    "pares"
    ]
   }
  ]

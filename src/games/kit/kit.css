@@ -1,0 +1,67 @@
+/* Shared look of the generated-content games (day theme "brote"). Tokens only; phone first (360-390px). */
+.kit { max-width: 40rem; margin: 0 auto; padding: var(--space-2) var(--space-3) var(--space-6); display: grid; gap: var(--space-3); overflow-x: clip; }
+.kit-header { display: flex; align-items: center; gap: var(--space-1); margin-left: calc(-1 * var(--space-2)); min-width: 0; }
+.kit-header__space { flex: 1; }
+.kit-title { margin: 0; font-size: var(--fs-h2); line-height: 1.1; min-width: 0; overflow-wrap: anywhere; }
+.kit-title:focus, .kit-title:focus-visible { outline: none; }
+.kit-soft { color: var(--text-soft); margin: 0; }
+.kit-small { font-size: var(--fs-small); }
+
+/* Modes */
+.kit-modes { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr)); }
+.kit-mode {
+  display: grid; gap: var(--space-1); justify-items: start; align-content: start; padding: var(--space-3) var(--space-4); min-height: 6rem;
+  background: var(--surface); color: var(--text); font: inherit; text-align: left; cursor: pointer;
+  border: 2px solid var(--border); border-radius: var(--radius-tile); box-shadow: var(--shadow); min-width: 0;
+}
+.kit-mode:hover { border-color: var(--primary); }
+.kit-mode:focus-visible { outline-offset: 3px; }
+.kit-mode__level { font-size: var(--fs-small); font-weight: 700; padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--highlight); color: var(--on-highlight); }
+.kit-mode__name { font-family: var(--font-head); font-size: var(--fs-h3); line-height: 1.15; overflow-wrap: anywhere; }
+.kit-mode__note { font-size: var(--fs-small); color: var(--text-soft); }
+.kit-mode__done { display: inline-flex; align-items: center; gap: 2px; font-size: var(--fs-small); font-weight: 700; }
+
+/* Decorations */
+.kit-decor { display: flex; justify-content: center; gap: var(--space-3); height: 2rem; }
+.kit-decor__obj, .kit-shape { flex: none; width: 2rem; height: 2rem; display: block; background: var(--c, var(--accent)); -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+.kit-decor__obj.is-placeholder { background: none; }
+.kit-shape.is-plain { -webkit-mask: none; mask: none; border-radius: 50%; }
+
+/* Question card */
+.kit-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-card); padding: var(--space-3); display: grid; gap: var(--space-3); min-width: 0; }
+.kit-prompt { font-size: var(--fs-h3); margin: 0; overflow-wrap: anywhere; }
+.kit-big { font-family: var(--font-head); font-size: var(--fs-h1); line-height: 1.1; margin: 0; overflow-wrap: anywhere; }
+.kit-progress { margin: 0; font-weight: 700; color: var(--text-soft); }
+.kit-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+
+/* Answer */
+.kit-answer { display: grid; gap: var(--space-2); justify-items: start; }
+.kit-answer__row { width: 100%; }
+.kit-answer__row { display: flex; align-items: center; gap: var(--space-1); min-width: 0; flex-wrap: wrap; }
+.kit-answer__fix { font-weight: 700; }
+.kit-input {
+  flex: 1 1 8rem; min-width: 0; min-height: var(--tap-min); padding: 0 var(--space-3); font: inherit; font-size: var(--fs-body);
+  color: var(--text); background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius-tile);
+}
+.kit-input:focus-visible { outline: var(--focus-w) solid var(--focus); outline-offset: 1px; }
+
+/* Status */
+.kit-status { display: flex; gap: var(--space-2); align-items: flex-start; min-height: 1.5rem; }
+.kit-status:empty { display: none; }
+.kit-status.is-ok, .kit-status.is-near, .kit-status.is-wrong, .kit-status.is-info { padding: var(--space-2) var(--space-3); border-radius: var(--radius-tile); border: 2px solid var(--border); }
+.kit-status.is-ok { background: var(--correct-bg); border-color: var(--correct-line); }
+.kit-status.is-near, .kit-status.is-wrong { background: var(--retry-bg); border-color: var(--retry-line); }
+.kit-status__detail { overflow-wrap: anywhere; }
+
+/* Rule card */
+.kit-rule { background: var(--bg); border-left: 4px solid var(--primary); padding: var(--space-2) var(--space-3); border-radius: var(--radius-tile); margin: 0; }
+
+/* Finish */
+.kit-finish { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-card); padding: var(--space-4); display: grid; gap: var(--space-2); text-align: center; justify-items: center; }
+.kit-finish h2 { margin: 0; }
+.kit-finish h2:focus { outline: none; }
+.kit-finish p { margin: 0; }
+.kit-finish__stars { font-weight: 700; font-size: var(--fs-h3); }
+.kit-finish__stars span { color: var(--star); }
+.kit-finish__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.kit-message { padding: var(--space-4); text-align: center; }

@@ -25,7 +25,7 @@
         "es": "Crucigramas por temas, con pistas en español.",
         "ru": "Кроссворды по темам, с подсказками на испанском."
       },
-      "levels": "A1–B2"
+      "levels": "A1–C1"
     },
     {
       "id": "solitario",
@@ -39,6 +39,71 @@
         "ru": "Разложи карточки со словами по категориям."
       },
       "levels": "A1–B2"
+    },
+    {
+      "id": "pociones",
+      "status": "playable",
+      "name": "Pociones de números",
+      "icon": "sparkles",
+      "art": "ui.game.pociones",
+      "levels": "A1–C1",
+      "about": {
+        "en": "Count, read and hear numbers, then write them in words.",
+        "es": "Cuenta, lee y escucha números, y escríbelos con letras.",
+        "ru": "Считай, читай и слушай числа и пиши их словами."
+      }
+    },
+    {
+      "id": "golpe",
+      "status": "playable",
+      "name": "Golpe de voz",
+      "icon": "volume",
+      "art": "ui.game.golpe",
+      "levels": "A2–C1",
+      "about": {
+        "en": "Find the stressed syllable and decide on the accent.",
+        "es": "Encuentra la sílaba tónica y decide si lleva tilde.",
+        "ru": "Найди ударный слог и реши, нужна ли тильда."
+      }
+    },
+    {
+      "id": "libros",
+      "status": "playable",
+      "name": "Libros de hechizos",
+      "icon": "book",
+      "art": "ui.game.libros",
+      "levels": "A1–C1",
+      "about": {
+        "en": "Join beginnings and endings to make words for your book.",
+        "es": "Une principios y finales para hacer palabras para tu libro.",
+        "ru": "Соединяй начала и окончания и собирай слова в книгу."
+      }
+    },
+    {
+      "id": "cartas",
+      "status": "playable",
+      "name": "Cartas de verbos",
+      "icon": "palette",
+      "art": "ui.game.cartas",
+      "levels": "A1–C1",
+      "about": {
+        "en": "A card game against bots: match the tense or person and type the verb.",
+        "es": "Cartas contra bots: casa el tiempo o la persona y escribe el verbo.",
+        "ru": "Карты против ботов: совпадай по времени или лицу и пиши глагол."
+      }
+    },
+    {
+      "id": "pares",
+      "status": "playable",
+      "name": "¿Pero o perro?",
+      "icon": "ear",
+      "art": "ui.game.pares",
+      "levels": "A1–C1",
+      "about": {
+        "en": "Hear a word and choose between two that sound alike.",
+        "es": "Escucha una palabra y elige entre dos que suenan parecido.",
+        "ru": "Послушай слово и выбери одно из двух похожих."
+      }
     },
     {
       "id": "misterio",

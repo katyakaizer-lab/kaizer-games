@@ -1,0 +1,26 @@
+/* Libros de hechizos. Tokens only. Families: fam-0..3 use the theme's four accent colours. */
+.fam-0 { --fam: var(--primary); --on-fam: var(--on-primary); }
+.fam-1 { --fam: var(--secondary); --on-fam: var(--on-secondary); }
+.fam-2 { --fam: var(--accent); --on-fam: var(--on-accent); }
+.fam-3 { --fam: var(--highlight); --on-fam: var(--on-highlight); }
+.fam-n { --fam: var(--surface); --on-fam: var(--text); }
+.lib-piece.fam-n { border-color: var(--border); }
+.lib-targets { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr)); }
+.lib-target { display: grid; gap: 2px; padding: var(--space-2); border: 2px dashed var(--fam); border-radius: var(--radius-tile); min-width: 0; overflow-wrap: anywhere; }
+.lib-target.is-found { border-style: solid; background: var(--correct-bg); }
+.lib-target__blank { font-weight: 700; color: var(--text-soft); }
+.lib-sub { font-size: var(--fs-h3); margin: 0; }
+.lib-pieces { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.lib-piece {
+  min-height: var(--tap-min); min-width: var(--tap-min); padding: 0 var(--space-3); font: inherit; font-weight: 700; font-size: var(--fs-h3);
+  background: var(--fam); color: var(--on-fam); border: 3px solid var(--fam); border-radius: var(--radius-tile); cursor: pointer;
+}
+.lib-piece.is-start { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.lib-piece.is-end { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.lib-piece[aria-pressed="true"] { outline: var(--focus-w) solid var(--focus); outline-offset: 2px; }
+.lib-piece:disabled { opacity: .45; cursor: default; }
+.lib-made { min-height: 1.5em; margin: 0; font-weight: 700; font-size: var(--fs-h3); overflow-wrap: anywhere; }
+.lib-legend { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; }
+.lib-legend__item { padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--fam); color: var(--on-fam); font-weight: 700; }
+.lib-book h2 { margin: 0; font-size: var(--fs-h3); }
+.lib-book__words { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }

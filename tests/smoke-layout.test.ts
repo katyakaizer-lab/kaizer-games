@@ -25,6 +25,11 @@ const SCREENS = [
   'index.html#game/constelaciones', 'index.html#game/constelaciones/story', 'index.html#game/constelaciones/listen', 'index.html#game/constelaciones/memory',
   'index.html#game/constelaciones/play/map/c-b2-001', 'index.html#game/constelaciones/play/memory/c-a1-001', 'index.html#game/constelaciones/read/farolero',
   'index.html#game/solitario', 'index.html#game/solitario/play/A1', 'index.html#game/solitario/play/B2/seed-3',
+  'index.html#game/pociones', 'index.html#game/pociones/play/contar/seed-3', 'index.html#game/pociones/play/millones/seed-5',
+  'index.html#game/golpe', 'index.html#game/golpe/play/tipos/seed-1', 'index.html#game/golpe/play/diacriticas/seed-1',
+  'index.html#game/libros', 'index.html#game/libros/play/sufijos/seed-2', 'index.html#game/libros/play/subjuntivo-imperfecto/seed-2',
+  'index.html#game/cartas', 'index.html#game/cartas/play/C1/3/seed-4',
+  'index.html#game/pares', 'index.html#game/pares/play/acento/seed-1',
   'style-test/index.html', 'style-test/index.html?theme=night',
 ];
 const NOW = Date.now();
@@ -35,7 +40,7 @@ const STATE: Record<string, string> = {
   'kz.cz.progress': JSON.stringify({ cleared: Object.fromEntries(['c-a1-001', ...Array.from({ length: 15 }, (_, i) => `c-story-farolero-${i + 1}`)]
     .map((id, i) => [id, { firstAt: NOW - 2e8, step: 0, due: i ? NOW + 8.64e7 : NOW - 1000, reviews: 0, hints: 0 }])) }),
 };
-const WIDTHS = [360, 375];
+const WIDTHS = [360, 375, 390];
 
 // SMOKE_DIST=1 tests the built site in dist/ (what users get); otherwise the dev server.
 const USE_DIST = process.env.SMOKE_DIST === '1';

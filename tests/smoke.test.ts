@@ -52,6 +52,20 @@ describe('smoke: every screen loads without console errors', () => {
     ['crucigramas setup', '#game/crucigramas/new/A1', '.cw-setup .cw-choice'],
     ['crucigramas play', '#game/crucigramas/play/A1/ropa-a1/seed-2', '.cw-grid .cw-cell'],
     ['crucigramas B2', '#game/crucigramas/play/B2/festividades-b2/seed-5/none', '.cw-keys .cw-key'],
+    ['crucigramas C1', '#game/crucigramas/play/C1/sociedad-c1/seed-2', '.cw-grid .cw-cell'],
+    ['pociones modes', '#game/pociones', '.kit-mode'],
+    ['pociones counting', '#game/pociones/play/contar/seed-3', '.poc-cauldron .poc-thing'],
+    ['pociones dates', '#game/pociones/play/fechas/seed-2', '.kit-input'],
+    ['golpe modes', '#game/golpe', '.kit-mode'],
+    ['golpe words', '#game/golpe/play/tipos/seed-1', '.gv-syl'],
+    ['golpe sentences', '#game/golpe/play/diacriticas/seed-1', '.gv-choice'],
+    ['libros modes', '#game/libros', '.kit-mode'],
+    ['libros syllables', '#game/libros/play/silabas/seed-2', '.lib-piece.is-start'],
+    ['libros verbs', '#game/libros/play/subjuntivo/seed-2', '.lib-piece.is-end'],
+    ['libros book', '#game/libros/libro', '.kit-message'],
+    ['cartas setup', '#game/cartas', '.cv-opt'],
+    ['cartas table', '#game/cartas/play/B1/2/seed-4', '.cv-hand .cv-card'],
+    ['pares (no voice: message)', '#game/pares', '.kit-message'],
   ];
   for (const [name, hash, selector] of screens) {
     it(name, async () => {

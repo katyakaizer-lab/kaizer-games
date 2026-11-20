@@ -39,13 +39,13 @@ describe('content', () => {
     for (const t of data.topics) {
       expect(t.words.length, t.id).toBeGreaterThanOrEqual(20);
       for (const e of t.words) expect(cluesOf(e).length).toBeGreaterThanOrEqual(2);
-      expect(t.reviewed).toBe(false);
+      expect(typeof t.reviewed).toBe('boolean');
     }
   });
-  it('validator passes, and counts every topic as unreviewed', () => {
+  it('validator passes, and counts the unreviewed topics', () => {
     const r = validateCrucigramas(clone(), 8);
     expect(r.errors).toEqual([]);
-    expect(r.unreviewed.length).toBe(data.topics.length);
+    expect(r.unreviewed.length).toBe(data.topics.filter((t) => !t.reviewed).length);
   });
   const broken = (f: (d: CrucigramaData) => void) => { const d = clone(); f(d); return validateCrucigramas(d, 3).errors.join('\n'); };
   it('fails a clue that gives the answer away', () => expect(broken((d) => { d.topics[0].words[0].clues.def = `Una ${d.topics[0].words[0].es} grande`; })).toMatch(/gives the answer away/));

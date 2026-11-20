@@ -1,0 +1,10 @@
+{
+ "_note": "Decoration sets of the generated-content games (art ids decor.<game>.<item>, files public/assets/decor/<item>.svg, one-colour silhouettes coloured by the theme). Registered in the manifest by tools/make-game-decor.mjs.",
+ "sets": {
+  "pociones": ["caldero", "estrella", "gota", "vela", "globo", "corazon", "huevo"],
+  "golpe": ["microfono", "nota", "tambor", "rayo"],
+  "libros": ["libro", "pluma", "estrella", "llave"],
+  "cartas": ["carta", "estrella", "sol", "nube"],
+  "pares": ["oreja", "huella", "hueso", "nota"]
+ }
+}

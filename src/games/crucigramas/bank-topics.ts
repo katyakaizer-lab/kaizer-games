@@ -9,7 +9,7 @@ import type { TopicDef, WordEntry } from '../../words/types.ts';
 import type { Entry, Level, LevelConfig, Topic } from './engine.ts';
 
 export const MIN_WORDS = 20;
-const BELOW: Record<string, string[]> = { A1: [], A2: ['A1'], B1: ['A2'], B2: ['B1'] };
+const BELOW: Record<string, string[]> = { A1: [], A2: ['A1'], B1: ['A2'], B2: ['B1'], C1: ['B2'] };
 export interface DecorConfig { sets: Record<string, { style: string; items: string[] }>; topicSet: Record<string, string> }
 
 /** Topic id in the game: the bank topic and the level ("frutas-a1"). */

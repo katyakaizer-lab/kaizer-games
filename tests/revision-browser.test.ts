@@ -50,8 +50,9 @@ describe('word review page', () => {
   it('shows one entry with syllables and stress; Correcto, Editar and Dudoso; downloads the patch file', async () => {
     const { ctx, page, errors } = await openPage();
     expect(await page.getAttribute('meta[name="robots"]', 'content')).toBe('noindex, nofollow');
-    await page.selectOption('select[aria-label="Tema"]', 'frutas');
-    await page.selectOption('select[aria-label="Nivel"]', 'A1');
+    // A topic and level that still have unreviewed words (A1 to B1 are all reviewed).
+    await page.selectOption('select[aria-label="Tema"]', 'sociedad');
+    await page.selectOption('select[aria-label="Nivel"]', 'C1');
     expect(await page.textContent('.rv-word')).toBeTruthy();
     expect(await page.locator('.rv-syl.is-stressed').count()).toBe(1);
     expect(await page.textContent('.rv-stress')).toMatch(/aguda|llana|esdrújula/);

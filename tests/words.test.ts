@@ -27,11 +27,11 @@ describe('word bank content', () => {
     for (const t of agreed) { expect(ids, t).toContain(t); expect(entries.filter((e) => e.topics.includes(t)).length, t).toBeGreaterThanOrEqual(15); }
     for (const f of files) for (const e of f.data.entries) expect(`${e.topics[0]}.json`).toBe(f.name);
   });
-  it('names are stored without articles; gender is a separate field; nothing is reviewed yet', () => {
+  it('names are stored without articles; gender is a separate field; reviewed is true or false', () => {
     for (const e of entries) {
       expect(e.lemma, e.id).not.toMatch(/^(el|la|los|las|un|una) /i);
       if (e.pos === 'noun') expect(['m', 'f', 'both', 'special'], e.id).toContain(e.gender);
-      expect(e.reviewed).toBe(false);
+      expect(typeof e.reviewed).toBe('boolean');
     }
     expect(entries.find((e) => e.id === 'agua')).toMatchObject({ gender: 'special' });
   });
@@ -102,7 +102,7 @@ describe('validator catches', () => {
 
 describe('review patch', () => {
   it('Correcto and Editar mark reviewed (with the edits); Dudoso keeps it unreviewed with the note', () => {
-    const es = structuredClone(entries);
+    const es = structuredClone(entries); for (const e of es) e.reviewed = false;
     const casa = es.find((e) => e.id === 'casa')!;
     const changes = diff(casa, { ...casa, translations: { en: 'house', ru: 'дом, жилище' } });
     expect(changes).toEqual({ translations: { en: 'house', ru: 'дом, жилище' } });
